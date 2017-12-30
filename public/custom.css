@@ -1,0 +1,111 @@
+@font-face {
+  font-family: GuDianMingChaoTi;
+  src: url('/fonts/GuDianMingChaoTi.ttf');
+  font-weight: bold;
+}
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body, p, blockquote, h1, h2, h3, ul, ol {
+  margin: 0px;
+  padding: 0;
+}
+
+body {
+  color: #666;
+  user-select:none;
+  text-shadow: 0 0 1px rgba(0,0,0,.2);
+  scroll-behavior: smooth;
+  font-family: 'Monda'!important;
+  cursor: url('../img/cursor.cur'), auto!important;
+}
+
+a, .button, .gitter-open-chat-button {
+  cursor: url('./img/cursor_link.cur'), auto!important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, .5);
+}
+
+body > div {
+  height: 100%;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: 'Monda', 'PT Mono';
+}
+
+code {
+  font-family: 'PT Mono', monospace, "PingFang SC","Microsoft YaHei", sans-serif;
+}
+
+a, ol {
+  font-family: 'Monda';
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+a:hover {
+  color: #faf;
+}
+
+.gitter-open-chat-button {
+  background-color: #faf!important;
+}
+
+.gitter-open-chat-button:hover {
+  background-color: #f6f!important;
+}
+
+.gt-comment-content, .gt-header-comment, .gt-container .gt-avatar img {
+  background: rgba(255, 255, 255, .6);
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+}
+
+#live2d{
+  position: fixed;
+  left: 10px;
+  bottom: 0;
+  z-index: 10;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #999;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::selection {
+  background: #999;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #999;
+  color: #fff;
+}
