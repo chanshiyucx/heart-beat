@@ -21,6 +21,36 @@ export default {
   loadingImg: 'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
 
   /*
+   * 分类
+   */
+   catsInfo: {
+     '事件簿': {
+       text: '今天又是和平的一天~',
+       img: 'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
+     },
+     '技术向': {
+       text: '技术什么的不懂啦',
+       img: 'https://dn-coding-net-production-pp.qbox.me/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
+     },
+     '笔记本': {
+       text: 'emmmmmm',
+       img: 'https://dn-coding-net-production-pp.qbox.me/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
+     },
+     '代码库': {
+       text: 'Write the code, Change the World',
+       img: 'https://dn-coding-net-production-pp.qbox.me/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
+     },
+     '分享境': {
+       text: '偷偷给你看点东西',
+       img: 'https://dn-coding-net-production-pp.qbox.me/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
+     },
+     '自言语': {
+       text: '欲言又止，止言又欲',
+       img: 'https://dn-coding-net-production-pp.qbox.me/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
+     },
+   },
+
+  /*
    * 友链
    */
   friends: [{

@@ -31,10 +31,6 @@ const Tag = styled(Button)`
   }
 `
 
-const Filter = styled.div`
-
-`
-
 const FilterHeader = styled.h2`
   margin: 16px 0 12px;
 `
@@ -113,17 +109,15 @@ class Tags extends PureComponent {
             </TagList>
           </div>
         </Transition>
-        <Transition visible={filterTitle && tagsOnHide} animation='scale' duration={800}>
+        <Transition visible={tagsOnHide && !!filterTitle} animation='scale' duration={800}>
           <div>
-            <Filter>
-              <FilterHeader>
-                Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
-                       {filterTitle}
-                       <Icon name='delete' color='red' />
-                     </Tag>
-              </FilterHeader>
-              <ArchiveList archives={filterPost} />
-            </Filter>
+            <FilterHeader>
+              Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
+                     {filterTitle}
+                     <Icon name='delete' color='red' />
+                   </Tag>
+            </FilterHeader>
+            <ArchiveList archives={filterPost} />
           </div>
         </Transition>
         {!tags || tags.length === 0 &&

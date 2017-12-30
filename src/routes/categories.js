@@ -5,6 +5,7 @@ import { Transition, Button, Icon } from 'semantic-ui-react'
 import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+import config from '../config'
 
 const Container = styled.div`
   padding: 10px 16px;
@@ -14,33 +15,39 @@ const Container = styled.div`
 `
 
 const CatList = styled.div`
-  padding: 16px 1%;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `
 
 const Cat = styled.div`
+  position: relative;
   margin-bottom: 16px;
-  width: 30%;
+  width: 32%;
   height: 160px;
   overflow: hidden;
   border-radius: 3px;
+  background: rgba(255, 255, 255, .6);
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
+  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
+    transform: translateY(-4px);
+    img {
+      animation-play-state:paused;
+    	transform: rotateZ(360deg);
+    }
+  }
 `
 
 const CatHeader = styled.div`
   position: relative;
   width:100%;
   height: 46%;
-  background: #fcf;
-`
-
-const CatContent = styled.div`
-  background: #ddd;
-  height: 60%;
+  background-image: url(${props => props.bg});
+  background-position: center;
+  background-size: cover;
 `
 
 const StyledImg = styled.img`
@@ -51,6 +58,7 @@ const StyledImg = styled.img`
   height: 80px;
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0,0,0,.16);
+  transition: transform 1.0s ease-out;
 `
 
 const StyledTitle = styled.span`
@@ -65,6 +73,12 @@ const StyledTitle = styled.span`
   box-shadow: 0 3px 6px rgba(0,0,0,.16);
 `
 
+const CatContent = styled.div`
+  position: absolute;
+  bottom: 0;
+  padding: 10px 16px 12px;
+`
+
 const StyledButton = styled(Button)`
   margin: 10px;
   padding: 8px 12px;
@@ -74,10 +88,6 @@ const StyledButton = styled(Button)`
   &:hover {
     background: rgba(0, 0, 0, .2)!important;
   }
-`
-
-const Filter = styled.div`
-
 `
 
 const FilterHeader = styled.h2`
@@ -104,7 +114,6 @@ class Categories extends PureComponent {
   }
 
   filterPost = (cat) => {
-    console.log('cat', cat)
     this.props.dispatch({
       type: 'site/filterPost',
       payload: {
@@ -138,14 +147,17 @@ class Categories extends PureComponent {
   renderCats = (cats) => {
     if (cats && cats.length > 0) {
       const catList = cats.map((o) => {
+        const info = config.catsInfo[o.title]
+        const catText = info.text
+        const catImg = info.img
         return (
           <Cat key={o.id} onClick={() => {this.filterPost(o)}}>
-            <CatHeader>
-              <StyledImg alt='' src='https://dn-coding-net-production-pp.qbox.me/0619cfc2-67e5-4c35-8562-692d323f2525.jpg' />
+            <CatHeader bg={catImg}>
+              <StyledImg alt='' src={catImg} />
               <StyledTitle>{o.title} ({o.open_issues})</StyledTitle>
             </CatHeader>
             <CatContent>
-
+              {catText}
             </CatContent>
           </Cat>
         )
@@ -167,17 +179,15 @@ class Categories extends PureComponent {
             </CatList>
           </div>
         </Transition>
-        <Transition visible={filterTitle && catsOnHide} animation='scale' duration={800}>
+        <Transition visible={catsOnHide && !!filterTitle } animation='scale' duration={800}>
           <div>
-            <Filter>
-              <FilterHeader>
-                Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>
-                       {filterTitle}
-                       <Icon name='delete' color='red' />
-                     </StyledButton>
-              </FilterHeader>
-              <ArchiveList archives={filterPost} />
-            </Filter>
+            <FilterHeader>
+              Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>
+                     {filterTitle}
+                     <Icon name='delete' color='red' />
+                   </StyledButton>
+            </FilterHeader>
+            <ArchiveList archives={filterPost} />
           </div>
         </Transition>
         {!cats || cats.length === 0 &&
