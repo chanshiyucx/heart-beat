@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
+import { Transition, Button, Icon } from 'semantic-ui-react'
+import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
 
@@ -15,16 +16,27 @@ const Container = styled.div`
 const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `
 
-const Tag = styled.span`
+const Tag = styled(Button)`
   margin: 10px;
   padding: 8px 12px;
   border-radius: 3px;
-  background: rgba(0, 0, 0, .1);
-  color: ${props => '#' + props.color || '#666' }
+  background: rgba(0, 0, 0, .1)!important;
+  color: ${props => '#' + props.bg + '!important' || '#666' };
+  &:hover {
+    background: rgba(0, 0, 0, .2)!important;
+  }
+`
+
+const Filter = styled.div`
+
+`
+
+const FilterHeader = styled.h2`
+  margin: 16px 0 12px;
 `
 
 class Tags extends PureComponent {
@@ -39,6 +51,40 @@ class Tags extends PureComponent {
       type: 'site/reset',
       payload: {
         tags: [],
+        tagsOnHide: false,
+        filterTitle: '',
+        filterPost: [],
+      }
+    })
+  }
+
+  filterPost = (tag) => {
+    this.props.dispatch({
+      type: 'site/filterPost',
+      payload: {
+        type: 'labels',
+        filter: tag,
+        filterTitle: tag,
+      }
+    })
+  }
+
+  clearFilter = () => {
+    this.props.dispatch({
+      type: 'site/update',
+      payload: {
+        tagsOnHide: false,
+        filterTitle: '',
+        filterPost: [],
+      }
+    })
+  }
+
+  onHide = () => {
+    this.props.dispatch({
+      type: 'site/update',
+      payload: {
+        tagsOnHide: true,
       }
     })
   }
@@ -47,7 +93,7 @@ class Tags extends PureComponent {
     if (tags && tags.length > 0) {
       const tagList = tags.map((o) => {
         return (
-          <Tag key={o.id} color={o.color}>{o.name}</Tag>
+          <Tag key={o.id} bg={o.color} onClick={() => this.filterPost(o.name)}>{o.name}</Tag>
         )
       })
       return tagList
@@ -55,16 +101,29 @@ class Tags extends PureComponent {
   }
 
   render() {
-    const { tags } = this.props
+    const { tags, tagsOnHide, filterTitle, filterPost } = this.props
     const text = '列卒周匝，星罗云布'
     return (
       <Container>
-        <Transition visible={tags.length > 0} animation='scale' duration={1000}>
+        <Transition visible={tags.length > 0 && !filterTitle} animation='scale' duration={800} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <TagList>
               {this.renderTags(tags)}
             </TagList>
+          </div>
+        </Transition>
+        <Transition visible={filterTitle && tagsOnHide} animation='scale' duration={800}>
+          <div>
+            <Filter>
+              <FilterHeader>
+                Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
+                       {filterTitle}
+                       <Icon name='delete' color='red' />
+                     </Tag>
+              </FilterHeader>
+              <ArchiveList archives={filterPost} />
+            </Filter>
           </div>
         </Transition>
         {!tags || tags.length === 0 &&

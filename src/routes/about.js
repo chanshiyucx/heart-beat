@@ -57,7 +57,7 @@ class About extends PureComponent {
     return (
       <Container>
         <Wapper>
-          <Transition visible={showAbout} animation='scale' duration={1000}>
+          <Transition visible={showAbout} animation='scale' duration={800}>
             <div>
               <Quote text={text} />
               <Content>

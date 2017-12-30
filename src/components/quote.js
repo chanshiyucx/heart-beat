@@ -8,7 +8,8 @@ const Header = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 32px 16px;
+  padding: 32px 0;
+  margin-bottom: 26px;
 `
 
 const QuoteLeft =styled(Icon)`

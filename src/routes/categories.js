@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
+import { Transition, Button, Icon } from 'semantic-ui-react'
+import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
 
@@ -64,6 +65,25 @@ const StyledTitle = styled.span`
   box-shadow: 0 3px 6px rgba(0,0,0,.16);
 `
 
+const StyledButton = styled(Button)`
+  margin: 10px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, .1)!important;
+  color: ${props => '#' + props.bg + '!important' || '#666' };
+  &:hover {
+    background: rgba(0, 0, 0, .2)!important;
+  }
+`
+
+const Filter = styled.div`
+
+`
+
+const FilterHeader = styled.h2`
+  margin: 16px 0 12px;
+`
+
 class Categories extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
@@ -76,6 +96,41 @@ class Categories extends PureComponent {
       type: 'site/reset',
       payload: {
         cats: [],
+        catsOnHide: false,
+        filterTitle: '',
+        filterPost: [],
+      }
+    })
+  }
+
+  filterPost = (cat) => {
+    console.log('cat', cat)
+    this.props.dispatch({
+      type: 'site/filterPost',
+      payload: {
+        type: 'milestone',
+        filter: cat.number,
+        filterTitle: cat.title,
+      }
+    })
+  }
+
+  clearFilter = () => {
+    this.props.dispatch({
+      type: 'site/update',
+      payload: {
+        catsOnHide: false,
+        filterTitle: '',
+        filterPost: [],
+      }
+    })
+  }
+
+  onHide = () => {
+    this.props.dispatch({
+      type: 'site/update',
+      payload: {
+        catsOnHide: true,
       }
     })
   }
@@ -84,7 +139,7 @@ class Categories extends PureComponent {
     if (cats && cats.length > 0) {
       const catList = cats.map((o) => {
         return (
-          <Cat key={o.id}>
+          <Cat key={o.id} onClick={() => {this.filterPost(o)}}>
             <CatHeader>
               <StyledImg alt='' src='https://dn-coding-net-production-pp.qbox.me/0619cfc2-67e5-4c35-8562-692d323f2525.jpg' />
               <StyledTitle>{o.title} ({o.open_issues})</StyledTitle>
@@ -100,16 +155,29 @@ class Categories extends PureComponent {
   }
 
   render() {
-    const { cats } = this.props
+    const { cats, catsOnHide, filterTitle, filterPost } = this.props
     const text = '行云流水，妙笔生花'
     return (
       <Container>
-        <Transition visible={cats.length > 0} animation='scale' duration={1000}>
+        <Transition visible={cats.length > 0 && !filterTitle} animation='scale' duration={800} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <CatList>
               {this.renderCats(cats)}
             </CatList>
+          </div>
+        </Transition>
+        <Transition visible={filterTitle && catsOnHide} animation='scale' duration={800}>
+          <div>
+            <Filter>
+              <FilterHeader>
+                Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>
+                       {filterTitle}
+                       <Icon name='delete' color='red' />
+                     </StyledButton>
+              </FilterHeader>
+              <ArchiveList archives={filterPost} />
+            </Filter>
           </div>
         </Transition>
         {!cats || cats.length === 0 &&

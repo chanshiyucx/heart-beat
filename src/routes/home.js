@@ -109,7 +109,7 @@ class Home extends PureComponent {
         <StyledRightButton icon onClick={this.next}>
           <StyledIcon name='angle double right' size='massive'/>
         </StyledRightButton>
-        <Transition visible={!loading} animation='scale' duration={500} onHide={this.onHide}>
+        <Transition visible={!loading} animation='scale' duration={1000} onHide={this.onHide}>
           <div>
             <PostList>
               {this.renderCard(postList)}

@@ -65,7 +65,7 @@ a {
 }
 
 a:hover {
-  color: #faf;
+  color: #f6f;
 }
 
 .gitter-open-chat-button {
@@ -76,8 +76,8 @@ a:hover {
   background-color: #f6f!important;
 }
 
-.gt-comment-content, .gt-header-comment, .gt-container .gt-avatar img {
-  background: rgba(255, 255, 255, .6);
+.gt-comment-content, .gt-header-textarea, .gt-container .gt-avatar img {
+  background: rgba(255, 255, 255, .6)!important;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
 }

@@ -1,4 +1,4 @@
-import { queryTotal, queryList, queryCats, queryTags } from '../services/fetch'
+import { queryTotal, queryList, queryCats, queryTags, filterList } from '../services/fetch'
 import { delay } from '../utils'
 
 const minDelay = 1000
@@ -16,6 +16,10 @@ export default {
     tags: [],
     showFriends: false,
     showAbout: false,
+    tagsOnHide: false,
+    catsOnHide: false,
+    filterTitle: '',
+    filterPost: [],
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -24,6 +28,10 @@ export default {
 
     queryEnd(state, { payload }) {
       return { ...state, ...payload, loading: false }
+    },
+
+    setFilterPost(state, { payload }) {
+      return { ...state, ...payload }
     },
 
     update(state, { payload }) {
@@ -79,6 +87,12 @@ export default {
     *showAbout({ payload }, { call, put }) {
       yield call(delay, minDelay)
       yield put({ type: 'update', payload: { showAbout: true }})
+    },
+
+    *filterPost({ payload }, { call, put }) {
+      const { filterTitle } = payload
+      const filterPost = yield call(filterList, payload)
+      yield put({ type: 'setFilterPost', payload: { filterPost, filterTitle }})
     },
   },
 }

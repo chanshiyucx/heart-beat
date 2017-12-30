@@ -135,7 +135,7 @@ class Friends extends PureComponent {
     return (
       <Container>
         <Wapper>
-          <Transition visible={showFriends} animation='scale' duration={1000}>
+          <Transition visible={showFriends} animation='scale' duration={800}>
             <div>
               <Quote text={text} />
               <FriendList>
