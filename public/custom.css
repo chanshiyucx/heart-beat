@@ -82,11 +82,20 @@ a:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
 }
 
-#live2d{
+#live2d {
   position: fixed;
   left: 10px;
   bottom: 0;
   z-index: 10;
+}
+
+@media (max-width: 900px) {
+  .gitter-open-chat-button, #live2d, #canvas {
+    display: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 ::-webkit-scrollbar {

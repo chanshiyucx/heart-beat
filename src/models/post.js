@@ -1,5 +1,5 @@
 import Gitalk from 'gitalk'
-import { queryPost, queryComments } from '../services/fetch'
+import { queryPost, queryComments, queryPostHot } from '../services/fetch'
 import { delay } from '../utils'
 
 export default {
@@ -8,6 +8,7 @@ export default {
     loading: true,
     post: {},
     comments: [],
+    time: 1,
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -19,6 +20,10 @@ export default {
     },
 
     setComments(state, { payload }) {
+      return { ...state, ...payload }
+    },
+
+    update(state, { payload }) {
       return { ...state, ...payload }
     },
 
@@ -48,6 +53,8 @@ export default {
       gitalk.render('gitalk')
 
       yield put({ type: 'queryEnd', payload: { post } })
+      const time = yield call(queryPostHot, { post })
+      yield put({ type: 'update', payload: { time } })
     },
 
     *queryComments({ payload }, { call, put }) {

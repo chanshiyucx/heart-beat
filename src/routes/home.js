@@ -79,11 +79,12 @@ class Home extends PureComponent {
     })
   }
 
-  renderCard = (postList) => {
+  renderCard = () => {
+    const { postList, times } = this.props
     if (postList && postList.length > 0) {
-      const cardList = postList.map((o) => {
+      const cardList = postList.map((o, i) => {
         return (
-          <PostCard key={o.id} { ...o } />
+          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} />
         )
       })
       return cardList
@@ -100,7 +101,7 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { loading, postList, onHide } = this.props
+    const { loading, onHide } = this.props
     return (
       <Container>
         <StyledLeftButton icon onClick={this.prev}>
@@ -109,10 +110,10 @@ class Home extends PureComponent {
         <StyledRightButton icon onClick={this.next}>
           <StyledIcon name='angle double right' size='massive'/>
         </StyledRightButton>
-        <Transition visible={!loading} animation='scale' duration={1000} onHide={this.onHide}>
+        <Transition visible={!loading} animation='scale' duration={800} onHide={this.onHide}>
           <div>
             <PostList>
-              {this.renderCard(postList)}
+              {this.renderCard()}
             </PostList>
           </div>
         </Transition>

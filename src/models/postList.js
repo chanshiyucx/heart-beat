@@ -1,7 +1,7 @@
-import { queryTotal, queryList } from '../services/fetch'
+import { queryTotal, queryList, queryHot } from '../services/fetch'
 import { delay } from '../utils'
 
-const minDelay = 2000
+const minDelay = 1600
 
 export default {
   namespace: 'postList',
@@ -11,10 +11,9 @@ export default {
     hasMore: true,
     total: 0, // 文章总数
     postList: [], // 文章列表
-    commentList: [],
     page: 1,
     pageSize: 4,
-    post: {},
+    times: [],
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -34,7 +33,7 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, loading: true, onHide: true }
+      return { ...state, loading: true, onHide: true, times: [] }
     },
 
   },
@@ -64,6 +63,8 @@ export default {
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({ type: 'queryEnd', payload: { postList, page: queryPage }})
+      const times = yield call(queryHot, { postList })
+      yield put({ type: 'update', payload: { times } })
     },
   },
 }

@@ -9,6 +9,10 @@ import config from '../config'
 const { friends } = config
 
 const Container = styled.div`
+  margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const Wapper = styled.div`

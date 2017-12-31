@@ -7,6 +7,10 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 const Container = styled.div`
+  margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const Wapper = styled.div`

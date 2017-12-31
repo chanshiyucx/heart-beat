@@ -6,9 +6,14 @@ import Loading from '../components/loading'
 import PostBody from '../components/postBody'
 
 const Container = styled.div`
+  margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const Wapper = styled.div`
+  overflow: hidden;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
@@ -36,13 +41,13 @@ class Post extends PureComponent {
   }
 
   render() {
-    const { post, loading } = this.props
+    const { loading, post, time } = this.props
     return (
       <Container className="Post">
         <Wapper>
           <Transition visible={!loading && Object.keys(post).length !== 0} animation='drop' duration={1000}>
             <div>
-              <PostBody { ...post } />
+              <PostBody { ...post } time={time} />
             </div>
           </Transition>
           {loading &&

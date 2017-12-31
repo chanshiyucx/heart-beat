@@ -7,21 +7,25 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 const Container = styled.div`
+  margin: 0 auto;
   padding: 10px 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `
 
 const Tag = styled(Button)`
-  margin: 10px;
+  margin: 0 4px 10px!important;
   padding: 8px 12px;
   border-radius: 3px;
   background: rgba(0, 0, 0, .1)!important;

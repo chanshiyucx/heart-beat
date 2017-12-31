@@ -10,6 +10,14 @@ export default {
   params: '?creator=chanshiyucx&state=open',
 
   /*
+   * leancloud 配置
+   */
+   leancloud: {
+     appId: 'gpbQXGSvwOMTfL6lj5aWUMAA-gzGzoHsz',
+     appKey: 'avh1gAX4lKkcQQMa1EReztCt',
+   },
+
+  /*
    * 站点信息
    */
   title: '蝉時雨',

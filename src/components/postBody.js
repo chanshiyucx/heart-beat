@@ -32,6 +32,11 @@ const Header = styled.div`
     width: 100%;
     transition: transform .6s ease-out;
   }
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 20px;
+    }
+  }
 `
 
 const Info = styled.div`
@@ -86,7 +91,7 @@ const Content = styled.div`
     font-size: 16px;
   }
   img {
-    width: 900px;
+    width: calc(100% + 32px);
     margin-left: -16px;
     box-shadow: 0 0 10px #999;
   }
@@ -100,6 +105,7 @@ const Content = styled.div`
   }
   pre, blockquote {
     padding: 10px 16px;
+    overflow: scroll;
     background: rgba(0, 0, 0, .06);
     box-shadow: inset 0px 11px 8px -10px #999, inset 0px -11px 8px -10px #999;
     p {
@@ -133,6 +139,17 @@ const Content = styled.div`
   li {
     list-style: initial;
   }
+  @media (max-width: 900px) {
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+  }
 `
 
 const PostBody = ({
@@ -141,6 +158,7 @@ const PostBody = ({
   created_at,
   labels,
   milestone,
+  time,
 }) => {
   const reg=/http.+jpg/g
   const result = reg.exec(body)
@@ -158,6 +176,10 @@ const PostBody = ({
             <Item>
               <Icon name='time' />
               {date}
+            </Item>
+            <Item>
+              <Icon name='eye' />
+              热度{time}℃
             </Item>
             <Item>
               <Icon name='bookmark' />
@@ -189,6 +211,7 @@ PostBody.propTypes = {
   created_at: PropTypes.string,
   labels: PropTypes.array,
   milestone: PropTypes.object,
+  time: PropTypes.number,
 }
 
 export default PostBody

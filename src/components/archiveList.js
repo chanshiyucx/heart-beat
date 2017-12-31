@@ -6,7 +6,7 @@ import { Card, Icon } from 'semantic-ui-react'
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `
 
@@ -14,6 +14,9 @@ const Archive = styled.div`
   display: inline-block;
   margin: 6px 0;
   width: 49%;
+  @media (max-width: 700px) {
+    width: 96%;
+  }
 `
 
 const StyledCard = styled(Card)`

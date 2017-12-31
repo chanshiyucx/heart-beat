@@ -8,16 +8,20 @@ import Loading from '../components/loading'
 import config from '../config'
 
 const Container = styled.div`
+  margin: 0 auto;
   padding: 10px 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const CatList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `
 
@@ -38,6 +42,9 @@ const Cat = styled.div`
       animation-play-state:paused;
     	transform: rotateZ(360deg);
     }
+  }
+  @media (max-width: 900px) {
+    width: 96%;
   }
 `
 

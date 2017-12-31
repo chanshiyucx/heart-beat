@@ -8,6 +8,9 @@ const Container = styled.div`
   display: inline-block;
   margin: 6px 0;
   width: 48.5%;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -84,6 +87,7 @@ const PostCard = ({
   created_at,
   labels,
   milestone,
+  time,
 }) => {
   const desc = body.split('<!-- more -->')[0]
   const date = created_at.slice(0, 10)
@@ -105,6 +109,10 @@ const PostCard = ({
             <Item>
               <Icon name='time' />
               {date}
+            </Item>
+            <Item>
+              <Icon name='eye' />
+              热度{time}℃
             </Item>
             <Item>
               <Icon name='bookmark' />
@@ -137,6 +145,7 @@ PostCard.propTypes = {
   created_at: PropTypes.string,
   labels: PropTypes.array,
   milestone: PropTypes.object,
+  time: PropTypes.number,
 }
 
 export default PostCard

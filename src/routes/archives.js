@@ -7,10 +7,14 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 const Container = styled.div`
+  margin: 0 auto;
   padding: 10px 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
+  @media (max-width: 900px) {
+    width: 96%;
+  }
 `
 
 const LoadMore = styled.div`
