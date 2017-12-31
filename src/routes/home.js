@@ -11,6 +11,9 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 900px) {
+    margin-bottom: 100px;
+  }
 `
 
 const PostList = styled.div`

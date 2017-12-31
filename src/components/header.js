@@ -46,7 +46,7 @@ const StyledMenu = styled.ul`
   box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
   li {
     padding: 2px 6px;
-    margin: 0 6px;
+    margin: 0 4px;
     font-size: 16px;
   }
   a {
