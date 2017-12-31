@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Icon } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 const Container = styled.div`
   position: absolute;
@@ -7,6 +7,17 @@ const Container = styled.div`
   margin: 0 auto;
   padding-bottom: 10px;
   width: 100%;
+`
+
+const ScrollToTop = styled(Button)`
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  color: rgba(255, 255, 255, .6)!important;
+  background: transparent!important;
+  &:hover {
+    color: rgba(0, 0, 0, .2)!important;
+  }
 `
 
 const InnerWrap = styled.div`
@@ -26,8 +37,17 @@ const Item = styled.div`
 `
 
 const Footer = () => {
+  const scrollToTop = () => {
+    // 滚动到顶部
+    const header = document.getElementById('header')
+    header.scrollIntoView()
+  }
+
   return (
     <Container>
+      <ScrollToTop icon onClick={scrollToTop}>
+        <Icon name='chevron circle up' size='huge' />
+      </ScrollToTop>
       <InnerWrap>
         <ItemList>
           <Item>
@@ -41,7 +61,7 @@ const Footer = () => {
         </ItemList>
         <ItemList>
           <Item>
-            <p>Theme - <a href='/'>HeartBeat</a></p>
+            <p>Theme - <a href='https://github.com/chanshiyucx/SPA-Blog'>HeartBeat</a></p>
           </Item>|
           <Item>
              <p> Hosted by <a href='https://pages.coding.me'>Coding Pages</a></p>

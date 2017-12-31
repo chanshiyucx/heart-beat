@@ -43,6 +43,7 @@ const StyledMenu = styled.ul`
   height: 60px;
   width: 450px;
   background: rgba(0, 0, 0, .1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
   li {
     padding: 2px 6px;
     margin: 0 6px;
@@ -60,7 +61,7 @@ const StyledMenu = styled.ul`
 class Header extends PureComponent {
   render() {
     return (
-      <Container>
+      <Container id='header'>
         <Inner>
           <Title href='/'>蝉時雨</Title>
           <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
@@ -83,6 +84,11 @@ class Header extends PureComponent {
             <li>
               <Link to='/tags'>
                 <Icon name='tags' /> 标签
+              </Link>
+            </li>
+            <li>
+              <Link to='/shuoshuo'>
+                <Icon name='book' /> 说说
               </Link>
             </li>
             <li>

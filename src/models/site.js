@@ -1,4 +1,4 @@
-import { queryTotal, queryList, queryCats, queryTags, filterList } from '../services/fetch'
+import { queryTotal, queryList, queryCats, queryTags, filterList, queryShuoShuoTotal, queryShuoShuo } from '../services/fetch'
 import { delay } from '../utils'
 
 const minDelay = 1000
@@ -6,20 +6,30 @@ const minDelay = 1000
 export default {
   namespace: 'site',
   state: {
+    // 归档
+    archivesOnHide: false,
     loading: true,
-    hasMore: true,
     total: 0,
     page: 0,
-    pageSize: 4,
+    pageSize: 10,
     archives: [],
+    // 分类 & 标签
     cats: [],
     tags: [],
-    showFriends: false,
-    showAbout: false,
-    tagsOnHide: false,
     catsOnHide: false,
+    tagsOnHide: false,
     filterTitle: '',
     filterPost: [],
+    // 说说
+    shuoshuoOnHide: false,
+    shuoshuoLoading: true,
+    myShuoShuo: [],
+    shuoshuoTotal: 0,
+    shuoshuoPage: 0,
+    shuoshuoPageSize: 6,
+    // 友链 & 关于
+    showFriends: false,
+    showAbout: false,
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -28,10 +38,6 @@ export default {
 
     queryEnd(state, { payload }) {
       return { ...state, ...payload, loading: false }
-    },
-
-    setFilterPost(state, { payload }) {
-      return { ...state, ...payload }
     },
 
     update(state, { payload }) {
@@ -46,21 +52,20 @@ export default {
     *queryTotal({ payload }, { call, put }) {
       const total = yield call(queryTotal, payload)
       yield put({ type: 'update', payload: { total } })
-      yield put({ type: 'queryMore' })
+      yield put({ type: 'queryArchives' })
     },
 
-    *queryMore({ payload }, { select, call, put }) {
+    *queryArchives({ payload }, { select, call, put }) {
       yield put({ type: 'queryStart' })
       const startTime = new Date()
       const data = yield select(state => state.site)
-      const { total, archives, page, pageSize } = data
-      const queryPage = page + 1
-      const list = yield call(queryList, { page: queryPage, pageSize })
-      archives.concat(newArchives)
+      const { page, pageSize } = data
+      const queryType = payload ? payload.queryType : ''
+      const queryPage = queryType === 'prev' ? page - 1 : page + 1
+      const archives = yield call(queryList, { page: queryPage, pageSize })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      const newArchives = archives.concat(list)
-      yield put({ type: 'queryEnd', payload: { archives: newArchives, page: queryPage, hasMore: newArchives.length < total }})
+      yield put({ type: 'queryEnd', payload: { archives, page: queryPage, archivesOnHide: false, loading: false }})
     },
 
     *queryCats({ payload }, { call, put }) {
@@ -79,6 +84,25 @@ export default {
       yield put({ type: 'update', payload: { tags }})
     },
 
+    *queryShuoShuoTotal({ payload }, { call, put }) {
+      const shuoshuoTotal = yield call(queryShuoShuoTotal, payload)
+      yield put({ type: 'update', payload: { shuoshuoTotal } })
+      yield put({ type: 'queryShuoShuo' })
+    },
+
+    *queryShuoShuo({ payload }, { select, call, put }) {
+      yield put({ type: 'update', payload: { shuoshuoLoading: true }})
+      const startTime = new Date()
+      const data = yield select(state => state.site)
+      const { shuoshuoPage, shuoshuoPageSize } = data
+      const queryType = payload ? payload.queryType : ''
+      const queryPage = queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
+      const myShuoShuo = yield call(queryShuoShuo, { page: queryPage, pageSize: shuoshuoPageSize })
+      const delayTime = new Date() - startTime
+      if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
+      yield put({ type: 'update', payload: { myShuoShuo, shuoshuoPage: queryPage, shuoshuoOnHide: false, shuoshuoLoading: false }})
+    },
+
     *showFriends({ payload }, { call, put }) {
       yield call(delay, minDelay)
       yield put({ type: 'update', payload: { showFriends: true }})
@@ -92,7 +116,7 @@ export default {
     *filterPost({ payload }, { call, put }) {
       const { filterTitle } = payload
       const filterPost = yield call(filterList, payload)
-      yield put({ type: 'setFilterPost', payload: { filterPost, filterTitle }})
+      yield put({ type: 'update', payload: { filterPost, filterTitle }})
     },
   },
 }

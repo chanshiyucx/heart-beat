@@ -23,20 +23,30 @@ const PostList = styled.div`
 
 const StyledButton = styled(Button)`
   position: absolute;
-  top: 50%;
   margin: 0!important;
   width: 150px;
   background: transparent!important;
 `
 
 const StyledLeftButton = StyledButton.extend`
+  top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
 `
 
 const StyledRightButton = StyledButton.extend`
+  top: 50%;
   right: 0;
   transform: translate(100%, -50%);
+`
+
+const StyledMobileButton = StyledButton.extend`
+  display: none!important;
+  bottom: 0;
+  transform: translate(0, 100%);
+  @media (max-width: 900px) {
+    display: inline-block!important;
+  }
 `
 
 const StyledIcon = styled(Icon)`
@@ -53,7 +63,6 @@ class Home extends PureComponent {
   }
 
   componentWillUnmount() {
-    // 重置
     this.props.dispatch({
       type: 'postList/reset',
     })
@@ -120,6 +129,9 @@ class Home extends PureComponent {
         {loading && onHide &&
           <Loading />
         }
+        <StyledMobileButton icon onClick={this.next}>
+          <StyledIcon name='angle double down' size='massive'/>
+        </StyledMobileButton>
       </Container>
     )
   }

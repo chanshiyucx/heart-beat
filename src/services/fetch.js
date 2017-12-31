@@ -2,7 +2,7 @@ import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from '../config'
 
-const { repo, pre, suf, params } = config
+const { repo, shuoshuo, pre, suf, params } = config
 const token = `access_token=${pre}${suf}`
 
 // 状态检测
@@ -65,6 +65,25 @@ export async function queryTags() {
   checkStatus(response)
   const tags = await response.json()
   return tags
+}
+
+// 说说总数
+export async function queryShuoShuoTotal() {
+  const url = `${shuoshuo}/issues${params}&page=1&per_page=1&${token}`
+  const response = await fetch(url)
+  checkStatus(response)
+  const data = await response.json()
+  console.log('data', data)
+  return data[0].number
+}
+
+// 说说
+export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
+  const url = `${shuoshuo}/issues${params}&page=${page}&per_page=${pageSize}&${token}`
+  const response = await fetch(url)
+  checkStatus(response)
+  const myShuoShuo = await response.json()
+  return myShuoShuo
 }
 
 // 热度

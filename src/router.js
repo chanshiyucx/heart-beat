@@ -12,6 +12,7 @@ import Archives from './routes/archives'
 import Categories from './routes/categories'
 import Tags from './routes/tags'
 import Friends from './routes/friends'
+import ShuoShuo from './routes/shuoshuo'
 import About from './routes/about'
 
 // 最外围容器
@@ -23,7 +24,10 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  padding-bottom:100px;
+  padding-bottom: 100px;
+  @media (max-width: 900px) {
+    padding-bottom: 200px;
+  }
 `
 
 function RouterConfig({ history, app }) {
@@ -38,6 +42,7 @@ function RouterConfig({ history, app }) {
             <Route exact path="/archives" component={Archives}/>
             <Route exact path="/categories" component={Categories}/>
             <Route exact path="/tags" component={Tags}/>
+            <Route exact path="/shuoshuo" component={ShuoShuo}/>
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/about" component={About}/>
           </Switch>

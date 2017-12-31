@@ -30,8 +30,8 @@ class Post extends PureComponent {
     })
 
     // 滚动到顶部
-    const body = document.querySelector('body')
-    body.scrollIntoView()
+    const header = document.getElementById('header')
+    header.scrollIntoView()
   }
 
   componentWillUnmount() {

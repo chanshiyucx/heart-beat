@@ -9,7 +9,7 @@ import config from '../config'
 
 const Container = styled.div`
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
@@ -32,7 +32,7 @@ const Cat = styled.div`
   height: 160px;
   overflow: hidden;
   border-radius: 3px;
-  background: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, .4);
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
   transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
   &:hover {
@@ -76,7 +76,7 @@ const StyledTitle = styled.span`
   height: 40px;
   line-height: 40px;
   border-radius: 3px;
-  background: #eee;
+  background: rgba(255, 255, 255, .8);
   box-shadow: 0 3px 6px rgba(0,0,0,.16);
 `
 
@@ -87,7 +87,7 @@ const CatContent = styled.div`
 `
 
 const StyledButton = styled(Button)`
-  margin: 10px;
+  margin: 0 4px 10px!important;
   padding: 8px 12px;
   border-radius: 3px;
   background: rgba(0, 0, 0, .1)!important;
@@ -98,7 +98,6 @@ const StyledButton = styled(Button)`
 `
 
 const FilterHeader = styled.h2`
-  margin: 16px 0 12px;
 `
 
 class Categories extends PureComponent {

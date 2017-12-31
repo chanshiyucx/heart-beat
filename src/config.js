@@ -3,6 +3,7 @@ export default {
    * Github Issues 配置
    */
   repo: 'https://api.github.com/repos/chanshiyucx/BlogPosts',
+  shuoshuo: 'https://api.github.com/repos/chanshiyucx/BlogShuoShuo',
   // token 需要拆开成两部分
   pre: '0ad1a0539c5b96fd18fa',
   suf: 'aaafba9c7d1362a5746c',
@@ -103,19 +104,26 @@ export default {
     avatar: 'https://dn-coding-net-production-pp.qbox.me/efeeef11-860b-4ff2-b61c-bc9766be5f03.jpg',
   }],
 
-  // 联系方式，图标支持 fontawesome
+  /*
+   * 关于
+   */
+  avatar: 'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
   contact: [{
-    name: 'E-Mail',
+    name: 'E-Mail：1124590931@qq.com',
     icon: 'envelope',
     link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5dTU19HQ3NXc1tSllJTLhoqI',
   }, {
-    name: 'Github',
+    name: 'Github：@chanshiyucx',
     icon: 'github',
     link: 'https://github.com/chanshiyucx',
   }, {
-    name: '知乎',
+    name: '知乎：@蝉時雨',
     icon: 'globe',
     link: 'https://www.zhihu.com/people/ichanshiyu/activities',
+  }, {
+    name: '网易云音乐：@天璇北落',
+    icon: 'music',
+    link: 'https://music.163.com/#/user/home?id=103060582',
   }],
 
   // 播放器

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Link } from 'dva/router'
 import styled from 'styled-components'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import marked from 'marked'
 
 const Container = styled.div`
@@ -22,8 +22,8 @@ const StyledLink = styled(Link)`
 const StyledCard = styled(Card)`
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23)!important;
   background: rgba(255, 255, 255, .6)!important;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23)!important;
   transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
   &:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
@@ -39,6 +39,7 @@ const StyledHeader = styled(Card.Content)`
   padding: 0!important;
   overflow: hidden;
   img {
+    width: 100%;
     transition: transform .6s ease-out;
   }
 `
@@ -93,7 +94,7 @@ const PostCard = ({
   const date = created_at.slice(0, 10)
   const reg=/http.+jpg/g
   const result = reg.exec(desc)
-  const cover = `${result[0]}?imageView2/1/w/498/h/280`
+  const cover = result[0]
   const content = desc.split('.jpg)')[1].trim()
 
   return (
@@ -101,7 +102,7 @@ const PostCard = ({
       <StyledLink to={`/post/${number}`}>
         <StyledCard raised fluid >
           <StyledHeader>
-            <Image src={cover} />
+            <img alt='' src={cover} />
             <StyledTitle>{title}</StyledTitle>
           </StyledHeader>
           <StyledContent dangerouslySetInnerHTML={{ __html: marked(content) }} />

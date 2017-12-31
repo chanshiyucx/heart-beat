@@ -16,7 +16,7 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 10px 16px;
+  padding: 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
@@ -37,7 +37,6 @@ const Friend = styled.a`
   height: 112px;
   overflow: hidden;
   border-radius: 3px;
-  background: rgba(255, 255, 255, .6);
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
   &:hover {
     .cover {
@@ -59,7 +58,7 @@ const Content = styled.div`
   align-items: center;
   width: 200px;
   height: 112px;
-  background: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, .4);
 `
 
 const Avatar = styled.img`

@@ -105,7 +105,6 @@ const Content = styled.div`
   }
   pre, blockquote {
     padding: 10px 16px;
-    overflow: scroll;
     background: rgba(0, 0, 0, .06);
     box-shadow: inset 0px 11px 8px -10px #999, inset 0px -11px 8px -10px #999;
     p {
@@ -148,6 +147,9 @@ const Content = styled.div`
     }
     h3 {
       font-size: 16px;
+    }
+    pre, blockquote {
+      overflow-x: scroll;
     }
   }
 `
