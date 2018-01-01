@@ -75,7 +75,7 @@ const Content = styled.div`
   font-family: monda;
   text-align: justify;
   p, h1, h2, h3, ul, ol {
-    margin: 10px 16px;
+    margin: 16px;
   }
   h1 {
     font-size: 22px;
