@@ -1,7 +1,7 @@
 import { queryTotal, queryList, queryHot } from '../services/fetch'
 import { delay } from '../utils'
 
-const minDelay = 1600
+const minDelay = 1000
 
 export default {
   namespace: 'postList',
