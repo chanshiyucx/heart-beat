@@ -31,6 +31,9 @@ renderer.image = function(href, title, text) {
 
 const Container = styled.div`
   width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  background: rgba(255, 255, 255, .6);
 `
 
 const Header = styled.div`
@@ -84,7 +87,7 @@ const Content = styled.div`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 16px;
-  // user-select:text;
+  user-select:text;
   font-size: 16px;
   font-family: monda;
   text-align: justify;

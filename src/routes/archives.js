@@ -12,13 +12,16 @@ const { duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+`
+
+const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
-  @media (max-width: 900px) {
-    width: 96%;
-  }
 `
 
 const Pagination = styled.div`
@@ -87,8 +90,8 @@ class Archives extends PureComponent {
     const text = '文章千古事，得失寸心知'
     return (
       <Container>
-        <Transition visible={!loading} animation='scale' duration={duration} onHide={this.onHide}>
-          <div>
+        <Transition visible={!loading} animation='drop' duration={duration} onHide={this.onHide}>
+          <Wapper>
             <Quote text={text} />
             <ArchiveList archives={archives} />
             <Pagination>
@@ -98,7 +101,7 @@ class Archives extends PureComponent {
                 <Button disabled={page >= maxPage} onClick={this.next}>下一页</Button>
               </Button.Group>
             </Pagination>
-          </div>
+          </Wapper>
         </Transition>
         {(!archives || archives.length === 0 || archivesOnHide)&&
           <Loading />

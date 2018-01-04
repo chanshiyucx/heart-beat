@@ -28,7 +28,7 @@ export default {
    * 加载动画
    */
   loadingImg: 'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
-  duration: 600,
+  duration: 800,
   minDelay: 800,
 
   /*

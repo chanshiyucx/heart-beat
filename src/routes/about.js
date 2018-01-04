@@ -109,9 +109,9 @@ class About extends PureComponent {
     const text = '蝉鸣如雨，花宵道中'
     return (
       <Container>
-        <Wapper>
-          <Transition visible={showAbout} animation='scale' duration={duration}>
-            <div>
+        <div>
+          <Transition visible={showAbout} animation='drop' duration={duration}>
+            <Wapper>
               <Quote text={text} />
               <Content>
                 <Header>
@@ -179,12 +179,12 @@ class About extends PureComponent {
                   </p>
                 </Section>
               </Content>
-            </div>
+            </Wapper>
           </Transition>
           {!showAbout &&
             <Loading />
           }
-        </Wapper>
+        </div>
         <div id='gitalk'></div>
       </Container>
     )

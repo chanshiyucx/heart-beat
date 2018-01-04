@@ -17,13 +17,16 @@ const colors = [
 
 const Container = styled.div`
   margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+`
+
+const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
-  @media (max-width: 900px) {
-    width: 96%;
-  }
 `
 
 const StyledSegment = styled(Segment)`
@@ -125,8 +128,8 @@ class ShuoShuo extends PureComponent {
     const text = '欲言又止，止言又欲'
     return (
       <Container>
-        <Transition visible={!shuoshuoLoading} animation='scale' duration={duration} onHide={this.onHide}>
-          <div>
+        <Transition visible={!shuoshuoLoading} animation='drop' duration={duration} onHide={this.onHide}>
+          <Wapper>
             <Quote text={text} />
             <div>
               {this.renderShuoShuo(myShuoShuo)}
@@ -138,7 +141,7 @@ class ShuoShuo extends PureComponent {
                 <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>下一页</Button>
               </Button.Group>
             </Pagination>
-          </div>
+          </Wapper>
         </Transition>
         {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) &&
           <Loading />

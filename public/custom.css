@@ -70,6 +70,7 @@ a:hover {
 
 /* gitter */
 .gitter-open-chat-button {
+  right: 20px;
   background-color: rgba(255, 255, 255, .6)!important;
 }
 
@@ -142,20 +143,17 @@ a:hover {
   .gitter-open-chat-button, #live2d, #canvas {
     display: none;
   }
-  ::-webkit-scrollbar {
-    display: none;
-  }
+}
+
+/* 隐藏滚动条 */
+html {
+  -ms-overflow-style:none;
+  overflow:-moz-scrollbars-none;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #999;
-}
-::-webkit-scrollbar-track {
-  background-color: transparent;
+  display: none;
+  width: 0;
 }
 
 ::selection {

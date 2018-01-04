@@ -12,13 +12,16 @@ const { duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+`
+
+const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   background: rgba(255, 255, 255, .6);
-  @media (max-width: 900px) {
-    width: 96%;
-  }
 `
 
 const TagList = styled.div`
@@ -108,16 +111,16 @@ class Tags extends PureComponent {
     const text = '列卒周匝，星罗云布'
     return (
       <Container>
-        <Transition visible={tags.length > 0 && !filterTitle} animation='scale' duration={duration} onHide={this.onHide}>
-          <div>
+        <Transition visible={tags.length > 0 && !filterTitle} animation='drop' duration={duration} onHide={this.onHide}>
+          <Wapper>
             <Quote text={text} />
             <TagList>
               {this.renderTags(tags)}
             </TagList>
-          </div>
+          </Wapper>
         </Transition>
-        <Transition visible={tagsOnHide && !!filterTitle} animation='scale' duration={duration}>
-          <div>
+        <Transition visible={tagsOnHide && !!filterTitle} animation='drop' duration={duration}>
+          <Wapper>
             <FilterHeader>
               Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
                      {filterTitle}
@@ -125,7 +128,7 @@ class Tags extends PureComponent {
                    </Tag>
             </FilterHeader>
             <ArchiveList archives={filterPost} />
-          </div>
+          </Wapper>
         </Transition>
         {!tags || tags.length === 0 &&
           <Loading />

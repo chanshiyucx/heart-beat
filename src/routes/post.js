@@ -16,12 +16,6 @@ const Container = styled.div`
   }
 `
 
-const Wapper = styled.div`
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-  background: rgba(255, 255, 255, .6);
-`
-
 class Post extends PureComponent {
   componentDidMount() {
     const number = this.props.match.params.number
@@ -47,8 +41,8 @@ class Post extends PureComponent {
     const { loading, post, time } = this.props
     return (
       <Container className="Post">
-        <Wapper>
-          <Transition visible={!loading && Object.keys(post).length !== 0} animation='slide down' duration={duration}>
+        <div>
+          <Transition visible={!loading && Object.keys(post).length !== 0} animation='drop' duration={duration}>
             <div>
               <PostBody { ...post } time={time} />
             </div>
@@ -56,7 +50,7 @@ class Post extends PureComponent {
           {loading &&
             <Loading />
           }
-        </Wapper>
+        </div>
         <div id='gitalk'></div>
       </Container>
     )

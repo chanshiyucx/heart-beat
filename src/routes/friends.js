@@ -139,19 +139,19 @@ class Friends extends PureComponent {
     const text = '莫愁前路无知己，天下谁人不识君'
     return (
       <Container>
-        <Wapper>
-          <Transition visible={showFriends} animation='scale' duration={duration}>
-            <div>
+        <div>
+          <Transition visible={showFriends} animation='drop' duration={duration}>
+            <Wapper>
               <Quote text={text} />
               <FriendList>
                 {this.renderFriends()}
               </FriendList>
-            </div>
+            </Wapper>
           </Transition>
           {!showFriends &&
             <Loading />
           }
-        </Wapper>
+        </div>
         <div id='gitalk'></div>
       </Container>
     )
