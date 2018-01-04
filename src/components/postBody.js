@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types'
+import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 import marked from 'marked'
 import hljs from 'highlight.js'
+import Zooming from 'zooming'
+
+const zooming = new Zooming({
+  scaleBase: .8
+})
 
 marked.setOptions({
   highlight: code => hljs.highlightAuto(code).value,
@@ -163,66 +168,57 @@ const Content = styled.div`
   }
 `
 
-const PostBody = ({
-  title,
-  body,
-  created_at,
-  labels,
-  milestone,
-  time,
-}) => {
-  const reg=/http.+jpg/g
-  const result = reg.exec(body)
-  const cover = result[0]
-  const content = body.split(`${cover})`)[1]
-  const date = created_at.slice(0, 10)
+class PostBody extends PureComponent {
+  componentDidMount() {
+    zooming.listen('.zoomable')
+  }
 
-  return (
-    <Container>
-      <Header>
-        <img alt='' src={cover} />
-        <Info>
-          <Title>{title}</Title>
-          <Meta>
-            <Item>
-              <Icon name='time' />
-              {date}
-            </Item>
-            <Item>
-              <Icon name='eye' />
-              热度{time}℃
-            </Item>
-            <Item>
-              <Icon name='bookmark' />
-              {milestone && milestone.title ? milestone.title : '未分类' }
-            </Item>
-            <Item>
-              <Icon name='tags' />
-              {
-                labels.map((o) => {
-                  return (
-                    <StyledTag key={o.id}>
-                      {o.name}
-                    </StyledTag>
-                  )
-                })
-              }
-            </Item>
-          </Meta>
-        </Info>
-      </Header>
-      <Content dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }} />
-    </Container>
-  )
-}
+  render() {
+    const { title, body, created_at, labels, milestone, time } = this.props
+    const reg=/http.+jpg/g
+    const result = reg.exec(body)
+    const cover = result[0]
+    const content = body.split(`${cover})`)[1]
+    const date = created_at.slice(0, 10)
 
-PostBody.propTypes = {
-  title: PropTypes.string,
-  body: PropTypes.string,
-  created_at: PropTypes.string,
-  labels: PropTypes.array,
-  milestone: PropTypes.object,
-  time: PropTypes.number,
+    return (
+      <Container>
+        <Header>
+          <img alt='' src={cover} />
+          <Info>
+            <Title>{title}</Title>
+            <Meta>
+              <Item>
+                <Icon name='time' />
+                {date}
+              </Item>
+              <Item>
+                <Icon name='eye' />
+                热度{time}℃
+              </Item>
+              <Item>
+                <Icon name='bookmark' />
+                {milestone && milestone.title ? milestone.title : '未分类' }
+              </Item>
+              <Item>
+                <Icon name='tags' />
+                {
+                  labels.map((o) => {
+                    return (
+                      <StyledTag key={o.id}>
+                        {o.name}
+                      </StyledTag>
+                    )
+                  })
+                }
+              </Item>
+            </Meta>
+          </Info>
+        </Header>
+        <Content dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }} />
+      </Container>
+    )
+  }
 }
 
 export default PostBody

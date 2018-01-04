@@ -2,17 +2,12 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition } from 'semantic-ui-react'
-import Zooming from 'zooming'
 
 import Loading from '../components/loading'
 import PostBody from '../components/postBody'
 
 import config from '../config'
 const { duration } = config
-
-const zooming = new Zooming({
-  scaleBase: .8
-})
 
 const Container = styled.div`
   margin: 0 auto;
@@ -40,14 +35,6 @@ class Post extends PureComponent {
     // 滚动到顶部
     const header = document.getElementById('header')
     header.scrollIntoView()
-
-    // 延时给图片加预览
-    setTimeout(() => {
-      const imgs = document.getElementsByClassName('zoomable')
-      for (const img of imgs) {
-        zooming.listen(img)
-      }
-    }, 3000)
   }
 
   componentWillUnmount() {
