@@ -76,7 +76,7 @@ const StyledTag = styled.span`
 `
 
 const Item = styled.span`
-  margin-right: 10px;
+  margin-right: 8px;
   color: #888;
 `
 

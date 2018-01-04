@@ -2,9 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Button } from 'semantic-ui-react'
+
 import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+
+import config from '../config'
+const { duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -83,7 +87,7 @@ class Archives extends PureComponent {
     const text = '文章千古事，得失寸心知'
     return (
       <Container>
-        <Transition visible={!loading} animation='scale' duration={800} onHide={this.onHide}>
+        <Transition visible={!loading} animation='scale' duration={duration} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <ArchiveList archives={archives} />

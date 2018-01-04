@@ -5,6 +5,9 @@ import { Button, Icon, Transition } from 'semantic-ui-react'
 import PostCard from '../components/postCard'
 import Loading from '../components/loading'
 
+import config from '../config'
+const { duration } = config
+
 const Container = styled.div`
   position: relative;
   min-height: 780px;
@@ -122,7 +125,7 @@ class Home extends PureComponent {
         <StyledRightButton icon onClick={this.next}>
           <StyledIcon name='angle double right' size='massive'/>
         </StyledRightButton>
-        <Transition visible={!loading} animation='scale' duration={800} onHide={this.onHide}>
+        <Transition visible={!loading} animation='scale' duration={duration} onHide={this.onHide}>
           <div>
             <PostList>
               {this.renderCard()}

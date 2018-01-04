@@ -54,7 +54,7 @@ const StyledMenu = styled.ul`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100%;
+    height: 60px;
   }
 `
 

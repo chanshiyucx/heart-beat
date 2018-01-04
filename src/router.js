@@ -25,9 +25,6 @@ const Container = styled.div`
 
 const Content = styled.div`
   padding-bottom: 100px;
-  // @media (max-width: 900px) {
-  //   padding-bottom: 200px;
-  // }
 `
 
 function RouterConfig({ history, app }) {

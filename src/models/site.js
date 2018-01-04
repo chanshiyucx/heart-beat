@@ -1,7 +1,8 @@
 import { queryTotal, queryList, queryCats, queryTags, filterList, queryShuoShuoTotal, queryShuoShuo } from '../services/fetch'
 import { delay } from '../utils'
+import config from '../config'
 
-const minDelay = 1000
+const { minDelay } = config
 
 export default {
   namespace: 'site',

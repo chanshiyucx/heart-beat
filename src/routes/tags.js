@@ -2,9 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Button, Icon } from 'semantic-ui-react'
+
 import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+
+import config from '../config'
+const { duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -104,7 +108,7 @@ class Tags extends PureComponent {
     const text = '列卒周匝，星罗云布'
     return (
       <Container>
-        <Transition visible={tags.length > 0 && !filterTitle} animation='scale' duration={800} onHide={this.onHide}>
+        <Transition visible={tags.length > 0 && !filterTitle} animation='scale' duration={duration} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <TagList>
@@ -112,7 +116,7 @@ class Tags extends PureComponent {
             </TagList>
           </div>
         </Transition>
-        <Transition visible={tagsOnHide && !!filterTitle} animation='scale' duration={800}>
+        <Transition visible={tagsOnHide && !!filterTitle} animation='scale' duration={duration}>
           <div>
             <FilterHeader>
               Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>

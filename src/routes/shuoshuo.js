@@ -3,8 +3,12 @@ import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Segment, Label, Button } from 'semantic-ui-react'
 import marked from 'marked'
+
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+
+import config from '../config'
+const { duration } = config
 
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal',
@@ -107,7 +111,7 @@ class ShuoShuo extends PureComponent {
         return (
           <StyledSegment key={o.id} raised color={color}>
             <Label as='a' color={color} ribbon>{date}</Label>
-            <ShuoShuoItem  dangerouslySetInnerHTML={{ __html: marked(o.body) }} />
+            <ShuoShuoItem dangerouslySetInnerHTML={{ __html: marked(o.body) }} />
           </StyledSegment>
         )
       })
@@ -121,7 +125,7 @@ class ShuoShuo extends PureComponent {
     const text = '欲言又止，止言又欲'
     return (
       <Container>
-        <Transition visible={!shuoshuoLoading} animation='scale' duration={800} onHide={this.onHide}>
+        <Transition visible={!shuoshuoLoading} animation='scale' duration={duration} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <div>

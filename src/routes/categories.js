@@ -2,10 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Button, Icon } from 'semantic-ui-react'
+
 import ArchiveList from '../components/archiveList'
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+
 import config from '../config'
+const { catsInfo, duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -153,7 +156,7 @@ class Categories extends PureComponent {
   renderCats = (cats) => {
     if (cats && cats.length > 0) {
       const catList = cats.map((o) => {
-        const info = config.catsInfo[o.title]
+        const info = catsInfo[o.title]
         const catText = info.text
         const catImg = info.img
         return (
@@ -177,7 +180,7 @@ class Categories extends PureComponent {
     const text = '行云流水，妙笔生花'
     return (
       <Container>
-        <Transition visible={cats.length > 0 && !filterTitle} animation='scale' duration={800} onHide={this.onHide}>
+        <Transition visible={cats.length > 0 && !filterTitle} animation='scale' duration={duration} onHide={this.onHide}>
           <div>
             <Quote text={text} />
             <CatList>
@@ -185,7 +188,7 @@ class Categories extends PureComponent {
             </CatList>
           </div>
         </Transition>
-        <Transition visible={catsOnHide && !!filterTitle } animation='scale' duration={800}>
+        <Transition visible={catsOnHide && !!filterTitle } animation='scale' duration={duration}>
           <div>
             <FilterHeader>
               Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>

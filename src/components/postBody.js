@@ -14,9 +14,18 @@ renderer.heading = function(text, level) {
     return `<h${level} id="${text}">${text}</h${level}>`
 }
 
+// 新开标签页打开
+renderer.link = function(href, title, text) {
+    return `<a href="${href}" target="_blank">${text}</a>`
+}
+
+// 图片预览
+renderer.image = function(href, title, text) {
+    return `<img class="zoomable" src="${href}" alt="${text}" data-action="zoom" />`
+}
+
 const Container = styled.div`
   width: 100%;
-  overflow: hidden;
 `
 
 const Header = styled.div`

@@ -3,10 +3,12 @@ import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Reveal } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
+
 import Quote from '../components/quote'
 import Loading from '../components/loading'
+
 import config from '../config'
-const { friends } = config
+const { friends, duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -138,7 +140,7 @@ class Friends extends PureComponent {
     return (
       <Container>
         <Wapper>
-          <Transition visible={showFriends} animation='scale' duration={800}>
+          <Transition visible={showFriends} animation='scale' duration={duration}>
             <div>
               <Quote text={text} />
               <FriendList>

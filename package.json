@@ -22,7 +22,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "semantic-ui-react": "^0.77.1",
-    "styled-components": "^2.2.4"
+    "styled-components": "^2.2.4",
+    "zooming": "^1.2.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",

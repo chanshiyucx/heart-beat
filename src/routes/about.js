@@ -7,7 +7,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 import config from '../config'
 
-const { avatar, contact } = config
+const { avatar, contact, duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -110,7 +110,7 @@ class About extends PureComponent {
     return (
       <Container>
         <Wapper>
-          <Transition visible={showAbout} animation='scale' duration={800}>
+          <Transition visible={showAbout} animation='scale' duration={duration}>
             <div>
               <Quote text={text} />
               <Content>

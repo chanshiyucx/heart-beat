@@ -73,7 +73,6 @@ export async function queryShuoShuoTotal() {
   const response = await fetch(url)
   checkStatus(response)
   const data = await response.json()
-  console.log('data', data)
   return data[0].number
 }
 
