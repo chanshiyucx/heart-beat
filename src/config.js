@@ -139,5 +139,31 @@ export default {
   }],
 
   // 播放器
-  playerId: '465302682',
+  playerBg: 'https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
+  playList: [{
+    name: 'うたかたの风と蝉时雨',
+    author: 'Little Planet',
+    src: 'https://p1.music.126.net/24NNCkr1YPZYj3PGHjmQhg==/2051688697442345.mp3',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/b706547f-9237-48fb-ace9-89f9506ab099.jpg'
+  }, {
+    name: '春の凑に ~ Lost shiners',
+    author: '莲弾奏结界',
+    src: 'https://p1.music.126.net/J1y0rz-ACI3dPSokXzcitA==/5637196115709843.mp3',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg'
+  }, {
+    name: '夏阳炎',
+    author: '天威梦方',
+    src: 'https://p2.music.126.net/XwV3rg9JyE3fT_6MJ6O1Lw==/7839517907200525.mp3',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg'
+  }, {
+    name: '秋风のとおり道',
+    author: '风神华伝',
+    src: 'https://p2.music.126.net/qwCORT3KPWUqy1FuAQ2oOQ==/5711962906386817.mp3',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg'
+  }, {
+    name: '冬のわすれもの',
+    author: 'ハルノカゼ',
+    src: 'https://p2.music.126.net/xJQQMD9TNAILEjLhAlBbkA==/3162195441566460.mp3',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg'
+  }]
 }

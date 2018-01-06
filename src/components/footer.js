@@ -6,7 +6,7 @@ import SmoothScroll from 'smooth-scroll'
 import skPlayer from 'skplayer'
 
 import config from '../config'
-const { duration, playerId } = config
+const { duration, playerBg, playList } = config
 
 const scroll = new SmoothScroll()
 
@@ -43,6 +43,13 @@ const SkyPlayer = styled.div`
   .skPlayer-list {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    background-image: url('${playerBg}');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    li {
+      border-top: none!important;
+    }
     li.skPlayer-curMusic, li:hover {
       background-color: rgba(255, 170, 255, .6)!important;
     }
@@ -97,8 +104,8 @@ class Footer extends PureComponent {
       autoplay: false,
       listshow: true,
       music: {
-        type: 'cloud',
-        source: playerId
+        type: 'file',
+        source: playList,
       }
     })
   }
@@ -126,10 +133,9 @@ class Footer extends PureComponent {
 
   render() {
     const { showPlayer } = this.props
-    console.log('showPlayer--->', showPlayer)
     return (
       <Container>
-        <Transition visible={showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
+        <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
           <SkyPlayer className="myplayer">
             <div id="skPlayer"></div>
           </SkyPlayer>
