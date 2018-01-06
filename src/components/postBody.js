@@ -6,7 +6,9 @@ import hljs from 'highlight.js'
 import Zooming from 'zooming'
 
 const zooming = new Zooming({
-  scaleBase: .8
+  scaleBase: .8,
+  bgOpacity: .6,
+  scrollThreshold: 10,
 })
 
 marked.setOptions({
@@ -32,7 +34,7 @@ renderer.image = function(href, title, text) {
 const Container = styled.div`
   width: 100%;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0,.16), 0 3px 6px rgba(0, 0, 0,.24);
   background: rgba(255, 255, 255, .6);
 `
 

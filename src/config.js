@@ -104,6 +104,16 @@ export default {
     link: 'https://cherryml.com/',
     cover: 'https://dn-coding-net-production-pp.qbox.me/2452875d-3e00-4977-b87c-d9103cc09cac.png',
     avatar: 'https://dn-coding-net-production-pp.qbox.me/efeeef11-860b-4ff2-b61c-bc9766be5f03.jpg',
+  }, {
+    name: '林洋洋',
+    link: 'http://linyy.name/',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/52e24936-96af-48b2-bfd7-168ac525cc04.jpg',
+    avatar: 'https://dn-coding-net-production-pp.qbox.me/3205121a-0278-4d12-a3e8-df4cd355605c.jpg',
+  }, {
+    name: '樱花庄的白猫',
+    link: 'https://2heng.xin/',
+    cover: 'https://dn-coding-net-production-pp.qbox.me/9540dcf6-e49a-4bed-9dab-f9858ded0f7d.jpg',
+    avatar: 'https://dn-coding-net-production-pp.qbox.me/e50bded5-fbee-49bf-9e99-7a5feaf8081b.jpg',
   }],
 
   /*

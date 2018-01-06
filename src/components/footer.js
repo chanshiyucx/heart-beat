@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 import { Button, Icon } from 'semantic-ui-react'
+import SmoothScroll from 'smooth-scroll'
+
+const scroll = new SmoothScroll()
 
 const Container = styled.div`
   position: absolute;
@@ -40,7 +43,7 @@ const Footer = () => {
   const scrollToTop = () => {
     // 滚动到顶部
     const header = document.getElementById('header')
-    header.scrollIntoView()
+    scroll.animateScroll( header )
   }
 
   return (
