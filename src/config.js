@@ -139,30 +139,5 @@ export default {
   }],
 
   // 播放器
-  playlist: [{
-    name: 'うたかたの风と蝉时雨',
-    artist: 'FELT',
-    src: 'https://p1.music.126.net/24NNCkr1YPZYj3PGHjmQhg==/2051688697442345.mp3',
-    poster: 'https://dn-coding-net-production-pp.qbox.me/7d620fef-2ca0-4ad0-af2f-c6648b3c56f3.png',
-  }, {
-    name: '昼下がりの忧郁',
-    artist: 'Foxtail-Grass',
-    url: 'https://p1.music.126.net/JTt30T8y1SfHDB1V5cX3UA==/5740550208674100.mp3',
-    poster: 'https://dn-coding-net-production-pp.qbox.me/f1822c61-987b-4966-a021-f4a45ef5d386.png',
-  }, {
-    name: '天空の境界線',
-    artist: 'oiko',
-    src: 'https://p1.music.126.net/HjagOWvgOYhJM54gsyAz2Q==/2018703348625909.mp3',
-    poster: 'https://dn-coding-net-production-pp.qbox.me/6a9dcbac-d02a-45a9-994d-db9661e25e1f.jpg',
-  }, {
-    name: '灯笼流丽',
-    artist: 'グーシャンダグー',
-    src: 'https://p2.music.126.net/uiFzuw5WcNrnFYY1FqKBDQ==/1906553162629013.mp3',
-    poster: 'https://dn-coding-net-production-pp.qbox.me/76649482-5c96-47fa-a53b-85e20913df66.png',
-  }, {
-    name: '暮色苍然',
-    artist: 'はちみつれもん',
-    src: 'https://p1.music.126.net/Pb3ANvka6mAPF5M3v5maJg==/2866426813660609.mp3',
-    poster: 'https://dn-coding-net-production-pp.qbox.me/89363b20-971b-42fd-a6e2-08c148dbcd10.png',
-  }],
+  playerId: '465302682',
 }

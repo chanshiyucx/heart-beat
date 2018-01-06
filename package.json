@@ -21,6 +21,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "semantic-ui-react": "^0.77.1",
+    "skplayer": "^3.0.7",
     "smooth-scroll": "^12.1.5",
     "styled-components": "^2.2.4",
     "zooming": "^1.2.6"
