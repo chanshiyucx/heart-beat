@@ -67,15 +67,12 @@ const FooterIcon = styled(Button)`
   &:hover {
     color: rgba(0, 0, 0, .2)!important;
   }
-  @media (max-width: 600px) {
-    display: none!important;
-  }
 `
 
 const PlayerIcon = FooterIcon.extend`
   bottom: 66px;
   @media (max-width: 900px) {
-    display: none;
+    display: none!important;
   }
 `
 

@@ -11,11 +11,10 @@ const { duration } = config
 const Container = styled.div`
   position: relative;
   min-height: 780px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     margin-bottom: 100px;
   }
 `
@@ -33,6 +32,9 @@ const StyledButton = styled(Button)`
   margin: 0!important;
   width: 150px;
   background: transparent!important;
+  @media (max-width: 1200px) {
+    display: none!important;
+  }
 `
 
 const StyledLeftButton = StyledButton.extend`
@@ -48,10 +50,14 @@ const StyledRightButton = StyledButton.extend`
 `
 
 const StyledMobileButton = StyledButton.extend`
+  position: absolute;
+  margin: 0!important;
+  width: 150px;
+  background: transparent!important;
   display: none!important;
   bottom: 0;
   transform: translate(0, 100%);
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     display: inline-block!important;
   }
 `
