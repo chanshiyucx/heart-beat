@@ -21,7 +21,7 @@ const Container = styled.div`
 const SkyPlayer = styled.div`
   position: fixed;
   right: 10px;
-  bottom: 330px;
+  bottom: 312px;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -62,7 +62,6 @@ const SkyPlayer = styled.div`
 const FooterIcon = styled(Button)`
   position: fixed;
   right: 10px;
-  bottom: 20px;
   color: rgba(255, 255, 255, .8)!important;
   background: transparent!important;
   &:hover {
@@ -71,14 +70,14 @@ const FooterIcon = styled(Button)`
 `
 
 const PlayerIcon = FooterIcon.extend`
-  bottom: 80px;
+  bottom: 66px;
   @media (max-width: 900px) {
     display: none;
   }
 `
 
 const ScrollToTop = FooterIcon.extend`
-  bottom: 20px;
+  bottom: 0;
 `
 
 const InnerWrap = styled.div`

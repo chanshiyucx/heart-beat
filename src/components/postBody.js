@@ -34,7 +34,7 @@ renderer.image = function(href, title, text) {
 const Container = styled.div`
   width: 100%;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0,.16), 0 3px 6px rgba(0, 0, 0,.24);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
 `
 

@@ -180,7 +180,7 @@ class Categories extends PureComponent {
 
   render() {
     const { cats, catsOnHide, filterTitle, filterPost } = this.props
-    const text = '行云流水，妙笔生花'
+    const text = '行云流水，落笔生花'
     return (
       <Container>
         <Transition visible={cats.length > 0 && !filterTitle} animation='drop' duration={duration} onHide={this.onHide}>

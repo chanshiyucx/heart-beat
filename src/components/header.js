@@ -6,7 +6,6 @@ import { Icon } from 'semantic-ui-react'
 
 const Container = styled.div`
   width: 100%;
-  color: #555;
   li {
     list-style-type: none;
   }
@@ -17,6 +16,7 @@ const Inner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   margin: 0 auto;
   padding: 70px 0 60px;
 `
@@ -40,13 +40,12 @@ const StyledMenu = styled.ul`
   display: flex;
   justify-content: center;
   margin-top: 14px;
+  padding: 0 40px;
   height: 60px;
-  width: 450px;
   background: rgba(0, 0, 0, .1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, .1) inset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
   li {
-    padding: 2px 6px;
-    margin: 0 4px;
+    width: 50px;
     font-size: 16px;
   }
   a {
@@ -87,8 +86,13 @@ class Header extends PureComponent {
               </Link>
             </li>
             <li>
+              <Link to='/book'>
+                <Icon name='book' /> 书单
+              </Link>
+            </li>
+            <li>
               <Link to='/shuoshuo'>
-                <Icon name='book' /> 说说
+                <Icon name='talk' /> 说说
               </Link>
             </li>
             <li>

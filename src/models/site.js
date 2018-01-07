@@ -28,9 +28,12 @@ export default {
     shuoshuoTotal: 0,
     shuoshuoPage: 0,
     shuoshuoPageSize: 6,
-    // 友链 & 关于
+    // 友链 & 关于 & 书单
     showFriends: false,
     showAbout: false,
+    showBook: false,
+    // 播放器
+    showPlayer: false,
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -112,6 +115,11 @@ export default {
     *showAbout({ payload }, { call, put }) {
       yield call(delay, minDelay)
       yield put({ type: 'update', payload: { showAbout: true }})
+    },
+
+    *showBook({ payload }, { call, put }) {
+      yield call(delay, minDelay)
+      yield put({ type: 'update', payload: { showBook: true }})
     },
 
     *filterPost({ payload }, { call, put }) {

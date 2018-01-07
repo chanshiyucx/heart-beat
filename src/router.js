@@ -12,6 +12,7 @@ import Archives from './routes/archives'
 import Categories from './routes/categories'
 import Tags from './routes/tags'
 import Friends from './routes/friends'
+import Book from './routes/book'
 import ShuoShuo from './routes/shuoshuo'
 import About from './routes/about'
 
@@ -39,6 +40,7 @@ function RouterConfig({ history, app }) {
             <Route exact path="/archives" component={Archives}/>
             <Route exact path="/categories" component={Categories}/>
             <Route exact path="/tags" component={Tags}/>
+            <Route exact path="/book" component={Book}/>
             <Route exact path="/shuoshuo" component={ShuoShuo}/>
             <Route exact path="/friends" component={Friends}/>
             <Route exact path="/about" component={About}/>

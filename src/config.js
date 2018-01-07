@@ -61,6 +61,25 @@ export default {
      },
    },
 
+   /*
+    * 书单
+    */
+   book: [{
+     name: 'CSS揭秘',
+     author: '【希】韦鲁',
+     progress: '正在阅读...',
+     cover: 'https://dn-coding-net-production-pp.qbox.me/c409fa31-9bbe-4473-ab67-2835ef435c16.jpg',
+     link: 'http://www.duokan.com/book/137271',
+     desc: '这是一本注重实践的教程。CSS 专家 Lea Verou 单刀直入，教你用代码解决实际问题。她在书中揭示了47个鲜为人知的 CSS 技巧，指导中高级 CSS 开发者循序渐进，探寻更优雅的解决方案，攻克每天都会遇到的各种网页样式难题。',
+   }, {
+     name: '图解HTTP',
+     author: '【日】上野宣',
+     progress: '正在阅读...',
+     cover: 'https://dn-coding-net-production-pp.qbox.me/30b5a6cf-31fa-47d0-9608-1b5af3c58999.jpg',
+     link: 'http://www.duokan.com/book/103506',
+     desc: '172 张图解轻松入门，Web 前端开发者必备！从基础知识到最新动向，一本书掌握 HTTP 协议。Https 安全通道解析，Nginx 服务器精解宝典，http 权威指南！',
+   }],
+
   /*
    * 友链
    */
