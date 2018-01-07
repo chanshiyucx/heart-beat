@@ -67,6 +67,9 @@ const FooterIcon = styled(Button)`
   &:hover {
     color: rgba(0, 0, 0, .2)!important;
   }
+  @media (max-width: 600px) {
+    display: none!important;
+  }
 `
 
 const PlayerIcon = FooterIcon.extend`
@@ -149,7 +152,7 @@ class Footer extends PureComponent {
           <ItemList>
             <Item>
               <span><Icon name='copyright' /> </span>
-              <span>2017</span>
+              <span>2017 - 2018</span>
             </Item>
             <Item>
               <span><Icon name='heartbeat' /> </span>

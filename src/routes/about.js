@@ -19,7 +19,7 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.24);
   background: rgba(255, 255, 255, .6);
 `
 
@@ -68,6 +68,10 @@ const Section = styled(Segment)`
   p:last-child {
     margin-bottom: 0;
   }
+`
+
+const Contact = styled.div`
+  margin-top: 10px;
 `
 
 const Desc = Section.extend`
@@ -140,17 +144,19 @@ class About extends PureComponent {
                 </Desc>
                 <Section raised color='orange'>
                   <Label as='a' color='orange' ribbon>Contact</Label>
-                  {
-                    contact.map((o, i) => {
-                      return (
-                        <a key={i} href={o.link} targe='_blank'>
-                          <Item>
-                            <Icon name={o.icon} /> {o.name}
-                          </Item>
-                        </a>
-                      )
-                    })
-                  }
+                  <Contact>
+                    {
+                      contact.map((o, i) => {
+                        return (
+                          <a key={i} href={o.link} targe='_blank'>
+                            <Item>
+                              <Icon name={o.icon} /> {o.name}
+                            </Item>
+                          </a>
+                        )
+                      })
+                    }
+                  </Contact>
                 </Section>
                 <Section raised color='yellow'>
                   <Label as='a' color='yellow' ribbon>Timeline</Label>
@@ -176,6 +182,11 @@ class About extends PureComponent {
                   </p>
                   <p>
                     目前主题刚刚成型，需要完善地方还有很多，优化之路还很漫长，希望将来正如主题的名字一样，让人第一眼萌生 HeartBeat 的感觉~
+                  </p>
+                  <h3>版本更新：</h3>
+                  <p>
+                    2017-01-07: 移除 Gitter 留言功能, 添加音乐播放器 skPlayer 并魔改样式，添加书单页 <br />
+                    2017-12-31: HeartBeat Version 1.0 问世 <br />
                   </p>
                 </Section>
               </Content>

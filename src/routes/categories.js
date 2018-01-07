@@ -20,7 +20,7 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.24);
   background: rgba(255, 255, 255, .6);
 `
 
@@ -101,9 +101,6 @@ const StyledButton = styled(Button)`
   &:hover {
     background: rgba(0, 0, 0, .2)!important;
   }
-`
-
-const FilterHeader = styled.h2`
 `
 
 class Categories extends PureComponent {
@@ -193,12 +190,12 @@ class Categories extends PureComponent {
         </Transition>
         <Transition visible={catsOnHide && !!filterTitle } animation='drop' duration={duration}>
           <Wapper>
-            <FilterHeader>
+            <h2>
               Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>
                      {filterTitle}
                      <Icon name='delete' color='red' />
                    </StyledButton>
-            </FilterHeader>
+            </h2>
             <ArchiveList archives={filterPost} />
           </Wapper>
         </Transition>

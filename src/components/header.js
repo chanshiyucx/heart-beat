@@ -40,12 +40,12 @@ const StyledMenu = styled.ul`
   display: flex;
   justify-content: center;
   margin-top: 14px;
-  padding: 0 40px;
+  padding: 0 30px;
   height: 60px;
   background: rgba(0, 0, 0, .1);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
   li {
-    width: 50px;
+    width: 48px;
     font-size: 16px;
   }
   a {
@@ -86,7 +86,7 @@ class Header extends PureComponent {
               </Link>
             </li>
             <li>
-              <Link to='/book'>
+              <Link to='/books'>
                 <Icon name='book' /> 书单
               </Link>
             </li>

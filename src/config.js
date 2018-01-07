@@ -65,19 +65,45 @@ export default {
     * 书单
     */
    book: [{
-     name: 'CSS揭秘',
+     name: 'CSS 揭秘',
      author: '【希】韦鲁',
+     published: '2016-04-01',
      progress: '正在阅读...',
+     rating: 0,
+     post: {},
      cover: 'https://dn-coding-net-production-pp.qbox.me/c409fa31-9bbe-4473-ab67-2835ef435c16.jpg',
      link: 'http://www.duokan.com/book/137271',
-     desc: '这是一本注重实践的教程。CSS 专家 Lea Verou 单刀直入，教你用代码解决实际问题。她在书中揭示了47个鲜为人知的 CSS 技巧，指导中高级 CSS 开发者循序渐进，探寻更优雅的解决方案，攻克每天都会遇到的各种网页样式难题。',
+     desc: '这是一本注重实践的教程，书中揭示了47个鲜为人知的 CSS 技巧，指导中高级 CSS 开发者循序渐进，探寻更优雅的解决方案，攻克每天都会遇到的各种网页样式难题。',
    }, {
-     name: '图解HTTP',
+     name: '图解 HTTP',
      author: '【日】上野宣',
+     published: '2014-05-01',
      progress: '正在阅读...',
+     rating: 0,
+     post: {},
      cover: 'https://dn-coding-net-production-pp.qbox.me/30b5a6cf-31fa-47d0-9608-1b5af3c58999.jpg',
      link: 'http://www.duokan.com/book/103506',
      desc: '172 张图解轻松入门，Web 前端开发者必备！从基础知识到最新动向，一本书掌握 HTTP 协议。Https 安全通道解析，Nginx 服务器精解宝典，http 权威指南！',
+   }, {
+     name: '黑客与画家',
+     author: '【美】格雷厄姆',
+     published: '2011-04-01',
+     progress: '正在阅读...',
+     rating: 0,
+     post: {},
+     cover: 'https://dn-coding-net-production-pp.qbox.me/d9d68db0-61d2-4268-bbcf-4b296fad89e8.jpg',
+     link: 'http://www.duokan.com/book/246',
+     desc: '硅谷创业之父 Paul Graham 的文集，主要介绍黑客即优秀程序员的爱好和动机，讨论黑客成长、黑客对世界的贡献以及编程语言和黑客工作方法等所有对计算机时代感兴趣的人的一些话题。',
+   }, {
+     name: 'JavaScript 秘密花园',
+     author: ' 伊沃·韦特泽尔 Ivo Wetzel',
+     published: '未出版',
+     progress: '初读一遍',
+     rating: 4,
+     post: {},
+     cover: 'https://dn-coding-net-production-pp.qbox.me/48ea746c-d17d-42c6-875b-87bee5ad7044.jpg',
+     link: 'http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro',
+     desc: 'JavaScript 秘密花园是一个不断更新，主要关心 JavaScript 一些古怪用法的文档。初学者可以籍此深入了解 JavaScript 的语言特性。',
    }],
 
   /*

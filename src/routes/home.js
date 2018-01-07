@@ -11,6 +11,7 @@ const { duration } = config
 const Container = styled.div`
   position: relative;
   min-height: 780px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +100,7 @@ class Home extends PureComponent {
     if (postList && postList.length > 0) {
       const cardList = postList.map((o, i) => {
         return (
-          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} />
+          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} gotoCat={this.gotoCat} />
         )
       })
       return cardList
