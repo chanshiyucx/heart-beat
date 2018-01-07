@@ -43,7 +43,7 @@ export default {
 
       const { title } = post
       const gitalk = new Gitalk({
-        gitalkOptions,
+        ...gitalkOptions,
         title,
       })
       // 渲染评论
