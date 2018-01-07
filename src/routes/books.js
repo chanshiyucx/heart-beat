@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Rating, Icon } from 'semantic-ui-react'
+import Gitalk from 'gitalk'
 
 import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { duration, book } = config
+const { gitalkOptions, duration, book } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -94,6 +95,13 @@ class Books extends PureComponent {
     this.props.dispatch({
       type: 'site/showBook',
     })
+
+    const gitalk = new Gitalk({
+      ...gitalkOptions,
+      title: '书单'
+    })
+    // 渲染评论
+    gitalk.render('gitalk')
   }
 
   componentWillUnmount() {
@@ -147,17 +155,20 @@ class Books extends PureComponent {
     const text = '吾生也有涯，而知也无涯'
     return (
       <Container>
-        <Transition visible={showBook} animation='drop' duration={duration}>
-          <Wapper>
-            <Quote text={text} />
-            <BookList>
-              {this.renderBook()}
-            </BookList>
-          </Wapper>
-        </Transition>
-        {!showBook &&
-          <Loading />
-        }
+        <div>
+          <Transition visible={showBook} animation='drop' duration={duration}>
+            <Wapper>
+              <Quote text={text} />
+              <BookList>
+                {this.renderBook()}
+              </BookList>
+            </Wapper>
+          </Transition>
+          {!showBook &&
+            <Loading />
+          }
+        </div>
+        <div id='gitalk'></div>
       </Container>
     )
   }

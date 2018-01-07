@@ -11,6 +11,19 @@ export default {
   params: '?creator=chanshiyucx&state=open',
 
   /*
+   * Gittalk 配置
+   */
+   gitalkOptions: {
+     clientID: '655fdc97b211a9f4f4a9',
+     clientSecret: '77867cd14723002397338fcb76d139b13bdec439',
+     repo: 'BlogComments',
+     owner: 'chanshiyucx',
+     admin: ['chanshiyucx'],
+     // facebook-like distraction free mode
+     distractionFreeMode: false,
+   },
+
+  /*
    * leancloud 配置
    */
    leancloud: {

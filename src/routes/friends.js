@@ -8,7 +8,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { friends, duration } = config
+const { gitalkOptions, friends, duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -89,13 +89,7 @@ class Friends extends PureComponent {
     })
 
     const gitalk = new Gitalk({
-      clientID: '655fdc97b211a9f4f4a9',
-      clientSecret: '77867cd14723002397338fcb76d139b13bdec439',
-      repo: 'BlogComments',
-      owner: 'chanshiyucx',
-      admin: ['chanshiyucx'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false,
+      ...gitalkOptions,
       title: '友链'
     })
     // 渲染评论

@@ -3,12 +3,13 @@ import { connect } from 'dva'
 import styled from 'styled-components'
 import { Transition, Segment, Label, Button } from 'semantic-ui-react'
 import marked from 'marked'
+import Gitalk from 'gitalk'
 
 import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { duration } = config
+const { gitalkOptions, duration } = config
 
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal',
@@ -62,6 +63,13 @@ class ShuoShuo extends PureComponent {
     this.props.dispatch({
       type: 'site/queryShuoShuoTotal',
     })
+
+    const gitalk = new Gitalk({
+      ...gitalkOptions,
+      title: '说说'
+    })
+    // 渲染评论
+    gitalk.render('gitalk')
   }
 
   componentWillUnmount() {
@@ -128,24 +136,27 @@ class ShuoShuo extends PureComponent {
     const text = '欲言又止，止言又欲'
     return (
       <Container>
-        <Transition visible={!shuoshuoLoading} animation='drop' duration={duration} onHide={this.onHide}>
-          <Wapper>
-            <Quote text={text} />
-            <div>
-              {this.renderShuoShuo(myShuoShuo)}
-            </div>
-            <Pagination>
-              <Button.Group>
-                <Button disabled={shuoshuoPage <= 1} onClick={this.prev}>上一页</Button>
-                <Button.Or text={shuoshuoPage} />
-                <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>下一页</Button>
-              </Button.Group>
-            </Pagination>
-          </Wapper>
-        </Transition>
-        {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) &&
-          <Loading />
-        }
+        <div>
+          <Transition visible={!shuoshuoLoading} animation='drop' duration={duration} onHide={this.onHide}>
+            <Wapper>
+              <Quote text={text} />
+              <div>
+                {this.renderShuoShuo(myShuoShuo)}
+              </div>
+              <Pagination>
+                <Button.Group>
+                  <Button disabled={shuoshuoPage <= 1} onClick={this.prev}>上一页</Button>
+                  <Button.Or text={shuoshuoPage} />
+                  <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>下一页</Button>
+                </Button.Group>
+              </Pagination>
+            </Wapper>
+          </Transition>
+          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) &&
+            <Loading />
+          }
+        </div>
+        <div id='gitalk'></div>
       </Container>
     )
   }

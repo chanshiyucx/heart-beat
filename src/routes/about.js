@@ -7,7 +7,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 import config from '../config'
 
-const { avatar, contact, duration } = config
+const { gitalkOptions, avatar, contact, duration } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -86,13 +86,7 @@ class About extends PureComponent {
       type: 'site/showAbout',
     })
     const gitalk = new Gitalk({
-      clientID: '655fdc97b211a9f4f4a9',
-      clientSecret: '77867cd14723002397338fcb76d139b13bdec439',
-      repo: 'BlogComments',
-      owner: 'chanshiyucx',
-      admin: ['chanshiyucx'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false,
+      ...gitalkOptions,
       title: '关于'
     })
     // 渲染评论

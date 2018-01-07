@@ -11,9 +11,9 @@ import Post from './routes/post'
 import Archives from './routes/archives'
 import Categories from './routes/categories'
 import Tags from './routes/tags'
-import Friends from './routes/friends'
 import Books from './routes/books'
 import ShuoShuo from './routes/shuoshuo'
+import Friends from './routes/friends'
 import About from './routes/about'
 
 // 最外围容器
