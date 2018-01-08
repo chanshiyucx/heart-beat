@@ -8,7 +8,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { duration } = config
+const { duration, transitions, qoutes } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -87,12 +87,11 @@ class Archives extends PureComponent {
   render() {
     const { archivesOnHide, loading, archives, total, page, pageSize } = this.props
     const maxPage = Math.ceil(total / pageSize)
-    const text = '文章千古事，得失寸心知'
     return (
       <Container>
-        <Transition visible={!loading} animation='drop' duration={duration} onHide={this.onHide}>
+        <Transition visible={!loading} animation={transitions.page || 'drop'} duration={duration} onHide={this.onHide}>
           <Wapper>
-            <Quote text={text} />
+            <Quote text={qoutes.archives} />
             <ArchiveList archives={archives} />
             <Pagination>
               <Button.Group>

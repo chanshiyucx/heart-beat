@@ -7,7 +7,7 @@ import Loading from '../components/loading'
 import PostBody from '../components/postBody'
 
 import config from '../config'
-const { duration } = config
+const { duration, transitions } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -42,7 +42,7 @@ class Post extends PureComponent {
     return (
       <Container className="Post">
         <div>
-          <Transition visible={!loading && Object.keys(post).length !== 0} animation='drop' duration={duration}>
+          <Transition visible={!loading && Object.keys(post).length !== 0} animation={transitions.post || 'drop'} duration={duration}>
             <div>
               <PostBody { ...post } time={time} />
             </div>

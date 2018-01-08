@@ -4,6 +4,9 @@ import { Link } from 'dva/router'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 
+import config from '../config'
+const { booksOptions, shuoshuoOptions, friendsOptions, aboutOptions } = config
+
 const Container = styled.div`
   width: 100%;
   li {
@@ -85,26 +88,34 @@ class Header extends PureComponent {
                 <Icon name='tags' /> 标签
               </Link>
             </li>
-            <li>
-              <Link to='/books'>
-                <Icon name='book' /> 书单
-              </Link>
-            </li>
-            <li>
-              <Link to='/shuoshuo'>
-                <Icon name='talk' /> 说说
-              </Link>
-            </li>
-            <li>
-              <Link to='/friends'>
-                <Icon name='heartbeat' /> 友链
-              </Link>
-            </li>
-            <li>
-              <Link to='/about'>
-                <Icon name='envira' /> 关于
-              </Link>
-            </li>
+            {booksOptions.showPage &&
+              <li>
+                <Link to='/books'>
+                  <Icon name='book' /> 书单
+                </Link>
+              </li>
+            }
+            {shuoshuoOptions.showPage &&
+              <li>
+                <Link to='/shuoshuo'>
+                  <Icon name='talk' /> 说说
+                </Link>
+              </li>
+            }
+            {friendsOptions.showPage &&
+              <li>
+                <Link to='/friends'>
+                  <Icon name='heartbeat' /> 友链
+                </Link>
+              </li>
+            }
+            {aboutOptions.showPage &&
+              <li>
+                <Link to='/about'>
+                  <Icon name='envira' /> 关于
+                </Link>
+              </li>
+            }
           </StyledMenu>
         </Inner>
       </Container>

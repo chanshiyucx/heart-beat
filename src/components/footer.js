@@ -6,7 +6,7 @@ import SmoothScroll from 'smooth-scroll'
 import skPlayer from 'skplayer'
 
 import config from '../config'
-const { duration, playerBg, playList } = config
+const { duration, playerBg, playerType, playListId, playList } = config
 
 const scroll = new SmoothScroll()
 
@@ -103,8 +103,8 @@ class Footer extends PureComponent {
       autoplay: false,
       listshow: true,
       music: {
-        type: 'file',
-        source: playList,
+        type: playerType,
+        source: playerType === 'cloud' ? playListId : playList,
       }
     })
   }

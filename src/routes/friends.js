@@ -8,7 +8,8 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { gitalkOptions, friends, duration } = config
+const { gitalkOptions, duration, transitions, qoutes, friendsOptions } = config
+const { enableGitalk, friends } = friendsOptions
 
 const Container = styled.div`
   margin: 0 auto;
@@ -88,12 +89,14 @@ class Friends extends PureComponent {
       type: 'site/showFriends',
     })
 
-    const gitalk = new Gitalk({
-      ...gitalkOptions,
-      title: '友链'
-    })
-    // 渲染评论
-    gitalk.render('gitalk')
+    if (enableGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOptions,
+        title: '友链'
+      })
+      // 渲染评论
+      gitalk.render('gitalk')
+    }
   }
 
   componentWillUnmount() {
@@ -130,13 +133,12 @@ class Friends extends PureComponent {
 
   render() {
     const { showFriends } = this.props
-    const text = '莫愁前路无知己，天下谁人不识君'
     return (
       <Container>
         <div>
-          <Transition visible={showFriends} animation='drop' duration={duration}>
+          <Transition visible={showFriends} animation={transitions.page || 'drop'} duration={duration}>
             <Wapper>
-              <Quote text={text} />
+              <Quote text={qoutes.friends} />
               <FriendList>
                 {this.renderFriends()}
               </FriendList>
@@ -146,7 +148,7 @@ class Friends extends PureComponent {
             <Loading />
           }
         </div>
-        <div id='gitalk'></div>
+        {enableGitalk && <div id='gitalk'></div>}
       </Container>
     )
   }

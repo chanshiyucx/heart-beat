@@ -8,7 +8,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { catsInfo, duration } = config
+const { catsInfo, duration, transitions, qoutes } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -156,7 +156,7 @@ class Categories extends PureComponent {
   renderCats = (cats) => {
     if (cats && cats.length > 0) {
       const catList = cats.map((o) => {
-        const info = catsInfo[o.title]
+        const info = catsInfo.find((cat) => cat.name === o.title)
         const catText = info.text
         const catImg = info.img
         return (
@@ -177,12 +177,11 @@ class Categories extends PureComponent {
 
   render() {
     const { cats, catsOnHide, filterTitle, filterPost } = this.props
-    const text = '行云流水，落笔生花'
     return (
       <Container>
-        <Transition visible={cats.length > 0 && !filterTitle} animation='drop' duration={duration} onHide={this.onHide}>
+        <Transition visible={cats.length > 0 && !filterTitle} animation={transitions.drop || 'drop'} duration={duration} onHide={this.onHide}>
           <Wapper>
-            <Quote text={text} />
+            <Quote text={qoutes.categories} />
             <CatList>
               {this.renderCats(cats)}
             </CatList>

@@ -1,11 +1,11 @@
 import dva from 'dva'
 import { hashHistory } from 'dva/router'
+import AV from 'leancloud-storage'
 import 'highlight.js/styles/atelier-forest-dark.css'
 import 'gitalk/dist/gitalk.css'
 import registerModels from './models/index'
 import router from './router'
 import config from './config'
-import AV from 'leancloud-storage'
 
 // Leancloud
 AV.init(config.leancloud)

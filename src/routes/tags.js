@@ -8,7 +8,7 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { duration } = config
+const { duration, transitions, qoutes } = config
 
 const Container = styled.div`
   margin: 0 auto;
@@ -108,18 +108,17 @@ class Tags extends PureComponent {
 
   render() {
     const { tags, tagsOnHide, filterTitle, filterPost } = this.props
-    const text = '列卒周匝，星罗云布'
     return (
       <Container>
         <Transition visible={tags.length > 0 && !filterTitle} animation='drop' duration={duration} onHide={this.onHide}>
           <Wapper>
-            <Quote text={text} />
+            <Quote text={qoutes.tags} />
             <TagList>
               {this.renderTags(tags)}
             </TagList>
           </Wapper>
         </Transition>
-        <Transition visible={tagsOnHide && !!filterTitle} animation='drop' duration={duration}>
+        <Transition visible={tagsOnHide && !!filterTitle} animation={transitions.page || 'drop'} duration={duration}>
           <Wapper>
             <FilterHeader>
               Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>

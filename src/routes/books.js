@@ -8,7 +8,8 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { gitalkOptions, duration, book } = config
+const { gitalkOptions, duration, transitions, qoutes, booksOptions } = config
+const { enableGitalk, books } = booksOptions
 
 const Container = styled.div`
   margin: 0 auto;
@@ -96,12 +97,14 @@ class Books extends PureComponent {
       type: 'site/showBook',
     })
 
-    const gitalk = new Gitalk({
-      ...gitalkOptions,
-      title: '书单'
-    })
-    // 渲染评论
-    gitalk.render('gitalk')
+    if (enableGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOptions,
+        title: '书单'
+      })
+      // 渲染评论
+      gitalk.render('gitalk')
+    }
   }
 
   componentWillUnmount() {
@@ -114,8 +117,8 @@ class Books extends PureComponent {
   }
 
   renderBook = () => {
-    if (book && book.length > 0) {
-      const bookList = book.map((o, i) => {
+    if (books && books.length > 0) {
+      const bookList = books.map((o, i) => {
         const { name, author, published, progress, rating, post, cover, link, desc } = o
         return (
           <Book key={i}>
@@ -152,13 +155,12 @@ class Books extends PureComponent {
 
   render() {
     const { showBook } = this.props
-    const text = '吾生也有涯，而知也无涯'
     return (
       <Container>
         <div>
-          <Transition visible={showBook} animation='drop' duration={duration}>
+          <Transition visible={showBook} animation={transitions.page || 'drop'} duration={duration}>
             <Wapper>
-              <Quote text={text} />
+              <Quote text={qoutes.books} />
               <BookList>
                 {this.renderBook()}
               </BookList>
@@ -168,7 +170,7 @@ class Books extends PureComponent {
             <Loading />
           }
         </div>
-        <div id='gitalk'></div>
+        {enableGitalk && <div id='gitalk'></div>}
       </Container>
     )
   }

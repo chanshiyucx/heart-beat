@@ -9,7 +9,8 @@ import Quote from '../components/quote'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { gitalkOptions, duration } = config
+const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions } = config
+const { enableGitalk } = shuoshuoOptions
 
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal',
@@ -64,12 +65,14 @@ class ShuoShuo extends PureComponent {
       type: 'site/queryShuoShuoTotal',
     })
 
-    const gitalk = new Gitalk({
-      ...gitalkOptions,
-      title: '说说'
-    })
-    // 渲染评论
-    gitalk.render('gitalk')
+    if (enableGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOptions,
+        title: '说说'
+      })
+      // 渲染评论
+      gitalk.render('gitalk')
+    }
   }
 
   componentWillUnmount() {
@@ -133,13 +136,12 @@ class ShuoShuo extends PureComponent {
   render() {
     const { shuoshuoOnHide, shuoshuoLoading, myShuoShuo, shuoshuoTotal, shuoshuoPage, shuoshuoPageSize } = this.props
     const maxPage = Math.ceil(shuoshuoTotal / shuoshuoPageSize)
-    const text = '欲言又止，止言又欲'
     return (
       <Container>
         <div>
-          <Transition visible={!shuoshuoLoading} animation='drop' duration={duration} onHide={this.onHide}>
+          <Transition visible={!shuoshuoLoading} animation={transitions.page || 'drop'} duration={duration} onHide={this.onHide}>
             <Wapper>
-              <Quote text={text} />
+              <Quote text={qoutes.shuoshuo} />
               <div>
                 {this.renderShuoShuo(myShuoShuo)}
               </div>
@@ -156,7 +158,7 @@ class ShuoShuo extends PureComponent {
             <Loading />
           }
         </div>
-        <div id='gitalk'></div>
+        {enableGitalk && <div id='gitalk'></div>}
       </Container>
     )
   }

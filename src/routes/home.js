@@ -6,7 +6,7 @@ import PostCard from '../components/postCard'
 import Loading from '../components/loading'
 
 import config from '../config'
-const { duration } = config
+const { duration, transitions } = config
 
 const Container = styled.div`
   position: relative;
@@ -132,7 +132,7 @@ class Home extends PureComponent {
         <StyledRightButton icon onClick={this.next}>
           <StyledIcon name='angle double right' size='massive'/>
         </StyledRightButton>
-        <Transition visible={!loading} animation='scale' duration={duration} onHide={this.onHide}>
+        <Transition visible={!loading} animation={transitions.home || 'scale'} duration={duration} onHide={this.onHide}>
           <div>
             <PostList>
               {this.renderCard()}
