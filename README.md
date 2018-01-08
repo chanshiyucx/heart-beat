@@ -4,5 +4,6 @@
 此外，还使用开源项目 Gitalk 作为博客的评论系统，Gitter 扩展博客留言功能，基本上使用了 Github 全家桶套餐。
 
 技术栈：React + Dva + Semantic-UI + Styled Components + Github Issues  
-演示地址：[蝉時雨 ](https://chanshiyu.com/)  
+演示地址：[蝉時雨 ](https://chanshiyu.com/)
+食用指南：[HeartBeat 风味食用指南](https://chanshiyu.com/#/post/11) 
 踩坑记：[从零开始制作博客の不完全指北](https://chanshiyu.com/#/post/8)
