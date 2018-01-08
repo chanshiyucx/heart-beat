@@ -7,7 +7,7 @@ import marked from 'marked'
 const Container = styled.div`
   display: inline-block;
   margin: 6px 0;
-  width: 48.5%;
+  width: 48.62%;
   @media (max-width: 900px) {
     width: 96%;
   }
@@ -90,10 +90,9 @@ const PostCard = ({
   milestone,
   time,
 }) => {
-  const desc = body.split('<!-- more -->')[0]
   const date = created_at.slice(0, 10)
-  const reg=/http.+jpg/g
-  const result = reg.exec(desc)
+  const desc = body.split('<!-- more -->')[0]
+  const result = /http.+jpg/g.exec(desc)
   const cover = result[0]
   const content = desc.split('.jpg)')[1].trim()
 
@@ -122,7 +121,7 @@ const PostCard = ({
             <Item>
               <Icon name='tags' />
               {
-                labels.map((o) => {
+                labels.splice(0, 2).map((o) => {
                   return (
                     <StyledTag key={o.id}>
                       {o.name}

@@ -307,7 +307,7 @@ export default {
       icon: 'graduation',
       text: 'Communication&Information Engineering',
     }],
-    // 自行添加模块，支持 markdown 语法和 font-awesome 图标，content行首不要空格，可以模仿以下示例
+    // 自行添加模块，支持 markdown 语法和 font-awesome 图标，content 行首不要空格，可以模仿以下示例
     // 颜色可选值13种， colors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'],
     // 颜色卡参见： https://react.semantic-ui.com/layouts/theming
     section: [{
