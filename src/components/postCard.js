@@ -75,11 +75,11 @@ const StyledContent = styled(Card.Description)`
 `
 
 const StyledTag = styled.span`
-  padding-right: 4px;
+  padding-right: 2px;
 `
 
 const Item = styled.span`
-  margin-right: 8px;
+  margin-right: 6px;
   color: #888;
 `
 

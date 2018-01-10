@@ -131,11 +131,6 @@ a:hover {
 }
 
 /* 隐藏滚动条 */
-html {
-  -ms-overflow-style:none;
-  overflow:-moz-scrollbars-none;
-}
-
 ::-webkit-scrollbar {
   display: none;
 }
