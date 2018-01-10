@@ -61,8 +61,8 @@ const StyledTitle = styled(Card.Header)`
 const StyledContent = styled(Card.Description)`
   padding: 10px 16px;
   overflow: hidden;
+  height: 88px;
   p {
-    height: 88px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
