@@ -60,14 +60,17 @@ const StyledTitle = styled(Card.Header)`
 
 const StyledContent = styled(Card.Description)`
   padding: 10px 16px;
-  height: 88px;
+  overflow: hidden;
   p {
+    height: 88px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
     line-height: 1.6;
     text-align: justify;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
   }
 `
 
@@ -121,7 +124,7 @@ const PostCard = ({
             <Item>
               <Icon name='tags' />
               {
-                labels.splice(0, 2).map((o) => {
+                labels.map((o) => {
                   return (
                     <StyledTag key={o.id}>
                       {o.name}
