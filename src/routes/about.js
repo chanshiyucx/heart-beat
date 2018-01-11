@@ -75,7 +75,10 @@ const Section = styled(Segment)`
 class About extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showAbout',
+      type: 'site/showPage',
+      payload: {
+        showAbout: true,
+      }
     })
 
     if (enableGitalk) {

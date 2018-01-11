@@ -88,17 +88,17 @@ class Header extends PureComponent {
                 <Icon name='tags' /> 标签
               </Link>
             </li>
-            {booksOptions.showPage &&
-              <li>
-                <Link to='/books'>
-                  <Icon name='book' /> 书单
-                </Link>
-              </li>
-            }
             {shuoshuoOptions.showPage &&
               <li>
                 <Link to='/shuoshuo'>
                   <Icon name='talk' /> 说说
+                </Link>
+              </li>
+            }
+            {booksOptions.showPage &&
+              <li>
+                <Link to='/books'>
+                  <Icon name='book' /> 书单
                 </Link>
               </li>
             }

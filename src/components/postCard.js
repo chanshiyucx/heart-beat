@@ -60,17 +60,16 @@ const StyledTitle = styled(Card.Header)`
 
 const StyledContent = styled(Card.Description)`
   padding: 10px 16px;
-  overflow: hidden;
-  height: 88px;
+  max-height: 88px;
   p {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    overflow: hidden;
     line-height: 1.6;
     text-align: justify;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+    overflow: hidden;
   }
 `
 

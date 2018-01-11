@@ -94,7 +94,10 @@ const Extra = styled.div`
 class Books extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showBook',
+      type: 'site/showPage',
+      payload: {
+        showBook: true,
+      }
     })
 
     if (enableGitalk) {

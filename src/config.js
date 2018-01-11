@@ -204,7 +204,7 @@ export default {
       desc: '硅谷创业之父 Paul Graham 的文集，主要介绍黑客即优秀程序员的爱好和动机，讨论黑客成长、黑客对世界的贡献以及编程语言和黑客工作方法等所有对计算机时代感兴趣的人的一些话题。',
     }, {
       name: 'JavaScript 秘密花园',
-      author: ' 伊沃·韦特泽尔 Ivo Wetzel',
+      author: '伊沃·韦特泽尔 Ivo Wetzel',
       published: '未出版',
       progress: '初读一遍',
       rating: 4,
@@ -212,6 +212,16 @@ export default {
       cover: 'https://dn-coding-net-production-pp.qbox.me/48ea746c-d17d-42c6-875b-87bee5ad7044.jpg',
       link: 'http://www.jb51.net/onlineread/JavaScript-Garden-CN/#intro',
       desc: 'JavaScript 秘密花园是一个不断更新，主要关心 JavaScript 一些古怪用法的文档。初学者可以籍此深入了解 JavaScript 的语言特性。',
+    }, {
+      name: '深入浅出 React 和 Redux',
+      author: '程墨',
+      published: '2017-05-01',
+      progress: '正在阅读...',
+      rating: 0,
+      post: {},
+      cover: 'https://dn-coding-net-production-pp.qbox.me/674f0fce-1770-4ed2-8a9e-45248bab0a49.jpg',
+      link: 'http://www.duokan.com/book/143695',
+      desc: '由浅入深地介绍，如何用 React 和 Redux 构建现代化的前端项目，产出高质量的前端代码，系统分析 React 和 Redux 结合的优势，与开发技巧，为开发大型系统提供参考。',
     }],
   },
 
@@ -355,7 +365,7 @@ export default {
 目前主题刚刚成型，需要完善地方还有很多，优化之路还很漫长，希望将来正如主题的名字一样，让人第一眼萌生 HeartBeat 的感觉~
 
 ### 版本更新：
-2017-01-07: 移除 Gitter 留言功能, 添加音乐播放器 skPlayer 并魔改样式，添加书单页 <br />
+2018-01-07: 移除 Gitter 留言功能, 添加音乐播放器 skPlayer 并魔改样式，添加书单页 <br />
 2017-12-31: HeartBeat Version 1.0 问世 <br />
       `,
     }]

@@ -107,19 +107,9 @@ export default {
       yield put({ type: 'update', payload: { myShuoShuo, shuoshuoPage: queryPage, shuoshuoOnHide: false, shuoshuoLoading: false }})
     },
 
-    *showFriends({ payload }, { call, put }) {
+    *showPage({ payload }, { call, put }) {
       yield call(delay, minDelay)
-      yield put({ type: 'update', payload: { showFriends: true }})
-    },
-
-    *showAbout({ payload }, { call, put }) {
-      yield call(delay, minDelay)
-      yield put({ type: 'update', payload: { showAbout: true }})
-    },
-
-    *showBook({ payload }, { call, put }) {
-      yield call(delay, minDelay)
-      yield put({ type: 'update', payload: { showBook: true }})
+      yield put({ type: 'update', payload })
     },
 
     *filterPost({ payload }, { call, put }) {

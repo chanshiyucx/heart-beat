@@ -86,7 +86,10 @@ const Site = styled.span`
 class Friends extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showFriends',
+      type: 'site/showPage',
+      payload: {
+        showFriends: true,
+      }
     })
 
     if (enableGitalk) {
