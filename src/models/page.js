@@ -5,7 +5,7 @@ import config from '../config'
 const { minDelay } = config
 
 export default {
-  namespace: 'site',
+  namespace: 'page',
   state: {
     // 归档
     archivesOnHide: false,
@@ -62,7 +62,7 @@ export default {
     *queryArchives({ payload }, { select, call, put }) {
       yield put({ type: 'queryStart' })
       const startTime = new Date()
-      const data = yield select(state => state.site)
+      const data = yield select(state => state.page)
       const { page, pageSize } = data
       const queryType = payload ? payload.queryType : ''
       const queryPage = queryType === 'prev' ? page - 1 : page + 1
@@ -97,7 +97,7 @@ export default {
     *queryShuoShuo({ payload }, { select, call, put }) {
       yield put({ type: 'update', payload: { shuoshuoLoading: true }})
       const startTime = new Date()
-      const data = yield select(state => state.site)
+      const data = yield select(state => state.page)
       const { shuoshuoPage, shuoshuoPageSize } = data
       const queryType = payload ? payload.queryType : ''
       const queryPage = queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1

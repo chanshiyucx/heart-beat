@@ -107,10 +107,17 @@ class Footer extends PureComponent {
         source: playerType === 'cloud' ? playListId : playList,
       }
     })
+
+    // this.skPlayer.addEventListener('ended', this.handleListen)
   }
 
   componentWillUnmount() {
     this.skPlayer.destroy()
+  }
+
+
+  handleListen = () => {
+    console.log('handleListen')
   }
 
   // 显示隐藏播放器

@@ -15,7 +15,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 1200px) {
-    margin-bottom: 100px;
+    margin-bottom: 60px;
   }
 `
 
@@ -52,7 +52,8 @@ const StyledRightButton = StyledButton.extend`
 const StyledMobileButton = StyledButton.extend`
   position: absolute;
   margin: 0!important;
-  width: 150px;
+  padding: 0!important;
+  font-size: 80px!important;
   background: transparent!important;
   display: none!important;
   bottom: 0;
@@ -143,7 +144,7 @@ class Home extends PureComponent {
           <Loading />
         }
         <StyledMobileButton icon onClick={this.next}>
-          <StyledIcon name='angle double down' size='massive'/>
+          <StyledIcon name='angle double down'/>
         </StyledMobileButton>
       </Container>
     )

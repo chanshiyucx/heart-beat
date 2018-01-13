@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import { Link } from 'dva/router'
 import styled from 'styled-components'
-import { Icon } from 'semantic-ui-react'
+import { Sidebar, Menu, Button, Icon } from 'semantic-ui-react'
 
 import config from '../config'
 const { booksOptions, shuoshuoOptions, friendsOptions, aboutOptions } = config
@@ -22,6 +22,36 @@ const Inner = styled.div`
   overflow: hidden;
   margin: 0 auto;
   padding: 70px 0 60px;
+`
+
+const StyledMenuBtn = styled(Button)`
+  display: none!important;
+  position: absolute;
+  color: #444!important;
+  transition: all 0.5s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  background: transparent!important;
+  @media (max-width: 600px) {
+    display: inline-block!important;
+  }
+`
+
+const DropMenu = styled(Sidebar)`
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px!important;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, .2)!important;
+  a {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+  }
+`
+
+const MenuItem = styled.div`
+  padding: 10px 0;
+  color: #444;
+  font-size: 16px;
 `
 
 const Title = styled.a`
@@ -58,66 +88,135 @@ const StyledMenu = styled.ul`
     align-items: center;
     height: 60px;
   }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `
 
 class Header extends PureComponent {
+  toggleMenu = () => {
+    const { dropMenu } = this.props
+    this.props.dispatch({
+      type: 'appModel/update',
+      payload: {
+        dropMenu: !dropMenu,
+      }
+    })
+  }
+
   render() {
+    const { dropMenu } = this.props
     return (
       <Container id='header'>
-        <Inner>
-          <Title href='/'>蝉時雨</Title>
-          <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
-          <StyledMenu>
-            <li>
-              <Link to='/'>
+        <Sidebar.Pushable>
+          <DropMenu as={Menu} animation='push' direction='top' visible={dropMenu}>
+            <Link to='/'>
+              <MenuItem name='home'>
                 <Icon name='university' /> 首页
-              </Link>
-            </li>
-            <li>
-              <Link to='/archives'>
+              </MenuItem>
+            </Link>
+            <Link to='/archives'>
+              <MenuItem name='archives'>
                 <Icon name='archive' /> 归档
-              </Link>
-            </li>
-            <li>
-              <Link to='/categories'>
+              </MenuItem>
+            </Link>
+            <Link to='/categories'>
+              <MenuItem name='categories'>
                 <Icon name='bookmark' /> 分类
-              </Link>
-            </li>
-            <li>
-              <Link to='/tags'>
+              </MenuItem>
+            </Link>
+            <Link to='/tags'>
+              <MenuItem name='tags'>
                 <Icon name='tags' /> 标签
-              </Link>
-            </li>
+              </MenuItem>
+            </Link>
             {shuoshuoOptions.showPage &&
-              <li>
-                <Link to='/shuoshuo'>
+              <Link to='/shuoshuo'>
+                <MenuItem name='shuoshuo'>
                   <Icon name='talk' /> 说说
-                </Link>
-              </li>
+                </MenuItem>
+              </Link>
             }
             {booksOptions.showPage &&
-              <li>
-                <Link to='/books'>
+              <Link to='/books'>
+                <MenuItem name='books'>
                   <Icon name='book' /> 书单
-                </Link>
-              </li>
+                </MenuItem>
+              </Link>
             }
             {friendsOptions.showPage &&
-              <li>
-                <Link to='/friends'>
+              <Link to='/friends'>
+                <MenuItem name='friends'>
                   <Icon name='heartbeat' /> 友链
-                </Link>
-              </li>
+                </MenuItem>
+              </Link>
             }
             {aboutOptions.showPage &&
-              <li>
-                <Link to='/about'>
+              <Link to='/about'>
+                <MenuItem name='about'>
                   <Icon name='envira' /> 关于
-                </Link>
-              </li>
+                </MenuItem>
+              </Link>
             }
-          </StyledMenu>
-        </Inner>
+          </DropMenu>
+          <Sidebar.Pusher>
+          <StyledMenuBtn icon='list layout' size='huge' style={{marginTop: dropMenu ? '40px' : 0  }} onClick={this.toggleMenu} />
+            <Inner>
+              <Title href='/'>蝉時雨</Title>
+              <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
+              <StyledMenu>
+                <li>
+                  <Link to='/'>
+                    <Icon name='university' /> 首页
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/archives'>
+                    <Icon name='archive' /> 归档
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/categories'>
+                    <Icon name='bookmark' /> 分类
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/tags'>
+                    <Icon name='tags' /> 标签
+                  </Link>
+                </li>
+                {shuoshuoOptions.showPage &&
+                  <li>
+                    <Link to='/shuoshuo'>
+                      <Icon name='talk' /> 说说
+                    </Link>
+                  </li>
+                }
+                {booksOptions.showPage &&
+                  <li>
+                    <Link to='/books'>
+                      <Icon name='book' /> 书单
+                    </Link>
+                  </li>
+                }
+                {friendsOptions.showPage &&
+                  <li>
+                    <Link to='/friends'>
+                      <Icon name='heartbeat' /> 友链
+                    </Link>
+                  </li>
+                }
+                {aboutOptions.showPage &&
+                  <li>
+                    <Link to='/about'>
+                      <Icon name='envira' /> 关于
+                    </Link>
+                  </li>
+                }
+              </StyledMenu>
+            </Inner>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </Container>
     )
   }

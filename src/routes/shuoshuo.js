@@ -62,7 +62,7 @@ class ShuoShuo extends PureComponent {
   componentDidMount() {
     // 获取说说总数
     this.props.dispatch({
-      type: 'site/queryShuoShuoTotal',
+      type: 'page/queryShuoShuoTotal',
     })
 
     if (enableGitalk) {
@@ -77,7 +77,7 @@ class ShuoShuo extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         shuoshuoLoading: true,
         shuoshuoHasMore: true,
@@ -91,7 +91,7 @@ class ShuoShuo extends PureComponent {
   // 前一页
   prev = () => {
     this.props.dispatch({
-      type: 'site/queryShuoShuo',
+      type: 'page/queryShuoShuo',
       payload: {
         queryType: 'prev',
       }
@@ -101,7 +101,7 @@ class ShuoShuo extends PureComponent {
   // 后一页
   next = () => {
     this.props.dispatch({
-      type: 'site/queryShuoShuo',
+      type: 'page/queryShuoShuo',
       payload: {
         queryType: 'next',
       }
@@ -110,7 +110,7 @@ class ShuoShuo extends PureComponent {
 
   onHide = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         shuoshuoOnHide: true,
       }
@@ -164,4 +164,4 @@ class ShuoShuo extends PureComponent {
   }
 }
 
-export default connect(({ site }) => ({ ...site }))(ShuoShuo)
+export default connect(({ page }) => ({ ...page }))(ShuoShuo)

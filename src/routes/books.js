@@ -94,7 +94,7 @@ const Extra = styled.div`
 class Books extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showPage',
+      type: 'page/showPage',
       payload: {
         showBook: true,
       }
@@ -112,7 +112,7 @@ class Books extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         showBook: false,
       }
@@ -179,4 +179,4 @@ class Books extends PureComponent {
   }
 }
 
-export default connect(({ site }) => ({ ...site }))(Books)
+export default connect(({ page }) => ({ ...page }))(Books)

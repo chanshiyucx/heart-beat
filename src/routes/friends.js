@@ -86,7 +86,7 @@ const Site = styled.span`
 class Friends extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showPage',
+      type: 'page/showPage',
       payload: {
         showFriends: true,
       }
@@ -104,7 +104,7 @@ class Friends extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         showFriends: false,
       }
@@ -158,4 +158,4 @@ class Friends extends PureComponent {
 
 }
 
-export default connect(({ site }) => ({ ...site }))(Friends)
+export default connect(({ page }) => ({ ...page }))(Friends)

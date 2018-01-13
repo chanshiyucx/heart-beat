@@ -42,19 +42,16 @@ const Tag = styled(Button)`
   }
 `
 
-const FilterHeader = styled.h2`
-`
-
 class Tags extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/queryTags',
+      type: 'page/queryTags',
     })
   }
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         tags: [],
         tagsOnHide: false,
@@ -66,7 +63,7 @@ class Tags extends PureComponent {
 
   filterPost = (tag) => {
     this.props.dispatch({
-      type: 'site/filterPost',
+      type: 'page/filterPost',
       payload: {
         type: 'labels',
         filter: tag,
@@ -77,7 +74,7 @@ class Tags extends PureComponent {
 
   clearFilter = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         tagsOnHide: false,
         filterTitle: '',
@@ -88,7 +85,7 @@ class Tags extends PureComponent {
 
   onHide = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         tagsOnHide: true,
       }
@@ -120,12 +117,12 @@ class Tags extends PureComponent {
         </Transition>
         <Transition visible={tagsOnHide && !!filterTitle} animation={transitions.page || 'drop'} duration={duration}>
           <Wapper>
-            <FilterHeader>
+            <h2>
               Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
                      {filterTitle}
                      <Icon name='delete' color='red' />
                    </Tag>
-            </FilterHeader>
+            </h2>
             <ArchiveList archives={filterPost} />
           </Wapper>
         </Transition>
@@ -137,4 +134,4 @@ class Tags extends PureComponent {
   }
 }
 
-export default connect(({ site }) => ({ ...site }))(Tags)
+export default connect(({ page }) => ({ ...page }))(Tags)

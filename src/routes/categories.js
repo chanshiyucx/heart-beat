@@ -106,13 +106,13 @@ const StyledButton = styled(Button)`
 class Categories extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/queryCats',
+      type: 'page/queryCats',
     })
   }
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         cats: [],
         catsOnHide: false,
@@ -124,7 +124,7 @@ class Categories extends PureComponent {
 
   filterPost = (cat) => {
     this.props.dispatch({
-      type: 'site/filterPost',
+      type: 'page/filterPost',
       payload: {
         type: 'milestone',
         filter: cat.number,
@@ -135,7 +135,7 @@ class Categories extends PureComponent {
 
   clearFilter = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         catsOnHide: false,
         filterTitle: '',
@@ -146,7 +146,7 @@ class Categories extends PureComponent {
 
   onHide = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         catsOnHide: true,
       }
@@ -206,4 +206,4 @@ class Categories extends PureComponent {
   }
 }
 
-export default connect(({ site }) => ({ ...site }))(Categories)
+export default connect(({ page }) => ({ ...page }))(Categories)

@@ -75,7 +75,7 @@ const Section = styled(Segment)`
 class About extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/showPage',
+      type: 'page/showPage',
       payload: {
         showAbout: true,
       }
@@ -93,7 +93,7 @@ class About extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         showAbout: false,
       }
@@ -146,4 +146,4 @@ class About extends PureComponent {
 
 }
 
-export default connect(({ site }) => ({ ...site }))(About)
+export default connect(({ page }) => ({ ...page }))(About)

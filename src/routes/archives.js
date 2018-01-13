@@ -38,13 +38,13 @@ const Pagination = styled.div`
 class Archives extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'site/queryTotal'
+      type: 'page/queryTotal'
     })
   }
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'site/reset',
+      type: 'page/reset',
       payload: {
         archivesOnHide: false,
         loading: true,
@@ -58,7 +58,7 @@ class Archives extends PureComponent {
   // 前一页
   prev = () => {
     this.props.dispatch({
-      type: 'site/queryArchives',
+      type: 'page/queryArchives',
       payload: {
         queryType: 'prev',
       }
@@ -68,7 +68,7 @@ class Archives extends PureComponent {
   // 后一页
   next = () => {
     this.props.dispatch({
-      type: 'site/queryArchives',
+      type: 'page/queryArchives',
       payload: {
         queryType: 'next',
       }
@@ -77,7 +77,7 @@ class Archives extends PureComponent {
 
   onHide = () => {
     this.props.dispatch({
-      type: 'site/update',
+      type: 'page/update',
       payload: {
         archivesOnHide: true,
       }
@@ -110,4 +110,4 @@ class Archives extends PureComponent {
   }
 }
 
-export default connect(({ site }) => ({ ...site }))(Archives)
+export default connect(({ page }) => ({ ...page }))(Archives)
