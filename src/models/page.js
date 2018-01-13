@@ -32,8 +32,6 @@ export default {
     showFriends: false,
     showAbout: false,
     showBook: false,
-    // 播放器
-    showPlayer: false,
   },
   reducers: {
     queryStart(state, { payload }) {

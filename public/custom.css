@@ -117,13 +117,6 @@ a:hover {
   transform: translateY(-4px);
 }
 
-#live2d {
-  position: fixed;
-  left: 10px;
-  bottom: 0;
-  z-index: 10;
-}
-
 @media (max-width: 900px) {
   .gitter-open-chat-button, #live2d, #canvas {
     display: none;

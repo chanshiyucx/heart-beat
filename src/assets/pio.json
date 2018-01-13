@@ -2,7 +2,6 @@
   "type": "Live2D Model Setting",
   "name": "pio",
   "model":"moc/pio.moc",
-  "textures":["https://song.acg.sx/images/textures/pio"],
   "layout":{
   	"center_x":0.0,
   	"center_y":-0.05,
