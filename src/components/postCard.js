@@ -91,6 +91,7 @@ const PostCard = ({
   labels,
   milestone,
   time,
+  _handleMouseOver,
 }) => {
   const date = created_at.slice(0, 10)
   const desc = body.split('<!-- more -->')[0]
@@ -100,7 +101,7 @@ const PostCard = ({
 
   return (
     <Container>
-      <StyledLink to={`/post/${number}`}>
+      <StyledLink to={`/post/${number}`} onMouseOver={() => _handleMouseOver({ type: 'title', title })}>
         <StyledCard raised fluid >
           <StyledHeader>
             <img alt='' src={cover} />
@@ -148,6 +149,7 @@ PostCard.propTypes = {
   labels: PropTypes.array,
   milestone: PropTypes.object,
   time: PropTypes.number,
+  _handleMouseOver: PropTypes.func,
 }
 
 export default PostCard

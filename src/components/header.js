@@ -7,6 +7,17 @@ import { Sidebar, Menu, Button, Icon } from 'semantic-ui-react'
 import config from '../config'
 const { booksOptions, shuoshuoOptions, friendsOptions, aboutOptions } = config
 
+const hoverTips = {
+  home: '回首页看看吧 o(*￣▽￣*)ブ',
+  archives: '主人又在发水文了 ( ˘•ω•˘ )',
+  categories: '看看有什么感兴趣的话题吧 (▰˘◡˘▰)',
+  tags: '偷偷看一下主人的特长吧 ⸜(* ॑꒳ ॑* )⸝',
+  shuoshuo: '主人今天又忘记吃药了(๑´ㅁ`)',
+  books: '主人又在偷懒了⋉(● ∸ ●)⋊',
+  friends: '主人的小伙伴都在这里哟 (๑ơ ₃ ơ)♥ ',
+  about: '想了解更多关于主人的故事么✧*｡٩(ˊᗜˋ*)و✧*｡	',
+}
+
 const Container = styled.div`
   width: 100%;
   li {
@@ -94,12 +105,25 @@ const StyledMenu = styled.ul`
 `
 
 class Header extends PureComponent {
+  // 移动端展开菜单
   toggleMenu = () => {
     const { dropMenu } = this.props
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
         dropMenu: !dropMenu,
+      }
+    })
+  }
+
+  // hover 触发对话
+  _handleMouseOver = ({ type }) => {
+    const tips = hoverTips[type]
+    this.props.dispatch({
+      type: 'appModel/showTips',
+      payload: {
+        tips,
+        updatedAt: Date.now(),
       }
     })
   }
@@ -166,49 +190,49 @@ class Header extends PureComponent {
               <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
               <StyledMenu>
                 <li>
-                  <Link to='/'>
+                  <Link to='/' onMouseOver={() => this._handleMouseOver({ type: 'home' })}>
                     <Icon name='university' /> 首页
                   </Link>
                 </li>
                 <li>
-                  <Link to='/archives'>
+                  <Link to='/archives' onMouseOver={() => this._handleMouseOver({ type: 'archives' })}>
                     <Icon name='archive' /> 归档
                   </Link>
                 </li>
                 <li>
-                  <Link to='/categories'>
+                  <Link to='/categories' onMouseOver={() => this._handleMouseOver({ type: 'categories' })}>
                     <Icon name='bookmark' /> 分类
                   </Link>
                 </li>
                 <li>
-                  <Link to='/tags'>
+                  <Link to='/tags' onMouseOver={() => this._handleMouseOver({ type: 'tags' })}>
                     <Icon name='tags' /> 标签
                   </Link>
                 </li>
                 {shuoshuoOptions.showPage &&
                   <li>
-                    <Link to='/shuoshuo'>
+                    <Link to='/shuoshuo' onMouseOver={() => this._handleMouseOver({ type: 'shuoshuo' })}>
                       <Icon name='talk' /> 说说
                     </Link>
                   </li>
                 }
                 {booksOptions.showPage &&
                   <li>
-                    <Link to='/books'>
+                    <Link to='/books' onMouseOver={() => this._handleMouseOver({ type: 'books' })}>
                       <Icon name='book' /> 书单
                     </Link>
                   </li>
                 }
                 {friendsOptions.showPage &&
                   <li>
-                    <Link to='/friends'>
+                    <Link to='/friends' onMouseOver={() => this._handleMouseOver({ type: 'friends' })}>
                       <Icon name='heartbeat' /> 友链
                     </Link>
                   </li>
                 }
                 {aboutOptions.showPage &&
                   <li>
-                    <Link to='/about'>
+                    <Link to='/about' onMouseOver={() => this._handleMouseOver({ type: 'about' })}>
                       <Icon name='envira' /> 关于
                     </Link>
                   </li>

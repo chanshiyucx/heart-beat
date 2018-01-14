@@ -8,7 +8,8 @@ export default {
     isPlaying: false,
     showWaifu: true,
     waifu: 'tia',
-    tips: '欢迎来到<font color=#f6f> 蝉時雨 </font>！',
+    updatedAt: '',
+    tips: '',
   },
   reducers: {
     update(state, { payload }) {
@@ -22,10 +23,14 @@ export default {
       yield put({ type: 'update', payload: { showWaifu: false } })
     },
 
-    *showTips({ payload }, { call, put }) {
+    *showTips({ payload }, { select, call, put }) {
       yield put({ type: 'update', payload })
       yield call(delay, 8000)
-      yield put({ type: 'update', payload: { tips: '' } })
+      const updatedAt = yield(select(state => state.appModel.updatedAt))
+      const duration = Date.now() - updatedAt
+      if (duration >= 8000) {
+        yield put({ type: 'update', payload: { tips: '' } })
+      }
     }
   },
 }

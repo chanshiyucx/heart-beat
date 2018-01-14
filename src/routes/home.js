@@ -102,18 +102,26 @@ class Home extends PureComponent {
     })
   }
 
-  renderCard = () => {
-    const { postList, times } = this.props
-    if (postList && postList.length > 0) {
-      const cardList = postList.map((o, i) => {
-        return (
-          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} gotoCat={this.gotoCat} />
-        )
-      })
-      return cardList
+  // hover 触发对话
+  _handleMouseOver = ({ type, title }) => {
+    const prevTips = '要到上一页看看吗？'
+    const nextTips = '要到下一页看看吗？'
+    let tips = ''
+    if (title) {
+      tips = `要去看看<font color=#f6f> ${title} </font>吗？`
+    } else {
+      tips = type === 'prev' ? prevTips : nextTips
     }
+    this.props.dispatch({
+      type: 'appModel/showTips',
+      payload: {
+        tips,
+        updatedAt: Date.now(),
+      }
+    })
   }
 
+  // 动画结束
   onHide = () => {
     this.props.dispatch({
       type: 'postList/update',
@@ -123,14 +131,26 @@ class Home extends PureComponent {
     })
   }
 
+  renderCard = () => {
+    const { postList, times } = this.props
+    if (postList && postList.length > 0) {
+      const cardList = postList.map((o, i) => {
+        return (
+          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} gotoCat={this.gotoCat} _handleMouseOver={this._handleMouseOver}/>
+        )
+      })
+      return cardList
+    }
+  }
+
   render() {
     const { loading, onHide } = this.props
     return (
       <Container>
-        <StyledLeftButton icon onClick={this.prev}>
+        <StyledLeftButton icon onClick={this.prev} onMouseOver={() => this._handleMouseOver({ type: 'prev' })}>
           <StyledIcon name='angle double left' size='massive' />
         </StyledLeftButton>
-        <StyledRightButton icon onClick={this.next}>
+        <StyledRightButton icon onClick={this.next} onMouseOver={() => this._handleMouseOver({ type: 'next' })}>
           <StyledIcon name='angle double right' size='massive'/>
         </StyledRightButton>
         <Transition visible={!loading} animation={transitions.home || 'scale'} duration={duration} onHide={this.onHide}>

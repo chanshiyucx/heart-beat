@@ -8,12 +8,27 @@ import marked from 'marked'
 import skPlayer from 'skplayer'
 
 import config from '../config'
-
-const model = require('../assets/waifu.json')
-const hitokoto = require('../assets/hitokoto.json')
-
 const { duration, playerBg, playerType, playListId, playList } = config
+
+// 一言
+const hitokoto = require('../assets/hitokoto.json')
+const hitokotos = JSON.parse(JSON.stringify(hitokoto, null, 2)).hitokotos
+
+// waifu
+const model = require('../assets/waifu.json')
+const modelObj = JSON.parse(JSON.stringify(model, null, 2))
+
+// 滚动
 const scroll = new SmoothScroll()
+
+const hoverTips = {
+  backHome: '回首页',
+  dressup: "要看看我的新衣服嘛~(●'◡'●)",
+  takePhoto: '要给我拍张照嘛~（<ゝω・）☆',
+  hidden: '人生若只如初见，和你在一起的这段时间很开心~',
+  music: '来听歌吧',
+  scroll: '唰地一下就跑上面去了哦~',
+}
 
 const Container = styled.div`
   position: absolute;
@@ -121,7 +136,7 @@ const Waifu = styled.div`
     width: 20px;
     z-index: 999;
     i {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   &:hover {
@@ -220,6 +235,11 @@ const Item = styled.div`
 
 class Footer extends PureComponent {
   componentDidMount() {
+    // 加载 waifu!!!
+    const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>！'
+    this.dressup()
+    this.showTips(initTips)
+
     // 播放器
     this.skPlayer = new skPlayer({
       autoplay: false,
@@ -235,10 +255,6 @@ class Footer extends PureComponent {
       this.audio.addEventListener('play', this.handleListen)
       this.audio.addEventListener('pause', this.handleListen)
     }, 2000)
-
-    // 加载 pio!!!
-    this.dressup()
-    this.showTips()
 
   }
 
@@ -266,13 +282,10 @@ class Footer extends PureComponent {
       pio: 'https://dn-coding-net-production-pp.qbox.me/ee52b52d-3fc4-42d1-9477-6692273e965d.png',
       tia: 'https://dn-coding-net-production-pp.qbox.me/103cb9ed-ccef-4b33-9e12-c6823584f3d3.png',
     }
-    const modelObj = JSON.parse(JSON.stringify(model, null, 2))
-    // modelObj.model = 'moc/pio.moc'
     const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
     modelObj.model = `moc/${nextWaifu}.moc`
     modelObj.textures = [textures[nextWaifu]]
     window.modelObj = modelObj
-    console.log('modelObj--->', modelObj, nextWaifu, changeWaifu)
     window.loadlive2d('live2d', '/live2d/', '')
     // 切换老婆
     this.props.dispatch({
@@ -297,17 +310,39 @@ class Footer extends PureComponent {
   }
 
   // 老婆有话要说
-  showTips = () => {
-    const hitokotos = JSON.parse(JSON.stringify(hitokoto, null, 2)).hitokotos
-    const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
+  showTips = (initTips) => {
+    const { updatedAt } = this.props
+    // 如果当前显示 tips 则跳过
+    console.log('Date.now() - updatedAt > 16000', Date.now() - updatedAt > 16000, Date.now() - updatedAt)
+    if (Date.now() - updatedAt > 16000) {
+      const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
+      this.props.dispatch({
+        type: 'appModel/showTips',
+        payload: {
+          tips: initTips || tips,
+          updatedAt: Date.now()
+        }
+      })
+    }
+    setTimeout(this.showTips, 16000)
+  }
+
+  // hover 触发对话
+  _handleMouseOver = (type) => {
+    const { waifu } = this.props
+    let tips = ''
+    if (type === 'changeWaifu') {
+      tips = `要介绍<font color=#f6f>${waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio ' } </font>给你认识么ヾ(●゜▽゜●)♡`
+    } else {
+      tips = hoverTips[type]
+    }
     this.props.dispatch({
       type: 'appModel/showTips',
       payload: {
         tips,
+        updatedAt: Date.now(),
       }
     })
-    console.log('tips', tips)
-    setTimeout(this.showTips, 24000)
   }
 
   // 显示隐藏播放器
@@ -341,28 +376,52 @@ class Footer extends PureComponent {
           <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }}></div>
           <div className="waifu-tool" id="waifu-tool">
             <Link to='/'>
-              <WaifuBtn icon>
+              <WaifuBtn
+                icon
+                className="waifu-btn"
+                onMouseOver={() => this._handleMouseOver('backHome')}
+              >
                 <Icon name='university'/>
               </WaifuBtn>
             </Link>
-            <WaifuBtn icon onClick={() => this.dressup(true)}>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={() => this.dressup(true)}
+              onMouseOver={() => this._handleMouseOver('changeWaifu')}
+            >
               <Icon name='lesbian'/>
             </WaifuBtn>
-            <WaifuBtn icon onClick={() => this.dressup(false)}>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={() => this.dressup(false)}
+              onMouseOver={() => this._handleMouseOver('dressup')}
+            >
               <Icon name='female'/>
             </WaifuBtn>
-            <WaifuBtn icon onClick={this.takePhoto}>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={this.takePhoto}
+              onMouseOver={() => this._handleMouseOver('takePhoto')}
+            >
               <Icon name='camera retro'/>
             </WaifuBtn>
-            <WaifuBtn icon onClick={this.hiddenPio}>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={this.hiddenPio}
+              onMouseOver={() => this._handleMouseOver('hidden')}
+            >
               <Icon name='delete'/>
             </WaifuBtn>
           </div>
         </Waifu>
-        <PlayBtn icon onClick={this.togglePlayer}>
+        <PlayBtn icon onClick={this.togglePlayer} onMouseOver={() => this._handleMouseOver('music')}>
           <Icon name='music' size='big' bordered circular loading={isPlaying}/>
         </PlayBtn>
-        <ScrollToTop icon onClick={this.scrollToTop}>
+        <ScrollToTop icon onClick={this.scrollToTop} onMouseOver={() => this._handleMouseOver('scroll')}>
           <Icon name='chevron up' size='big' bordered circular/>
         </ScrollToTop>
         <InnerWrap>
