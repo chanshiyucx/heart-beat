@@ -9,8 +9,8 @@ import skPlayer from 'skplayer'
 
 import config from '../config'
 
-const model = require('../assets/pio.json')
-// const hitokoto = require('../assets/hitokoto.json')
+const model = require('../assets/waifu.json')
+const hitokoto = require('../assets/hitokoto.json')
 
 const { duration, playerBg, playerType, playListId, playList } = config
 const scroll = new SmoothScroll()
@@ -77,7 +77,7 @@ const shake = keyframes`
 `
 
 const Waifu = styled.div`
-  display: ${props => props.showPio ? 'block' : 'none'};
+  display: ${props => props.showWaifu ? 'block' : 'none'};
   position: fixed;
   bottom: 0;
   left: 0;
@@ -95,10 +95,10 @@ const Waifu = styled.div`
     z-index: 10;
   }
   .waifu-tips {
-    // opacity: 0;
+    opacity: ${props => props.showTips ? 1 : 0};
     width: 250px;
-    height: 60px;
-    margin: 0 20px;
+    height: 66px;
+    margin: ${props => props.waifu === 'pio' ? 0 : '-30px'} 20px;
     padding: 5px 10px;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, .6);
@@ -238,6 +238,8 @@ class Footer extends PureComponent {
 
     // 加载 pio!!!
     this.dressup()
+    this.showTips()
+
   }
 
   componentWillUnmount() {
@@ -257,18 +259,33 @@ class Footer extends PureComponent {
   }
 
   // 换装
-  dressup = () => {
+  dressup = (changeWaifu) => {
+    const { waifu } = this.props
     // const textures = 'https://song.acg.sx/images/textures/pio?' + Date.now()
-    const textures = 'https://dn-coding-net-production-pp.qbox.me/ee52b52d-3fc4-42d1-9477-6692273e965d.png'
+    const textures = {
+      pio: 'https://dn-coding-net-production-pp.qbox.me/ee52b52d-3fc4-42d1-9477-6692273e965d.png',
+      tia: 'https://dn-coding-net-production-pp.qbox.me/103cb9ed-ccef-4b33-9e12-c6823584f3d3.png',
+    }
     const modelObj = JSON.parse(JSON.stringify(model, null, 2))
-    modelObj.textures = [textures]
+    // modelObj.model = 'moc/pio.moc'
+    const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
+    modelObj.model = `moc/${nextWaifu}.moc`
+    modelObj.textures = [textures[nextWaifu]]
     window.modelObj = modelObj
-    window.loadlive2d('live2d', '/live2d/pio', '')
+    console.log('modelObj--->', modelObj, nextWaifu, changeWaifu)
+    window.loadlive2d('live2d', '/live2d/', '')
+    // 切换老婆
+    this.props.dispatch({
+      type: 'appModel/update',
+      payload: {
+        waifu: nextWaifu
+      }
+    })
   }
 
   // 拍照
   takePhoto = () => {
-    window.Live2D.captureName = 'Pio.png';
+    window.Live2D.captureName = 'waifu.png';
     window.Live2D.captureFrame = true;
   }
 
@@ -277,6 +294,20 @@ class Footer extends PureComponent {
     this.props.dispatch({
       type: 'appModel/hiddenPio',
     })
+  }
+
+  // 老婆有话要说
+  showTips = () => {
+    const hitokotos = JSON.parse(JSON.stringify(hitokoto, null, 2)).hitokotos
+    const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
+    this.props.dispatch({
+      type: 'appModel/showTips',
+      payload: {
+        tips,
+      }
+    })
+    console.log('tips', tips)
+    setTimeout(this.showTips, 24000)
   }
 
   // 显示隐藏播放器
@@ -297,7 +328,7 @@ class Footer extends PureComponent {
   }
 
   render() {
-    const { showPlayer, isPlaying, showPio, tips } = this.props
+    const { showPlayer, isPlaying, showWaifu, waifu, tips } = this.props
     return (
       <Container>
         <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
@@ -305,16 +336,19 @@ class Footer extends PureComponent {
             <div id="skPlayer"></div>
           </SkyPlayer>
         </Transition>
-        <Waifu showPio={showPio}>
+        <Waifu showWaifu={showWaifu} waifu={waifu} showTips={!!tips.length}>
           <canvas id="live2d" width="280" height="250" className="live2d"></canvas>
           <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }}></div>
-          <div className="waifu-tool">
+          <div className="waifu-tool" id="waifu-tool">
             <Link to='/'>
               <WaifuBtn icon>
                 <Icon name='university'/>
               </WaifuBtn>
             </Link>
-            <WaifuBtn icon onClick={this.dressup}>
+            <WaifuBtn icon onClick={() => this.dressup(true)}>
+              <Icon name='lesbian'/>
+            </WaifuBtn>
+            <WaifuBtn icon onClick={() => this.dressup(false)}>
               <Icon name='female'/>
             </WaifuBtn>
             <WaifuBtn icon onClick={this.takePhoto}>

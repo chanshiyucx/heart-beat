@@ -6,7 +6,8 @@ export default {
     dropMenu: false,
     showPlayer: false,
     isPlaying: false,
-    showPio: true,
+    showWaifu: true,
+    waifu: 'tia',
     tips: '欢迎来到<font color=#f6f> 蝉時雨 </font>！',
   },
   reducers: {
@@ -18,7 +19,13 @@ export default {
     *hiddenPio({ payload }, { call, put }) {
       yield put({ type: 'update', payload: { tips: '最美不过分别时' } })
       yield call(delay, 1600)
-      yield put({ type: 'update', payload: { showPio: false } })
+      yield put({ type: 'update', payload: { showWaifu: false } })
     },
+
+    *showTips({ payload }, { call, put }) {
+      yield put({ type: 'update', payload })
+      yield call(delay, 8000)
+      yield put({ type: 'update', payload: { tips: '' } })
+    }
   },
 }
