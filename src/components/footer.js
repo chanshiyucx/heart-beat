@@ -36,6 +36,7 @@ const hoverTips = {
 const clickTips = {
   dressup: "我的新衣服漂亮么 (●'◡'●)",
   takePhoto: '我的照片要好好收藏哦（<ゝω・）☆',
+  lightbulb: '一起来做眼保健操吧 (ﾉ◕∀◕)ﾉ*:･ﾟ✧',
   hidden: '人生若只如初见，和你在一起的这段时间很开心 (▰˘◡˘▰)',
 }
 
@@ -165,6 +166,9 @@ const Waifu = styled.div`
       display: block;
     }
   }
+  @media (max-width: 900px) {
+    display: none;
+  }
 `
 
 const WaifuBtn = styled(Button)`
@@ -176,7 +180,7 @@ const WaifuBtn = styled(Button)`
 const SkyPlayer = styled.div`
   position: fixed;
   right: 10px;
-  bottom: 312px;
+  bottom: 300px;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -222,13 +226,16 @@ const FooterIcon = styled(Button)`
   &:hover {
     color: rgba(0, 0, 0, .2)!important;
   }
+  i {
+    font-size: 26px!important;
+  }
   @media (max-width: 900px) {
     display: none!important;
   }
 `
 
 const PlayBtn = FooterIcon.extend`
-  bottom: 66px;
+  bottom: 60px;
   i.icon.loading {
     animation: icon-loading 4s linear infinite!important;
   }
@@ -299,7 +306,7 @@ class Footer extends PureComponent {
   dressup = ({ changeWaifu, initLoad }) => {
     const { waifu } = this.props
     const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
-    const textures = `https://song.acg.sx/images/textures/${nextWaifu}?${Date.now()}`
+    const textures = `https://song.acg.sx/textures/${nextWaifu}?${Date.now()}`
     modelObj.model = `moc/${nextWaifu}.moc`
     modelObj.textures = [textures]
     window.modelObj = modelObj
@@ -340,11 +347,10 @@ class Footer extends PureComponent {
   // 关灯
   lightbulb = () => {
     const { lightbulb } = this.props
-    const tips = '一起来做眼保健操吧 (ﾉ◕∀◕)ﾉ*:･ﾟ✧'
     this.props.dispatch({
       type: 'appModel/showTips',
       payload: {
-        tips,
+        tips: clickTips.lightbulb,
         lightbulb: !lightbulb,
       }
     })
@@ -363,7 +369,6 @@ class Footer extends PureComponent {
   // 老婆有话要说
   showTips = ({ forced, initTips }) => {
     const { updatedAt } = this.props
-    // 如果当前显示 tips 则跳过
     if (Date.now() - updatedAt > 16000 || initTips || forced) {
       const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
       this.props.dispatch({
@@ -427,8 +432,7 @@ class Footer extends PureComponent {
               <WaifuBtn
                 icon
                 className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('backHome')}
-              >
+                onMouseOver={() => this._handleMouseOver('backHome')}>
                 <Icon name='university'/>
               </WaifuBtn>
             </Link>
@@ -436,48 +440,42 @@ class Footer extends PureComponent {
               icon
               className="waifu-btn"
               onClick={() => this.dressup({ changeWaifu: true })}
-              onMouseOver={() => this._handleMouseOver('changeWaifu')}
-            >
+              onMouseOver={() => this._handleMouseOver('changeWaifu')}>
               <Icon name='lesbian'/>
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={() => this.dressup({ changeWaifu: false })}
-              onMouseOver={() => this._handleMouseOver('dressup')}
-            >
+              onMouseOver={() => this._handleMouseOver('dressup')}>
               <Icon name='female'/>
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={this.takePhoto}
-              onMouseOver={() => this._handleMouseOver('takePhoto')}
-            >
+              onMouseOver={() => this._handleMouseOver('takePhoto')}>
               <Icon name='camera retro'/>
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={() => this.showTips({ forced: true })}
-              onMouseOver={() => this._handleMouseOver('talk')}
-            >
+              onMouseOver={() => this._handleMouseOver('talk')}>
               <Icon name='talk'/>
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={this.lightbulb}
-              onMouseOver={() => this._handleMouseOver('lightbulb')}
-            >
+              onMouseOver={() => this._handleMouseOver('lightbulb')}>
               <Icon name='lightbulb'/>
             </WaifuBtn>
             <Link to='/post/4'>
               <WaifuBtn
                 icon
                 className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('info')}
-              >
+                onMouseOver={() => this._handleMouseOver('info')}>
                 <Icon name='info circle'/>
               </WaifuBtn>
             </Link>
@@ -485,17 +483,16 @@ class Footer extends PureComponent {
               icon
               className="waifu-btn"
               onClick={this.hiddenWaifu}
-              onMouseOver={() => this._handleMouseOver('hidden')}
-            >
+              onMouseOver={() => this._handleMouseOver('hidden')}>
               <Icon name='delete'/>
             </WaifuBtn>
           </div>
         </Waifu>
         <PlayBtn icon onClick={this.togglePlayer} onMouseOver={() => this._handleMouseOver('music')}>
-          <Icon name='music' size='big' bordered circular loading={isPlaying}/>
+          <Icon name='music' bordered circular loading={isPlaying}/>
         </PlayBtn>
         <ScrollToTop icon onClick={this.scrollToTop} onMouseOver={() => this._handleMouseOver('scroll')}>
-          <Icon name='chevron up' size='big' bordered circular/>
+          <Icon name='chevron up' bordered circular/>
         </ScrollToTop>
         <InnerWrap>
           <ItemList>
