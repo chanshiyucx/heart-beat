@@ -298,13 +298,10 @@ class Footer extends PureComponent {
   // 换装
   dressup = ({ changeWaifu, initLoad }) => {
     const { waifu } = this.props
-    const textures = {
-      pio: `https://song.acg.sx/images/textures/pio?${Date.now()}`,
-      tia: 'https://dn-coding-net-production-pp.qbox.me/103cb9ed-ccef-4b33-9e12-c6823584f3d3.png',
-    }
     const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
+    const textures = `https://song.acg.sx/images/textures/${nextWaifu}?${Date.now()}`
     modelObj.model = `moc/${nextWaifu}.moc`
-    modelObj.textures = [textures[nextWaifu]]
+    modelObj.textures = [textures]
     window.modelObj = modelObj
     window.loadlive2d('live2d', '/live2d/', '')
     // 切换老婆
