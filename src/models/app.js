@@ -10,6 +10,7 @@ export default {
     waifu: 'tia',
     updatedAt: '',
     tips: '',
+    lightbulb: false,
   },
   reducers: {
     update(state, { payload }) {
@@ -17,20 +18,20 @@ export default {
     },
   },
   effects: {
-    *hiddenPio({ payload }, { call, put }) {
-      yield put({ type: 'update', payload: { tips: '最美不过分别时' } })
-      yield call(delay, 1600)
-      yield put({ type: 'update', payload: { showWaifu: false } })
-    },
-
     *showTips({ payload }, { select, call, put }) {
-      yield put({ type: 'update', payload })
+      yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
       yield call(delay, 8000)
       const updatedAt = yield(select(state => state.appModel.updatedAt))
       const duration = Date.now() - updatedAt
       if (duration >= 8000) {
         yield put({ type: 'update', payload: { tips: '' } })
       }
-    }
+    },
+
+    *hiddenWaifu({ payload }, { call, put }) {
+      yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
+      yield call(delay, 2000)
+      yield put({ type: 'update', payload: { showWaifu: false } })
+    },
   },
 }

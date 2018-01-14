@@ -11,9 +11,9 @@ const hoverTips = {
   home: '回首页看看吧 o(*￣▽￣*)ブ',
   archives: '主人又在发水文了 ( ˘•ω•˘ )',
   categories: '看看有什么感兴趣的话题吧 (▰˘◡˘▰)',
-  tags: '偷偷看一下主人的特长吧 ⸜(* ॑꒳ ॑* )⸝',
-  shuoshuo: '主人今天又忘记吃药了(๑´ㅁ`)',
-  books: '主人又在偷懒了⋉(● ∸ ●)⋊',
+  tags: '偷偷看一下主人的特长吧ヽ(=^･ω･^=)丿',
+  shuoshuo: '主人今天又忘记吃药了(｡ŏ_ŏ) ',
+  books: '主人也相当好学呢 ⋉(● ∸ ●)⋊',
   friends: '主人的小伙伴都在这里哟 (๑ơ ₃ ơ)♥ ',
   about: '想了解更多关于主人的故事么✧*｡٩(ˊᗜˋ*)و✧*｡	',
 }
@@ -123,7 +123,6 @@ class Header extends PureComponent {
       type: 'appModel/showTips',
       payload: {
         tips,
-        updatedAt: Date.now(),
       }
     })
   }

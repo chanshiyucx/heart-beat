@@ -116,7 +116,6 @@ class Home extends PureComponent {
       type: 'appModel/showTips',
       payload: {
         tips,
-        updatedAt: Date.now(),
       }
     })
   }

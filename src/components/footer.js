@@ -22,12 +22,21 @@ const modelObj = JSON.parse(JSON.stringify(model, null, 2))
 const scroll = new SmoothScroll()
 
 const hoverTips = {
-  backHome: '回首页',
-  dressup: "要看看我的新衣服嘛~(●'◡'●)",
-  takePhoto: '要给我拍张照嘛~（<ゝω・）☆',
-  hidden: '人生若只如初见，和你在一起的这段时间很开心~',
-  music: '来听歌吧',
-  scroll: '唰地一下就跑上面去了哦~',
+  backHome: '回首页看看吧 o(*￣▽￣*)ブ',
+  dressup: "要看看我的新衣服嘛 (●'◡'●)",
+  takePhoto: '要给我拍张照嘛（<ゝω・）☆',
+  talk: '要听我讲故事么 ฅ●ω●ฅ',
+  lightbulb: '深夜注意爱护眼睛哦 (✪ω✪)',
+  info: '要了解更多关于我的故事么 (*´∀`)~♥',
+  hidden: '到了说再见的时候了么 ',
+  music: '来听听歌吧 ♪(^∇^*)',
+  scroll: '唰地一下就跑上面去了哦 ( • ̀ω•́ )',
+}
+
+const clickTips = {
+  dressup: "我的新衣服漂亮么 (●'◡'●)",
+  takePhoto: '我的照片要好好收藏哦（<ゝω・）☆',
+  hidden: '人生若只如初见，和你在一起的这段时间很开心 (▰˘◡˘▰)',
 }
 
 const Container = styled.div`
@@ -36,6 +45,18 @@ const Container = styled.div`
   margin: 0 auto;
   padding-bottom: 10px;
   width: 100%;
+  &::before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: all 1s ease;
+    z-index: 1000;
+    background: ${props => props.lightbulb ? 'rgba(0, 0, 0, .4)' : ''};
+  }
 `
 
 const shake = keyframes`
@@ -95,7 +116,7 @@ const Waifu = styled.div`
   display: ${props => props.showWaifu ? 'block' : 'none'};
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 10px;
   width: 280px;
   height: 250px;
   z-index: 1;
@@ -105,7 +126,7 @@ const Waifu = styled.div`
   transform: translateY(3px);
   #live2d {
     position: fixed;
-    left: 0;
+    left: 10px;
     bottom: 0;
     z-index: 10;
   }
@@ -131,7 +152,7 @@ const Waifu = styled.div`
   .waifu-tool {
     display: none;
     position: absolute;
-    top: 70px;
+    top: 50px;
     right: 10px;
     width: 20px;
     z-index: 999;
@@ -148,7 +169,7 @@ const Waifu = styled.div`
 
 const WaifuBtn = styled(Button)`
   padding: 0!important;
-  margin: 6px 0!important;
+  margin: 2px 0!important;
   background: transparent!important;
 `
 
@@ -237,8 +258,8 @@ class Footer extends PureComponent {
   componentDidMount() {
     // 加载 waifu!!!
     const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>！'
-    this.dressup()
-    this.showTips(initTips)
+    this.dressup({ initLoad: true })
+    this.showTips({ forced: true, initTips })
 
     // 播放器
     this.skPlayer = new skPlayer({
@@ -275,11 +296,10 @@ class Footer extends PureComponent {
   }
 
   // 换装
-  dressup = (changeWaifu) => {
+  dressup = ({ changeWaifu, initLoad }) => {
     const { waifu } = this.props
-    // const textures = 'https://song.acg.sx/images/textures/pio?' + Date.now()
     const textures = {
-      pio: 'https://dn-coding-net-production-pp.qbox.me/ee52b52d-3fc4-42d1-9477-6692273e965d.png',
+      pio: `https://song.acg.sx/images/textures/pio?${Date.now()}`,
       tia: 'https://dn-coding-net-production-pp.qbox.me/103cb9ed-ccef-4b33-9e12-c6823584f3d3.png',
     }
     const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
@@ -294,37 +314,69 @@ class Footer extends PureComponent {
         waifu: nextWaifu
       }
     })
+
+    if (!initLoad) {
+      const tiaTips = '我是<font color=#f6f> 姐姐 Tia </font>，有什么需要帮助嘛 (*^_^*)'
+      const pioTips = '我是<font color=#f6f> 妹妹 Pio </font>, 来接替姐姐大人的工作哦 (*^_^*)'
+      const tips = changeWaifu ? (waifu === 'tia' ? pioTips : tiaTips ) : clickTips.dressup
+      this.props.dispatch({
+        type: 'appModel/showTips',
+        payload: {
+          tips,
+        }
+      })
+    }
   }
 
   // 拍照
   takePhoto = () => {
     window.Live2D.captureName = 'waifu.png';
     window.Live2D.captureFrame = true;
+    this.props.dispatch({
+      type: 'appModel/showTips',
+      payload: {
+        tips: clickTips.takePhoto,
+      }
+    })
+  }
+
+  // 关灯
+  lightbulb = () => {
+    const { lightbulb } = this.props
+    const tips = '一起来做眼保健操吧 (ﾉ◕∀◕)ﾉ*:･ﾟ✧'
+    this.props.dispatch({
+      type: 'appModel/showTips',
+      payload: {
+        tips,
+        lightbulb: !lightbulb,
+      }
+    })
   }
 
   // 隐藏
-  hiddenPio = () => {
+  hiddenWaifu = () => {
     this.props.dispatch({
-      type: 'appModel/hiddenPio',
+      type: 'appModel/hiddenWaifu',
+      payload: {
+        tips: clickTips.hidden,
+      }
     })
   }
 
   // 老婆有话要说
-  showTips = (initTips) => {
+  showTips = ({ forced, initTips }) => {
     const { updatedAt } = this.props
     // 如果当前显示 tips 则跳过
-    console.log('Date.now() - updatedAt > 16000', Date.now() - updatedAt > 16000, Date.now() - updatedAt)
-    if (Date.now() - updatedAt > 16000) {
+    if (Date.now() - updatedAt > 16000 || initTips || forced) {
       const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
       this.props.dispatch({
         type: 'appModel/showTips',
         payload: {
           tips: initTips || tips,
-          updatedAt: Date.now()
         }
       })
     }
-    setTimeout(this.showTips, 16000)
+    setTimeout(() => this.showTips({}), 16000)
   }
 
   // hover 触发对话
@@ -340,7 +392,6 @@ class Footer extends PureComponent {
       type: 'appModel/showTips',
       payload: {
         tips,
-        updatedAt: Date.now(),
       }
     })
   }
@@ -363,9 +414,9 @@ class Footer extends PureComponent {
   }
 
   render() {
-    const { showPlayer, isPlaying, showWaifu, waifu, tips } = this.props
+    const { showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb } = this.props
     return (
-      <Container>
+      <Container lightbulb={lightbulb}>
         <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
           <SkyPlayer className="myplayer">
             <div id="skPlayer"></div>
@@ -387,7 +438,7 @@ class Footer extends PureComponent {
             <WaifuBtn
               icon
               className="waifu-btn"
-              onClick={() => this.dressup(true)}
+              onClick={() => this.dressup({ changeWaifu: true })}
               onMouseOver={() => this._handleMouseOver('changeWaifu')}
             >
               <Icon name='lesbian'/>
@@ -395,7 +446,7 @@ class Footer extends PureComponent {
             <WaifuBtn
               icon
               className="waifu-btn"
-              onClick={() => this.dressup(false)}
+              onClick={() => this.dressup({ changeWaifu: false })}
               onMouseOver={() => this._handleMouseOver('dressup')}
             >
               <Icon name='female'/>
@@ -411,7 +462,32 @@ class Footer extends PureComponent {
             <WaifuBtn
               icon
               className="waifu-btn"
-              onClick={this.hiddenPio}
+              onClick={() => this.showTips({ forced: true })}
+              onMouseOver={() => this._handleMouseOver('talk')}
+            >
+              <Icon name='talk'/>
+            </WaifuBtn>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={this.lightbulb}
+              onMouseOver={() => this._handleMouseOver('lightbulb')}
+            >
+              <Icon name='lightbulb'/>
+            </WaifuBtn>
+            <Link to='/post/4'>
+              <WaifuBtn
+                icon
+                className="waifu-btn"
+                onMouseOver={() => this._handleMouseOver('info')}
+              >
+                <Icon name='info circle'/>
+              </WaifuBtn>
+            </Link>
+            <WaifuBtn
+              icon
+              className="waifu-btn"
+              onClick={this.hiddenWaifu}
               onMouseOver={() => this._handleMouseOver('hidden')}
             >
               <Icon name='delete'/>
