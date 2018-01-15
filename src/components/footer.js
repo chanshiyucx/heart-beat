@@ -166,21 +166,21 @@ const Waifu = styled.div`
     animation-timing-function: ease-in-out;
   }
   .waifu-tool {
-    display: none;
+    display: block;
     position: absolute;
     top: 50px;
-    right: -20px;
+    left: 10px;
     width: 20px;
     z-index: 999;
     i {
       font-size: 16px;
     }
   }
-  &:hover {
-    .waifu-tool {
-      display: block;
-    }
-  }
+  // &:hover {
+  //   .waifu-tool {
+  //     display: block;
+  //   }
+  // }
   @media (max-width: 900px) {
     display: none;
   }
