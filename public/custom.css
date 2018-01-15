@@ -113,6 +113,10 @@ a:hover {
   transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s!important;
 }
 
+.gt-container .gt-comment-body {
+  font-size: 15px!important;
+}
+
 .gt-container .gt-comment-content:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
   transform: translateY(-4px);

@@ -27,8 +27,8 @@ const Wapper = styled.div`
 
 const Content = styled.div`
   p {
-    margin: 10px 0;
-    line-height: 1.6;
+    margin: 12px 0;
+    line-height: 1.66;
   }
 `
 

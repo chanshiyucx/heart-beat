@@ -168,8 +168,8 @@ const Waifu = styled.div`
   .waifu-tool {
     display: block;
     position: absolute;
-    top: 50px;
-    left: 10px;
+    bottom: 2px;
+    left: 0;
     width: 20px;
     z-index: 999;
     i {

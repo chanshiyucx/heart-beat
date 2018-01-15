@@ -104,8 +104,8 @@ class Home extends PureComponent {
 
   // hover 触发对话
   _handleMouseOver = ({ type, title }) => {
-    const prevTips = '要到上一页看看吗？'
-    const nextTips = '要到下一页看看吗？'
+    const prevTips = "要到上一页看看吗？(●'◡'●)"
+    const nextTips = "要到下一页看看吗？(●'◡'●)"
     let tips = ''
     if (title) {
       tips = `要去看看<font color=#f6f> ${title} </font>吗？`

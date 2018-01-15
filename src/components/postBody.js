@@ -96,7 +96,7 @@ const Content = styled.div`
   font-family: monda;
   text-align: justify;
   p, ul, ol {
-    margin: 0 16px 12px;
+    margin: 2px 16px 14px;
   }
   h1, h2, h3 {
     margin: 0 16px;
@@ -113,8 +113,8 @@ const Content = styled.div`
     font-size: 16px;
   }
   p, blockquote, ul, ol {
-    line-height: 1.8;
-    font-size: 16px;
+    line-height: 1.66;
+    font-size: 15px;
   }
   img {
     width: calc(100% + 32px);
@@ -165,15 +165,6 @@ const Content = styled.div`
     list-style: initial;
   }
   @media (max-width: 900px) {
-    h1 {
-      font-size: 20px;
-    }
-    h2 {
-      font-size: 18px;
-    }
-    h3 {
-      font-size: 16px;
-    }
     pre, blockquote {
       overflow-x: scroll;
     }
@@ -182,7 +173,8 @@ const Content = styled.div`
 
 class PostBody extends PureComponent {
   componentDidMount() {
-    zooming.listen('.zoomable')
+    const osWidth = document.documentElement.clientWidth || document.body.scrollWidth
+    if (osWidth > 600) zooming.listen('.zoomable')
   }
 
   render() {
