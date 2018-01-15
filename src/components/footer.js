@@ -28,7 +28,7 @@ const hoverTips = {
   talk: '要听我讲故事么 ฅ●ω●ฅ',
   lightbulb: '深夜注意爱护眼睛哦 (✪ω✪)',
   info: '要了解更多关于我的故事么 (*´∀`)~♥',
-  hidden: '到了说再见的时候了么 ',
+  hidden: '到了说再见的时候了么 (｡ŏ_ŏ)',
   music: '来听听歌吧 ♪(^∇^*)',
   scroll: '唰地一下就跑上面去了哦 ( • ̀ω•́ )',
 }
@@ -272,7 +272,7 @@ const Item = styled.div`
 class Footer extends PureComponent {
   componentDidMount() {
     // 加载 waifu!!!
-    const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>！'
+    const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
     this.dressup({ initLoad: true })
     this.showTips({ forced: true, initTips })
 
@@ -396,7 +396,7 @@ class Footer extends PureComponent {
     if (type === 'changeWaifu') {
       tips = `要介绍<font color=#f6f>${waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio ' } </font>给你认识么ヾ(●゜▽゜●)♡`
     } else if (type === 'like') {
-      tips = likeChanshiyu ? '已经点赞过了哦 （〜^㉨^)〜' : '喜欢就点个赞吧（〜^㉨^)〜'
+      tips = likeChanshiyu ? '已经点赞过了哦 ε٩(๑> ₃ <)۶з ' : '喜欢就点个赞吧 ヾ(●゜▽゜●)♡'
     } else {
       tips = hoverTips[type]
     }
