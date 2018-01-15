@@ -259,7 +259,7 @@ export default {
     }, {
       name: '惶心',
       link: 'https://tech.hxco.de/',
-      cover: 'https://dn-coding-net-production-pp.qbox.me/20cc9237-c715-4fba-9fac-f605f12c382a.png',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/9a952bf7-1359-47d9-bee9-abf1b71e8a0a.png',
       avatar: 'https://dn-coding-net-production-pp.qbox.me/4bc438fc-c91d-4c73-9c24-d1b3b16a9b03.jpg',
     }, {
       name: 'Blessing Studio',
@@ -291,6 +291,11 @@ export default {
       link: 'https://2heng.xin/',
       cover: 'https://dn-coding-net-production-pp.qbox.me/9540dcf6-e49a-4bed-9dab-f9858ded0f7d.jpg',
       avatar: 'https://dn-coding-net-production-pp.qbox.me/e50bded5-fbee-49bf-9e99-7a5feaf8081b.jpg',
+    }, {
+      name: "Makito's Notebook",
+      link: 'https://blog.keep.moe/',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/34d1e2d3-f99b-4e0b-99d8-97b4e81fd362.png',
+      avatar: 'https://dn-coding-net-production-pp.qbox.me/4c7b6646-168d-4e02-8e8f-3a491362a4c7.jpg',
     }],
   },
 

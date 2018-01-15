@@ -166,7 +166,7 @@ const Waifu = styled.div`
     animation-timing-function: ease-in-out;
   }
   .waifu-tool {
-    display: block;
+    display: none;
     position: absolute;
     top: 50px;
     right: -20px;
@@ -176,11 +176,11 @@ const Waifu = styled.div`
       font-size: 16px;
     }
   }
-  // &:hover {
-  //   .waifu-tool {
-  //     display: block;
-  //   }
-  // }
+  &:hover {
+    .waifu-tool {
+      display: block;
+    }
+  }
   @media (max-width: 900px) {
     display: none;
   }
