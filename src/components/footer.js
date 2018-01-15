@@ -10,6 +10,16 @@ import skPlayer from 'skplayer'
 import config from '../config'
 const { duration, playerBg, playerType, playListId, playList } = config
 
+function throttle (fn, wait) {
+  let time = Date.now()
+  return function() {
+    if ((time + wait - Date.now()) < 0) {
+      fn()
+      time = Date.now()
+    }
+  }
+}
+
 // 一言
 const hitokoto = require('../assets/hitokoto.json')
 const hitokotos = JSON.parse(JSON.stringify(hitokoto, null, 2)).hitokotos
@@ -155,7 +165,7 @@ const Waifu = styled.div`
     animation-timing-function: ease-in-out;
   }
   .waifu-tool {
-    display: none;
+    display: block;
     position: absolute;
     top: 50px;
     right: 10px;
@@ -165,11 +175,11 @@ const Waifu = styled.div`
       font-size: 16px;
     }
   }
-  &:hover {
-    .waifu-tool {
-      display: block;
-    }
-  }
+  // &:hover {
+  //   .waifu-tool {
+  //     display: block;
+  //   }
+  // }
   @media (max-width: 900px) {
     display: none;
   }
@@ -238,18 +248,18 @@ const FooterIcon = styled(Button)`
   }
 `
 
-const PlayBtn = FooterIcon.extend`
+const ScrollToTop = FooterIcon.extend`
   bottom: 110px;
+`
+
+const PlayBtn = FooterIcon.extend`
+  bottom: 52px;
   i.icon.loading {
     animation: icon-loading 4s linear infinite!important;
   }
 `
 
 const LikeBtn = FooterIcon.extend`
-  bottom: 52px;
-`
-
-const ScrollToTop = FooterIcon.extend`
   bottom: -4px;
 `
 
@@ -285,19 +295,24 @@ class Footer extends PureComponent {
         source: playerType === 'cloud' ? playListId : playList,
       }
     })
-
     setTimeout(() => {
       this.audio = document.querySelector('audio')
       this.audio.addEventListener('play', this.handleListen)
       this.audio.addEventListener('pause', this.handleListen)
-    }, 2000)
+    }, 3000)
 
+    // 滚动
+    document.addEventListener('scroll', throttle(this.handleScroll, 160))
   }
 
   componentWillUnmount() {
+    // 播放器
     this.skPlayer.destroy()
     this.audio.removeEventListener('play', this.handleListen)
     this.audio.removeEventListener('pause', this.handleListen)
+
+    // 滚动
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
   // 监听播放器状态
@@ -306,6 +321,17 @@ class Footer extends PureComponent {
       type: 'appModel/update',
       payload: {
         isPlaying: e.type === 'play',
+      }
+    })
+  }
+
+  // 监听页面滚动
+  handleScroll = (e) => {
+    const osTop = document.documentElement.scrollTop || document.body.scrollTop
+    this.props.dispatch({
+      type: 'appModel/update',
+      payload: {
+        showTop: osTop >= 200,
       }
     })
   }
@@ -436,7 +462,7 @@ class Footer extends PureComponent {
   }
 
   render() {
-    const { showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb, likeTime, likeChanshiyu } = this.props
+    const { showTop, showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb, likeTime, likeChanshiyu } = this.props
     return (
       <Container lightbulb={lightbulb} likeChanshiyu={likeChanshiyu}>
         <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
@@ -508,6 +534,11 @@ class Footer extends PureComponent {
             </WaifuBtn>
           </div>
         </Waifu>
+        <Transition visible={!!showTop} mountOnShow={false} animation='fly left' duration={duration}>
+          <ScrollToTop icon onClick={this.scrollToTop} onMouseOver={() => this._handleMouseOver('scroll')}>
+            <Icon name='chevron up' bordered circular/>
+          </ScrollToTop>
+        </Transition>
         <Popup
           trigger={<LikeBtn icon onClick={this.likeSite} onMouseOver={() => this._handleMouseOver('like')}>
             <Icon className="like" name='heart' bordered circular/>
@@ -523,9 +554,6 @@ class Footer extends PureComponent {
         <PlayBtn icon onClick={this.togglePlayer} onMouseOver={() => this._handleMouseOver('music')}>
           <Icon name='music' bordered circular loading={isPlaying}/>
         </PlayBtn>
-        <ScrollToTop icon onClick={this.scrollToTop} onMouseOver={() => this._handleMouseOver('scroll')}>
-          <Icon name='chevron up' bordered circular/>
-        </ScrollToTop>
         <InnerWrap>
           <ItemList>
             <Item>

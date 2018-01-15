@@ -5,6 +5,7 @@ export default {
   namespace: 'appModel',
   state: {
     dropMenu: false,
+    showTop: false,
     showPlayer: false,
     isPlaying: false,
     showWaifu: true,

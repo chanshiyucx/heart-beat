@@ -157,7 +157,6 @@ export async function likeSite(params) {
     const query = new AV.Query('Counter')
     query.equalTo('title', 'site')
     query.first().then((res) => {
-      console.log('params', params)
       if (params && params.type === 'getTime') {
         resolve(res.get('time'))
       } else {

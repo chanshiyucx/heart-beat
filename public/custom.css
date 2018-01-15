@@ -15,8 +15,8 @@ body, p, blockquote, h1, h2, h3, ul, ol {
 
 body {
   color: #666;
-  user-select:none;
-  text-shadow: 0 0 1px rgba(0,0,0,.2);
+  user-select: none;
+  text-shadow: 0 0 1px rgba(0, 0, 0, .2);
   scroll-behavior: smooth;
   font-family: 'Monda'!important;
   cursor: url('../img/cursor.cur'), auto!important;
@@ -46,7 +46,7 @@ h1, h2, h3 {
 }
 
 code {
-  font-family: 'PT Mono', monospace, "PingFang SC","Microsoft YaHei", sans-serif;
+  font-family: 'PT Mono', monospace, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 a, ol {
@@ -64,10 +64,11 @@ a:hover {
 }
 
 /* gitalk */
+
 .gt-comment-content, .gt-header-textarea, .gt-container .gt-avatar img {
   background: rgba(255, 255, 255, .6)!important;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
 }
 
 .gt-container a {
@@ -109,11 +110,11 @@ a:hover {
 }
 
 .gt-container .gt-comment-content {
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s!important;
 }
 
 .gt-container .gt-comment-content:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
   transform: translateY(-4px);
 }
 
@@ -124,6 +125,7 @@ a:hover {
 }
 
 /* 隐藏滚动条 */
+
 ::-webkit-scrollbar {
   display: none;
 }
