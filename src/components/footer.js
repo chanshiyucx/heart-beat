@@ -10,6 +10,7 @@ import skPlayer from 'skplayer'
 import config from '../config'
 const { duration, playerBg, playerType, playListId, playList } = config
 
+// 节流
 function throttle (fn, wait) {
   let time = Date.now()
   return function() {
@@ -168,7 +169,7 @@ const Waifu = styled.div`
     display: block;
     position: absolute;
     top: 50px;
-    right: 10px;
+    right: -20px;
     width: 20px;
     z-index: 999;
     i {
