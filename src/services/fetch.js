@@ -88,6 +88,7 @@ export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
 // 热度
 export async function queryHot({ postList }) {
   return new Promise((resolve) => {
+    if (window.location.href.includes('http://localhost:8000/')) resolve()
     const seq = postList.map((o) => {
       return new Promise((resolve) => {
         const query = new AV.Query('Counter')
@@ -122,6 +123,7 @@ export async function queryHot({ postList }) {
 // 增热度
 export async function queryPostHot({ post }) {
   return new Promise((resolve) => {
+    if (window.location.href.includes('http://localhost:8000/')) resolve()
     const query = new AV.Query('Counter')
     const Counter = AV.Object.extend('Counter')
     const { title, id } = post
@@ -145,6 +147,26 @@ export async function queryPostHot({ post }) {
          resolve(1)
        }).catch(console.error)
      }
+    }).catch(console.error)
+  }).catch(console.error)
+}
+
+// 点赞
+export async function likeSite(params) {
+  return new Promise((resolve) => {
+    const query = new AV.Query('Counter')
+    query.equalTo('title', 'site')
+    query.first().then((res) => {
+      console.log('params', params)
+      if (params && params.type === 'getTime') {
+        resolve(res.get('time'))
+      } else {
+        res.fetchWhenSave(true)
+        res.increment('time')
+        res.save().then((counter) => {
+         resolve(counter.get('time'))
+        }).catch(console.error)
+      }
     }).catch(console.error)
   }).catch(console.error)
 }

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import { Link } from 'dva/router'
 import styled, { keyframes } from 'styled-components'
-import { Button, Icon, Transition } from 'semantic-ui-react'
+import { Button, Icon, Transition, Popup } from 'semantic-ui-react'
 import SmoothScroll from 'smooth-scroll'
 import marked from 'marked'
 import skPlayer from 'skplayer'
@@ -57,6 +57,10 @@ const Container = styled.div`
     transition: all 1s ease;
     z-index: 1000;
     background: ${props => props.lightbulb ? 'rgba(0, 0, 0, .4)' : ''};
+  }
+
+  i.like {
+    color: ${props => props.likeChanshiyu ? '#faf!important' : ''};
   }
 `
 
@@ -180,7 +184,7 @@ const WaifuBtn = styled(Button)`
 const SkyPlayer = styled.div`
   position: fixed;
   right: 10px;
-  bottom: 300px;
+  bottom: 350px;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -235,14 +239,18 @@ const FooterIcon = styled(Button)`
 `
 
 const PlayBtn = FooterIcon.extend`
-  bottom: 60px;
+  bottom: 110px;
   i.icon.loading {
     animation: icon-loading 4s linear infinite!important;
   }
 `
 
+const LikeBtn = FooterIcon.extend`
+  bottom: 52px;
+`
+
 const ScrollToTop = FooterIcon.extend`
-  bottom: 0;
+  bottom: -4px;
 `
 
 const InnerWrap = styled.div`
@@ -383,10 +391,12 @@ class Footer extends PureComponent {
 
   // hover 触发对话
   _handleMouseOver = (type) => {
-    const { waifu } = this.props
+    const { waifu, likeChanshiyu } = this.props
     let tips = ''
     if (type === 'changeWaifu') {
       tips = `要介绍<font color=#f6f>${waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio ' } </font>给你认识么ヾ(●゜▽゜●)♡`
+    } else if (type === 'like') {
+      tips = likeChanshiyu ? '已经点赞过了哦 （〜^㉨^)〜' : '喜欢就点个赞吧（〜^㉨^)〜'
     } else {
       tips = hoverTips[type]
     }
@@ -409,6 +419,16 @@ class Footer extends PureComponent {
     })
   }
 
+  // 喜欢
+  likeSite = () => {
+    const { likeChanshiyu } = this.props
+    if (!likeChanshiyu) {
+      this.props.dispatch({
+        type: 'appModel/likeSite',
+      })
+    }
+  }
+
   // 滚动到顶部
   scrollToTop = () => {
     const header = document.getElementById('header')
@@ -416,9 +436,9 @@ class Footer extends PureComponent {
   }
 
   render() {
-    const { showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb } = this.props
+    const { showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb, likeTime, likeChanshiyu } = this.props
     return (
-      <Container lightbulb={lightbulb}>
+      <Container lightbulb={lightbulb} likeChanshiyu={likeChanshiyu}>
         <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
           <SkyPlayer className="myplayer">
             <div id="skPlayer"></div>
@@ -488,6 +508,18 @@ class Footer extends PureComponent {
             </WaifuBtn>
           </div>
         </Waifu>
+        <Popup
+          trigger={<LikeBtn icon onClick={this.likeSite} onMouseOver={() => this._handleMouseOver('like')}>
+            <Icon className="like" name='heart' bordered circular/>
+          </LikeBtn>}
+          content={`已有 ${likeTime} 人点赞了哦`}
+          position='left center'
+          style={{
+            borderRadius: '3px',
+            padding: '12px 16px',
+            backgroundColor: 'rgba(255, 255, 255, .6)',
+          }}
+        />
         <PlayBtn icon onClick={this.togglePlayer} onMouseOver={() => this._handleMouseOver('music')}>
           <Icon name='music' bordered circular loading={isPlaying}/>
         </PlayBtn>

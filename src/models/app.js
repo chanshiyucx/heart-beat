@@ -1,3 +1,4 @@
+import { likeSite } from '../services/fetch'
 import { delay } from '../utils'
 
 export default {
@@ -11,6 +12,8 @@ export default {
     updatedAt: '',
     tips: '',
     lightbulb: false,
+    likeTime: 0,
+    likeChanshiyu: false,
   },
   reducers: {
     update(state, { payload }) {
@@ -18,6 +21,12 @@ export default {
     },
   },
   effects: {
+    *loadStorage({ payload }, { call, put }) {
+      const likeChanshiyu = window.localStorage.getItem('likeChanshiyu', true)
+      const likeTime = yield call(likeSite, { type: 'getTime' })
+      yield put({ type: 'update', payload: { likeChanshiyu, likeTime } })
+    },
+
     *showTips({ payload }, { select, call, put }) {
       yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
       yield call(delay, 8000)
@@ -32,6 +41,17 @@ export default {
       yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
       yield call(delay, 2000)
       yield put({ type: 'update', payload: { showWaifu: false } })
+    },
+
+    *likeSite({ payload }, { call, put }) {
+      const likeTime = yield call(likeSite, payload)
+      window.localStorage.setItem('likeChanshiyu', true)
+      yield put({ type: 'update', payload: { likeTime, likeChanshiyu: true } })
+    }
+  },
+  subscriptions: {
+    setup({ dispatch }) {
+      dispatch({ type: 'loadStorage' })
     },
   },
 }
