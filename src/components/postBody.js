@@ -18,7 +18,7 @@ marked.setOptions({
 // 修复中文id显示‘-’的bug
 const renderer = new marked.Renderer()
 renderer.heading = function(text, level) {
-    return `<h${level} id="${text}"><i class="fa fa-${level === 1 ? 'gift' : 'envira'}" aria-hidden="true"></i> ${text}</h${level}>`
+    return `<h${level} id="${text}"><i class="fa fa-${level === 2 ? 'gift' : 'envira'}" aria-hidden="true"></i> ${text}</h${level}>`
 }
 
 // 新开标签页打开
@@ -52,7 +52,7 @@ const Header = styled.div`
     transition: transform .6s ease-out;
   }
   @media (max-width: 900px) {
-    h1 {
+    h2 {
       font-size: 20px;
     }
   }
@@ -95,18 +95,18 @@ const Content = styled.div`
   p, ul, ol {
     margin: 0 16px 16px;
   }
-  h1, h2, h3 {
+  h2, h3 {
     margin: 0 16px;
     padding: 8px 0;
     font-weight: 500;
   }
-  h1 {
+  h2 {
     margin-bottom: 12px;
     padding-bottom: 12px;
     font-size: 22px;
     border-bottom: 1px dashed rgba(0, 0, 0, .2);
   }
-  h2 {
+  h3 {
     font-size: 18px;
     i {
       font-size: 16px;
