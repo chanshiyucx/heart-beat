@@ -132,12 +132,7 @@ class Header extends PureComponent {
     return (
       <Container id="header">
         <Sidebar.Pushable>
-          <DropMenu
-            as={Menu}
-            animation="push"
-            direction="top"
-            visible={dropMenu}
-          >
+          <DropMenu as={Menu} animation="push" direction="top" visible={dropMenu}>
             <Link to="/">
               <MenuItem name="home">
                 <Icon name="university" /> 首页
@@ -199,19 +194,14 @@ class Header extends PureComponent {
               <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
               <StyledMenu>
                 <li>
-                  <Link
-                    to="/"
-                    onMouseOver={() => this._handleMouseOver({ type: 'home' })}
-                  >
+                  <Link to="/" onMouseOver={() => this._handleMouseOver({ type: 'home' })}>
                     <Icon name="university" /> 首页
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/archives"
-                    onMouseOver={() =>
-                      this._handleMouseOver({ type: 'archives' })
-                    }
+                    onMouseOver={() => this._handleMouseOver({ type: 'archives' })}
                   >
                     <Icon name="archive" /> 归档
                   </Link>
@@ -219,18 +209,13 @@ class Header extends PureComponent {
                 <li>
                   <Link
                     to="/categories"
-                    onMouseOver={() =>
-                      this._handleMouseOver({ type: 'categories' })
-                    }
+                    onMouseOver={() => this._handleMouseOver({ type: 'categories' })}
                   >
                     <Icon name="bookmark" /> 分类
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/tags"
-                    onMouseOver={() => this._handleMouseOver({ type: 'tags' })}
-                  >
+                  <Link to="/tags" onMouseOver={() => this._handleMouseOver({ type: 'tags' })}>
                     <Icon name="tags" /> 标签
                   </Link>
                 </li>
@@ -238,9 +223,7 @@ class Header extends PureComponent {
                   <li>
                     <Link
                       to="/shuoshuo"
-                      onMouseOver={() =>
-                        this._handleMouseOver({ type: 'shuoshuo' })
-                      }
+                      onMouseOver={() => this._handleMouseOver({ type: 'shuoshuo' })}
                     >
                       <Icon name="talk" /> 说说
                     </Link>
@@ -248,12 +231,7 @@ class Header extends PureComponent {
                 )}
                 {booksOptions.showPage && (
                   <li>
-                    <Link
-                      to="/books"
-                      onMouseOver={() =>
-                        this._handleMouseOver({ type: 'books' })
-                      }
-                    >
+                    <Link to="/books" onMouseOver={() => this._handleMouseOver({ type: 'books' })}>
                       <Icon name="book" /> 书单
                     </Link>
                   </li>
@@ -262,9 +240,7 @@ class Header extends PureComponent {
                   <li>
                     <Link
                       to="/friends"
-                      onMouseOver={() =>
-                        this._handleMouseOver({ type: 'friends' })
-                      }
+                      onMouseOver={() => this._handleMouseOver({ type: 'friends' })}
                     >
                       <Icon name="heartbeat" /> 友链
                     </Link>
@@ -272,12 +248,7 @@ class Header extends PureComponent {
                 )}
                 {aboutOptions.showPage && (
                   <li>
-                    <Link
-                      to="/about"
-                      onMouseOver={() =>
-                        this._handleMouseOver({ type: 'about' })
-                      }
-                    >
+                    <Link to="/about" onMouseOver={() => this._handleMouseOver({ type: 'about' })}>
                       <Icon name="envira" /> 关于
                     </Link>
                   </li>

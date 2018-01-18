@@ -43,18 +43,10 @@ function RouterConfig({ history, app }) {
             <Route exact path="/archives" component={Archives} />
             <Route exact path="/categories" component={Categories} />
             <Route exact path="/tags" component={Tags} />
-            {shuoshuoOptions.showPage && (
-              <Route exact path="/shuoshuo" component={ShuoShuo} />
-            )}
-            {booksOptions.showPage && (
-              <Route exact path="/books" component={Books} />
-            )}
-            {friendsOptions.showPage && (
-              <Route exact path="/friends" component={Friends} />
-            )}
-            {aboutOptions.showPage && (
-              <Route exact path="/about" component={About} />
-            )}
+            {shuoshuoOptions.showPage && <Route exact path="/shuoshuo" component={ShuoShuo} />}
+            {booksOptions.showPage && <Route exact path="/books" component={Books} />}
+            {friendsOptions.showPage && <Route exact path="/friends" component={Friends} />}
+            {aboutOptions.showPage && <Route exact path="/about" component={About} />}
           </Switch>
         </Content>
         <Footer />

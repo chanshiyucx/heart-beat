@@ -44,8 +44,7 @@ const Wapper = styled.div`
 
 const StyledSegment = styled(Segment)`
   background: rgba(255, 255, 255, 0.4) !important;
-  transition: all 0.25s ease 0s,
-    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
     opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
@@ -146,9 +145,7 @@ class ShuoShuo extends PureComponent {
             <Label as="a" color={color} ribbon>
               {date}
             </Label>
-            <ShuoShuoItem
-              dangerouslySetInnerHTML={{ __html: marked(o.body) }}
-            />
+            <ShuoShuoItem dangerouslySetInnerHTML={{ __html: marked(o.body) }} />
           </StyledSegment>
         )
       })
@@ -184,19 +181,14 @@ class ShuoShuo extends PureComponent {
                     上一页
                   </Button>
                   <Button.Or text={shuoshuoPage} />
-                  <Button
-                    disabled={shuoshuoPage >= maxPage}
-                    onClick={this.next}
-                  >
+                  <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>
                     下一页
                   </Button>
                 </Button.Group>
               </Pagination>
             </Wapper>
           </Transition>
-          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && (
-            <Loading />
-          )}
+          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && <Loading />}
         </div>
         {enableGitalk && <div id="gitalk" />}
       </Container>

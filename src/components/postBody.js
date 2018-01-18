@@ -34,10 +34,6 @@ renderer.image = function(href, title, text) {
 }
 
 const Container = styled.div`
-  width: 100%;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
-  background: rgba(255, 255, 255, 0.6);
 `
 
 const Header = styled.div`
@@ -182,10 +178,12 @@ const Content = styled.div`
   }
 `
 
+const Footer = styled.div`
+`
+
 class PostBody extends PureComponent {
   componentDidMount() {
-    const osWidth =
-      document.documentElement.clientWidth || document.body.scrollWidth
+    const osWidth = document.documentElement.clientWidth || document.body.scrollWidth
     if (osWidth > 600) zooming.listen('.zoomable')
   }
 
@@ -225,9 +223,7 @@ class PostBody extends PureComponent {
             </Meta>
           </Info>
         </Header>
-        <Content
-          dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }}
-        />
+        <Content dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }} />
       </Container>
     )
   }

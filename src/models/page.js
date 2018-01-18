@@ -114,8 +114,7 @@ export default {
       const data = yield select(state => state.page)
       const { shuoshuoPage, shuoshuoPageSize } = data
       const queryType = payload ? payload.queryType : ''
-      const queryPage =
-        queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
+      const queryPage = queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
       const myShuoShuo = yield call(queryShuoShuo, {
         page: queryPage,
         pageSize: shuoshuoPageSize,

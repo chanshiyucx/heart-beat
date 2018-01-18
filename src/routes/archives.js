@@ -85,14 +85,7 @@ class Archives extends PureComponent {
   }
 
   render() {
-    const {
-      archivesOnHide,
-      loading,
-      archives,
-      total,
-      page,
-      pageSize,
-    } = this.props
+    const { archivesOnHide, loading, archives, total, page, pageSize } = this.props
     const maxPage = Math.ceil(total / pageSize)
     return (
       <Container>

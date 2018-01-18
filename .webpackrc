@@ -6,12 +6,12 @@
     "@font-size-base": "16px",
     "@line-height-base": "1.2"
   },
-  "extraBabelPlugins": ["transform-runtime"],
   "env": {
     "development": {
       "extraBabelPlugins": [
         "dva-hmr"
       ]
     }
-  }
+  },
+  "hash": true
 }

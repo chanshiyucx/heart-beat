@@ -40,8 +40,7 @@ const Cat = styled.div`
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.4);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
-  transition: all 0.25s ease 0s,
-    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
     opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
@@ -197,19 +196,11 @@ class Categories extends PureComponent {
             <CatList>{this.renderCats(cats)}</CatList>
           </Wapper>
         </Transition>
-        <Transition
-          visible={catsOnHide && !!filterTitle}
-          animation="drop"
-          duration={duration}
-        >
+        <Transition visible={catsOnHide && !!filterTitle} animation="drop" duration={duration}>
           <Wapper>
             <h2>
               Category:{' '}
-              <StyledButton
-                icon
-                labelPosition="right"
-                onClick={this.clearFilter}
-              >
+              <StyledButton icon labelPosition="right" onClick={this.clearFilter}>
                 {filterTitle}
                 <Icon name="delete" color="red" />
               </StyledButton>

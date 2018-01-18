@@ -24,8 +24,7 @@ const StyledCard = styled(Card)`
   overflow: hidden;
   background: rgba(255, 255, 255, 0.6) !important;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24) !important;
-  transition: all 0.25s ease 0s,
-    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
     opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.24) !important;
@@ -100,9 +99,7 @@ const PostCard = ({
   const result = /http.+jpg/g.exec(desc)
   const cover = result[0]
   const content = desc.split('.jpg)')[1].trim()
-  const filterLabels = labels
-    .sort((a, b) => a.name.length >= b.name.length)
-    .slice(0, 2)
+  const filterLabels = labels.sort((a, b) => a.name.length >= b.name.length).slice(0, 2)
 
   return (
     <Container>
@@ -115,9 +112,7 @@ const PostCard = ({
             <img alt="" src={cover} />
             <StyledTitle>{title}</StyledTitle>
           </StyledHeader>
-          <StyledContent
-            dangerouslySetInnerHTML={{ __html: marked(content) }}
-          />
+          <StyledContent dangerouslySetInnerHTML={{ __html: marked(content) }} />
           <Card.Content extra>
             <Item>
               <Icon name="time" />

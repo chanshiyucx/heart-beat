@@ -283,8 +283,7 @@ const Item = styled.div`
 class Footer extends PureComponent {
   componentDidMount() {
     // 加载 waifu!!!
-    const initTips =
-      '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
+    const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
     this.dressup({ initLoad: true })
     this.showTips({ forced: true, initTips })
 
@@ -356,13 +355,9 @@ class Footer extends PureComponent {
     })
 
     if (!initLoad) {
-      const tiaTips =
-        '我是<font color=#f6f> 姐姐 Tia </font>，有什么需要帮助嘛 (*^_^*)'
-      const pioTips =
-        '我是<font color=#f6f> 妹妹 Pio </font>, 来接替姐姐大人的工作哦 (*^_^*)'
-      const tips = changeWaifu
-        ? waifu === 'tia' ? pioTips : tiaTips
-        : clickTips.dressup
+      const tiaTips = '我是<font color=#f6f> 姐姐 Tia </font>，有什么需要帮助嘛 (*^_^*)'
+      const pioTips = '我是<font color=#f6f> 妹妹 Pio </font>, 来接替姐姐大人的工作哦 (*^_^*)'
+      const tips = changeWaifu ? (waifu === 'tia' ? pioTips : tiaTips) : clickTips.dressup
       this.props.dispatch({
         type: 'appModel/showTips',
         payload: {
@@ -410,8 +405,7 @@ class Footer extends PureComponent {
   showTips = ({ forced, initTips }) => {
     const { updatedAt } = this.props
     if (Date.now() - updatedAt > 16000 || initTips || forced) {
-      const tips =
-        hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
+      const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
       this.props.dispatch({
         type: 'appModel/showTips',
         payload: {
@@ -431,9 +425,7 @@ class Footer extends PureComponent {
         waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio '
       } </font>给你认识么ヾ(●゜▽゜●)♡`
     } else if (type === 'like') {
-      tips = likeChanshiyu
-        ? '已经点赞过了哦 ε٩(๑> ₃ <)۶з '
-        : '喜欢就点个赞吧 ヾ(●゜▽゜●)♡'
+      tips = likeChanshiyu ? '已经点赞过了哦 ε٩(๑> ₃ <)۶з ' : '喜欢就点个赞吧 ヾ(●゜▽゜●)♡'
     } else {
       tips = hoverTips[type]
     }
@@ -498,10 +490,7 @@ class Footer extends PureComponent {
         </Transition>
         <Waifu showWaifu={showWaifu} waifu={waifu} showTips={!!tips.length}>
           <canvas id="live2d" width="280" height="250" className="live2d" />
-          <div
-            className="waifu-tips"
-            dangerouslySetInnerHTML={{ __html: marked(tips) }}
-          />
+          <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }} />
           <div className="waifu-tool" id="waifu-tool">
             <Link to="/">
               <WaifuBtn
@@ -587,11 +576,7 @@ class Footer extends PureComponent {
         </Transition>
         <Popup
           trigger={
-            <LikeBtn
-              icon
-              onClick={this.likeSite}
-              onMouseOver={() => this._handleMouseOver('like')}
-            >
+            <LikeBtn icon onClick={this.likeSite} onMouseOver={() => this._handleMouseOver('like')}>
               <Icon className="like" name="heart" bordered circular />
             </LikeBtn>
           }
@@ -628,8 +613,7 @@ class Footer extends PureComponent {
           <ItemList>
             <Item>
               <p>
-                Theme -{' '}
-                <a href="https://github.com/chanshiyucx/SPA-Blog">HeartBeat</a>
+                Theme - <a href="https://github.com/chanshiyucx/SPA-Blog">HeartBeat</a>
               </p>
             </Item>|
             <Item>

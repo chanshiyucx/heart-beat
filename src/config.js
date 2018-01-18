@@ -18,7 +18,7 @@ export default {
   params: '?creator=chanshiyucx&state=open',
 
   /**
-   * Gittalk 配置 【评论功能】，详细文档参见：https://github.com/gitalk/gitalk
+   * Gittalk 配置【评论功能】，详细文档参见：https://github.com/gitalk/gitalk
    * -----------------------------------
    */
   gitalkOptions: {
@@ -49,13 +49,23 @@ export default {
   title: '蝉時雨',
   subtitle: '蝉鸣如雨，花宵道中',
 
+  // 打赏，若填写则自动开启【名称和二维码地址】
+  // 调试中.... 暂未启用
+  // reward: [{
+  //   title: '支付宝',
+  //   qrImg: 'https://dn-coding-net-production-pp.qbox.me/b8fd74b0-e563-4aa5-9d49-09f459b9afee.png',
+  // }, {
+  //   title: '微信',
+  //   qrImg: 'https://dn-coding-net-production-pp.qbox.me/9ba82f12-1eb9-4593-89df-f827de4bc0e7.png',
+  // }],
+
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
   duration: 800, // ms, 动画时间
   minDelay: 1000, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
   // 加载动画类型，具体效果参考 https://react.semantic-ui.com/modules/transition#transition-example-group-explorer
-  //  可选值如下 transitions： [
+  // 可选值如下 transitions： [
   //   'scale',
   //   'fade', 'fade up', 'fade down', 'fade left', 'fade right',
   //   'horizontal flip', 'vertical flip',
@@ -75,8 +85,7 @@ export default {
    * 音乐播放器， skPlayer文档： http://www.chengfeilong.com/skPlayer/
    * -------------------------------------------------------------------
    */
-  playerBg:
-    'https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
+  playerBg: 'https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
   playerType: 'file', // 歌单形式，自己设置playList或者使用网易云音乐【'file' or 'cloud'】
   playListId: '', // 网易云音乐歌单id，网易云不支持https, https站点需要自传歌单链接
   // 自传歌单配置如下，如不需要支持https，直接使用网易云是更好的选择
@@ -84,42 +93,32 @@ export default {
     {
       name: 'うたかたの风と蝉时雨',
       author: 'Little Planet',
-      src:
-        'https://p1.music.126.net/24NNCkr1YPZYj3PGHjmQhg==/2051688697442345.mp3',
-      cover:
-        'https://dn-coding-net-production-pp.qbox.me/b706547f-9237-48fb-ace9-89f9506ab099.jpg',
+      src: 'https://p1.music.126.net/24NNCkr1YPZYj3PGHjmQhg==/2051688697442345.mp3',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/b706547f-9237-48fb-ace9-89f9506ab099.jpg',
     },
     {
       name: '春の凑に ~ Lost shiners',
       author: '莲弾奏结界',
-      src:
-        'https://p1.music.126.net/J1y0rz-ACI3dPSokXzcitA==/5637196115709843.mp3',
-      cover:
-        'https://dn-coding-net-production-pp.qbox.me/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg',
+      src: 'https://p1.music.126.net/J1y0rz-ACI3dPSokXzcitA==/5637196115709843.mp3',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg',
     },
     {
       name: '夏阳炎',
       author: '天威梦方',
-      src:
-        'https://p2.music.126.net/XwV3rg9JyE3fT_6MJ6O1Lw==/7839517907200525.mp3',
-      cover:
-        'https://dn-coding-net-production-pp.qbox.me/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg',
+      src: 'https://p2.music.126.net/XwV3rg9JyE3fT_6MJ6O1Lw==/7839517907200525.mp3',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg',
     },
     {
       name: '秋风のとおり道',
       author: '风神华伝',
-      src:
-        'https://p2.music.126.net/qwCORT3KPWUqy1FuAQ2oOQ==/5711962906386817.mp3',
-      cover:
-        'https://dn-coding-net-production-pp.qbox.me/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg',
+      src: 'https://p2.music.126.net/qwCORT3KPWUqy1FuAQ2oOQ==/5711962906386817.mp3',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg',
     },
     {
       name: '冬のわすれもの',
       author: 'ハルノカゼ',
-      src:
-        'https://p2.music.126.net/xJQQMD9TNAILEjLhAlBbkA==/3162195441566460.mp3',
-      cover:
-        'https://dn-coding-net-production-pp.qbox.me/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg',
+      src: 'https://p2.music.126.net/xJQQMD9TNAILEjLhAlBbkA==/3162195441566460.mp3',
+      cover: 'https://dn-coding-net-production-pp.qbox.me/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg',
     },
   ],
 
@@ -151,38 +150,32 @@ export default {
     {
       name: '事件簿', // name 和 Milestone 相匹配
       text: '今天又是和平的一天~',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
     },
     {
       name: '技术向',
       text: '技术什么的不懂啦',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
     },
     {
       name: '笔记本',
       text: 'emmmmmm',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
     },
     {
       name: '代码库',
       text: 'Write the code, Change the World',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
     },
     {
       name: '分享境',
       text: '偷偷给你看点东西',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
     },
     {
       name: '自言语',
       text: '欲言又止，止言又欲',
-      img:
-        'https://dn-coding-net-production-pp.qbox.me/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
+      img: 'https://dn-coding-net-production-pp.qbox.me/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
     },
   ],
 
@@ -379,8 +372,7 @@ export default {
     showPage: true,
     enableGitalk: true,
     // 头像
-    avatar:
-      'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
+    avatar: 'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
     // 右侧的介绍，不建议超过四行
     info: [
       {
@@ -393,8 +385,7 @@ export default {
       },
       {
         icon: 'university',
-        text:
-          'University of Electronic Science and Technology of China (UESTC)',
+        text: 'University of Electronic Science and Technology of China (UESTC)',
       },
       {
         icon: 'graduation',
