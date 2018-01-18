@@ -37,9 +37,9 @@ body::before {
   background: rgba(255, 255, 255, .5);
 }
 
-ul, ol, li {
+/* ul, ol, li {
   list-style: none;
-}
+} */
 
 h1, h2, h3 {
   font-family: 'Monda', 'PT Mono';

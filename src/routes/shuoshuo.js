@@ -41,9 +41,12 @@ const StyledSegment = styled(Segment)`
 `
 
 const ShuoShuoItem = styled.div`
-  margin-top: 10px;
-  p {
+  margin-top: 12px;
+  p, ul, ol {
     line-height: 1.66;
+  }
+  ul, ol {
+    margin: 6px 32px;
   }
 `
 
