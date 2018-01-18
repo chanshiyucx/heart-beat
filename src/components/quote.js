@@ -12,14 +12,14 @@ const Header = styled.div`
   margin-bottom: 26px;
 `
 
-const QuoteLeft =styled(Icon)`
+const QuoteLeft = styled(Icon)`
   position: absolute;
   top: 16px;
   left: 16px;
   color: #999;
 `
 
-const QuoteRight =styled(Icon)`
+const QuoteRight = styled(Icon)`
   position: absolute;
   bottom: 0;
   right: 16px;
@@ -31,14 +31,12 @@ const Text = styled.span`
   font-size: 16px;
 `
 
-const Quote = ({
-  text,
-}) => {
-  return(
+const Quote = ({ text }) => {
+  return (
     <Header>
-      <QuoteLeft name='quote left' size='large'/>
+      <QuoteLeft name="quote left" size="large" />
       <Text>{text}</Text>
-      <QuoteRight name='quote right' size='large'/>
+      <QuoteRight name="quote right" size="large" />
     </Header>
   )
 }

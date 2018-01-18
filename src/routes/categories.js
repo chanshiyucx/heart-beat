@@ -20,8 +20,8 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.24);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const CatList = styled.div`
@@ -38,15 +38,17 @@ const Cat = styled.div`
   height: 160px;
   overflow: hidden;
   border-radius: 3px;
-  background: rgba(255, 255, 255, .4);
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: all 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
     transform: translateY(-4px);
     img {
-      animation-play-state:paused;
-    	transform: rotateZ(360deg);
+      animation-play-state: paused;
+      transform: rotateZ(360deg);
     }
   }
   @media (max-width: 900px) {
@@ -56,7 +58,7 @@ const Cat = styled.div`
 
 const CatHeader = styled.div`
   position: relative;
-  width:100%;
+  width: 100%;
   height: 46%;
   background-image: url(${props => props.bg});
   background-position: center;
@@ -70,8 +72,8 @@ const StyledImg = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16);
-  transition: transform 1.0s ease-out;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: transform 1s ease-out;
 `
 
 const StyledTitle = styled.span`
@@ -82,8 +84,8 @@ const StyledTitle = styled.span`
   height: 40px;
   line-height: 40px;
   border-radius: 3px;
-  background: rgba(255, 255, 255, .8);
-  box-shadow: 0 3px 6px rgba(0,0,0,.16);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 `
 
 const CatContent = styled.div`
@@ -93,13 +95,13 @@ const CatContent = styled.div`
 `
 
 const StyledButton = styled(Button)`
-  margin: 0 4px 10px!important;
+  margin: 0 4px 10px !important;
   padding: 8px 12px;
   border-radius: 3px;
-  background: rgba(0, 0, 0, .1)!important;
-  color: ${props => '#' + props.bg + '!important' || '#666' };
+  background: rgba(0, 0, 0, 0.1) !important;
+  color: ${props => '#' + props.bg + '!important' || '#666'};
   &:hover {
-    background: rgba(0, 0, 0, .2)!important;
+    background: rgba(0, 0, 0, 0.2) !important;
   }
 `
 
@@ -118,18 +120,18 @@ class Categories extends PureComponent {
         catsOnHide: false,
         filterTitle: '',
         filterPost: [],
-      }
+      },
     })
   }
 
-  filterPost = (cat) => {
+  filterPost = cat => {
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
         type: 'milestone',
         filter: cat.number,
         filterTitle: cat.title,
-      }
+      },
     })
   }
 
@@ -140,7 +142,7 @@ class Categories extends PureComponent {
         catsOnHide: false,
         filterTitle: '',
         filterPost: [],
-      }
+      },
     })
   }
 
@@ -149,25 +151,30 @@ class Categories extends PureComponent {
       type: 'page/update',
       payload: {
         catsOnHide: true,
-      }
+      },
     })
   }
 
-  renderCats = (cats) => {
+  renderCats = cats => {
     if (cats && cats.length > 0) {
-      const catList = cats.map((o) => {
-        const info = catsInfo.find((cat) => cat.name === o.title)
+      const catList = cats.map(o => {
+        const info = catsInfo.find(cat => cat.name === o.title)
         const catText = info.text
         const catImg = info.img
         return (
-          <Cat key={o.id} onClick={() => {this.filterPost(o)}}>
+          <Cat
+            key={o.id}
+            onClick={() => {
+              this.filterPost(o)
+            }}
+          >
             <CatHeader bg={catImg}>
-              <StyledImg alt='' src={catImg} />
-              <StyledTitle>{o.title} ({o.open_issues})</StyledTitle>
+              <StyledImg alt="" src={catImg} />
+              <StyledTitle>
+                {o.title} ({o.open_issues})
+              </StyledTitle>
             </CatHeader>
-            <CatContent>
-              {catText}
-            </CatContent>
+            <CatContent>{catText}</CatContent>
           </Cat>
         )
       })
@@ -179,28 +186,38 @@ class Categories extends PureComponent {
     const { cats, catsOnHide, filterTitle, filterPost } = this.props
     return (
       <Container>
-        <Transition visible={cats.length > 0 && !filterTitle} animation={transitions.drop || 'drop'} duration={duration} onHide={this.onHide}>
+        <Transition
+          visible={cats.length > 0 && !filterTitle}
+          animation={transitions.drop || 'drop'}
+          duration={duration}
+          onHide={this.onHide}
+        >
           <Wapper>
             <Quote text={qoutes.categories} />
-            <CatList>
-              {this.renderCats(cats)}
-            </CatList>
+            <CatList>{this.renderCats(cats)}</CatList>
           </Wapper>
         </Transition>
-        <Transition visible={catsOnHide && !!filterTitle } animation='drop' duration={duration}>
+        <Transition
+          visible={catsOnHide && !!filterTitle}
+          animation="drop"
+          duration={duration}
+        >
           <Wapper>
             <h2>
-              Category: <StyledButton icon labelPosition='right' onClick={this.clearFilter}>
-                     {filterTitle}
-                     <Icon name='delete' color='red' />
-                   </StyledButton>
+              Category:{' '}
+              <StyledButton
+                icon
+                labelPosition="right"
+                onClick={this.clearFilter}
+              >
+                {filterTitle}
+                <Icon name="delete" color="red" />
+              </StyledButton>
             </h2>
             <ArchiveList archives={filterPost} />
           </Wapper>
         </Transition>
-        {!cats || cats.length === 0 &&
-          <Loading />
-        }
+        {!cats || (cats.length === 0 && <Loading />)}
       </Container>
     )
   }

@@ -87,85 +87,108 @@ export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
 
 // 热度
 export async function queryHot({ postList }) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if (window.location.href.includes('http://localhost:8000/')) resolve()
-    const seq = postList.map((o) => {
-      return new Promise((resolve) => {
+    const seq = postList.map(o => {
+      return new Promise(resolve => {
         const query = new AV.Query('Counter')
         const Counter = AV.Object.extend('Counter')
         const { title, id } = o
         query.equalTo('id', id)
-        query.find().then((res) => {
-         if (res.length > 0) {
-           // 已存在则返回热度
-           const counter = res[0]
-           resolve(counter.get('time'))
-         } else {
-           // 不存在则新建
-           const newcounter = new Counter()
-           newcounter.set('title', title)
-           newcounter.set('id', id)
-           newcounter.set('time', 1)
-           newcounter.save().then(() => {
-             resolve()
-           }).catch(console.error)
-         }
-        }).catch(console.error)
+        query
+          .find()
+          .then(res => {
+            if (res.length > 0) {
+              // 已存在则返回热度
+              const counter = res[0]
+              resolve(counter.get('time'))
+            } else {
+              // 不存在则新建
+              const newcounter = new Counter()
+              newcounter.set('title', title)
+              newcounter.set('id', id)
+              newcounter.set('time', 1)
+              newcounter
+                .save()
+                .then(() => {
+                  resolve()
+                })
+                .catch(console.error)
+            }
+          })
+          .catch(console.error)
       }).catch(console.error)
     })
 
-    Promise.all(seq).then((data) => {
-      resolve(data)
-    }).catch(console.error)
+    Promise.all(seq)
+      .then(data => {
+        resolve(data)
+      })
+      .catch(console.error)
   }).catch(console.error)
 }
 
 // 增热度
 export async function queryPostHot({ post }) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if (window.location.href.includes('http://localhost:8000/')) resolve()
     const query = new AV.Query('Counter')
     const Counter = AV.Object.extend('Counter')
     const { title, id } = post
     query.equalTo('id', id)
-    query.find().then((res) => {
-     if (res.length > 0) {
-       // 已存在则加热度
-       const counter = res[0]
-       counter.fetchWhenSave(true)
-       counter.increment('time')
-       counter.save().then((counter) => {
-         resolve(counter.get('time'))
-       }).catch(console.error)
-     } else {
-       // 不存在则新建
-       const newcounter = new Counter()
-       newcounter.set('title', title)
-       newcounter.set('id', id)
-       newcounter.set('time', 1)
-       newcounter.save().then(() => {
-         resolve(1)
-       }).catch(console.error)
-     }
-    }).catch(console.error)
+    query
+      .find()
+      .then(res => {
+        if (res.length > 0) {
+          // 已存在则加热度
+          const counter = res[0]
+          counter.fetchWhenSave(true)
+          counter.increment('time')
+          counter
+            .save()
+            .then(counter => {
+              resolve(counter.get('time'))
+            })
+            .catch(console.error)
+        } else {
+          // 不存在则新建
+          const newcounter = new Counter()
+          newcounter.set('title', title)
+          newcounter.set('id', id)
+          newcounter.set('time', 1)
+          newcounter
+            .save()
+            .then(() => {
+              resolve(1)
+            })
+            .catch(console.error)
+        }
+      })
+      .catch(console.error)
   }).catch(console.error)
 }
 
 // 点赞
 export async function likeSite(params) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const query = new AV.Query('Counter')
     query.equalTo('title', 'site')
-    query.first().then((res) => {
-      if (params && params.type === 'getTime') {
-        resolve(res.get('time'))
-      } else {
-        res.fetchWhenSave(true)
-        res.increment('time')
-        res.save().then((counter) => {
-         resolve(counter.get('time'))
-        }).catch(console.error)
-      }
-    }).catch(console.error)
+    query
+      .first()
+      .then(res => {
+        if (params && params.type === 'getTime') {
+          resolve(res.get('time'))
+        } else {
+          res.fetchWhenSave(true)
+          res.increment('time')
+          res
+            .save()
+            .then(counter => {
+              resolve(counter.get('time'))
+            })
+            .catch(console.error)
+        }
+      })
+      .catch(console.error)
   }).catch(console.error)
 }

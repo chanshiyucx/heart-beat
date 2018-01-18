@@ -21,8 +21,8 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const BookList = styled.div`
@@ -40,11 +40,13 @@ const Book = styled.div`
   margin: 6px 0;
   width: 49%;
   border-radius: 3px;
-  background: rgba(255, 255, 255, .4);
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(.6, .2, .1, 1) 0s, opacity 0.5s cubic-bezier(.6, .2, .1, 1) 0s!important;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: all 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.24) !important;
     transform: translateY(-4px);
     a {
       color: #faf;
@@ -63,7 +65,7 @@ const Header = styled.div`
     width: 120px;
     height: 160px;
     margin-right: 16px;
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, .2);
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.2);
   }
 `
 
@@ -97,13 +99,13 @@ class Books extends PureComponent {
       type: 'page/showPage',
       payload: {
         showBook: true,
-      }
+      },
     })
 
     if (enableGitalk) {
       const gitalk = new Gitalk({
         ...gitalkOptions,
-        title: '书单'
+        title: '书单',
       })
       // 渲染评论
       gitalk.render('gitalk')
@@ -115,14 +117,24 @@ class Books extends PureComponent {
       type: 'page/reset',
       payload: {
         showBook: false,
-      }
+      },
     })
   }
 
   renderBook = () => {
     if (books && books.length > 0) {
       const bookList = books.map((o, i) => {
-        const { name, author, published, progress, rating, post, cover, link, desc } = o
+        const {
+          name,
+          author,
+          published,
+          progress,
+          rating,
+          post,
+          cover,
+          link,
+          desc,
+        } = o
         return (
           <Book key={i}>
             <Header>
@@ -135,20 +147,29 @@ class Books extends PureComponent {
                 <p>作者：{author}</p>
                 <p>出版时间：{published}</p>
                 <p>阅读进度：{progress}</p>
-                <p>读书笔记：
-                  {Object.keys(post).length > 0
-                    ? <a href={post.link} target="_blank">{post.name}</a>
-                    : '暂无'
-                  }
+                <p>
+                  读书笔记：
+                  {Object.keys(post).length > 0 ? (
+                    <a href={post.link} target="_blank">
+                      {post.name}
+                    </a>
+                  ) : (
+                    '暂无'
+                  )}
                 </p>
-                <Extra>推荐指数：
-                  <Rating disabled maxRating={5} defaultRating={rating} icon='star' size='large' />
+                <Extra>
+                  推荐指数：
+                  <Rating
+                    disabled
+                    maxRating={5}
+                    defaultRating={rating}
+                    icon="star"
+                    size="large"
+                  />
                 </Extra>
               </Info>
             </Header>
-            <Desc>
-              {desc}
-            </Desc>
+            <Desc>{desc}</Desc>
           </Book>
         )
       })
@@ -161,19 +182,19 @@ class Books extends PureComponent {
     return (
       <Container>
         <div>
-          <Transition visible={showBook} animation={transitions.page || 'drop'} duration={duration}>
+          <Transition
+            visible={showBook}
+            animation={transitions.page || 'drop'}
+            duration={duration}
+          >
             <Wapper>
               <Quote text={qoutes.books} />
-              <BookList>
-                {this.renderBook()}
-              </BookList>
+              <BookList>{this.renderBook()}</BookList>
             </Wapper>
           </Transition>
-          {!showBook &&
-            <Loading />
-          }
+          {!showBook && <Loading />}
         </div>
-        {enableGitalk && <div id='gitalk'></div>}
+        {enableGitalk && <div id="gitalk" />}
       </Container>
     )
   }

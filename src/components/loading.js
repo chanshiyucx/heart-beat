@@ -11,7 +11,7 @@ const Container = styled.div`
 const Loading = () => {
   return (
     <Container>
-      <img alt='' src={config.loadingImg} />
+      <img alt="" src={config.loadingImg} />
     </Container>
   )
 }

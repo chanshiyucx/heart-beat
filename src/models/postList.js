@@ -36,7 +36,6 @@ export default {
     reset(state, { payload }) {
       return { ...state, loading: true, onHide: true, times: [] }
     },
-
   },
   effects: {
     *queryTotal({ payload }, { call, put }) {
@@ -54,16 +53,16 @@ export default {
       const queryType = payload ? payload.queryType : ''
       let queryPage
       if (queryType === 'prev') {
-        queryPage = (page - 1) <= 0 ? maxPage : (page - 1)
+        queryPage = page - 1 <= 0 ? maxPage : page - 1
       } else if (queryType === 'next') {
-        queryPage = (page + 1) > maxPage ? 1 : (page + 1)
+        queryPage = page + 1 > maxPage ? 1 : page + 1
       } else {
         queryPage = page
       }
       const postList = yield call(queryList, { page: queryPage, pageSize })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'queryEnd', payload: { postList, page: queryPage }})
+      yield put({ type: 'queryEnd', payload: { postList, page: queryPage } })
       const times = yield call(queryHot, { postList })
       yield put({ type: 'update', payload: { times } })
     },

@@ -29,9 +29,12 @@ export default {
     },
 
     *showTips({ payload }, { select, call, put }) {
-      yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
+      yield put({
+        type: 'update',
+        payload: { ...payload, updatedAt: Date.now() },
+      })
       yield call(delay, 8000)
-      const updatedAt = yield(select(state => state.appModel.updatedAt))
+      const updatedAt = yield select(state => state.appModel.updatedAt)
       const duration = Date.now() - updatedAt
       if (duration >= 8000) {
         yield put({ type: 'update', payload: { tips: '' } })
@@ -39,7 +42,10 @@ export default {
     },
 
     *hiddenWaifu({ payload }, { call, put }) {
-      yield put({ type: 'update', payload: { ...payload, updatedAt: Date.now() } })
+      yield put({
+        type: 'update',
+        payload: { ...payload, updatedAt: Date.now() },
+      })
       yield call(delay, 2000)
       yield put({ type: 'update', payload: { showWaifu: false } })
     },
@@ -48,7 +54,7 @@ export default {
       const likeTime = yield call(likeSite, payload)
       window.localStorage.setItem('likeChanshiyu', true)
       yield put({ type: 'update', payload: { likeTime, likeChanshiyu: true } })
-    }
+    },
   },
   subscriptions: {
     setup({ dispatch }) {

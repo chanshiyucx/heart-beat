@@ -6,8 +6,8 @@ import hljs from 'highlight.js'
 import Zooming from 'zooming'
 
 const zooming = new Zooming({
-  scaleBase: .8,
-  bgOpacity: .6,
+  scaleBase: 0.8,
+  bgOpacity: 0.6,
   scrollThreshold: 10,
 })
 
@@ -18,24 +18,26 @@ marked.setOptions({
 // 修复中文id显示‘-’的bug
 const renderer = new marked.Renderer()
 renderer.heading = function(text, level) {
-    return `<h${level} id="${text}"><i class="fa fa-${level === 2 ? 'gift' : 'envira'}" aria-hidden="true"></i> ${text}</h${level}>`
+  return `<h${level} id="${text}"><i class="fa fa-${
+    level === 2 ? 'gift' : 'envira'
+  }" aria-hidden="true"></i> ${text}</h${level}>`
 }
 
 // 新开标签页打开
 renderer.link = function(href, title, text) {
-    return `<a href="${href}" target="_blank">${text}</a>`
+  return `<a href="${href}" target="_blank">${text}</a>`
 }
 
 // 图片预览
 renderer.image = function(href, title, text) {
-    return `<img class="zoomable" src="${href}" alt="${text}" data-action="zoom" />`
+  return `<img class="zoomable" src="${href}" alt="${text}" data-action="zoom" />`
 }
 
 const Container = styled.div`
   width: 100%;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const Header = styled.div`
@@ -49,7 +51,7 @@ const Header = styled.div`
   img {
     display: block;
     width: 100%;
-    transition: transform .6s ease-out;
+    transition: transform 0.6s ease-out;
   }
   @media (max-width: 900px) {
     h2 {
@@ -64,7 +66,7 @@ const Info = styled.div`
   padding: 12px 16px;
   width: 100%;
   color: #eee;
-  background: rgba(0, 0, 0, .44);
+  background: rgba(0, 0, 0, 0.44);
 `
 
 const Title = styled.h1`
@@ -89,13 +91,16 @@ const Content = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 12px 0 1px;
-  user-select:text;
+  user-select: text;
   font-family: monda;
   text-align: justify;
-  p, ul, ol {
+  p,
+  ul,
+  ol {
     margin: 0 16px 16px;
   }
-  h2, h3 {
+  h2,
+  h3 {
     margin: 0 16px;
     padding: 8px 0;
     font-weight: 500;
@@ -104,7 +109,7 @@ const Content = styled.div`
     margin-bottom: 12px;
     padding-bottom: 12px;
     font-size: 22px;
-    border-bottom: 1px dashed rgba(0, 0, 0, .2);
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
   }
   h3 {
     font-size: 18px;
@@ -112,7 +117,10 @@ const Content = styled.div`
       font-size: 16px;
     }
   }
-  p, blockquote, ul, ol {
+  p,
+  blockquote,
+  ul,
+  ol {
     line-height: 1.66;
     font-size: 15px;
   }
@@ -127,11 +135,12 @@ const Content = styled.div`
     color: #f6f;
     word-wrap: break-word;
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
-  pre, blockquote {
+  pre,
+  blockquote {
     padding: 10px 16px;
-    background: rgba(0, 0, 0, .06);
+    background: rgba(0, 0, 0, 0.06);
     box-shadow: inset 0px 11px 8px -10px #999, inset 0px -11px 8px -10px #999;
     p {
       margin: 0;
@@ -158,14 +167,16 @@ const Content = styled.div`
       border-bottom-color: #faf;
     }
   }
-  ol, ul {
+  ol,
+  ul {
     padding: 0 26px;
   }
   li {
     list-style: initial;
   }
   @media (max-width: 900px) {
-    pre, blockquote {
+    pre,
+    blockquote {
       overflow-x: scroll;
     }
   }
@@ -173,13 +184,14 @@ const Content = styled.div`
 
 class PostBody extends PureComponent {
   componentDidMount() {
-    const osWidth = document.documentElement.clientWidth || document.body.scrollWidth
+    const osWidth =
+      document.documentElement.clientWidth || document.body.scrollWidth
     if (osWidth > 600) zooming.listen('.zoomable')
   }
 
   render() {
     const { title, body, created_at, labels, milestone, time } = this.props
-    const reg=/http.+jpg/g
+    const reg = /http.+jpg/g
     const result = reg.exec(body)
     const cover = result[0]
     const content = body.split(`${cover})`)[1]
@@ -188,38 +200,34 @@ class PostBody extends PureComponent {
     return (
       <Container>
         <Header>
-          <img alt='' src={cover} />
+          <img alt="" src={cover} />
           <Info>
             <Title>{title}</Title>
             <Meta>
               <Item>
-                <Icon name='time' />
+                <Icon name="time" />
                 {date}
               </Item>
               <Item>
-                <Icon name='eye' />
+                <Icon name="eye" />
                 热度{time}℃
               </Item>
               <Item>
-                <Icon name='bookmark' />
-                {milestone && milestone.title ? milestone.title : '未分类' }
+                <Icon name="bookmark" />
+                {milestone && milestone.title ? milestone.title : '未分类'}
               </Item>
               <Item>
-                <Icon name='tags' />
-                {
-                  labels.map((o) => {
-                    return (
-                      <StyledTag key={o.id}>
-                        {o.name}
-                      </StyledTag>
-                    )
-                  })
-                }
+                <Icon name="tags" />
+                {labels.map(o => {
+                  return <StyledTag key={o.id}>{o.name}</StyledTag>
+                })}
               </Item>
             </Meta>
           </Info>
         </Header>
-        <Content dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }} />
+        <Content
+          dangerouslySetInnerHTML={{ __html: marked(content, { renderer }) }}
+        />
       </Container>
     )
   }

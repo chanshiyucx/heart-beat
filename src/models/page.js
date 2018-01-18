@@ -1,4 +1,12 @@
-import { queryTotal, queryList, queryCats, queryTags, filterList, queryShuoShuoTotal, queryShuoShuo } from '../services/fetch'
+import {
+  queryTotal,
+  queryList,
+  queryCats,
+  queryTags,
+  filterList,
+  queryShuoShuoTotal,
+  queryShuoShuo,
+} from '../services/fetch'
 import { delay } from '../utils'
 import config from '../config'
 
@@ -67,7 +75,15 @@ export default {
       const archives = yield call(queryList, { page: queryPage, pageSize })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'queryEnd', payload: { archives, page: queryPage, archivesOnHide: false, loading: false }})
+      yield put({
+        type: 'queryEnd',
+        payload: {
+          archives,
+          page: queryPage,
+          archivesOnHide: false,
+          loading: false,
+        },
+      })
     },
 
     *queryCats({ payload }, { call, put }) {
@@ -75,7 +91,7 @@ export default {
       const cats = yield call(queryCats, payload)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'update', payload: { cats }})
+      yield put({ type: 'update', payload: { cats } })
     },
 
     *queryTags({ payload }, { call, put }) {
@@ -83,7 +99,7 @@ export default {
       const tags = yield call(queryTags, payload)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'update', payload: { tags }})
+      yield put({ type: 'update', payload: { tags } })
     },
 
     *queryShuoShuoTotal({ payload }, { call, put }) {
@@ -93,16 +109,28 @@ export default {
     },
 
     *queryShuoShuo({ payload }, { select, call, put }) {
-      yield put({ type: 'update', payload: { shuoshuoLoading: true }})
+      yield put({ type: 'update', payload: { shuoshuoLoading: true } })
       const startTime = new Date()
       const data = yield select(state => state.page)
       const { shuoshuoPage, shuoshuoPageSize } = data
       const queryType = payload ? payload.queryType : ''
-      const queryPage = queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
-      const myShuoShuo = yield call(queryShuoShuo, { page: queryPage, pageSize: shuoshuoPageSize })
+      const queryPage =
+        queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
+      const myShuoShuo = yield call(queryShuoShuo, {
+        page: queryPage,
+        pageSize: shuoshuoPageSize,
+      })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'update', payload: { myShuoShuo, shuoshuoPage: queryPage, shuoshuoOnHide: false, shuoshuoLoading: false }})
+      yield put({
+        type: 'update',
+        payload: {
+          myShuoShuo,
+          shuoshuoPage: queryPage,
+          shuoshuoOnHide: false,
+          shuoshuoLoading: false,
+        },
+      })
     },
 
     *showPage({ payload }, { call, put }) {
@@ -113,7 +141,7 @@ export default {
     *filterPost({ payload }, { call, put }) {
       const { filterTitle } = payload
       const filterPost = yield call(filterList, payload)
-      yield put({ type: 'update', payload: { filterPost, filterTitle }})
+      yield put({ type: 'update', payload: { filterPost, filterTitle } })
     },
   },
 }

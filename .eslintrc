@@ -1,6 +1,16 @@
 {
   "parser": "babel-eslint",
-  "extends": "af-react",
+  "extends": [
+    "af-react",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "prettier"
+  ],
   "rules": {
     "jsx-a11y/href-no-hash": 0,
     "arrow-parens": 0,

@@ -23,7 +23,7 @@ class Post extends PureComponent {
       type: 'post/queryPost',
       payload: {
         number,
-      }
+      },
     })
 
     // 滚动到顶部
@@ -33,7 +33,7 @@ class Post extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'post/reset'
+      type: 'post/reset',
     })
   }
 
@@ -42,16 +42,18 @@ class Post extends PureComponent {
     return (
       <Container className="Post">
         <div>
-          <Transition visible={!loading && Object.keys(post).length !== 0} animation={transitions.post || 'drop'} duration={duration}>
+          <Transition
+            visible={!loading && Object.keys(post).length !== 0}
+            animation={transitions.post || 'drop'}
+            duration={duration}
+          >
             <div>
-              <PostBody { ...post } time={time} />
+              <PostBody {...post} time={time} />
             </div>
           </Transition>
-          {loading &&
-            <Loading />
-          }
+          {loading && <Loading />}
         </div>
-        <div id='gitalk'></div>
+        <div id="gitalk" />
       </Container>
     )
   }

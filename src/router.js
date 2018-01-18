@@ -38,15 +38,23 @@ function RouterConfig({ history, app }) {
         <Header />
         <Content>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/post/:number" component={Post}/>
-            <Route exact path="/archives" component={Archives}/>
-            <Route exact path="/categories" component={Categories}/>
-            <Route exact path="/tags" component={Tags}/>
-            {shuoshuoOptions.showPage && <Route exact path="/shuoshuo" component={ShuoShuo}/>}
-            {booksOptions.showPage && <Route exact path="/books" component={Books}/>}
-            {friendsOptions.showPage && <Route exact path="/friends" component={Friends}/>}
-            {aboutOptions.showPage && <Route exact path="/about" component={About}/>}
+            <Route exact path="/" component={Home} />
+            <Route exact path="/post/:number" component={Post} />
+            <Route exact path="/archives" component={Archives} />
+            <Route exact path="/categories" component={Categories} />
+            <Route exact path="/tags" component={Tags} />
+            {shuoshuoOptions.showPage && (
+              <Route exact path="/shuoshuo" component={ShuoShuo} />
+            )}
+            {booksOptions.showPage && (
+              <Route exact path="/books" component={Books} />
+            )}
+            {friendsOptions.showPage && (
+              <Route exact path="/friends" component={Friends} />
+            )}
+            {aboutOptions.showPage && (
+              <Route exact path="/about" component={About} />
+            )}
           </Switch>
         </Content>
         <Footer />
@@ -54,7 +62,5 @@ function RouterConfig({ history, app }) {
     </Router>
   )
 }
-
-
 
 export default RouterConfig

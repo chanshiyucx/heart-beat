@@ -20,17 +20,17 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const Pagination = styled.div`
   margin-top: 10px;
   text-align: center;
   button {
-    background: rgba(255, 255, 255, .6)!important;
+    background: rgba(255, 255, 255, 0.6) !important;
     &:hover {
-      box-shadow: 0 0 40px #999 inset!important;
+      box-shadow: 0 0 40px #999 inset !important;
     }
   }
 `
@@ -38,7 +38,7 @@ const Pagination = styled.div`
 class Archives extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'page/queryTotal'
+      type: 'page/queryTotal',
     })
   }
 
@@ -51,7 +51,7 @@ class Archives extends PureComponent {
         total: 0,
         page: 0,
         archives: [],
-      }
+      },
     })
   }
 
@@ -61,7 +61,7 @@ class Archives extends PureComponent {
       type: 'page/queryArchives',
       payload: {
         queryType: 'prev',
-      }
+      },
     })
   }
 
@@ -71,7 +71,7 @@ class Archives extends PureComponent {
       type: 'page/queryArchives',
       payload: {
         queryType: 'next',
-      }
+      },
     })
   }
 
@@ -80,31 +80,45 @@ class Archives extends PureComponent {
       type: 'page/update',
       payload: {
         archivesOnHide: true,
-      }
+      },
     })
   }
 
   render() {
-    const { archivesOnHide, loading, archives, total, page, pageSize } = this.props
+    const {
+      archivesOnHide,
+      loading,
+      archives,
+      total,
+      page,
+      pageSize,
+    } = this.props
     const maxPage = Math.ceil(total / pageSize)
     return (
       <Container>
-        <Transition visible={!loading} animation={transitions.page || 'drop'} duration={duration} onHide={this.onHide}>
+        <Transition
+          visible={!loading}
+          animation={transitions.page || 'drop'}
+          duration={duration}
+          onHide={this.onHide}
+        >
           <Wapper>
             <Quote text={qoutes.archives} />
             <ArchiveList archives={archives} />
             <Pagination>
               <Button.Group>
-                <Button disabled={page <= 1} onClick={this.prev}>上一页</Button>
+                <Button disabled={page <= 1} onClick={this.prev}>
+                  上一页
+                </Button>
                 <Button.Or text={page} />
-                <Button disabled={page >= maxPage} onClick={this.next}>下一页</Button>
+                <Button disabled={page >= maxPage} onClick={this.next}>
+                  下一页
+                </Button>
               </Button.Group>
             </Pagination>
           </Wapper>
         </Transition>
-        {(!archives || archives.length === 0 || archivesOnHide)&&
-          <Loading />
-        }
+        {(!archives || archives.length === 0 || archivesOnHide) && <Loading />}
       </Container>
     )
   }

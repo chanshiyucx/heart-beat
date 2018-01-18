@@ -22,11 +22,13 @@ const StyledLink = styled(Link)`
 const StyledCard = styled(Card)`
   width: 100%;
   overflow: hidden;
-  background: rgba(255, 255, 255, .6)!important;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.24)!important;
-  transition: all 0.25s ease 0s, transform .5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24) !important;
+  transition: all 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.24)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.24) !important;
     transform: translateY(-6px);
     img {
       transform: scale(1.06);
@@ -36,11 +38,11 @@ const StyledCard = styled(Card)`
 
 const StyledHeader = styled(Card.Content)`
   position: relative;
-  padding: 0!important;
+  padding: 0 !important;
   overflow: hidden;
   img {
     width: 100%;
-    transition: transform .6s ease-out;
+    transition: transform 0.6s ease-out;
   }
 `
 
@@ -51,11 +53,11 @@ const StyledTitle = styled(Card.Header)`
   width: 100%;
   letter-spacing: 1px;
   line-height: 1.6;
-  color: #eee!important;
-  font-family: Monda!important;
-  font-size: 18px!important;
-  font-weight: normal!important;
-  background: rgba(0,0,0,.44)!important;
+  color: #eee !important;
+  font-family: Monda !important;
+  font-size: 18px !important;
+  font-weight: normal !important;
+  background: rgba(0, 0, 0, 0.44) !important;
 `
 
 const StyledContent = styled(Card.Description)`
@@ -98,41 +100,42 @@ const PostCard = ({
   const result = /http.+jpg/g.exec(desc)
   const cover = result[0]
   const content = desc.split('.jpg)')[1].trim()
-  const filterLabels = labels.sort((a, b) => a.name.length >= b.name.length).slice(0, 2)
+  const filterLabels = labels
+    .sort((a, b) => a.name.length >= b.name.length)
+    .slice(0, 2)
 
   return (
     <Container>
-      <StyledLink to={`/post/${number}`} onMouseOver={() => _handleMouseOver({ type: 'title', title })}>
-        <StyledCard raised fluid >
+      <StyledLink
+        to={`/post/${number}`}
+        onMouseOver={() => _handleMouseOver({ type: 'title', title })}
+      >
+        <StyledCard raised fluid>
           <StyledHeader>
-            <img alt='' src={cover} />
+            <img alt="" src={cover} />
             <StyledTitle>{title}</StyledTitle>
           </StyledHeader>
-          <StyledContent dangerouslySetInnerHTML={{ __html: marked(content) }} />
+          <StyledContent
+            dangerouslySetInnerHTML={{ __html: marked(content) }}
+          />
           <Card.Content extra>
             <Item>
-              <Icon name='time' />
+              <Icon name="time" />
               {date}
             </Item>
             <Item>
-              <Icon name='eye' />
+              <Icon name="eye" />
               热度{time}℃
             </Item>
             <Item>
-              <Icon name='bookmark' />
-              {milestone && milestone.title ? milestone.title : '未分类' }
+              <Icon name="bookmark" />
+              {milestone && milestone.title ? milestone.title : '未分类'}
             </Item>
             <Item>
-              <Icon name='tags' />
-              {
-                filterLabels.map((o) => {
-                  return (
-                    <StyledTag key={o.id}>
-                      {o.name}
-                    </StyledTag>
-                  )
-                })
-              }
+              <Icon name="tags" />
+              {filterLabels.map(o => {
+                return <StyledTag key={o.id}>{o.name}</StyledTag>
+              })}
             </Item>
           </Card.Content>
         </StyledCard>

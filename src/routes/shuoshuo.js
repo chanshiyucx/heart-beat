@@ -13,8 +13,19 @@ const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions } = config
 const { enableGitalk } = shuoshuoOptions
 
 const colors = [
-  'red', 'orange', 'yellow', 'olive', 'green', 'teal',
-  'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'black',
 ]
 
 const Container = styled.div`
@@ -27,25 +38,30 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const StyledSegment = styled(Segment)`
-  background: rgba(255, 255, 255, .4)!important;
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  transition: all 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
     transform: translateY(-4px);
   }
 `
 
 const ShuoShuoItem = styled.div`
   margin-top: 12px;
-  p, ul, ol {
+  p,
+  ul,
+  ol {
     line-height: 1.66;
   }
-  ul, ol {
+  ul,
+  ol {
     margin: 6px 32px;
   }
 `
@@ -54,9 +70,9 @@ const Pagination = styled.div`
   margin-top: 10px;
   text-align: center;
   button {
-    background: rgba(255, 255, 255, .6)!important;
+    background: rgba(255, 255, 255, 0.6) !important;
     &:hover {
-      box-shadow: 0 0 40px #999 inset!important;
+      box-shadow: 0 0 40px #999 inset !important;
     }
   }
 `
@@ -71,7 +87,7 @@ class ShuoShuo extends PureComponent {
     if (enableGitalk) {
       const gitalk = new Gitalk({
         ...gitalkOptions,
-        title: '说说'
+        title: '说说',
       })
       // 渲染评论
       gitalk.render('gitalk')
@@ -87,7 +103,7 @@ class ShuoShuo extends PureComponent {
         shuoshuoTotal: 0,
         shuoshuoPage: 0,
         myShuoShuo: [],
-      }
+      },
     })
   }
 
@@ -97,7 +113,7 @@ class ShuoShuo extends PureComponent {
       type: 'page/queryShuoShuo',
       payload: {
         queryType: 'prev',
-      }
+      },
     })
   }
 
@@ -107,7 +123,7 @@ class ShuoShuo extends PureComponent {
       type: 'page/queryShuoShuo',
       payload: {
         queryType: 'next',
-      }
+      },
     })
   }
 
@@ -116,19 +132,23 @@ class ShuoShuo extends PureComponent {
       type: 'page/update',
       payload: {
         shuoshuoOnHide: true,
-      }
+      },
     })
   }
 
-  renderShuoShuo = (myShuoShuo) => {
+  renderShuoShuo = myShuoShuo => {
     if (myShuoShuo && myShuoShuo.length > 0) {
-      const shuoshuoList = myShuoShuo.map((o) => {
+      const shuoshuoList = myShuoShuo.map(o => {
         const date = o.created_at.slice(0, 10)
         const color = colors[Math.floor(Math.random() * colors.length)]
         return (
           <StyledSegment key={o.id} raised color={color}>
-            <Label as='a' color={color} ribbon>{date}</Label>
-            <ShuoShuoItem dangerouslySetInnerHTML={{ __html: marked(o.body) }} />
+            <Label as="a" color={color} ribbon>
+              {date}
+            </Label>
+            <ShuoShuoItem
+              dangerouslySetInnerHTML={{ __html: marked(o.body) }}
+            />
           </StyledSegment>
         )
       })
@@ -137,31 +157,48 @@ class ShuoShuo extends PureComponent {
   }
 
   render() {
-    const { shuoshuoOnHide, shuoshuoLoading, myShuoShuo, shuoshuoTotal, shuoshuoPage, shuoshuoPageSize } = this.props
+    const {
+      shuoshuoOnHide,
+      shuoshuoLoading,
+      myShuoShuo,
+      shuoshuoTotal,
+      shuoshuoPage,
+      shuoshuoPageSize,
+    } = this.props
     const maxPage = Math.ceil(shuoshuoTotal / shuoshuoPageSize)
     return (
       <Container>
         <div>
-          <Transition visible={!shuoshuoLoading} animation={transitions.page || 'drop'} duration={duration} onHide={this.onHide}>
+          <Transition
+            visible={!shuoshuoLoading}
+            animation={transitions.page || 'drop'}
+            duration={duration}
+            onHide={this.onHide}
+          >
             <Wapper>
               <Quote text={qoutes.shuoshuo} />
-              <div>
-                {this.renderShuoShuo(myShuoShuo)}
-              </div>
+              <div>{this.renderShuoShuo(myShuoShuo)}</div>
               <Pagination>
                 <Button.Group>
-                  <Button disabled={shuoshuoPage <= 1} onClick={this.prev}>上一页</Button>
+                  <Button disabled={shuoshuoPage <= 1} onClick={this.prev}>
+                    上一页
+                  </Button>
                   <Button.Or text={shuoshuoPage} />
-                  <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>下一页</Button>
+                  <Button
+                    disabled={shuoshuoPage >= maxPage}
+                    onClick={this.next}
+                  >
+                    下一页
+                  </Button>
                 </Button.Group>
               </Pagination>
             </Wapper>
           </Transition>
-          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) &&
+          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && (
             <Loading />
-          }
+          )}
         </div>
-        {enableGitalk && <div id='gitalk'></div>}
+        {enableGitalk && <div id="gitalk" />}
       </Container>
     )
   }

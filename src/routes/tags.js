@@ -20,8 +20,8 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const TagList = styled.div`
@@ -32,13 +32,13 @@ const TagList = styled.div`
 `
 
 const Tag = styled(Button)`
-  margin: 0 4px 10px!important;
+  margin: 0 4px 10px !important;
   padding: 8px 12px;
   border-radius: 3px;
-  background: rgba(0, 0, 0, .1)!important;
-  color: ${props => '#' + props.bg + '!important' || '#666' };
+  background: rgba(0, 0, 0, 0.1) !important;
+  color: ${props => '#' + props.bg + '!important' || '#666'};
   &:hover {
-    background: rgba(0, 0, 0, .2)!important;
+    background: rgba(0, 0, 0, 0.2) !important;
   }
 `
 
@@ -57,18 +57,18 @@ class Tags extends PureComponent {
         tagsOnHide: false,
         filterTitle: '',
         filterPost: [],
-      }
+      },
     })
   }
 
-  filterPost = (tag) => {
+  filterPost = tag => {
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
         type: 'labels',
         filter: tag,
         filterTitle: tag,
-      }
+      },
     })
   }
 
@@ -79,7 +79,7 @@ class Tags extends PureComponent {
         tagsOnHide: false,
         filterTitle: '',
         filterPost: [],
-      }
+      },
     })
   }
 
@@ -88,15 +88,17 @@ class Tags extends PureComponent {
       type: 'page/update',
       payload: {
         tagsOnHide: true,
-      }
+      },
     })
   }
 
-  renderTags = (tags) => {
+  renderTags = tags => {
     if (tags && tags.length > 0) {
-      const tagList = tags.map((o) => {
+      const tagList = tags.map(o => {
         return (
-          <Tag key={o.id} bg={o.color} onClick={() => this.filterPost(o.name)}>{o.name}</Tag>
+          <Tag key={o.id} bg={o.color} onClick={() => this.filterPost(o.name)}>
+            {o.name}
+          </Tag>
         )
       })
       return tagList
@@ -107,28 +109,34 @@ class Tags extends PureComponent {
     const { tags, tagsOnHide, filterTitle, filterPost } = this.props
     return (
       <Container>
-        <Transition visible={tags.length > 0 && !filterTitle} animation='drop' duration={duration} onHide={this.onHide}>
+        <Transition
+          visible={tags.length > 0 && !filterTitle}
+          animation="drop"
+          duration={duration}
+          onHide={this.onHide}
+        >
           <Wapper>
             <Quote text={qoutes.tags} />
-            <TagList>
-              {this.renderTags(tags)}
-            </TagList>
+            <TagList>{this.renderTags(tags)}</TagList>
           </Wapper>
         </Transition>
-        <Transition visible={tagsOnHide && !!filterTitle} animation={transitions.page || 'drop'} duration={duration}>
+        <Transition
+          visible={tagsOnHide && !!filterTitle}
+          animation={transitions.page || 'drop'}
+          duration={duration}
+        >
           <Wapper>
             <h2>
-              Tag: <Tag icon labelPosition='right' onClick={this.clearFilter}>
-                     {filterTitle}
-                     <Icon name='delete' color='red' />
-                   </Tag>
+              Tag:{' '}
+              <Tag icon labelPosition="right" onClick={this.clearFilter}>
+                {filterTitle}
+                <Icon name="delete" color="red" />
+              </Tag>
             </h2>
             <ArchiveList archives={filterPost} />
           </Wapper>
         </Transition>
-        {!tags || tags.length === 0 &&
-          <Loading />
-        }
+        {!tags || (tags.length === 0 && <Loading />)}
       </Container>
     )
   }

@@ -33,7 +33,6 @@ export default {
     reset(state, { payload }) {
       return { ...state, loading: true, post: {}, comment: [] }
     },
-
   },
   effects: {
     *queryPost({ payload }, { call, put }) {
@@ -42,11 +41,12 @@ export default {
       yield call(delay, 500)
 
       const { title } = post
+
+      // 渲染评论
       const gitalk = new Gitalk({
         ...gitalkOptions,
         title,
       })
-      // 渲染评论
       gitalk.render('gitalk')
 
       yield put({ type: 'queryEnd', payload: { post } })

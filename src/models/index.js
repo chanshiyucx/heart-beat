@@ -3,7 +3,7 @@ import postList from './postList'
 import post from './post'
 import page from './page'
 
-const registerModels = (app) => {
+const registerModels = app => {
   app.model(appModel)
   app.model(postList)
   app.model(post)

@@ -29,11 +29,11 @@ const PostList = styled.div`
 
 const StyledButton = styled(Button)`
   position: absolute;
-  margin: 0!important;
+  margin: 0 !important;
   width: 150px;
-  background: transparent!important;
+  background: transparent !important;
   @media (max-width: 1200px) {
-    display: none!important;
+    display: none !important;
   }
 `
 
@@ -51,21 +51,21 @@ const StyledRightButton = StyledButton.extend`
 
 const StyledMobileButton = StyledButton.extend`
   position: absolute;
-  margin: 0!important;
-  padding: 0!important;
-  font-size: 80px!important;
-  background: transparent!important;
-  display: none!important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 80px !important;
+  background: transparent !important;
+  display: none !important;
   bottom: 0;
   transform: translate(0, 100%);
   @media (max-width: 1200px) {
-    display: inline-block!important;
+    display: inline-block !important;
   }
 `
 
 const StyledIcon = styled(Icon)`
-  height: 100%!important;
-  color: rgba(255, 255, 255, .8);
+  height: 100% !important;
+  color: rgba(255, 255, 255, 0.8);
 `
 
 class Home extends PureComponent {
@@ -88,7 +88,7 @@ class Home extends PureComponent {
       type: 'postList/queryList',
       payload: {
         queryType: 'prev',
-      }
+      },
     })
   }
 
@@ -98,7 +98,7 @@ class Home extends PureComponent {
       type: 'postList/queryList',
       payload: {
         queryType: 'next',
-      }
+      },
     })
   }
 
@@ -116,7 +116,7 @@ class Home extends PureComponent {
       type: 'appModel/showTips',
       payload: {
         tips,
-      }
+      },
     })
   }
 
@@ -126,7 +126,7 @@ class Home extends PureComponent {
       type: 'postList/update',
       payload: {
         onHide: true,
-      }
+      },
     })
   }
 
@@ -135,7 +135,13 @@ class Home extends PureComponent {
     if (postList && postList.length > 0) {
       const cardList = postList.map((o, i) => {
         return (
-          <PostCard key={o.id} { ...o } time={times ? times[i] : 1} gotoCat={this.gotoCat} _handleMouseOver={this._handleMouseOver}/>
+          <PostCard
+            key={o.id}
+            {...o}
+            time={times ? times[i] : 1}
+            gotoCat={this.gotoCat}
+            _handleMouseOver={this._handleMouseOver}
+          />
         )
       })
       return cardList
@@ -146,24 +152,33 @@ class Home extends PureComponent {
     const { loading, onHide } = this.props
     return (
       <Container>
-        <StyledLeftButton icon onClick={this.prev} onMouseOver={() => this._handleMouseOver({ type: 'prev' })}>
-          <StyledIcon name='angle double left' size='massive' />
+        <StyledLeftButton
+          icon
+          onClick={this.prev}
+          onMouseOver={() => this._handleMouseOver({ type: 'prev' })}
+        >
+          <StyledIcon name="angle double left" size="massive" />
         </StyledLeftButton>
-        <StyledRightButton icon onClick={this.next} onMouseOver={() => this._handleMouseOver({ type: 'next' })}>
-          <StyledIcon name='angle double right' size='massive'/>
+        <StyledRightButton
+          icon
+          onClick={this.next}
+          onMouseOver={() => this._handleMouseOver({ type: 'next' })}
+        >
+          <StyledIcon name="angle double right" size="massive" />
         </StyledRightButton>
-        <Transition visible={!loading} animation={transitions.home || 'scale'} duration={duration} onHide={this.onHide}>
+        <Transition
+          visible={!loading}
+          animation={transitions.home || 'scale'}
+          duration={duration}
+          onHide={this.onHide}
+        >
           <div>
-            <PostList>
-              {this.renderCard()}
-            </PostList>
+            <PostList>{this.renderCard()}</PostList>
           </div>
         </Transition>
-        {loading && onHide &&
-          <Loading />
-        }
+        {loading && onHide && <Loading />}
         <StyledMobileButton icon onClick={this.next}>
-          <StyledIcon name='angle double down'/>
+          <StyledIcon name="angle double down" />
         </StyledMobileButton>
       </Container>
     )

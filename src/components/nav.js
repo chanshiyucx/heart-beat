@@ -28,7 +28,7 @@ class Nav extends PureComponent {
       type: 'appModel/switchRoute',
       payload: {
         route: name,
-      }
+      },
     })
   }
 
@@ -37,13 +37,41 @@ class Nav extends PureComponent {
     return (
       <Container>
         <StyledMenu>
-          <StyledMenuItem as={Link} to='/' content='首页'  name='home' active={route === 'home'} onClick={this.handleItemClick} />
-          <StyledMenuItem as={Link} to='/about' content='关于' name='about' active={route === 'about'} onClick={this.handleItemClick} />
-          <StyledMenuItem as={Link} to='/project' content='作品' name='project' active={route === 'project'} onClick={this.handleItemClick} />
-          <StyledMenuItem as={Link} to='/friends' content='友链' name='friends' active={route === 'friends'} onClick={this.handleItemClick} />
-          <StyledInput position='right'>
+          <StyledMenuItem
+            as={Link}
+            to="/"
+            content="首页"
+            name="home"
+            active={route === 'home'}
+            onClick={this.handleItemClick}
+          />
+          <StyledMenuItem
+            as={Link}
+            to="/about"
+            content="关于"
+            name="about"
+            active={route === 'about'}
+            onClick={this.handleItemClick}
+          />
+          <StyledMenuItem
+            as={Link}
+            to="/project"
+            content="作品"
+            name="project"
+            active={route === 'project'}
+            onClick={this.handleItemClick}
+          />
+          <StyledMenuItem
+            as={Link}
+            to="/friends"
+            content="友链"
+            name="friends"
+            active={route === 'friends'}
+            onClick={this.handleItemClick}
+          />
+          <StyledInput position="right">
             <Menu.Item>
-              <Input icon='search' placeholder='Search...' />
+              <Input icon="search" placeholder="Search..." />
             </Menu.Item>
           </StyledInput>
         </StyledMenu>
@@ -51,6 +79,5 @@ class Nav extends PureComponent {
     )
   }
 }
-
 
 export default connect(({ appModel }) => ({ ...appModel }))(Nav)

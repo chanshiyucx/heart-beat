@@ -11,10 +11,10 @@ import config from '../config'
 const { duration, playerBg, playerType, playListId, playList } = config
 
 // 节流
-function throttle (fn, wait) {
+function throttle(fn, wait) {
   let time = Date.now()
   return function() {
-    if ((time + wait - Date.now()) < 0) {
+    if (time + wait - Date.now() < 0) {
       fn()
       time = Date.now()
     }
@@ -67,11 +67,11 @@ const Container = styled.div`
     pointer-events: none;
     transition: all 1s ease;
     z-index: 1000;
-    background: ${props => props.lightbulb ? 'rgba(0, 0, 0, .4)' : ''};
+    background: ${props => (props.lightbulb ? 'rgba(0, 0, 0, .4)' : '')};
   }
 
   i.like {
-    color: ${props => props.likeChanshiyu ? '#faf!important' : ''};
+    color: ${props => (props.likeChanshiyu ? '#faf!important' : '')};
   }
 `
 
@@ -129,7 +129,7 @@ const shake = keyframes`
 `
 
 const Waifu = styled.div`
-  display: ${props => props.showWaifu ? 'block' : 'none'};
+  display: ${props => (props.showWaifu ? 'block' : 'none')};
   position: fixed;
   bottom: 0;
   left: 10px;
@@ -137,7 +137,7 @@ const Waifu = styled.div`
   height: 250px;
   z-index: 1;
   font-size: 0;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   -webkit-transform: translateY(3px);
   transform: translateY(3px);
   #live2d {
@@ -147,14 +147,14 @@ const Waifu = styled.div`
     z-index: 10;
   }
   .waifu-tips {
-    opacity: ${props => props.showTips ? 1 : 0};
+    opacity: ${props => (props.showTips ? 1 : 0)};
     width: 250px;
     height: 66px;
-    margin: ${props => props.waifu === 'pio' ? 0 : '-30px'} 20px;
+    margin: ${props => (props.waifu === 'pio' ? 0 : '-30px')} 20px;
     padding: 5px 10px;
     border-radius: 12px;
-    background-color: rgba(255, 255, 255, .6);
-    box-shadow: 0 3px 15px 2px rgba(0, 0, 0, .2);
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 3px 15px 2px rgba(0, 0, 0, 0.2);
     font-size: 12px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -187,9 +187,9 @@ const Waifu = styled.div`
 `
 
 const WaifuBtn = styled(Button)`
-  padding: 0!important;
-  margin: 2px 0!important;
-  background: transparent!important;
+  padding: 0 !important;
+  margin: 2px 0 !important;
+  background: transparent !important;
 `
 
 const SkyPlayer = styled.div`
@@ -236,16 +236,16 @@ const SkyPlayer = styled.div`
 const FooterIcon = styled(Button)`
   position: fixed;
   right: 10px;
-  color: rgba(255, 255, 255, .8)!important;
-  background: transparent!important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  background: transparent !important;
   &:hover {
-    color: rgba(0, 0, 0, .2)!important;
+    color: rgba(0, 0, 0, 0.2) !important;
   }
   i {
-    font-size: 26px!important;
+    font-size: 26px !important;
   }
   @media (max-width: 900px) {
-    display: none!important;
+    display: none !important;
   }
 `
 
@@ -256,7 +256,7 @@ const ScrollToTop = FooterIcon.extend`
 const PlayBtn = FooterIcon.extend`
   bottom: 52px;
   i.icon.loading {
-    animation: icon-loading 4s linear infinite!important;
+    animation: icon-loading 4s linear infinite !important;
   }
 `
 
@@ -283,7 +283,8 @@ const Item = styled.div`
 class Footer extends PureComponent {
   componentDidMount() {
     // 加载 waifu!!!
-    const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
+    const initTips =
+      '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
     this.dressup({ initLoad: true })
     this.showTips({ forced: true, initTips })
 
@@ -294,7 +295,7 @@ class Footer extends PureComponent {
       music: {
         type: playerType,
         source: playerType === 'cloud' ? playListId : playList,
-      }
+      },
     })
     setTimeout(() => {
       this.audio = document.querySelector('audio')
@@ -317,23 +318,23 @@ class Footer extends PureComponent {
   }
 
   // 监听播放器状态
-  handleListen = (e) => {
+  handleListen = e => {
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
         isPlaying: e.type === 'play',
-      }
+      },
     })
   }
 
   // 监听页面滚动
-  handleScroll = (e) => {
+  handleScroll = e => {
     const osTop = document.documentElement.scrollTop || document.body.scrollTop
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
         showTop: osTop >= 200,
-      }
+      },
     })
   }
 
@@ -350,32 +351,36 @@ class Footer extends PureComponent {
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
-        waifu: nextWaifu
-      }
+        waifu: nextWaifu,
+      },
     })
 
     if (!initLoad) {
-      const tiaTips = '我是<font color=#f6f> 姐姐 Tia </font>，有什么需要帮助嘛 (*^_^*)'
-      const pioTips = '我是<font color=#f6f> 妹妹 Pio </font>, 来接替姐姐大人的工作哦 (*^_^*)'
-      const tips = changeWaifu ? (waifu === 'tia' ? pioTips : tiaTips ) : clickTips.dressup
+      const tiaTips =
+        '我是<font color=#f6f> 姐姐 Tia </font>，有什么需要帮助嘛 (*^_^*)'
+      const pioTips =
+        '我是<font color=#f6f> 妹妹 Pio </font>, 来接替姐姐大人的工作哦 (*^_^*)'
+      const tips = changeWaifu
+        ? waifu === 'tia' ? pioTips : tiaTips
+        : clickTips.dressup
       this.props.dispatch({
         type: 'appModel/showTips',
         payload: {
           tips,
-        }
+        },
       })
     }
   }
 
   // 拍照
   takePhoto = () => {
-    window.Live2D.captureName = 'waifu.png';
-    window.Live2D.captureFrame = true;
+    window.Live2D.captureName = 'waifu.png'
+    window.Live2D.captureFrame = true
     this.props.dispatch({
       type: 'appModel/showTips',
       payload: {
         tips: clickTips.takePhoto,
-      }
+      },
     })
   }
 
@@ -387,7 +392,7 @@ class Footer extends PureComponent {
       payload: {
         tips: clickTips.lightbulb,
         lightbulb: !lightbulb,
-      }
+      },
     })
   }
 
@@ -397,7 +402,7 @@ class Footer extends PureComponent {
       type: 'appModel/hiddenWaifu',
       payload: {
         tips: clickTips.hidden,
-      }
+      },
     })
   }
 
@@ -405,25 +410,30 @@ class Footer extends PureComponent {
   showTips = ({ forced, initTips }) => {
     const { updatedAt } = this.props
     if (Date.now() - updatedAt > 16000 || initTips || forced) {
-      const tips = hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
+      const tips =
+        hitokotos[Math.floor(Math.random() * hitokotos.length)].hitokoto
       this.props.dispatch({
         type: 'appModel/showTips',
         payload: {
           tips: initTips || tips,
-        }
+        },
       })
     }
     setTimeout(() => this.showTips({}), 16000)
   }
 
   // hover 触发对话
-  _handleMouseOver = (type) => {
+  _handleMouseOver = type => {
     const { waifu, likeChanshiyu } = this.props
     let tips = ''
     if (type === 'changeWaifu') {
-      tips = `要介绍<font color=#f6f>${waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio ' } </font>给你认识么ヾ(●゜▽゜●)♡`
+      tips = `要介绍<font color=#f6f>${
+        waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio '
+      } </font>给你认识么ヾ(●゜▽゜●)♡`
     } else if (type === 'like') {
-      tips = likeChanshiyu ? '已经点赞过了哦 ε٩(๑> ₃ <)۶з ' : '喜欢就点个赞吧 ヾ(●゜▽゜●)♡'
+      tips = likeChanshiyu
+        ? '已经点赞过了哦 ε٩(๑> ₃ <)۶з '
+        : '喜欢就点个赞吧 ヾ(●゜▽゜●)♡'
     } else {
       tips = hoverTips[type]
     }
@@ -431,7 +441,7 @@ class Footer extends PureComponent {
       type: 'appModel/showTips',
       payload: {
         tips,
-      }
+      },
     })
   }
 
@@ -442,7 +452,7 @@ class Footer extends PureComponent {
       type: 'appModel/update',
       payload: {
         showPlayer: !showPlayer,
-      }
+      },
     })
   }
 
@@ -459,119 +469,174 @@ class Footer extends PureComponent {
   // 滚动到顶部
   scrollToTop = () => {
     const header = document.getElementById('header')
-    scroll.animateScroll( header )
+    scroll.animateScroll(header)
   }
 
   render() {
-    const { showTop, showPlayer, isPlaying, showWaifu, waifu, tips, lightbulb, likeTime, likeChanshiyu } = this.props
+    const {
+      showTop,
+      showPlayer,
+      isPlaying,
+      showWaifu,
+      waifu,
+      tips,
+      lightbulb,
+      likeTime,
+      likeChanshiyu,
+    } = this.props
     return (
       <Container lightbulb={lightbulb} likeChanshiyu={likeChanshiyu}>
-        <Transition visible={!!showPlayer} mountOnShow={false} animation='fly left' duration={duration}>
+        <Transition
+          visible={!!showPlayer}
+          mountOnShow={false}
+          animation="fly left"
+          duration={duration}
+        >
           <SkyPlayer className="myplayer">
-            <div id="skPlayer"></div>
+            <div id="skPlayer" />
           </SkyPlayer>
         </Transition>
         <Waifu showWaifu={showWaifu} waifu={waifu} showTips={!!tips.length}>
-          <canvas id="live2d" width="280" height="250" className="live2d"></canvas>
-          <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }}></div>
+          <canvas id="live2d" width="280" height="250" className="live2d" />
+          <div
+            className="waifu-tips"
+            dangerouslySetInnerHTML={{ __html: marked(tips) }}
+          />
           <div className="waifu-tool" id="waifu-tool">
-            <Link to='/'>
+            <Link to="/">
               <WaifuBtn
                 icon
                 className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('backHome')}>
-                <Icon name='university'/>
+                onMouseOver={() => this._handleMouseOver('backHome')}
+              >
+                <Icon name="university" />
               </WaifuBtn>
             </Link>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={() => this.dressup({ changeWaifu: true })}
-              onMouseOver={() => this._handleMouseOver('changeWaifu')}>
-              <Icon name='lesbian'/>
+              onMouseOver={() => this._handleMouseOver('changeWaifu')}
+            >
+              <Icon name="lesbian" />
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={() => this.dressup({ changeWaifu: false })}
-              onMouseOver={() => this._handleMouseOver('dressup')}>
-              <Icon name='female'/>
+              onMouseOver={() => this._handleMouseOver('dressup')}
+            >
+              <Icon name="female" />
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={this.takePhoto}
-              onMouseOver={() => this._handleMouseOver('takePhoto')}>
-              <Icon name='camera retro'/>
+              onMouseOver={() => this._handleMouseOver('takePhoto')}
+            >
+              <Icon name="camera retro" />
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={() => this.showTips({ forced: true })}
-              onMouseOver={() => this._handleMouseOver('talk')}>
-              <Icon name='talk'/>
+              onMouseOver={() => this._handleMouseOver('talk')}
+            >
+              <Icon name="talk" />
             </WaifuBtn>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={this.lightbulb}
-              onMouseOver={() => this._handleMouseOver('lightbulb')}>
-              <Icon name='lightbulb'/>
+              onMouseOver={() => this._handleMouseOver('lightbulb')}
+            >
+              <Icon name="lightbulb" />
             </WaifuBtn>
-            <Link to='/post/4'>
+            <Link to="/post/4">
               <WaifuBtn
                 icon
                 className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('info')}>
-                <Icon name='info circle'/>
+                onMouseOver={() => this._handleMouseOver('info')}
+              >
+                <Icon name="info circle" />
               </WaifuBtn>
             </Link>
             <WaifuBtn
               icon
               className="waifu-btn"
               onClick={this.hiddenWaifu}
-              onMouseOver={() => this._handleMouseOver('hidden')}>
-              <Icon name='delete'/>
+              onMouseOver={() => this._handleMouseOver('hidden')}
+            >
+              <Icon name="delete" />
             </WaifuBtn>
           </div>
         </Waifu>
-        <Transition visible={!!showTop} mountOnShow={false} animation='fly left' duration={duration}>
-          <ScrollToTop icon onClick={this.scrollToTop} onMouseOver={() => this._handleMouseOver('scroll')}>
-            <Icon name='chevron up' bordered circular/>
+        <Transition
+          visible={!!showTop}
+          mountOnShow={false}
+          animation="fly left"
+          duration={duration}
+        >
+          <ScrollToTop
+            icon
+            onClick={this.scrollToTop}
+            onMouseOver={() => this._handleMouseOver('scroll')}
+          >
+            <Icon name="chevron up" bordered circular />
           </ScrollToTop>
         </Transition>
         <Popup
-          trigger={<LikeBtn icon onClick={this.likeSite} onMouseOver={() => this._handleMouseOver('like')}>
-            <Icon className="like" name='heart' bordered circular/>
-          </LikeBtn>}
+          trigger={
+            <LikeBtn
+              icon
+              onClick={this.likeSite}
+              onMouseOver={() => this._handleMouseOver('like')}
+            >
+              <Icon className="like" name="heart" bordered circular />
+            </LikeBtn>
+          }
           content={`已有 ${likeTime} 人点赞了哦`}
-          position='left center'
+          position="left center"
           style={{
             borderRadius: '3px',
             padding: '12px 16px',
             backgroundColor: 'rgba(255, 255, 255, .6)',
           }}
         />
-        <PlayBtn icon onClick={this.togglePlayer} onMouseOver={() => this._handleMouseOver('music')}>
-          <Icon name='music' bordered circular loading={isPlaying}/>
+        <PlayBtn
+          icon
+          onClick={this.togglePlayer}
+          onMouseOver={() => this._handleMouseOver('music')}
+        >
+          <Icon name="music" bordered circular loading={isPlaying} />
         </PlayBtn>
         <InnerWrap>
           <ItemList>
             <Item>
-              <span><Icon name='copyright' /> </span>
+              <span>
+                <Icon name="copyright" />{' '}
+              </span>
               <span>2017 - 2018</span>
             </Item>
             <Item>
-              <span><Icon name='heartbeat' /> </span>
+              <span>
+                <Icon name="heartbeat" />{' '}
+              </span>
               <span>蝉時雨</span>
             </Item>
           </ItemList>
           <ItemList>
             <Item>
-              <p>Theme - <a href='https://github.com/chanshiyucx/SPA-Blog'>HeartBeat</a></p>
+              <p>
+                Theme -{' '}
+                <a href="https://github.com/chanshiyucx/SPA-Blog">HeartBeat</a>
+              </p>
             </Item>|
             <Item>
-               <p> Hosted by <a href='https://pages.coding.me'>Coding Pages</a></p>
+              <p>
+                {' '}
+                Hosted by <a href="https://pages.coding.me">Coding Pages</a>
+              </p>
             </Item>
           </ItemList>
         </InnerWrap>

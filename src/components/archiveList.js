@@ -4,8 +4,19 @@ import styled from 'styled-components'
 import { Segment, Icon } from 'semantic-ui-react'
 
 const colors = [
-  'red', 'orange', 'yellow', 'olive', 'green', 'teal',
-  'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'black',
 ]
 
 const Container = styled.div`
@@ -28,14 +39,16 @@ const Archive = styled.div`
 `
 
 const StyledCard = styled(Segment)`
-  padding: 0!important;
+  padding: 0 !important;
   width: 100%;
   overflow: hidden;
-  background: rgba(255, 255, 255, .4)!important;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23)!important;
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1 ) 0s!important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+  transition: all 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23)!important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
     transform: translateY(-4px);
   }
 `
@@ -59,9 +72,7 @@ const Item = styled.span`
   color: #999;
 `
 
-const ArchiveList = ({
-  archives,
-}) => {
+const ArchiveList = ({ archives }) => {
   const archiveList = archives.map((o, i) => {
     const { id, number, created_at, milestone, labels, title } = o
     const date = created_at.slice(0, 10)
@@ -73,24 +84,18 @@ const ArchiveList = ({
             <StyledTitle>{title}</StyledTitle>
             <Content>
               <Item>
-                <Icon name='time' />
+                <Icon name="time" />
                 {date}
               </Item>
               <Item>
-                <Icon name='bookmark' />
-                {milestone && milestone.title ? milestone.title : '未分类' }
+                <Icon name="bookmark" />
+                {milestone && milestone.title ? milestone.title : '未分类'}
               </Item>
               <Item>
-                <Icon name='tags' />
-                {
-                  labels.map((o) => {
-                    return (
-                      <StyledTag key={o.id}>
-                        {o.name}
-                      </StyledTag>
-                    )
-                  })
-                }
+                <Icon name="tags" />
+                {labels.map(o => {
+                  return <StyledTag key={o.id}>{o.name}</StyledTag>
+                })}
               </Item>
             </Content>
           </StyledCard>
@@ -99,11 +104,7 @@ const ArchiveList = ({
     )
   })
 
-  return (
-    <Container>
-      {archiveList}
-    </Container>
-  )
+  return <Container>{archiveList}</Container>
 }
 
 ArchiveList.propTypes = {

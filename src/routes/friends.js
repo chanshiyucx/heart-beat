@@ -21,8 +21,8 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
-  background: rgba(255, 255, 255, .6);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 const FriendList = styled.div`
@@ -40,7 +40,7 @@ const Friend = styled.a`
   height: 112px;
   overflow: hidden;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.16);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
   &:hover {
     .cover {
       transform: scale(1.1);
@@ -51,7 +51,7 @@ const Friend = styled.a`
 const Cover = styled.img`
   width: 200px;
   height: 112px;
-  transition: transform .6s ease-out;
+  transition: transform 0.6s ease-out;
 `
 
 const Content = styled.div`
@@ -61,7 +61,7 @@ const Content = styled.div`
   align-items: center;
   width: 200px;
   height: 112px;
-  background: rgba(255, 255, 255, .4);
+  background: rgba(255, 255, 255, 0.4);
 `
 
 const Avatar = styled.img`
@@ -80,7 +80,7 @@ const Site = styled.span`
   font-size: 16px;
   letter-spacing: 1px;
   box-shadow: 0 0 6px #999;
-  background: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, 0.6);
 `
 
 class Friends extends PureComponent {
@@ -89,13 +89,13 @@ class Friends extends PureComponent {
       type: 'page/showPage',
       payload: {
         showFriends: true,
-      }
+      },
     })
 
     if (enableGitalk) {
       const gitalk = new Gitalk({
         ...gitalkOptions,
-        title: '友链'
+        title: '友链',
       })
       // 渲染评论
       gitalk.render('gitalk')
@@ -107,7 +107,7 @@ class Friends extends PureComponent {
       type: 'page/reset',
       payload: {
         showFriends: false,
-      }
+      },
     })
   }
 
@@ -116,13 +116,13 @@ class Friends extends PureComponent {
       const friendList = friends.map((o, i) => {
         return (
           <Friend key={i} href={o.link} target="_blank">
-            <Reveal animated='move up'>
+            <Reveal animated="move up">
               <Reveal.Content hidden>
-                <Cover className='cover' alt='' src={o.cover} />
+                <Cover className="cover" alt="" src={o.cover} />
               </Reveal.Content>
               <Reveal.Content visible>
                 <Content>
-                  <Avatar alt='' src={o.avatar} />
+                  <Avatar alt="" src={o.avatar} />
                   <Site>{o.name}</Site>
                 </Content>
               </Reveal.Content>
@@ -139,23 +139,22 @@ class Friends extends PureComponent {
     return (
       <Container>
         <div>
-          <Transition visible={showFriends} animation={transitions.page || 'drop'} duration={duration}>
+          <Transition
+            visible={showFriends}
+            animation={transitions.page || 'drop'}
+            duration={duration}
+          >
             <Wapper>
               <Quote text={qoutes.friends} />
-              <FriendList>
-                {this.renderFriends()}
-              </FriendList>
+              <FriendList>{this.renderFriends()}</FriendList>
             </Wapper>
           </Transition>
-          {!showFriends &&
-            <Loading />
-          }
+          {!showFriends && <Loading />}
         </div>
-        {enableGitalk && <div id='gitalk'></div>}
+        {enableGitalk && <div id="gitalk" />}
       </Container>
     )
   }
-
 }
 
 export default connect(({ page }) => ({ ...page }))(Friends)
