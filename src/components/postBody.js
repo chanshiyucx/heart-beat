@@ -15,12 +15,10 @@ marked.setOptions({
   highlight: code => hljs.highlightAuto(code).value,
 })
 
-
-
 // 修复中文id显示‘-’的bug
 const renderer = new marked.Renderer()
 renderer.heading = function(text, level) {
-    return `<h${level} id="${text}">${level === 1 ? '<i class="fa fa-gift" aria-hidden="true"></i> ' : ''}${text}</h${level}>`
+    return `<h${level} id="${text}"><i class="fa fa-${level === 1 ? 'gift' : 'envira'}" aria-hidden="true"></i> ${text}</h${level}>`
 }
 
 // 新开标签页打开
@@ -63,7 +61,7 @@ const Header = styled.div`
 const Info = styled.div`
   position: absolute;
   bottom: 0;
-  padding: 10px 16px;
+  padding: 12px 16px;
   width: 100%;
   color: #eee;
   background: rgba(0, 0, 0, .44);
@@ -90,27 +88,29 @@ const Item = styled.span`
 const Content = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 16px 0;
+  padding: 12px 0 1px;
   user-select:text;
-  font-size: 16px;
   font-family: monda;
   text-align: justify;
   p, ul, ol {
-    margin: 2px 16px 14px;
+    margin: 0 16px 16px;
   }
   h1, h2, h3 {
     margin: 0 16px;
-    padding: 6px 0 2px;
-    letter-spacing: 1px;
+    padding: 8px 0;
+    font-weight: 500;
   }
   h1 {
-    font-size: 20px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    font-size: 22px;
+    border-bottom: 1px dashed rgba(0, 0, 0, .2);
   }
   h2 {
     font-size: 18px;
-  }
-  h3 {
-    font-size: 16px;
+    i {
+      font-size: 16px;
+    }
   }
   p, blockquote, ul, ol {
     line-height: 1.66;
