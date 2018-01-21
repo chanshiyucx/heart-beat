@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
 import { Book, Quote, Loading } from '../components'
@@ -18,10 +17,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
+  display: ${props => props.onShow ? 'block' : 'none'};
   padding: .16rem;
   border-radius: .03rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const BookList = styled.div`
@@ -83,23 +84,23 @@ class Books extends PureComponent {
     const showBooks = !!section.length
     return (
       <Container>
-        <div>
-          <Transition visible={showBooks} animation={transitions.page || 'drop'} duration={duration}>
-            <Wapper>
-              <Quote text={qoutes.books} />
-              <BookList>
-                {showBooks &&
-                  section.map((o, i) => {
-                    return (
-                      <Book key={i} book={o} />
-                    )
-                  })
-                }
-              </BookList>
-            </Wapper>
-          </Transition>
-          {!showBooks && <Loading />}
-        </div>
+        <Wapper
+          onShow={showBooks}
+          className={showBooks ? transitions.page.show : ''}
+        >
+          <Quote text={qoutes.books} />
+          <BookList>
+            {showBooks &&
+              section.map((o, i) => {
+                return (
+                  <Book key={i} book={o} />
+                )
+              })
+            }
+          </BookList>
+        </Wapper>
+        {!showBooks && <Loading />}
+
         {enableGitalk && <div id="gitalk" />}
       </Container>
     )

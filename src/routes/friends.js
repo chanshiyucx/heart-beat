@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Reveal } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
 import { Quote, Loading } from '../components'
@@ -18,10 +17,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  background: rgba(255, 255, 255, 0.6);
+  display: ${props => props.onShow ? 'block' : 'none'};
+  padding: .16rem;
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const FriendList = styled.div`
@@ -34,6 +35,7 @@ const FriendList = styled.div`
 `
 
 const Friend = styled.a`
+  position: relative;
   margin-bottom: 16px;
   width: 200px;
   height: 112px;
@@ -43,6 +45,9 @@ const Friend = styled.a`
   &:hover {
     .cover {
       transform: scale(1.1);
+    }
+    .content {
+      transform: translateY(-120px);
     }
   }
 `
@@ -54,13 +59,16 @@ const Cover = styled.img`
 `
 
 const Content = styled.div`
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 200px;
   height: 112px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, .4);
+  transition: transform .4s ease-out;
 `
 
 const Avatar = styled.img`
@@ -125,40 +133,29 @@ class Friends extends PureComponent {
                     })
     return (
       <Container>
-      {
-        <div>
-          <Transition
-            visible={showFriends}
-            animation={transitions.page || 'drop'}
-            duration={duration}
-          >
-            <Wapper>
-              <Quote text={qoutes.friends} />
-              <FriendList>
-                {!!section.length &&
-                  section.map((o, i) => {
-                    return (
-                      <Friend key={i} href={o.link} target="_blank">
-                        <Reveal animated="move up">
-                          <Reveal.Content hidden>
-                            <Cover className="cover" alt="" src={o.cover} />
-                          </Reveal.Content>
-                          <Reveal.Content visible>
-                            <Content>
-                              <Avatar alt="" src={o.avatar} />
-                              <Site>{o.name}</Site>
-                            </Content>
-                          </Reveal.Content>
-                        </Reveal>
-                      </Friend>
-                    )
-                  })
-                }
-              </FriendList>
-            </Wapper>
-          </Transition>
-          {!showFriends && <Loading />}
-        </div>}
+        <Wapper
+          onShow={showFriends}
+          className={showFriends ? transitions.page.show : ''}
+        >
+          <Quote text={qoutes.friends} />
+          <FriendList>
+            {!!section.length &&
+              section.map((o, i) => {
+                return (
+                  <Friend key={i} href={o.link} target="_blank">
+                    <Cover className="cover" alt="" src={o.cover} />
+                    <Content className="content">
+                      <Avatar alt="" src={o.avatar} />
+                      <Site>{o.name}</Site>
+                    </Content>
+                  </Friend>
+                )
+              })
+            }
+          </FriendList>
+        </Wapper>
+        {!showFriends && <Loading />}
+
         {enableGitalk && <div id="gitalk" />}
       </Container>
     )

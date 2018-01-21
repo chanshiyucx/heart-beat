@@ -54,7 +54,7 @@ const Container = styled.div`
   position: absolute;
   bottom: 0;
   margin: 0 auto;
-  padding-bottom: 10px;
+  padding-bottom: .1rem;
   width: 100%;
   &::before {
     content: '';
