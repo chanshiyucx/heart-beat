@@ -2,13 +2,12 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import { Link } from 'dva/router'
 import styled, { keyframes } from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 import SmoothScroll from 'smooth-scroll'
 import marked from 'marked'
 import skPlayer from 'skplayer'
 
 import config from '../config'
-const { duration, playerBg, playerType, playListId, playList, backstretch } = config
+const { playerBg, playerType, playListId, playList, backstretch } = config
 
 // 节流
 function throttle(fn, wait) {
@@ -184,6 +183,7 @@ const Waifu = styled.div`
 const WaifuBtn = styled.button`
   width: .16rem;
   height: .16rem;
+  margin: .04rem 0;
   color: #444;
   border: none;
   outline: 0;
@@ -192,8 +192,9 @@ const WaifuBtn = styled.button`
 
 const SkyPlayer = styled.div`
   position: fixed;
-  right: 10px;
+  right: ${props => props.onShow ? '10px' : '-600px'};
   bottom: 334px;
+  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -254,8 +255,9 @@ const FooterIcon = styled.button`
 
 const ScrollToTop = FooterIcon.extend`
   position: fixed;
-  right: 10px;
+  right: ${props => props.onShow ? '10px' : '-200px'};
   bottom: 110px;
+  transition: all 0.4s cubic-bezier(.6, .2, .1, 1) 0s;
 `
 
 const PlayBtn = FooterIcon.extend`
@@ -336,7 +338,7 @@ class Footer extends PureComponent {
     // 动态背景
     window.$("body").backstretch(backstretch.bgImg, backstretch.bgOptions)
 
-    // 播放器
+    // 播放器启动
     this.skPlayer = new skPlayer({
       autoplay: false,
       listshow: true,
@@ -356,7 +358,7 @@ class Footer extends PureComponent {
   }
 
   componentWillUnmount() {
-    // 播放器
+    // 销毁播放器
     this.skPlayer.destroy()
     this.audio.removeEventListener('play', this.handleListen)
     this.audio.removeEventListener('pause', this.handleListen)
@@ -592,29 +594,19 @@ class Footer extends PureComponent {
             </WaifuBtn>
           </div>
         </Waifu>
-        <Transition
-          visible={!!showPlayer}
-          mountOnShow={false}
-          animation="fly left"
-          duration={duration}
+        <SkyPlayer
+          onShow={showPlayer}
+          className="myplayer"
         >
-          <SkyPlayer className="myplayer">
-            <div id="skPlayer" />
-          </SkyPlayer>
-        </Transition>
-        <Transition
-          visible={!!showTop}
-          mountOnShow={false}
-          animation="fly left"
-          duration={duration}
+          <div id="skPlayer" />
+        </SkyPlayer>
+        <ScrollToTop
+          onShow={showTop}
+          onClick={this.scrollToTop}
+          onMouseOver={() => this.handleMouseOver('scroll')}
         >
-          <ScrollToTop
-            onClick={this.scrollToTop}
-            onMouseOver={() => this.handleMouseOver('scroll')}
-          >
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>
-        </Transition>
         <PlayBtn
           onClick={this.togglePlayer}
           onMouseOver={() => this.handleMouseOver('music')}

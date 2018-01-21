@@ -17,7 +17,7 @@ export default {
   namespace: 'page',
   state: {
     // 归档
-    archivesOnHide: false,
+    archivesOnHide: true,
     loading: true,
     total: 0,
     page: 0,
@@ -26,12 +26,12 @@ export default {
     // 分类 & 标签
     cats: [],
     tags: [],
-    catsOnHide: false,
-    tagsOnHide: false,
+    catsOnHide: true,
+    tagsOnHide: true,
     filterTitle: '',
     filterPost: [],
     // 说说
-    shuoshuoOnHide: false,
+    shuoshuoOnHide: true,
     shuoshuoLoading: true,
     myShuoShuo: [],
     shuoshuoTotal: 0,
@@ -48,7 +48,7 @@ export default {
     },
 
     queryEnd(state, { payload }) {
-      return { ...state, ...payload, loading: false }
+      return { ...state, ...payload, loading: false, archivesOnHide: false }
     },
 
     update(state, { payload }) {
@@ -92,7 +92,7 @@ export default {
       const cats = yield call(queryCats, payload)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'update', payload: { cats } })
+      yield put({ type: 'update', payload: { cats, catsOnHide: false } })
     },
 
     *queryTags({ payload }, { call, put }) {
@@ -100,7 +100,7 @@ export default {
       const tags = yield call(queryTags, payload)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'update', payload: { tags } })
+      yield put({ type: 'update', payload: { tags, tagsOnHide: false } })
     },
 
     *queryShuoShuoTotal({ payload }, { call, put }) {
@@ -143,9 +143,12 @@ export default {
     },
 
     *filterPost({ payload }, { call, put }) {
+      const startTime = new Date()
       const { filterTitle } = payload
       const filterPost = yield call(filterList, payload)
-      yield put({ type: 'update', payload: { filterPost, filterTitle } })
+      const delayTime = new Date() - startTime
+      if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
+      yield put({ type: 'update', payload: { filterPost, filterTitle, catsOnHide: false, tagsOnHide: false } })
     },
   },
 }

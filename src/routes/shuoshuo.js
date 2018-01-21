@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
 import { Segment, Quote, Pagination, Loading } from '../components'
@@ -11,6 +10,7 @@ import config from '../config'
 
 const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions } = config
 const { enableGitalk } = shuoshuoOptions
+const { show, hide } = transitions.page
 const newColors = shuffle(colors)
 
 const Container = styled.div`
@@ -21,10 +21,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
+  display: ${props => props.onHide ? 'none' : 'block'};
   padding: .16rem;
   border-radius: .03rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 class ShuoShuo extends PureComponent {
@@ -33,6 +35,8 @@ class ShuoShuo extends PureComponent {
     this.props.dispatch({
       type: 'page/queryShuoShuoTotal',
     })
+
+    this.shuoshuo = window.$('#shuoshuo')
 
     if (enableGitalk) {
       const gitalk = new Gitalk({
@@ -59,6 +63,7 @@ class ShuoShuo extends PureComponent {
 
   // 前一页
   prev = () => {
+    this.shuoshuo.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/queryShuoShuo',
       payload: {
@@ -69,6 +74,7 @@ class ShuoShuo extends PureComponent {
 
   // 后一页
   next = () => {
+    this.shuoshuo.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/queryShuoShuo',
       payload: {
@@ -78,12 +84,15 @@ class ShuoShuo extends PureComponent {
   }
 
   onHide = () => {
-    this.props.dispatch({
-      type: 'page/update',
-      payload: {
-        shuoshuoOnHide: true,
-      },
-    })
+    const { shuoshuoLoading } = this.props
+    if (shuoshuoLoading) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          shuoshuoOnHide: true,
+        },
+      })
+    }
   }
 
   render() {
@@ -98,31 +107,26 @@ class ShuoShuo extends PureComponent {
     const maxPage = Math.ceil(shuoshuoTotal / shuoshuoPageSize)
     return (
       <Container>
-        <div>
-          <Transition
-            visible={!shuoshuoLoading}
-            animation={transitions.page || 'drop'}
-            duration={duration}
-            onHide={this.onHide}
-          >
-            <Wapper>
-              <Quote text={qoutes.shuoshuo} />
-              <div>
-                {
-                  myShuoShuo.map((o, i) => {
-                    const date = o.created_at.slice(0, 10)
-                    const color = newColors[i]
-                    return (
-                      <Segment key={o.id} color={color} title={date} content={o.body} />
-                    )
-                  })
-                }
-              </div>
-              <Pagination mexPage={maxPage} page={shuoshuoPage} prev={this.prev} next={this.next} />
-            </Wapper>
-          </Transition>
-          {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && <Loading />}
-        </div>
+        <Wapper
+          id="shuoshuo"
+          className={!shuoshuoLoading ? show : hide}
+          onHide={shuoshuoOnHide}
+        >
+          <Quote text={qoutes.shuoshuo} />
+          <div>
+            {
+              myShuoShuo.map((o, i) => {
+                const date = o.created_at.slice(0, 10)
+                const color = newColors[i]
+                return (
+                  <Segment key={o.id} color={color} title={date} content={o.body} />
+                )
+              })
+            }
+          </div>
+          <Pagination mexPage={maxPage} page={shuoshuoPage} prev={this.prev} next={this.next} />
+        </Wapper>
+        {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && <Loading />}
         {enableGitalk && <div id="gitalk" />}
       </Container>
     )

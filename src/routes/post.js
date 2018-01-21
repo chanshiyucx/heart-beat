@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 
 import { PostBody, Loading } from '../components'
 import config from '../config'
@@ -15,10 +14,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
+  display: ${props => props.onShow ? 'block' : 'none'};
   width: 100%;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
-  background: rgba(255, 255, 255, 0.6);
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 class Post extends PureComponent {
@@ -44,20 +45,19 @@ class Post extends PureComponent {
 
   render() {
     const { loading, post, time } = this.props
+    const showPost = !loading && !!Object.keys(post).length
     return (
       <Container className="Post">
-        <div>
-          <Transition
-            visible={!loading && Object.keys(post).length !== 0}
-            animation={transitions.post || 'drop'}
-            duration={duration}
-          >
-            <Wapper>
+        {showPost
+          ? <Wapper
+              onShow={showPost}
+              className={showPost ? transitions.post : ''}
+            >
               <PostBody {...post} time={time} />
             </Wapper>
-          </Transition>
-          {loading && <Loading />}
-        </div>
+          : <Loading />
+        }
+
         <div id="gitalk" />
       </Container>
     )

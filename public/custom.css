@@ -25,6 +25,7 @@ body, p, blockquote, h1, h2, h3, ul, ol, button {
 
 body {
   color: #666;
+  font-size: .14rem;
   user-select: none;
   text-shadow: 0 0 1px rgba(0, 0, 0, .2);
   scroll-behavior: smooth;

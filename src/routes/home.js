@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 
 import { PostCard, Loading } from '../components'
 import config from '../config'
 
 const { duration, transitions } = config
+const { show, hide } = transitions.home
 
 const Container = styled.div`
   position: relative;
@@ -20,11 +20,12 @@ const Container = styled.div`
 `
 
 const PostList = styled.div`
-  display: flex;
+  display: ${props => props.onHide ? 'none' : 'flex'};
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  animation-duration: ${duration / 1000}s;
 `
 
 const Button = styled.button`
@@ -76,6 +77,8 @@ class Home extends PureComponent {
     this.props.dispatch({
       type: 'home/queryTotal',
     })
+
+    this.postList = window.$('#postList')
   }
 
   componentWillUnmount() {
@@ -86,6 +89,7 @@ class Home extends PureComponent {
 
   // 前一页
   prev = () => {
+    this.postList.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'home/queryList',
       payload: {
@@ -96,6 +100,7 @@ class Home extends PureComponent {
 
   // 后一页
   next = () => {
+    this.postList.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'home/queryList',
       payload: {
@@ -124,12 +129,15 @@ class Home extends PureComponent {
 
   // 动画结束
   onHide = () => {
-    this.props.dispatch({
-      type: 'home/update',
-      payload: {
-        onHide: true,
-      },
-    })
+    const { loading } = this.props
+    if (loading) {
+      this.props.dispatch({
+        type: 'home/update',
+        payload: {
+          onHide: true,
+        },
+      })
+    }
   }
 
   renderCard = () => {
@@ -167,16 +175,13 @@ class Home extends PureComponent {
           <i className="fa fa-angle-double-right" aria-hidden="true"></i>
         </NextBtn>
 
-        <Transition
-          visible={!loading}
-          animation={transitions.home || 'scale'}
-          duration={duration}
-          onHide={this.onHide}
-        >
-          <div>
-            <PostList>{this.renderCard()}</PostList>
-          </div>
-        </Transition>
+        <PostList
+          id="postList"
+          className={!loading ? show : hide}
+          onHide={onHide}>
+          {this.renderCard()}
+        </PostList>
+
         {loading && onHide && <Loading />}
         <MobileBtn onClick={this.next}>
           <i className="fa fa-angle-double-down" aria-hidden="true"></i>

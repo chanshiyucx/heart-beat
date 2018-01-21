@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 
 import { Archive, Quote, Pagination, Loading } from '../components'
 import { shuffle } from '../utils'
@@ -9,6 +8,7 @@ import { colors } from '../theme'
 import config from '../config'
 
 const { duration, transitions, qoutes } = config
+const { show, hide } = transitions.page
 const newColors = shuffle(colors)
 
 const Container = styled.div`
@@ -19,10 +19,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
+  display: ${props => props.onHide ? 'none' : 'block'};
   padding: .16rem;
   border-radius: .03rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const ArchiveList = styled.div`
@@ -40,13 +42,15 @@ class Archives extends PureComponent {
     this.props.dispatch({
       type: 'page/queryTotal',
     })
+
+    this.archives = window.$('#archives')
   }
 
   componentWillUnmount() {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        archivesOnHide: false,
+        archivesOnHide: true,
         loading: true,
         total: 0,
         page: 0,
@@ -57,6 +61,7 @@ class Archives extends PureComponent {
 
   // 前一页
   prev = () => {
+    this.archives.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/queryArchives',
       payload: {
@@ -67,6 +72,7 @@ class Archives extends PureComponent {
 
   // 后一页
   next = () => {
+    this.archives.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/queryArchives',
       payload: {
@@ -76,12 +82,15 @@ class Archives extends PureComponent {
   }
 
   onHide = () => {
-    this.props.dispatch({
-      type: 'page/update',
-      payload: {
-        archivesOnHide: true,
-      },
-    })
+    const { loading } = this.props
+    if (loading) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          archivesOnHide: true,
+        },
+      })
+    }
   }
 
   render() {
@@ -89,27 +98,24 @@ class Archives extends PureComponent {
     const maxPage = Math.ceil(total / pageSize)
     return (
       <Container>
-        <Transition
-          visible={!loading}
-          animation={transitions.page || 'drop'}
-          duration={duration}
-          onHide={this.onHide}
+        <Wapper
+          id="archives"
+          className={!loading ? show : hide}
+          onHide={archivesOnHide}
         >
-          <Wapper>
-            <Quote text={qoutes.archives} />
-            <ArchiveList>
-              {
-                archives.map((o, i) => {
-                  const color = newColors[i]
-                  return (
-                    <Archive key={o.id} color={color} archive={o} />
-                  )
-                })
-              }
-            </ArchiveList>
-            <Pagination mexPage={maxPage} page={page} prev={this.prev} next={this.next} />
-          </Wapper>
-        </Transition>
+          <Quote text={qoutes.archives} />
+          <ArchiveList>
+            {
+              archives.map((o, i) => {
+                const color = newColors[i]
+                return (
+                  <Archive key={o.id} color={color} archive={o} />
+                )
+              })
+            }
+          </ArchiveList>
+          <Pagination mexPage={maxPage} page={page} prev={this.prev} next={this.next} />
+        </Wapper>
         {(!archives || archives.length === 0 || archivesOnHide) && <Loading />}
       </Container>
     )

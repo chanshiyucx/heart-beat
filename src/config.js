@@ -60,22 +60,18 @@ export default {
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
   duration: 800, // ms, 动画时间
-  minDelay: 1000, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
-  // 加载动画类型，具体效果参考 https://react.semantic-ui.com/modules/transition#transition-example-group-explorer
-  // 可选值如下 transitions： [
-  //   'scale',
-  //   'fade', 'fade up', 'fade down', 'fade left', 'fade right',
-  //   'horizontal flip', 'vertical flip',
-  //   'drop',
-  //   'fly left', 'fly right', 'fly up', 'fly down',
-  //   'swing left', 'swing right', 'swing up', 'swing down',
-  //   'browse', 'browse right',
-  //   'slide down', 'slide up', 'slide right',
-  // ]
+  minDelay: 3000, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  // 加载动画类型，animate.css, 详见 https://daneden.github.io/animate.css/
   transitions: {
-    home: 'scale', // 首页文章卡切换动画，默认值为 'scale'
-    post: 'drop', // 文章页加载动画, 默认值为 'drop'
-    page: 'drop', // 其余所有页面的加载动画, 默认值为 'drop'
+    home: {
+      show: 'zoomIn',
+      hide: 'zoomOut',
+    }, // 首页文章卡切换动画
+    page: {
+      show: 'zoomIn',
+      hide: 'zoomOut',
+    }, // 其余页面的加载动画
+    post: 'zoomIn', // 文章页加载动画
   },
 
   /**

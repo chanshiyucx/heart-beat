@@ -21,7 +21,6 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "semantic-ui-react": "^0.77.2",
     "skplayer": "^3.0.7",
     "smooth-scroll": "^12.1.5",
     "styled-components": "^2.4.0",

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
 import { Segment, Quote, Loading } from '../components'
@@ -21,24 +20,26 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
-  background: rgba(255, 255, 255, 0.6);
+  display: ${props => props.onShow ? 'block' : 'none'};
+  padding: .16rem;
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const Header = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: .16rem;
 `
 
 const Avatar = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, 0.6);
+  border: .04rem solid rgba(255, 255, 255, .6);
   box-shadow: 0 0 10px 2px #999;
   transition: transform 1s ease-out;
   &:hover {
@@ -48,7 +49,7 @@ const Avatar = styled.img`
 `
 
 const Info = styled.div`
-  margin-left: 16px;
+  margin-left: .16rem;
 `
 
 const Item = styled.div`
@@ -100,40 +101,36 @@ class About extends PureComponent {
                     })
     return (
       <Container>
-        <div>
-          <Transition
-            visible={showAbout}
-            animation={transitions.page || 'drop'}
-            duration={duration}
-          >
-            <Wapper>
-              <Quote text={qoutes.about} />
-              <div>
-                <Header>
-                  <Avatar alt="" src={avatar} />
-                  <Info>
-                    {info.length > 0 &&
-                      info.map((o, i) => {
-                        return (
-                          <Item key={i}>
-                            <i className={`fa fa-${o.icon}`} aria-hidden="true"></i> {o.text}
-                          </Item>
-                        )
-                      })}
-                  </Info>
-                </Header>
-                {!!section.length &&
-                  section.map((o, i) => {
-                    const color = newColors[i]
+        <Wapper
+          onShow={showAbout}
+          className={showAbout ? transitions.page.show : ''}
+        >
+          <Quote text={qoutes.about} />
+          <div>
+            <Header>
+              <Avatar alt="" src={avatar} />
+              <Info>
+                {info.length > 0 &&
+                  info.map((o, i) => {
                     return (
-                      <Segment key={i} color={color} title={o.title} content={o.content} />
+                      <Item key={i}>
+                        <i className={`fa fa-${o.icon}`} aria-hidden="true"></i> {o.text}
+                      </Item>
                     )
                   })}
-              </div>
-            </Wapper>
-          </Transition>
-          {!showAbout && <Loading />}
-        </div>
+              </Info>
+            </Header>
+            {!!section.length &&
+              section.map((o, i) => {
+                const color = newColors[i]
+                return (
+                  <Segment key={i} color={color} title={o.title} content={o.content} />
+                )
+              })}
+          </div>
+        </Wapper>
+        {!showAbout && <Loading />}
+
         {enableGitalk && <div id="gitalk" />}
       </Container>
     )

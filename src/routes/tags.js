@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 
 import { Archive, Quote, Loading } from '../components'
 import { shuffle } from '../utils'
@@ -9,6 +8,7 @@ import { colors } from '../theme'
 import config from '../config'
 
 const { duration, transitions, qoutes } = config
+const { show, hide } = transitions.page
 const newColors = shuffle(colors)
 
 const Container = styled.div`
@@ -19,10 +19,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
+  display: ${props => props.onHide ? 'none' : 'block'};
+  padding: .16rem;
+  border-radius: .03rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const Button = styled.button`
@@ -84,6 +86,7 @@ class Tags extends PureComponent {
     this.props.dispatch({
       type: 'page/queryTags',
     })
+    this.tags = window.$('#tags')
   }
 
   componentWillUnmount() {
@@ -91,7 +94,7 @@ class Tags extends PureComponent {
       type: 'page/reset',
       payload: {
         tags: [],
-        tagsOnHide: false,
+        tagsOnHide: true,
         filterTitle: '',
         filterPost: [],
       },
@@ -99,6 +102,7 @@ class Tags extends PureComponent {
   }
 
   filterPost = tag => {
+    this.tags.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
@@ -121,66 +125,64 @@ class Tags extends PureComponent {
   }
 
   onHide = () => {
-    this.props.dispatch({
-      type: 'page/update',
-      payload: {
-        tagsOnHide: true,
-      },
-    })
+    const { filterPost } = this.props
+    if (!filterPost.length) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          tagsOnHide: true,
+        },
+      })
+    }
   }
 
   render() {
     const { tags, tagsOnHide, filterTitle, filterPost } = this.props
     return (
       <Container>
-        <Transition
-          visible={tags.length > 0 && !filterTitle}
-          animation="drop"
-          duration={duration}
-          onHide={this.onHide}
+        <Wapper
+          id="tags"
+          className={tagsOnHide ? hide : show}
+          onHide={tagsOnHide}
         >
-          <Wapper>
-            <Quote text={qoutes.tags} />
-            <TagList>
-              {
-                tags.map((o, i) => {
-                  const color = newColors[i % newColors.length]
-                  return (
-                    <Tag key={o.id} color={color} onClick={() => this.filterPost(o.name)}>
-                      {o.name}
-                    </Tag>
-                  )
-                })
-              }
-            </TagList>
-          </Wapper>
-        </Transition>
-        <Transition
-          visible={tagsOnHide && !!filterTitle}
-          animation={transitions.page || 'drop'}
-          duration={duration}
-        >
-          <Wapper>
-            <Title>
-              Tag:{' '}
-              <CloseBtn onClick={this.clearFilter}>
-                {filterTitle}
-                <i className="fa fa-times" aria-hidden="true"></i>
-              </CloseBtn>
-            </Title>
-            <ArchiveList>
-              {
-                filterPost.map((o, i) => {
-                  const color = newColors[i]
-                  return (
-                    <Archive key={o.id} color={color} archive={o} />
-                  )
-                })
-              }
-            </ArchiveList>
-          </Wapper>
-        </Transition>
-        {!tags || (tags.length === 0 && <Loading />)}
+          {!!filterPost.length
+            ? <div>
+                <Title>
+                  Tag:{' '}
+                  <CloseBtn onClick={this.clearFilter}>
+                    {filterTitle}
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                  </CloseBtn>
+                </Title>
+                <ArchiveList>
+                  {
+                    filterPost.map((o, i) => {
+                      const color = newColors[i]
+                      return (
+                        <Archive key={o.id} color={color} archive={o} />
+                      )
+                    })
+                  }
+                </ArchiveList>
+              </div>
+            : <div>
+                <Quote text={qoutes.tags} />
+                <TagList>
+                  {
+                    tags.map((o, i) => {
+                      const color = newColors[i % newColors.length]
+                      return (
+                        <Tag key={o.id} color={color} onClick={() => this.filterPost(o.name)}>
+                          {o.name}
+                        </Tag>
+                      )
+                    })
+                  }
+                </TagList>
+              </div>
+          }
+        </Wapper>
+        {tagsOnHide && <Loading />}
       </Container>
     )
   }

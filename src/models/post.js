@@ -38,7 +38,6 @@ export default {
       yield put({ type: 'queryStart' })
       const post = yield call(queryPost, payload)
       yield call(delay, 500)
-
       const { title } = post
 
       // 渲染评论

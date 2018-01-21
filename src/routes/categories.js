@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition } from 'semantic-ui-react'
 
 import { Archive, Quote, Loading } from '../components'
 import { shuffle } from '../utils'
@@ -9,6 +8,7 @@ import { colors } from '../theme'
 import config from '../config'
 
 const { catsInfo, duration, transitions, qoutes } = config
+const { show, hide } = transitions.page
 const newColors = shuffle(colors)
 
 const Container = styled.div`
@@ -19,10 +19,12 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
-  background: rgba(255, 255, 255, 0.6);
+  display: ${props => props.onHide ? 'none' : 'block'};
+  padding: .16rem;
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
+  animation-duration: ${duration / 1000}s;
 `
 
 const CatList = styled.div`
@@ -139,6 +141,7 @@ class Categories extends PureComponent {
     this.props.dispatch({
       type: 'page/queryCats',
     })
+    this.categories = window.$('#categories')
   }
 
   componentWillUnmount() {
@@ -146,7 +149,7 @@ class Categories extends PureComponent {
       type: 'page/reset',
       payload: {
         cats: [],
-        catsOnHide: false,
+        catsOnHide: true,
         filterTitle: '',
         filterPost: [],
       },
@@ -154,6 +157,7 @@ class Categories extends PureComponent {
   }
 
   filterPost = cat => {
+    this.categories.animateCss(hide, this.onHide)
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
@@ -165,6 +169,7 @@ class Categories extends PureComponent {
   }
 
   clearFilter = () => {
+    // this.categories.animateCss(hide)
     this.props.dispatch({
       type: 'page/update',
       payload: {
@@ -176,12 +181,15 @@ class Categories extends PureComponent {
   }
 
   onHide = () => {
-    this.props.dispatch({
-      type: 'page/update',
-      payload: {
-        catsOnHide: true,
-      },
-    })
+    const { filterPost } = this.props
+    if (!filterPost.length) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          catsOnHide: true,
+        },
+      })
+    }
   }
 
   renderCats = cats => {
@@ -215,39 +223,38 @@ class Categories extends PureComponent {
     const { cats, catsOnHide, filterTitle, filterPost } = this.props
     return (
       <Container>
-        <Transition
-          visible={cats.length > 0 && !filterTitle}
-          animation={transitions.drop || 'drop'}
-          duration={duration}
-          onHide={this.onHide}
+        <Wapper
+          id="categories"
+          className={catsOnHide ? hide : show}
+          onHide={catsOnHide}
         >
-          <Wapper>
-            <Quote text={qoutes.categories} />
-            <CatList>{this.renderCats(cats)}</CatList>
-          </Wapper>
-        </Transition>
-        <Transition visible={catsOnHide && !!filterTitle} animation="drop" duration={duration}>
-          <Wapper>
-            <Title>
-              <h2>Category:{' '}</h2>
-              <Button onClick={this.clearFilter}>
-                {filterTitle}
-                <i className="fa fa-times" aria-hidden="true"></i>
-              </Button>
-            </Title>
-            <ArchiveList>
-              {
-                filterPost.map((o, i) => {
-                  const color = newColors[i]
-                  return (
-                    <Archive key={o.id} color={color} archive={o} />
-                  )
-                })
-              }
-            </ArchiveList>
-          </Wapper>
-        </Transition>
-        {!cats || (cats.length === 0 && <Loading />)}
+          {!!filterPost.length
+            ? <div>
+                <Title>
+                  <h2>Category:{' '}</h2>
+                  <Button onClick={this.clearFilter}>
+                    {filterTitle}
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                  </Button>
+                </Title>
+                <ArchiveList>
+                  {
+                    filterPost.map((o, i) => {
+                      const color = newColors[i]
+                      return (
+                        <Archive key={o.id} color={color} archive={o} />
+                      )
+                    })
+                  }
+                </ArchiveList>
+               </div>
+            : <div>
+                <Quote text={qoutes.categories} />
+                <CatList>{this.renderCats(cats)}</CatList>
+              </div>
+          }
+        </Wapper>
+        { catsOnHide && <Loading />}
       </Container>
     )
   }
