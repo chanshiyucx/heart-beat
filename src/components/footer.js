@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import { Link } from 'dva/router'
 import styled, { keyframes } from 'styled-components'
-import { Button, Icon, Transition, Popup } from 'semantic-ui-react'
+import { Transition } from 'semantic-ui-react'
 import SmoothScroll from 'smooth-scroll'
 import marked from 'marked'
 import skPlayer from 'skplayer'
 
 import config from '../config'
-const { duration, playerBg, playerType, playListId, playList } = config
+const { duration, playerBg, playerType, playListId, playList, backstretch } = config
 
 // 节流
 function throttle(fn, wait) {
@@ -154,7 +154,7 @@ const Waifu = styled.div`
     padding: 5px 10px;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 3px 15px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
     font-size: 12px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -176,26 +176,24 @@ const Waifu = styled.div`
       font-size: 16px;
     }
   }
-  // &:hover {
-  //   .waifu-tool {
-  //     display: block;
-  //   }
-  // }
   @media (max-width: 900px) {
     display: none;
   }
 `
 
-const WaifuBtn = styled(Button)`
-  padding: 0 !important;
-  margin: 2px 0 !important;
-  background: transparent !important;
+const WaifuBtn = styled.button`
+  width: .16rem;
+  height: .16rem;
+  color: #444;
+  border: none;
+  outline: 0;
+  background: transparent;
 `
 
 const SkyPlayer = styled.div`
   position: fixed;
   right: 10px;
-  bottom: 350px;
+  bottom: 334px;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -233,35 +231,80 @@ const SkyPlayer = styled.div`
   }
 `
 
-const FooterIcon = styled(Button)`
-  position: fixed;
-  right: 10px;
-  color: rgba(255, 255, 255, 0.8) !important;
-  background: transparent !important;
-  &:hover {
-    color: rgba(0, 0, 0, 0.2) !important;
-  }
+const FooterIcon = styled.button`
+  padding: .1rem;
+  width: .22rem;
+  height: .22rem;
+  outline: 0;
+  box-sizing: content-box;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, .2);
+  background: transparent;
   i {
-    font-size: 26px !important;
+    font-size: .22rem;
+  }
+  &:hover {
+    color: rgba(0, 0, 0, .2);
   }
   @media (max-width: 900px) {
-    display: none !important;
+    display: none;
   }
 `
 
 const ScrollToTop = FooterIcon.extend`
+  position: fixed;
+  right: 10px;
   bottom: 110px;
 `
 
 const PlayBtn = FooterIcon.extend`
-  bottom: 52px;
-  i.icon.loading {
-    animation: icon-loading 4s linear infinite !important;
+  position: fixed;
+  right: 10px;
+  bottom: 58px;
+  i {
+    margin-top: -.03rem;
+    animation: ${props => props.loading ? 'icon-loading 6s linear infinite' : ''};
+  }
+`
+
+const LikeCount = styled.div`
+  position: fixed;
+  right: 10px;
+  bottom: 6px;
+  display: flex;
+  .popup {
+    display: none;
+    position: absolute;
+    right: 56px;
+    padding: .12rem .16rem;
+    width: 160px;
+    text-align: center;
+    border-radius: .03rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    background: rgba(255, 255, 255, .6);
+    &::before {
+      position: absolute;
+      content: '';
+      width: .12rem;
+      height: .12rem;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%) rotate(45deg);
+      background: rgba(255, 255, 255, .8);
+    }
+  }
+  &:hover {
+    .popup {
+      display: block;
+    }
   }
 `
 
 const LikeBtn = FooterIcon.extend`
-  bottom: -4px;
+  i {
+    color: ${props => props.likeChanshiyu ? '#faf' : 'inherit' };
+  }
 `
 
 const InnerWrap = styled.div`
@@ -275,9 +318,12 @@ const ItemList = styled.div`
 `
 
 const Item = styled.div`
-  margin: 0 6px;
+  margin: 0 .06rem;
   display: flex;
   align-items: center;
+  i {
+    margin-right: .03rem;
+  }
 `
 
 class Footer extends PureComponent {
@@ -285,7 +331,10 @@ class Footer extends PureComponent {
     // 加载 waifu!!!
     const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
     this.dressup({ initLoad: true })
-    this.showTips({ forced: true, initTips })
+    this.showTips({ initTips })
+
+    // 动态背景
+    window.$("body").backstretch(backstretch.bgImg, backstretch.bgOptions)
 
     // 播放器
     this.skPlayer = new skPlayer({
@@ -339,6 +388,7 @@ class Footer extends PureComponent {
 
   // 换装
   dressup = ({ changeWaifu, initLoad }) => {
+    if (window.location.href.includes('http://localhost:8000/')) return
     const { waifu } = this.props
     const nextWaifu = changeWaifu ? (waifu === 'tia' ? 'pio' : 'tia') : waifu
     const textures = `https://song.acg.sx/textures/${nextWaifu}?${Date.now()}`
@@ -417,7 +467,7 @@ class Footer extends PureComponent {
   }
 
   // hover 触发对话
-  _handleMouseOver = type => {
+  handleMouseOver = type => {
     const { waifu, likeChanshiyu } = this.props
     let tips = ''
     if (type === 'changeWaifu') {
@@ -478,6 +528,70 @@ class Footer extends PureComponent {
     } = this.props
     return (
       <Container lightbulb={lightbulb} likeChanshiyu={likeChanshiyu}>
+        <Waifu showWaifu={showWaifu} waifu={waifu} showTips={!!tips.length}>
+          <canvas id="live2d" width="280" height="250" className="live2d" />
+          <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }} />
+          <div className="waifu-tool" id="waifu-tool">
+            <Link to="/">
+              <WaifuBtn
+                className="waifu-btn"
+                onMouseOver={() => this.handleMouseOver('backHome')}
+              >
+                <i className="fa fa-university" aria-hidden="true"></i>
+              </WaifuBtn>
+            </Link>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={() => this.dressup({ changeWaifu: true })}
+              onMouseOver={() => this.handleMouseOver('changeWaifu')}
+            >
+              <i className="fa fa-venus-double" aria-hidden="true"></i>
+            </WaifuBtn>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={() => this.dressup({ changeWaifu: false })}
+              onMouseOver={() => this.handleMouseOver('dressup')}
+            >
+              <i className="fa fa-female" aria-hidden="true"></i>
+            </WaifuBtn>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={this.takePhoto}
+              onMouseOver={() => this.handleMouseOver('takePhoto')}
+            >
+              <i className="fa fa-camera-retro" aria-hidden="true"></i>
+            </WaifuBtn>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={() => this.showTips({ forced: true })}
+              onMouseOver={() => this.handleMouseOver('talk')}
+            >
+              <i className="fa fa-commenting" aria-hidden="true"></i>
+            </WaifuBtn>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={this.lightbulb}
+              onMouseOver={() => this.handleMouseOver('lightbulb')}
+            >
+              <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+            </WaifuBtn>
+            <Link to="/post/4">
+              <WaifuBtn
+                className="waifu-btn"
+                onMouseOver={() => this.handleMouseOver('info')}
+              >
+                <i className="fa fa-info-circle" aria-hidden="true"></i>
+              </WaifuBtn>
+            </Link>
+            <WaifuBtn
+              className="waifu-btn"
+              onClick={this.hiddenWaifu}
+              onMouseOver={() => this.handleMouseOver('hidden')}
+            >
+              <i className="fa fa-times-circle" aria-hidden="true"></i>
+            </WaifuBtn>
+          </div>
+        </Waifu>
         <Transition
           visible={!!showPlayer}
           mountOnShow={false}
@@ -488,78 +602,6 @@ class Footer extends PureComponent {
             <div id="skPlayer" />
           </SkyPlayer>
         </Transition>
-        <Waifu showWaifu={showWaifu} waifu={waifu} showTips={!!tips.length}>
-          <canvas id="live2d" width="280" height="250" className="live2d" />
-          <div className="waifu-tips" dangerouslySetInnerHTML={{ __html: marked(tips) }} />
-          <div className="waifu-tool" id="waifu-tool">
-            <Link to="/">
-              <WaifuBtn
-                icon
-                className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('backHome')}
-              >
-                <Icon name="university" />
-              </WaifuBtn>
-            </Link>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={() => this.dressup({ changeWaifu: true })}
-              onMouseOver={() => this._handleMouseOver('changeWaifu')}
-            >
-              <Icon name="lesbian" />
-            </WaifuBtn>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={() => this.dressup({ changeWaifu: false })}
-              onMouseOver={() => this._handleMouseOver('dressup')}
-            >
-              <Icon name="female" />
-            </WaifuBtn>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={this.takePhoto}
-              onMouseOver={() => this._handleMouseOver('takePhoto')}
-            >
-              <Icon name="camera retro" />
-            </WaifuBtn>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={() => this.showTips({ forced: true })}
-              onMouseOver={() => this._handleMouseOver('talk')}
-            >
-              <Icon name="talk" />
-            </WaifuBtn>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={this.lightbulb}
-              onMouseOver={() => this._handleMouseOver('lightbulb')}
-            >
-              <Icon name="lightbulb" />
-            </WaifuBtn>
-            <Link to="/post/4">
-              <WaifuBtn
-                icon
-                className="waifu-btn"
-                onMouseOver={() => this._handleMouseOver('info')}
-              >
-                <Icon name="info circle" />
-              </WaifuBtn>
-            </Link>
-            <WaifuBtn
-              icon
-              className="waifu-btn"
-              onClick={this.hiddenWaifu}
-              onMouseOver={() => this._handleMouseOver('hidden')}
-            >
-              <Icon name="delete" />
-            </WaifuBtn>
-          </div>
-        </Waifu>
         <Transition
           visible={!!showTop}
           mountOnShow={false}
@@ -567,46 +609,39 @@ class Footer extends PureComponent {
           duration={duration}
         >
           <ScrollToTop
-            icon
             onClick={this.scrollToTop}
-            onMouseOver={() => this._handleMouseOver('scroll')}
+            onMouseOver={() => this.handleMouseOver('scroll')}
           >
-            <Icon name="chevron up" bordered circular />
+            <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>
         </Transition>
-        <Popup
-          trigger={
-            <LikeBtn icon onClick={this.likeSite} onMouseOver={() => this._handleMouseOver('like')}>
-              <Icon className="like" name="heart" bordered circular />
-            </LikeBtn>
-          }
-          content={`已有 ${likeTime} 人点赞了哦`}
-          position="left center"
-          style={{
-            borderRadius: '3px',
-            padding: '12px 16px',
-            backgroundColor: 'rgba(255, 255, 255, .6)',
-          }}
-        />
         <PlayBtn
-          icon
           onClick={this.togglePlayer}
-          onMouseOver={() => this._handleMouseOver('music')}
+          onMouseOver={() => this.handleMouseOver('music')}
+          loading={isPlaying}
         >
-          <Icon name="music" bordered circular loading={isPlaying} />
+          <i className="fa fa-music" aria-hidden="true"></i>
         </PlayBtn>
+        <LikeCount>
+          <div className="popup">
+            已有 {likeTime} 人点赞了哦
+          </div>
+          <LikeBtn
+            onClick={this.likeSite}
+            onMouseOver={() => this.handleMouseOver('like')}
+            likeChanshiyu={likeChanshiyu}
+          >
+            <i className="fa fa-heart" aria-hidden="true"></i>
+          </LikeBtn>
+        </LikeCount>
         <InnerWrap>
           <ItemList>
             <Item>
-              <span>
-                <Icon name="copyright" />{' '}
-              </span>
+              <i className="fa fa-copyright" aria-hidden="true"></i>
               <span>2017 - 2018</span>
             </Item>
             <Item>
-              <span>
-                <Icon name="heartbeat" />{' '}
-              </span>
+              <i className="fa fa-heartbeat" aria-hidden="true"></i>
               <span>蝉時雨</span>
             </Item>
           </ItemList>
@@ -618,7 +653,6 @@ class Footer extends PureComponent {
             </Item>|
             <Item>
               <p>
-                {' '}
                 Hosted by <a href="https://pages.coding.me">Coding Pages</a>
               </p>
             </Item>

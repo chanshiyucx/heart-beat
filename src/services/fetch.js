@@ -2,7 +2,7 @@ import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from '../config'
 
-const { repo, shuoshuo, pre, suf, params } = config
+const { posts, pages, pre, suf, params } = config
 const token = `access_token=${pre}${suf}`
 
 // 状态检测
@@ -15,7 +15,7 @@ function checkStatus(response) {
 
 // 文章总数
 export async function queryTotal() {
-  const url = `${repo}/issues${params}&page=1&per_page=1&${token}`
+  const url = `${posts}/issues?${params}&page=1&per_page=1&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const data = await response.json()
@@ -24,7 +24,7 @@ export async function queryTotal() {
 
 // 文章列表
 export async function queryList({ page = 1, pageSize = 4 }) {
-  const url = `${repo}/issues${params}&page=${page}&per_page=${pageSize}&${token}`
+  const url = `${posts}/issues?${params}&page=${page}&per_page=${pageSize}&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const postList = await response.json()
@@ -33,7 +33,7 @@ export async function queryList({ page = 1, pageSize = 4 }) {
 
 // 分类文章
 export async function filterList({ type, filter }) {
-  const url = `${repo}/issues?${type}=${filter}&${token}`
+  const url = `${posts}/issues?${type}=${filter}&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const postList = await response.json()
@@ -42,7 +42,7 @@ export async function filterList({ type, filter }) {
 
 // 单个文章
 export async function queryPost({ number }) {
-  const url = `${repo}/issues/${number}${params}&${token}`
+  const url = `${posts}/issues/${number}?${params}&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const post = await response.json()
@@ -51,7 +51,7 @@ export async function queryPost({ number }) {
 
 // 分类
 export async function queryCats() {
-  const url = `${repo}/milestones?${token}`
+  const url = `${posts}/milestones?${token}`
   const response = await fetch(url)
   checkStatus(response)
   const cats = await response.json()
@@ -60,7 +60,7 @@ export async function queryCats() {
 
 // 标签云
 export async function queryTags() {
-  const url = `${repo}/labels?${token}`
+  const url = `${posts}/labels?${token}`
   const response = await fetch(url)
   checkStatus(response)
   const tags = await response.json()
@@ -69,7 +69,7 @@ export async function queryTags() {
 
 // 说说总数
 export async function queryShuoShuoTotal() {
-  const url = `${shuoshuo}/issues${params}&page=1&per_page=1&${token}`
+  const url = `${pages}/issues?${params}&labels=shuoshuo&page=1&per_page=1&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const data = await response.json()
@@ -78,11 +78,20 @@ export async function queryShuoShuoTotal() {
 
 // 说说
 export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
-  const url = `${shuoshuo}/issues${params}&page=${page}&per_page=${pageSize}&${token}`
+  const url = `${pages}/issues?${params}&labels=shuoshuo&page=${page}&per_page=${pageSize}&${token}`
   const response = await fetch(url)
   checkStatus(response)
   const myShuoShuo = await response.json()
   return myShuoShuo
+}
+
+// 书单 && 友链 && 关于
+export async function queryPage({ type }) {
+  const url = `${pages}/issues?labels=${type}&${token}`
+  const response = await fetch(url)
+  checkStatus(response)
+  const data = await response.json()
+  return data[0]
 }
 
 // 热度

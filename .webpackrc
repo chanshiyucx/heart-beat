@@ -12,6 +12,5 @@
         "dva-hmr"
       ]
     }
-  },
-  "hash": true
+  }
 }

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
-import { Icon } from 'semantic-ui-react'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import Zooming from 'zooming'
@@ -34,24 +33,21 @@ renderer.image = function(href, title, text) {
 }
 
 const Container = styled.div`
+  border-radius: .03rem;
+  overflow: hidden;
 `
 
 const Header = styled.div`
   position: relative;
   overflow: hidden;
-  &:hover {
-    img {
-      transform: scale(1.06);
-    }
-  }
   img {
     display: block;
     width: 100%;
     transition: transform 0.6s ease-out;
   }
-  @media (max-width: 900px) {
-    h2 {
-      font-size: 20px;
+  &:hover {
+    img {
+      transform: scale(1.06);
     }
   }
 `
@@ -59,67 +55,65 @@ const Header = styled.div`
 const Info = styled.div`
   position: absolute;
   bottom: 0;
-  padding: 12px 16px;
+  padding: .12rem .16rem;
   width: 100%;
   color: #eee;
-  background: rgba(0, 0, 0, 0.44);
+  background: rgba(0, 0, 0, .4);
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-weight: normal;
-  font-size: 24px;
+  font-size: .24rem;
   letter-spacing: 1px;
 `
 
 const Meta = styled.div`
-  padding-top: 6px;
-`
-
-const StyledTag = styled.span`
-  padding-right: 4px;
+  padding-top: .06rem;
 `
 
 const Item = styled.span`
-  margin-right: 10px;
+  margin-right: .1rem;
+  i {
+    margin-right: .03rem;
+  }
+`
+
+const Tag = styled.span`
+  padding-right: .06rem;
 `
 
 const Content = styled.div`
-  width: 100%;
   margin: 0 auto;
-  padding: 12px 0 1px;
+  padding-bottom: .12rem;
   user-select: text;
-  font-family: monda;
   text-align: justify;
-  p,
-  ul,
-  ol {
-    margin: 0 16px 16px;
+  p, ul, ol, blockquote {
+    line-height: 1.7;
+    font-size: .14rem;
   }
-  h2,
-  h3 {
-    margin: 0 16px;
-    padding: 8px 0;
-    font-weight: 500;
+  p {
+    margin: .12rem .16rem 0;
+  }
+  ol, ul {
+    margin: .06rem .24rem;
+  }
+  h2, h3 {
+    font-weight: normal;
   }
   h2 {
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    font-size: 22px;
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+    margin: .12rem .16rem;
+    padding: .08rem 0;
+    font-size: .22rem;
+    border-bottom: 1px dashed rgba(0, 0, 0, .2);
   }
   h3 {
-    font-size: 18px;
+    margin: .12rem .16rem -.08rem;
+    font-size: .18rem;
     i {
-      font-size: 16px;
+      font-size: .15rem;
     }
   }
-  p,
-  blockquote,
-  ul,
-  ol {
-    line-height: 1.66;
-    font-size: 15px;
-  }
+
   img {
     width: calc(100% + 32px);
     margin-left: -16px;
@@ -131,7 +125,7 @@ const Content = styled.div`
     color: #f6f;
     word-wrap: break-word;
     border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, .1);
   }
   pre,
   blockquote {
@@ -143,14 +137,11 @@ const Content = styled.div`
     }
   }
   pre {
-    line-height: 1.4;
+    line-height: 1.6;
     code {
       padding: 0;
       color: currentColor;
       background-color: transparent;
-      .hljs-comment {
-        text-shadow: none;
-      }
     }
   }
   blockquote {
@@ -163,22 +154,12 @@ const Content = styled.div`
       border-bottom-color: #faf;
     }
   }
-  ol,
-  ul {
-    padding: 0 26px;
-  }
-  li {
-    list-style: initial;
-  }
   @media (max-width: 900px) {
     pre,
     blockquote {
       overflow-x: scroll;
     }
   }
-`
-
-const Footer = styled.div`
 `
 
 class PostBody extends PureComponent {
@@ -194,7 +175,6 @@ class PostBody extends PureComponent {
     const cover = result[0]
     const content = body.split(`${cover})`)[1]
     const date = created_at.slice(0, 10)
-
     return (
       <Container>
         <Header>
@@ -203,21 +183,21 @@ class PostBody extends PureComponent {
             <Title>{title}</Title>
             <Meta>
               <Item>
-                <Icon name="time" />
+                <i className="fa fa-clock-o" aria-hidden="true"></i>
                 {date}
               </Item>
               <Item>
-                <Icon name="eye" />
+                <i className="fa fa-eye" aria-hidden="true"></i>
                 热度{time}℃
               </Item>
               <Item>
-                <Icon name="bookmark" />
+                <i className="fa fa-bookmark" aria-hidden="true"></i>
                 {milestone && milestone.title ? milestone.title : '未分类'}
               </Item>
               <Item>
-                <Icon name="tags" />
+                <i className="fa fa-tags" aria-hidden="true"></i>
                 {labels.map(o => {
-                  return <StyledTag key={o.id}>{o.name}</StyledTag>
+                  return <Tag key={o.id}>{o.name}</Tag>
                 })}
               </Item>
             </Meta>

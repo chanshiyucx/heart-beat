@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Button } from 'semantic-ui-react'
+import { Transition } from 'semantic-ui-react'
 
-import ArchiveList from '../components/archiveList'
-import Quote from '../components/quote'
-import Loading from '../components/loading'
-
+import { Archive, Quote, Pagination, Loading } from '../components'
+import { shuffle } from '../utils'
+import { colors } from '../theme'
 import config from '../config'
+
 const { duration, transitions, qoutes } = config
+const newColors = shuffle(colors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -18,20 +19,19 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  background: rgba(255, 255, 255, 0.6);
+  padding: .16rem;
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
 `
 
-const Pagination = styled.div`
-  margin-top: 10px;
-  text-align: center;
-  button {
-    background: rgba(255, 255, 255, 0.6) !important;
-    &:hover {
-      box-shadow: 0 0 40px #999 inset !important;
-    }
+const ArchiveList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 700px) {
+    justify-content: space-around;
   }
 `
 
@@ -97,18 +97,17 @@ class Archives extends PureComponent {
         >
           <Wapper>
             <Quote text={qoutes.archives} />
-            <ArchiveList archives={archives} />
-            <Pagination>
-              <Button.Group>
-                <Button disabled={page <= 1} onClick={this.prev}>
-                  上一页
-                </Button>
-                <Button.Or text={page} />
-                <Button disabled={page >= maxPage} onClick={this.next}>
-                  下一页
-                </Button>
-              </Button.Group>
-            </Pagination>
+            <ArchiveList>
+              {
+                archives.map((o, i) => {
+                  const color = newColors[i]
+                  return (
+                    <Archive key={o.id} color={color} archive={o} />
+                  )
+                })
+              }
+            </ArchiveList>
+            <Pagination mexPage={maxPage} page={page} prev={this.prev} next={this.next} />
           </Wapper>
         </Transition>
         {(!archives || archives.length === 0 || archivesOnHide) && <Loading />}

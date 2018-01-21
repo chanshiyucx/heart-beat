@@ -1,16 +1,16 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Button, Icon, Transition } from 'semantic-ui-react'
-import PostCard from '../components/postCard'
-import Loading from '../components/loading'
+import { Transition } from 'semantic-ui-react'
 
+import { PostCard, Loading } from '../components'
 import config from '../config'
+
 const { duration, transitions } = config
 
 const Container = styled.div`
   position: relative;
-  min-height: 780px;
+  min-height: 784px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,65 +27,67 @@ const PostList = styled.div`
   width: 100%;
 `
 
-const StyledButton = styled(Button)`
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  border: none;
+  outline: 0;
   position: absolute;
-  margin: 0 !important;
-  width: 150px;
-  background: transparent !important;
+  margin: 0;
+  width: 1.5rem;
+  background: transparent;
+  i {
+    color: rgba(255, 255, 255, .6);
+    font-size: 1.2rem;
+  }
   @media (max-width: 1200px) {
-    display: none !important;
+    display: none;
   }
 `
 
-const StyledLeftButton = StyledButton.extend`
+const PreBtn = Button.extend`
   top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
 `
 
-const StyledRightButton = StyledButton.extend`
+const NextBtn = Button.extend`
   top: 50%;
   right: 0;
   transform: translate(100%, -50%);
 `
 
-const StyledMobileButton = StyledButton.extend`
+const MobileBtn = Button.extend`
   position: absolute;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 80px !important;
-  background: transparent !important;
-  display: none !important;
+  display: none;
   bottom: 0;
   transform: translate(0, 100%);
-  @media (max-width: 1200px) {
-    display: inline-block !important;
+  i {
+    font-size: .8rem;
   }
-`
-
-const StyledIcon = styled(Icon)`
-  height: 100% !important;
-  color: rgba(255, 255, 255, 0.8);
+  @media (max-width: 1200px) {
+    display: inline-block;
+  }
 `
 
 class Home extends PureComponent {
   componentDidMount() {
     // 获取文章总数
     this.props.dispatch({
-      type: 'postList/queryTotal',
+      type: 'home/queryTotal',
     })
   }
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'postList/reset',
+      type: 'home/reset',
     })
   }
 
   // 前一页
   prev = () => {
     this.props.dispatch({
-      type: 'postList/queryList',
+      type: 'home/queryList',
       payload: {
         queryType: 'prev',
       },
@@ -95,7 +97,7 @@ class Home extends PureComponent {
   // 后一页
   next = () => {
     this.props.dispatch({
-      type: 'postList/queryList',
+      type: 'home/queryList',
       payload: {
         queryType: 'next',
       },
@@ -103,7 +105,7 @@ class Home extends PureComponent {
   }
 
   // hover 触发对话
-  _handleMouseOver = ({ type, title }) => {
+  handleMouseOver = ({ type, title }) => {
     const prevTips = "要到上一页看看吗？(●'◡'●)"
     const nextTips = "要到下一页看看吗？(●'◡'●)"
     let tips = ''
@@ -123,7 +125,7 @@ class Home extends PureComponent {
   // 动画结束
   onHide = () => {
     this.props.dispatch({
-      type: 'postList/update',
+      type: 'home/update',
       payload: {
         onHide: true,
       },
@@ -140,7 +142,7 @@ class Home extends PureComponent {
             {...o}
             time={times ? times[i] : 1}
             gotoCat={this.gotoCat}
-            _handleMouseOver={this._handleMouseOver}
+            handleMouseOver={this.handleMouseOver}
           />
         )
       })
@@ -152,20 +154,19 @@ class Home extends PureComponent {
     const { loading, onHide } = this.props
     return (
       <Container>
-        <StyledLeftButton
-          icon
+        <PreBtn
           onClick={this.prev}
-          onMouseOver={() => this._handleMouseOver({ type: 'prev' })}
+          onMouseOver={() => this.handleMouseOver({ type: 'prev' })}
         >
-          <StyledIcon name="angle double left" size="massive" />
-        </StyledLeftButton>
-        <StyledRightButton
-          icon
+          <i className="fa fa-angle-double-left" aria-hidden="true"></i>
+        </PreBtn>
+
+        <NextBtn
           onClick={this.next}
-          onMouseOver={() => this._handleMouseOver({ type: 'next' })}
-        >
-          <StyledIcon name="angle double right" size="massive" />
-        </StyledRightButton>
+          onMouseOver={() => this.handleMouseOver({ type: 'next' })}>
+          <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+        </NextBtn>
+
         <Transition
           visible={!loading}
           animation={transitions.home || 'scale'}
@@ -177,12 +178,12 @@ class Home extends PureComponent {
           </div>
         </Transition>
         {loading && onHide && <Loading />}
-        <StyledMobileButton icon onClick={this.next}>
-          <StyledIcon name="angle double down" />
-        </StyledMobileButton>
+        <MobileBtn onClick={this.next}>
+          <i className="fa fa-angle-double-down" aria-hidden="true"></i>
+        </MobileBtn>
       </Container>
     )
   }
 }
 
-export default connect(({ postList }) => ({ ...postList }))(Home)
+export default connect(({ home }) => ({ ...home }))(Home)

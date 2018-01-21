@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Button, Icon } from 'semantic-ui-react'
+import { Transition } from 'semantic-ui-react'
 
-import ArchiveList from '../components/archiveList'
-import Quote from '../components/quote'
-import Loading from '../components/loading'
-
+import { Archive, Quote, Loading } from '../components'
+import { shuffle } from '../utils'
+import { colors } from '../theme'
 import config from '../config'
+
 const { catsInfo, duration, transitions, qoutes } = config
+const newColors = shuffle(colors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -93,14 +94,43 @@ const CatContent = styled.div`
   padding: 10px 16px 12px;
 `
 
-const StyledButton = styled(Button)`
-  margin: 0 4px 10px !important;
-  padding: 8px 12px;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.1) !important;
-  color: ${props => '#' + props.bg + '!important' || '#666'};
+const ArchiveList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 700px) {
+    justify-content: space-around;
+  }
+`
+
+const Title = styled.div`
+  h2 {
+    display: inline-block;
+    margin-right: .12rem;
+    font-size: .2rem;
+    font-weight: 700;
+  }
+`
+
+const Button = styled.button`
+  margin: 0 .04rem .1rem;
+  padding: .08rem .12rem;
+  font-size: .14rem;
+  text-align: center;
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  border: none;
+  border-radius: .03rem;
+  background: rgba(0, 0, 0, .12);
+  color: ${props => props.color || '#666'};
+  i {
+    color: #f6f;
+    margin-left: .06rem;
+  }
   &:hover {
-    background: rgba(0, 0, 0, 0.2) !important;
+    background: rgba(0, 0, 0, .2);
   }
 `
 
@@ -198,14 +228,23 @@ class Categories extends PureComponent {
         </Transition>
         <Transition visible={catsOnHide && !!filterTitle} animation="drop" duration={duration}>
           <Wapper>
-            <h2>
-              Category:{' '}
-              <StyledButton icon labelPosition="right" onClick={this.clearFilter}>
+            <Title>
+              <h2>Category:{' '}</h2>
+              <Button onClick={this.clearFilter}>
                 {filterTitle}
-                <Icon name="delete" color="red" />
-              </StyledButton>
-            </h2>
-            <ArchiveList archives={filterPost} />
+                <i className="fa fa-times" aria-hidden="true"></i>
+              </Button>
+            </Title>
+            <ArchiveList>
+              {
+                filterPost.map((o, i) => {
+                  const color = newColors[i]
+                  return (
+                    <Archive key={o.id} color={color} archive={o} />
+                  )
+                })
+              }
+            </ArchiveList>
           </Wapper>
         </Transition>
         {!cats || (cats.length === 0 && <Loading />)}

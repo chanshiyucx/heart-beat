@@ -1,32 +1,17 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Segment, Label, Button } from 'semantic-ui-react'
-import marked from 'marked'
+import { Transition } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
-import Quote from '../components/quote'
-import Loading from '../components/loading'
-
+import { Segment, Quote, Pagination, Loading } from '../components'
+import { shuffle } from '../utils'
+import { colors } from '../theme'
 import config from '../config'
+
 const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions } = config
 const { enableGitalk } = shuoshuoOptions
-
-const colors = [
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'teal',
-  'blue',
-  'violet',
-  'purple',
-  'pink',
-  'brown',
-  'grey',
-  'black',
-]
+const newColors = shuffle(colors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -36,44 +21,10 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  padding: 16px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  background: rgba(255, 255, 255, 0.6);
-`
-
-const StyledSegment = styled(Segment)`
-  background: rgba(255, 255, 255, 0.4) !important;
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
-    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
-    transform: translateY(-4px);
-  }
-`
-
-const ShuoShuoItem = styled.div`
-  margin-top: 12px;
-  p,
-  ul,
-  ol {
-    line-height: 1.66;
-  }
-  ul,
-  ol {
-    margin: 6px 32px;
-  }
-`
-
-const Pagination = styled.div`
-  margin-top: 10px;
-  text-align: center;
-  button {
-    background: rgba(255, 255, 255, 0.6) !important;
-    &:hover {
-      box-shadow: 0 0 40px #999 inset !important;
-    }
-  }
+  padding: .16rem;
+  border-radius: .03rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  background: rgba(255, 255, 255, .6);
 `
 
 class ShuoShuo extends PureComponent {
@@ -135,24 +86,6 @@ class ShuoShuo extends PureComponent {
     })
   }
 
-  renderShuoShuo = myShuoShuo => {
-    if (myShuoShuo && myShuoShuo.length > 0) {
-      const shuoshuoList = myShuoShuo.map(o => {
-        const date = o.created_at.slice(0, 10)
-        const color = colors[Math.floor(Math.random() * colors.length)]
-        return (
-          <StyledSegment key={o.id} raised color={color}>
-            <Label as="a" color={color} ribbon>
-              {date}
-            </Label>
-            <ShuoShuoItem dangerouslySetInnerHTML={{ __html: marked(o.body) }} />
-          </StyledSegment>
-        )
-      })
-      return shuoshuoList
-    }
-  }
-
   render() {
     const {
       shuoshuoOnHide,
@@ -174,18 +107,18 @@ class ShuoShuo extends PureComponent {
           >
             <Wapper>
               <Quote text={qoutes.shuoshuo} />
-              <div>{this.renderShuoShuo(myShuoShuo)}</div>
-              <Pagination>
-                <Button.Group>
-                  <Button disabled={shuoshuoPage <= 1} onClick={this.prev}>
-                    上一页
-                  </Button>
-                  <Button.Or text={shuoshuoPage} />
-                  <Button disabled={shuoshuoPage >= maxPage} onClick={this.next}>
-                    下一页
-                  </Button>
-                </Button.Group>
-              </Pagination>
+              <div>
+                {
+                  myShuoShuo.map((o, i) => {
+                    const date = o.created_at.slice(0, 10)
+                    const color = newColors[i]
+                    return (
+                      <Segment key={o.id} color={color} title={date} content={o.body} />
+                    )
+                  })
+                }
+              </div>
+              <Pagination mexPage={maxPage} page={shuoshuoPage} prev={this.prev} next={this.next} />
             </Wapper>
           </Transition>
           {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && <Loading />}

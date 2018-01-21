@@ -11,7 +11,6 @@ export default {
     loading: true,
     post: {},
     time: 1,
-    showReward: false,
   },
   reducers: {
     queryStart(state, { payload }) {

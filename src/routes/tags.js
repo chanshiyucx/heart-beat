@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Button, Icon } from 'semantic-ui-react'
+import { Transition } from 'semantic-ui-react'
 
-import ArchiveList from '../components/archiveList'
-import Quote from '../components/quote'
-import Loading from '../components/loading'
-
+import { Archive, Quote, Loading } from '../components'
+import { shuffle } from '../utils'
+import { colors } from '../theme'
 import config from '../config'
+
 const { duration, transitions, qoutes } = config
+const newColors = shuffle(colors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -20,8 +21,24 @@ const Container = styled.div`
 const Wapper = styled.div`
   padding: 16px;
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, 0.6);
+`
+
+const Button = styled.button`
+  margin: 0 .04rem .1rem;
+  padding: .08rem .12rem;
+  font-size: .14rem;
+  text-align: center;
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  border: none;
+  border-radius: .03rem;
+  background: rgba(0, 0, 0, .12);
+  &:hover {
+    background: rgba(0, 0, 0, .2);
+  }
 `
 
 const TagList = styled.div`
@@ -31,14 +48,34 @@ const TagList = styled.div`
   align-items: center;
 `
 
-const Tag = styled(Button)`
-  margin: 0 4px 10px !important;
-  padding: 8px 12px;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.1) !important;
-  color: ${props => '#' + props.bg + '!important' || '#666'};
-  &:hover {
-    background: rgba(0, 0, 0, 0.2) !important;
+const Tag = Button.extend`
+  color: ${props => props.color || '#fff'};
+`
+
+const CloseBtn = Button.extend`
+  color: ${props => props.color || '#666'};
+  i {
+    color: #f6f;
+    margin-left: .06rem;
+  }
+`
+
+const Title = styled.div`
+  h2 {
+    display: inline-block;
+    margin-right: .12rem;
+    font-size: .2rem;
+    font-weight: 700;;
+  }
+`
+
+const ArchiveList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 700px) {
+    justify-content: space-around;
   }
 `
 
@@ -92,19 +129,6 @@ class Tags extends PureComponent {
     })
   }
 
-  renderTags = tags => {
-    if (tags && tags.length > 0) {
-      const tagList = tags.map(o => {
-        return (
-          <Tag key={o.id} bg={o.color} onClick={() => this.filterPost(o.name)}>
-            {o.name}
-          </Tag>
-        )
-      })
-      return tagList
-    }
-  }
-
   render() {
     const { tags, tagsOnHide, filterTitle, filterPost } = this.props
     return (
@@ -117,7 +141,18 @@ class Tags extends PureComponent {
         >
           <Wapper>
             <Quote text={qoutes.tags} />
-            <TagList>{this.renderTags(tags)}</TagList>
+            <TagList>
+              {
+                tags.map((o, i) => {
+                  const color = newColors[i % newColors.length]
+                  return (
+                    <Tag key={o.id} color={color} onClick={() => this.filterPost(o.name)}>
+                      {o.name}
+                    </Tag>
+                  )
+                })
+              }
+            </TagList>
           </Wapper>
         </Transition>
         <Transition
@@ -126,14 +161,23 @@ class Tags extends PureComponent {
           duration={duration}
         >
           <Wapper>
-            <h2>
+            <Title>
               Tag:{' '}
-              <Tag icon labelPosition="right" onClick={this.clearFilter}>
+              <CloseBtn onClick={this.clearFilter}>
                 {filterTitle}
-                <Icon name="delete" color="red" />
-              </Tag>
-            </h2>
-            <ArchiveList archives={filterPost} />
+                <i className="fa fa-times" aria-hidden="true"></i>
+              </CloseBtn>
+            </Title>
+            <ArchiveList>
+              {
+                filterPost.map((o, i) => {
+                  const color = newColors[i]
+                  return (
+                    <Archive key={o.id} color={color} archive={o} />
+                  )
+                })
+              }
+            </ArchiveList>
           </Wapper>
         </Transition>
         {!tags || (tags.length === 0 && <Loading />)}

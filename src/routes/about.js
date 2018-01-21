@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import { Transition, Segment, Label, Icon } from 'semantic-ui-react'
-import marked from 'marked'
+import { Transition } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
-import Quote from '../components/quote'
-import Loading from '../components/loading'
+
+import { Segment, Quote, Loading } from '../components'
+import { colors } from '../theme'
+import { shuffle } from '../utils'
 import config from '../config'
 
 const { gitalkOptions, duration, transitions, qoutes, aboutOptions } = config
-const { avatar, info, enableGitalk, section } = aboutOptions
+const { avatar, info, enableGitalk } = aboutOptions
+const newColors = shuffle(colors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -23,13 +25,6 @@ const Wapper = styled.div`
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
   background: rgba(255, 255, 255, 0.6);
-`
-
-const Content = styled.div`
-  p {
-    margin: 12px 0;
-    line-height: 1.66;
-  }
 `
 
 const Header = styled.div`
@@ -57,29 +52,20 @@ const Info = styled.div`
 `
 
 const Item = styled.div`
-  margin: 4px 10px 4px 0;
-`
-
-const Section = styled(Segment)`
-  background: rgba(255, 255, 255, 0.4) !important;
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
-    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
-    transform: translateY(-4px);
-  }
-  p:last-child {
-    margin-bottom: 0;
+  margin: .03rem;
+  i {
+    margin-right: .03rem;
+    width: .16rem;
   }
 `
 
 class About extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'page/showPage',
+      type: 'page/queryPage',
       payload: {
-        showAbout: true,
-      },
+        type: 'about',
+      }
     })
 
     if (enableGitalk) {
@@ -96,13 +82,22 @@ class About extends PureComponent {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        showAbout: false,
+        about: {},
       },
     })
   }
 
   render() {
-    const { showAbout } = this.props
+    const { about } = this.props
+    const showAbout = !!Object.keys(about).length
+    const section = showAbout && about.body &&
+                    about.body.split('## ').filter((o) => o.length > 0).map((o) => {
+                      const title = o.match(/.+?\r\n/)[0]
+                      return {
+                        title,
+                        content: o.slice(title.length)
+                      }
+                    })
     return (
       <Container>
         <div>
@@ -113,7 +108,7 @@ class About extends PureComponent {
           >
             <Wapper>
               <Quote text={qoutes.about} />
-              <Content>
+              <div>
                 <Header>
                   <Avatar alt="" src={avatar} />
                   <Info>
@@ -121,28 +116,20 @@ class About extends PureComponent {
                       info.map((o, i) => {
                         return (
                           <Item key={i}>
-                            <Icon name={o.icon} /> {o.text}
+                            <i className={`fa fa-${o.icon}`} aria-hidden="true"></i> {o.text}
                           </Item>
                         )
                       })}
                   </Info>
                 </Header>
-                {section.length > 0 &&
+                {!!section.length &&
                   section.map((o, i) => {
+                    const color = newColors[i]
                     return (
-                      <Section key={i} raised color={o.color}>
-                        <Label as="a" color={o.color} ribbon>
-                          {o.title}
-                        </Label>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: marked(o.content),
-                          }}
-                        />
-                      </Section>
+                      <Segment key={i} color={color} title={o.title} content={o.content} />
                     )
                   })}
-              </Content>
+              </div>
             </Wapper>
           </Transition>
           {!showAbout && <Loading />}

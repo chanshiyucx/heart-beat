@@ -4,12 +4,11 @@ import styled from 'styled-components'
 import { Transition, Reveal } from 'semantic-ui-react'
 import Gitalk from 'gitalk'
 
-import Quote from '../components/quote'
-import Loading from '../components/loading'
-
+import { Quote, Loading } from '../components'
 import config from '../config'
+
 const { gitalkOptions, duration, transitions, qoutes, friendsOptions } = config
-const { enableGitalk, friends } = friendsOptions
+const { enableGitalk } = friendsOptions
 
 const Container = styled.div`
   margin: 0 auto;
@@ -86,9 +85,9 @@ const Site = styled.span`
 class Friends extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
-      type: 'page/showPage',
+      type: 'page/queryPage',
       payload: {
-        showFriends: true,
+        type: 'friends',
       },
     })
 
@@ -106,38 +105,27 @@ class Friends extends PureComponent {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        showFriends: false,
+        friends: {},
       },
     })
   }
 
-  renderFriends = () => {
-    if (friends && friends.length > 0) {
-      const friendList = friends.map((o, i) => {
-        return (
-          <Friend key={i} href={o.link} target="_blank">
-            <Reveal animated="move up">
-              <Reveal.Content hidden>
-                <Cover className="cover" alt="" src={o.cover} />
-              </Reveal.Content>
-              <Reveal.Content visible>
-                <Content>
-                  <Avatar alt="" src={o.avatar} />
-                  <Site>{o.name}</Site>
-                </Content>
-              </Reveal.Content>
-            </Reveal>
-          </Friend>
-        )
-      })
-      return friendList
-    }
-  }
-
   render() {
-    const { showFriends } = this.props
+    const { friends } = this.props
+    const showFriends = !!Object.keys(friends).length
+    const section = showFriends && friends.body &&
+                    friends.body.split('## ').filter((o) => o.length > 0).map((o) => {
+                      const content = o.split('\r\n').filter((o) => o.length > 0)
+                      return {
+                        name: content[0],
+                        link: content[1].split('link:')[1],
+                        cover: content[2].split('cover:')[1],
+                        avatar: content[3].split('avatar:')[1],
+                      }
+                    })
     return (
       <Container>
+      {
         <div>
           <Transition
             visible={showFriends}
@@ -146,11 +134,31 @@ class Friends extends PureComponent {
           >
             <Wapper>
               <Quote text={qoutes.friends} />
-              <FriendList>{this.renderFriends()}</FriendList>
+              <FriendList>
+                {!!section.length &&
+                  section.map((o, i) => {
+                    return (
+                      <Friend key={i} href={o.link} target="_blank">
+                        <Reveal animated="move up">
+                          <Reveal.Content hidden>
+                            <Cover className="cover" alt="" src={o.cover} />
+                          </Reveal.Content>
+                          <Reveal.Content visible>
+                            <Content>
+                              <Avatar alt="" src={o.avatar} />
+                              <Site>{o.name}</Site>
+                            </Content>
+                          </Reveal.Content>
+                        </Reveal>
+                      </Friend>
+                    )
+                  })
+                }
+              </FriendList>
             </Wapper>
           </Transition>
           {!showFriends && <Loading />}
-        </div>
+        </div>}
         {enableGitalk && <div id="gitalk" />}
       </Container>
     )

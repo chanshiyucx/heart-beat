@@ -6,6 +6,7 @@ import {
   filterList,
   queryShuoShuoTotal,
   queryShuoShuo,
+  queryPage,
 } from '../services/fetch'
 import { delay } from '../utils'
 import config from '../config'
@@ -36,10 +37,10 @@ export default {
     shuoshuoTotal: 0,
     shuoshuoPage: 0,
     shuoshuoPageSize: 6,
-    // 友链 & 关于 & 书单
-    showFriends: false,
-    showAbout: false,
-    showBook: false,
+    // 书单 && 友链 && 关于
+    books: {},
+    friends: {},
+    about: {},
   },
   reducers: {
     queryStart(state, { payload }) {
@@ -132,9 +133,13 @@ export default {
       })
     },
 
-    *showPage({ payload }, { call, put }) {
-      yield call(delay, minDelay)
-      yield put({ type: 'update', payload })
+    *queryPage({ payload }, { call, put }) {
+      const startTime = new Date()
+      const { type } = payload
+      const data = yield call(queryPage, payload)
+      const delayTime = new Date() - startTime
+      if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
+      yield put({ type: 'update', payload: { [type]: data } })
     },
 
     *filterPost({ payload }, { call, put }) {

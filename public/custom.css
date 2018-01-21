@@ -4,11 +4,21 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: PT-Serif;
+  src: url('/fonts/PT-Serif.ttf');
+  font-weight: bold;
+}
+
+html {
+  font-size:625%;
+}
+
 #root {
   height: 100%;
 }
 
-body, p, blockquote, h1, h2, h3, ul, ol {
+body, p, blockquote, h1, h2, h3, ul, ol, button {
   margin: 0;
   padding: 0;
 }
@@ -18,11 +28,11 @@ body {
   user-select: none;
   text-shadow: 0 0 1px rgba(0, 0, 0, .2);
   scroll-behavior: smooth;
-  font-family: 'Monda'!important;
+  font-family: 'PT-Serif';
   cursor: url('../img/cursor.cur'), auto!important;
 }
 
-a, .button, .gitter-open-chat-button {
+a, button {
   cursor: url('./img/cursor_link.cur'), auto!important;
 }
 
@@ -37,26 +47,14 @@ body::before {
   background: rgba(255, 255, 255, .5);
 }
 
-/* ul, ol, li {
-  list-style: none;
-} */
-
-h1, h2, h3 {
-  font-family: 'Monda', 'PT Mono';
-}
-
-code {
-  font-family: 'PT Mono', monospace, "PingFang SC", "Microsoft YaHei", sans-serif;
-}
-
-a, ol {
-  font-family: 'Monda';
+h1, h2, h3, code, a {
+  font-family: 'PT-Serif', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 a {
   color: #666;
   text-decoration: none;
-  transition: all 0.4s ease!important;
+  transition: all 0.25s ease;
 }
 
 a:hover {
@@ -64,7 +62,6 @@ a:hover {
 }
 
 /* gitalk */
-
 .gt-comment-content, .gt-header-textarea, .gt-container .gt-avatar img {
   background: rgba(255, 255, 255, .6)!important;
   border-radius: 3px;
@@ -122,14 +119,7 @@ a:hover {
   transform: translateY(-4px);
 }
 
-@media (max-width: 900px) {
-  .gitter-open-chat-button, #live2d, #canvas {
-    display: none;
-  }
-}
-
 /* 隐藏滚动条 */
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -142,4 +132,11 @@ a:hover {
 ::-moz-selection {
   background: #999;
   color: #fff;
+}
+
+/* 移动端隐藏 waifu */
+@media (max-width: 900px) {
+  #live2d {
+    display: none;
+  }
 }

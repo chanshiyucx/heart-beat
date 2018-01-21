@@ -5,7 +5,7 @@ import config from '../config'
 const { minDelay } = config
 
 export default {
-  namespace: 'postList',
+  namespace: 'home',
   state: {
     onHide: true,
     loading: true,
@@ -47,7 +47,7 @@ export default {
     *queryList({ payload }, { select, call, put }) {
       yield put({ type: 'queryStart' })
       const startTime = new Date()
-      const data = yield select(state => state.postList)
+      const data = yield select(state => state.home)
       const { total, page, pageSize } = data
       const maxPage = Math.ceil(total / pageSize)
       const queryType = payload ? payload.queryType : ''
