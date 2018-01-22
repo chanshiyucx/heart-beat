@@ -14,7 +14,7 @@ html {
   font-size:625%;
 }
 
-#root {
+html, body, #root {
   height: 100%;
 }
 

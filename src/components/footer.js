@@ -31,6 +31,24 @@ const modelObj = JSON.parse(JSON.stringify(model, null, 2))
 // 滚动
 const scroll = new SmoothScroll()
 
+// 动画
+const rotate = keyframes`{
+  0% {transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }
+}`
+
+const degs = [-.5, .5, 1.5]
+const trans = [.5, 1.5, 2.5, -1.5, -.5]
+let shakeStr = ''
+for (let i = 0; i <= 100; i = i + 2) {
+  const deg = degs[Math.floor(Math.random() * 3)]
+  const x = trans[Math.floor(Math.random() * 5)]
+  const y = trans[Math.floor(Math.random() * 5)]
+  shakeStr += `${i}% {transform: translate(${x}px, ${y}px) rotate(${deg}deg);}`
+}
+const shake = keyframes`${shakeStr}`
+
+// 提示
 const hoverTips = {
   backHome: '回首页看看吧 o(*￣▽￣*)ブ',
   dressup: "要看看我的新衣服嘛 (●'◡'●)",
@@ -74,59 +92,6 @@ const Container = styled.div`
   }
 `
 
-const shake = keyframes`
-  2% {transform: translate(0.5px, -1.5px) rotate(-0.5deg);}
-  4% {transform: translate(0.5px, 1.5px) rotate(1.5deg);}
-  6% {transform: translate(1.5px, 1.5px) rotate(1.5deg);}
-  8% {transform: translate(2.5px, 1.5px) rotate(0.5deg);}
-  10% {transform: translate(0.5px, 2.5px) rotate(0.5deg);}
-  12% {transform: translate(1.5px, 1.5px) rotate(0.5deg);}
-  14% {transform: translate(0.5px, 0.5px) rotate(0.5deg);}
-  16% {transform: translate(-1.5px, -0.5px) rotate(1.5deg);}
-  18% {transform: translate(0.5px, 0.5px) rotate(1.5deg);}
-  20% {transform: translate(2.5px, 2.5px) rotate(1.5deg);}
-  22% {transform: translate(0.5px, -1.5px) rotate(1.5deg);}
-  24% {transform: translate(-1.5px, 1.5px) rotate(-0.5deg);}
-  26% {transform: translate(1.5px, 0.5px) rotate(1.5deg);}
-  28% {transform: translate(-0.5px, -0.5px) rotate(-0.5deg);}
-  30% {transform: translate(1.5px, -0.5px) rotate(-0.5deg);}
-  32% {transform: translate(2.5px, -1.5px) rotate(1.5deg);}
-  34% {transform: translate(2.5px, 2.5px) rotate(-0.5deg);}
-  36% {transform: translate(0.5px, -1.5px) rotate(0.5deg);}
-  38% {transform: translate(2.5px, -0.5px) rotate(-0.5deg);}
-  40% {transform: translate(-0.5px, 2.5px) rotate(0.5deg);}
-  42% {transform: translate(-1.5px, 2.5px) rotate(0.5deg);}
-  44% {transform: translate(-1.5px, 1.5px) rotate(0.5deg);}
-  46% {transform: translate(1.5px, -0.5px) rotate(-0.5deg);}
-  48% {transform: translate(2.5px, -0.5px) rotate(0.5deg);}
-  50% {transform: translate(-1.5px, 1.5px) rotate(0.5deg);}
-  52% {transform: translate(-0.5px, 1.5px) rotate(0.5deg);}
-  54% {transform: translate(-1.5px, 1.5px) rotate(0.5deg);}
-  56% {transform: translate(0.5px, 2.5px) rotate(1.5deg);}
-  58% {transform: translate(2.5px, 2.5px) rotate(0.5deg);}
-  60% {transform: translate(2.5px, -1.5px) rotate(1.5deg);}
-  62% {transform: translate(-1.5px, 0.5px) rotate(1.5deg);}
-  64% {transform: translate(-1.5px, 1.5px) rotate(1.5deg);}
-  66% {transform: translate(0.5px, 2.5px) rotate(1.5deg);}
-  68% {transform: translate(2.5px, -1.5px) rotate(1.5deg);}
-  70% {transform: translate(2.5px, 2.5px) rotate(0.5deg);}
-  72% {transform: translate(-0.5px, -1.5px) rotate(1.5deg);}
-  74% {transform: translate(-1.5px, 2.5px) rotate(1.5deg);}
-  76% {transform: translate(-1.5px, 2.5px) rotate(1.5deg);}
-  78% {transform: translate(-1.5px, 2.5px) rotate(0.5deg);}
-  80% {transform: translate(-1.5px, 0.5px) rotate(-0.5deg);}
-  82% {transform: translate(-1.5px, 0.5px) rotate(-0.5deg);}
-  84% {transform: translate(-0.5px, 0.5px) rotate(1.5deg);}
-  86% {transform: translate(2.5px, 1.5px) rotate(0.5deg);}
-  88% {transform: translate(-1.5px, 0.5px) rotate(1.5deg);}
-  90% {transform: translate(-1.5px, -0.5px) rotate(-0.5deg);}
-  92% {transform: translate(-1.5px, -1.5px) rotate(1.5deg);}
-  94% {transform: translate(0.5px, 0.5px) rotate(-0.5deg);}
-  96% {transform: translate(2.5px, -0.5px) rotate(-0.5deg);}
-  98% {transform: translate(-1.5px, -1.5px) rotate(-0.5deg);}
-  0%, 100% { transform: translate(0, 0) rotate(0);}
-`
-
 const Waifu = styled.div`
   display: ${props => (props.showWaifu ? 'block' : 'none')};
   position: fixed;
@@ -158,7 +123,6 @@ const Waifu = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     position: absolute;
-    animation-delay: 5s;
     animation-duration: 50s;
     animation-iteration-count: infinite;
     animation-name: ${shake};
@@ -192,9 +156,10 @@ const WaifuBtn = styled.button`
 
 const SkyPlayer = styled.div`
   position: fixed;
-  right: ${props => props.onShow ? '10px' : '-600px'};
+  right: 10px;
   bottom: 334px;
-  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
   #skPlayer, .skPlayer-list {
     background-color: rgba(255, 255, 255, .6)!important;
   }
@@ -255,9 +220,10 @@ const FooterIcon = styled.button`
 
 const ScrollToTop = FooterIcon.extend`
   position: fixed;
-  right: ${props => props.onShow ? '10px' : '-200px'};
+  right: 10px;
   bottom: 110px;
-  transition: all 0.4s cubic-bezier(.6, .2, .1, 1) 0s;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
 `
 
 const PlayBtn = FooterIcon.extend`
@@ -266,7 +232,8 @@ const PlayBtn = FooterIcon.extend`
   bottom: 58px;
   i {
     margin-top: -.03rem;
-    animation: ${props => props.loading ? 'icon-loading 6s linear infinite' : ''};
+    transform: ${props => props.showPlayer && !props.loading ? 'rotateY(180deg)' : 'none' };
+    animation: ${props => props.loading ? rotate + ' 6s linear infinite' : 'none'};
   }
 `
 
@@ -594,16 +561,13 @@ class Footer extends PureComponent {
             </WaifuBtn>
           </div>
         </Waifu>
-        <SkyPlayer
-          onShow={showPlayer}
-          className="myplayer"
-        >
+        <SkyPlayer className={showPlayer ? 'bounceInRight' : 'bounceOutRight'}>
           <div id="skPlayer" />
         </SkyPlayer>
         <ScrollToTop
-          onShow={showTop}
           onClick={this.scrollToTop}
           onMouseOver={() => this.handleMouseOver('scroll')}
+          className={showTop ? 'bounceInRight' : 'bounceOutRight'}
         >
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>
@@ -611,6 +575,7 @@ class Footer extends PureComponent {
           onClick={this.togglePlayer}
           onMouseOver={() => this.handleMouseOver('music')}
           loading={isPlaying}
+          showPlayer={showPlayer}
         >
           <i className="fa fa-music" aria-hidden="true"></i>
         </PlayBtn>

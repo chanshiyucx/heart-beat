@@ -32,44 +32,86 @@ const Inner = styled.div`
   overflow: hidden;
   margin: 0 auto;
   padding: 70px 0 60px;
+  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+  @media (max-width: 600px) {
+    padding: ${props => props.dropMenu ? '106px 0 24px' : '70px 0 60px'};
+  }
 `
 
 const Title = styled.a`
-  margin-bottom: 6px;
+  margin-bottom: .06rem;
   font-family: GuDianMingChaoTi;
-  font-size: 52px;
-  line-height: 60px;
-  letter-spacing: 2px;
+  font-size: .52rem;
+  line-height: .6rem;
+  letter-spacing: .02rem;
 `
 
 const SubTitle = styled.span`
   font-family: GuDianMingChaoTi;
-  font-size: 22px;
-  line-height: 26px;
-  letter-spacing: 4px;
+  font-size: .22rem;
+  line-height: .26rem;
+  letter-spacing: .04rem;
 `
 
-const StyledMenu = styled.ul`
+const Menu = styled.ul`
   display: flex;
   justify-content: center;
-  margin-top: 14px;
-  padding: 0 30px;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset;
+  margin-top: .14rem;
+  padding: 0 .32rem;
+  height: .6rem;
+  background: rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
+  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
   li {
-    width: 48px;
-    font-size: 16px;
+    width: .48rem;
+    font-size: .16rem;
   }
   a {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 60px;
+    height: 100%;
+  }
+  i {
+    margin: .03rem
   }
   @media (max-width: 600px) {
-    display: none;
+    position: absolute;
+    top: ${props => props.dropMenu ? '0' : '-1rem'};
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: .8rem;
+    flex-wrap: wrap;
+    li {
+      width: 25%;
+    }
+    a {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+`
+
+const MenuBtn = styled.button`
+  display: none;
+  position: fixed;
+  top: ${props => props.dropMenu ? '.80rem' : '0'};
+  padding: .1rem;
+  color: #666;
+  font-size: .26rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  outline: 0;
+  border: none;
+  background: transparent;
+  z-index: 100;
+  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+  @media (max-width: 600px) {
+    display: block;
   }
 `
 
@@ -86,7 +128,7 @@ class Header extends PureComponent {
   }
 
   // hover 触发对话
-  _handleMouseOver = ({ type }) => {
+  handleMouseOver = ({ type }) => {
     const tips = hoverTips[type]
     this.props.dispatch({
       type: 'appModel/showTips',
@@ -100,50 +142,59 @@ class Header extends PureComponent {
     const { dropMenu } = this.props
     return (
       <Container id="header">
-        <Inner>
+        <MenuBtn dropMenu={dropMenu} onClick={this.toggleMenu}>
+          <i className="fa fa-list-ul" aria-hidden="true"></i>
+        </MenuBtn>
+        <Inner dropMenu={dropMenu}>
           <Title href="/">蝉時雨</Title>
           <SubTitle>蝉鸣如雨 花宵道中</SubTitle>
-          <StyledMenu>
+          <Menu dropMenu={dropMenu}>
             <li>
-              <Link to="/" onMouseOver={() => this._handleMouseOver({ type: 'home' })}>
-                <i className="fa fa-university" aria-hidden="true"></i> 首页
+              <Link to="/" onMouseOver={() => this.handleMouseOver({ type: 'home' })}>
+                <i className="fa fa-university" aria-hidden="true"></i>
+                <span>首页</span>
               </Link>
             </li>
             <li>
               <Link
                 to="/archives"
-                onMouseOver={() => this._handleMouseOver({ type: 'archives' })}
+                onMouseOver={() => this.handleMouseOver({ type: 'archives' })}
               >
-                <i className="fa fa-archive" aria-hidden="true"></i> 归档
+                <i className="fa fa-archive" aria-hidden="true"></i>
+                <span>归档</span>
               </Link>
             </li>
             <li>
               <Link
                 to="/categories"
-                onMouseOver={() => this._handleMouseOver({ type: 'categories' })}
+                onMouseOver={() => this.handleMouseOver({ type: 'categories' })}
               >
-                <i className="fa fa-bookmark" aria-hidden="true"></i> 分类
+                <i className="fa fa-bookmark" aria-hidden="true"></i>
+                <span>分类</span>
               </Link>
             </li>
             <li>
-              <Link to="/tags" onMouseOver={() => this._handleMouseOver({ type: 'tags' })}>
-                <i className="fa fa-tags" aria-hidden="true"></i> 标签
+              <Link to="/tags" onMouseOver={() => this.handleMouseOver({ type: 'tags' })}>
+                <i className="fa fa-tags" aria-hidden="true"></i>
+                <span>标签</span>
               </Link>
             </li>
             {shuoshuoOptions.showPage && (
               <li>
                 <Link
                   to="/shuoshuo"
-                  onMouseOver={() => this._handleMouseOver({ type: 'shuoshuo' })}
+                  onMouseOver={() => this.handleMouseOver({ type: 'shuoshuo' })}
                 >
-                  <i className="fa fa-commenting" aria-hidden="true"></i> 说说
+                  <i className="fa fa-commenting" aria-hidden="true"></i>
+                  <span>说说</span>
                 </Link>
               </li>
             )}
             {booksOptions.showPage && (
               <li>
-                <Link to="/books" onMouseOver={() => this._handleMouseOver({ type: 'books' })}>
-                  <i className="fa fa-book" aria-hidden="true"></i> 书单
+                <Link to="/books" onMouseOver={() => this.handleMouseOver({ type: 'books' })}>
+                  <i className="fa fa-book" aria-hidden="true"></i>
+                  <span>书单</span>
                 </Link>
               </li>
             )}
@@ -151,20 +202,22 @@ class Header extends PureComponent {
               <li>
                 <Link
                   to="/friends"
-                  onMouseOver={() => this._handleMouseOver({ type: 'friends' })}
+                  onMouseOver={() => this.handleMouseOver({ type: 'friends' })}
                 >
-                  <i className="fa fa-heartbeat" aria-hidden="true"></i> 友链
+                  <i className="fa fa-heartbeat" aria-hidden="true"></i>
+                  <span>友链</span>
                 </Link>
               </li>
             )}
             {aboutOptions.showPage && (
               <li>
-                <Link to="/about" onMouseOver={() => this._handleMouseOver({ type: 'about' })}>
-                  <i className="fa fa-envira" aria-hidden="true"></i> 关于
+                <Link to="/about" onMouseOver={() => this.handleMouseOver({ type: 'about' })}>
+                  <i className="fa fa-envira" aria-hidden="true"></i>
+                  <span>关于</span>
                 </Link>
               </li>
             )}
-          </StyledMenu>
+          </Menu>
         </Inner>
       </Container>
     )
