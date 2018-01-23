@@ -8,12 +8,13 @@
     "build": "roadhog build",
     "test": "roadhog test",
     "lint": "eslint --ext .js src test",
-    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 100 \"src/**/*.js\"",
+    "prettier": "prettier --write --single-quote --no-semi --trailing-comma es5 --print-width 90 \"src/**/*.js\"",
     "format": "yarn prettier && yarn lint -- --fix",
     "precommit": "yarn format"
   },
   "dependencies": {
     "dva": "^2.1.0",
+    "dva-loading": "^1.0.4",
     "gitalk": "^1.2.2",
     "highlight.js": "^9.12.0",
     "leancloud-storage": "^3.5.0",
@@ -21,6 +22,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-transition-group": "^2.2.1",
     "skplayer": "^3.0.7",
     "smooth-scroll": "^12.1.5",
     "styled-components": "^2.4.0",

@@ -64,4 +64,7 @@ class Post extends PureComponent {
   }
 }
 
-export default connect(({ post }) => ({ ...post }))(Post)
+export default connect(({ loading, post }) => ({
+  loading: loading.models.post,
+  ...post,
+}))(Post)

@@ -23,6 +23,7 @@ const Wapper = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 const FriendList = styled.div`

@@ -8,21 +8,16 @@ export default {
   namespace: 'home',
   state: {
     onHide: true,
-    loading: true,
     hasMore: true,
-    total: 0, // 文章总数
-    postList: [], // 文章列表
+    total: 0,
+    postList: [],
     page: 1,
     pageSize: 4,
     times: [],
   },
   reducers: {
-    queryStart(state, { payload }) {
-      return { ...state, loading: true }
-    },
-
     queryEnd(state, { payload }) {
-      return { ...state, ...payload, loading: false, onHide: false }
+      return { ...state, ...payload, onHide: false }
     },
 
     setPostList(state, { payload }) {
@@ -45,7 +40,6 @@ export default {
     },
 
     *queryList({ payload }, { select, call, put }) {
-      yield put({ type: 'queryStart' })
       const startTime = new Date()
       const data = yield select(state => state.home)
       const { total, page, pageSize } = data

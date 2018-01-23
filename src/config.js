@@ -8,9 +8,9 @@ export default {
   /**
    * Github Issues 配置【文章和说说】，了解 Github Issues api: https://developer.github.com/v3/issues/
    * 为了方便更新，书单、友链、关于页面都单独提取一条 issue，与说说同仓库，格式可参见如下链接
-   * 书单： https://github.com/chanshiyucx/BlogPages/issues/10
-   * 友链： https://github.com/chanshiyucx/BlogPages/issues/9
-   * 关于： https://github.com/chanshiyucx/BlogPages/issues/8
+   * 书单： https://github.com/chanshiyucx/BlogPages/issues/10， labels = books
+   * 友链： https://github.com/chanshiyucx/BlogPages/issues/9,   labels = friends
+   * 关于： https://github.com/chanshiyucx/BlogPages/issues/8,   labels = about
    * 记得分别打上 labels 哦！！！！
    * --------------------------------------------------------------------------------------------------
    */
@@ -60,7 +60,7 @@ export default {
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
   duration: 800, // ms, 动画时间
-  minDelay: 3000, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  minDelay: 1200, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
   // 加载动画类型，animate.css, 详见 https://daneden.github.io/animate.css/
   transitions: {
     home: {
@@ -75,7 +75,7 @@ export default {
   },
 
   /**
-   * Backstretch, 配置参数详见： https://github.com/jquery-backstretch/jquery-backstretch
+   * 动态背景 Backstretch, 配置参数详见： https://github.com/jquery-backstretch/jquery-backstretch
    * -------------------------------------------------------------------------------------
    */
   backstretch: {
@@ -99,7 +99,7 @@ export default {
   },
 
   /**
-   * 音乐播放器， skPlayer文档： http://www.chengfeilong.com/skPlayer/
+   * 音乐播放器 skPlayer 详见： http://www.chengfeilong.com/skPlayer/
    * -------------------------------------------------------------------
    */
   playerBg: 'https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
@@ -165,7 +165,7 @@ export default {
    */
   catsInfo: [
     {
-      name: '事件簿', // name 和 Milestone 相匹配
+      name: '事件簿', // name 和 Milestone 必须一致！！！
       text: '今天又是和平的一天~',
       img: 'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
     },
@@ -230,7 +230,6 @@ export default {
   aboutOptions: {
     showPage: true,
     enableGitalk: true,
-    // 头像
     avatar: 'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
     // 右侧的介绍，不建议超过四行
     info: [

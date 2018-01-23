@@ -25,6 +25,7 @@ const Wapper = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 const Button = styled.button`
@@ -86,23 +87,44 @@ class Tags extends PureComponent {
     this.props.dispatch({
       type: 'page/queryTags',
     })
-    this.tags = window.$('#tags')
+
+    // 动画监听
+    this.performAndDisapper()
   }
 
   componentWillUnmount() {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        tags: [],
         tagsOnHide: true,
+        tags: [],
         filterTitle: '',
         filterPost: [],
       },
     })
   }
 
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    this.ACom.addEventListener('animationend', this.animationEnd)
+  }
+
+  // 动画结束
+  animationEnd = () => {
+    const { loading } = this.props
+    if (loading) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          tagsOnHide: true,
+        },
+      })
+    }
+  }
+
   filterPost = tag => {
-    this.tags.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
@@ -124,25 +146,19 @@ class Tags extends PureComponent {
     })
   }
 
-  onHide = () => {
-    const { filterPost } = this.props
-    if (!filterPost.length) {
-      this.props.dispatch({
-        type: 'page/update',
-        payload: {
-          tagsOnHide: true,
-        },
-      })
-    }
-  }
-
   render() {
-    const { tags, tagsOnHide, filterTitle, filterPost } = this.props
+    const {
+      loading,
+      tagsOnHide,
+      tags,
+      filterTitle,
+      filterPost,
+    } = this.props
     return (
       <Container>
         <Wapper
-          id="tags"
-          className={tagsOnHide ? hide : show}
+          id="ACom"
+          className={loading ? hide : show}
           onHide={tagsOnHide}
         >
           {!!filterPost.length
@@ -182,10 +198,13 @@ class Tags extends PureComponent {
               </div>
           }
         </Wapper>
-        {tagsOnHide && <Loading />}
+        {loading && tagsOnHide && <Loading />}
       </Container>
     )
   }
 }
 
-export default connect(({ page }) => ({ ...page }))(Tags)
+export default connect(({ loading, page }) => ({
+  loading: loading.models.page,
+  ...page,
+}))(Tags)

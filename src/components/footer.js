@@ -6,19 +6,9 @@ import SmoothScroll from 'smooth-scroll'
 import marked from 'marked'
 import skPlayer from 'skplayer'
 
+import { throttle } from '../utils'
 import config from '../config'
 const { playerBg, playerType, playListId, playList, backstretch } = config
-
-// 节流
-function throttle(fn, wait) {
-  let time = Date.now()
-  return function() {
-    if (time + wait - Date.now() < 0) {
-      fn()
-      time = Date.now()
-    }
-  }
-}
 
 // 一言
 const hitokoto = require('../assets/hitokoto.json')
@@ -102,7 +92,6 @@ const Waifu = styled.div`
   z-index: 1;
   font-size: 0;
   transition: all 0.3s ease-in-out;
-  -webkit-transform: translateY(3px);
   transform: translateY(3px);
   #live2d {
     position: fixed;
@@ -131,12 +120,12 @@ const Waifu = styled.div`
   .waifu-tool {
     display: block;
     position: absolute;
-    bottom: 2px;
+    bottom: 6px;
     left: 0;
     width: 20px;
     z-index: 999;
     i {
-      font-size: 16px;
+      font-size: .16rem;
     }
   }
   @media (max-width: 900px) {
@@ -314,14 +303,10 @@ class Footer extends PureComponent {
         source: playerType === 'cloud' ? playListId : playList,
       },
     })
-    setTimeout(() => {
-      this.audio = document.querySelector('audio')
-      this.audio.addEventListener('play', this.handleListen)
-      this.audio.addEventListener('pause', this.handleListen)
-    }, 3000)
+    this.addPlayerListener()
 
     // 滚动
-    document.addEventListener('scroll', throttle(this.handleScroll, 160))
+    document.addEventListener('scroll', throttle(this.handleScroll, 160, {trailing: true}))
   }
 
   componentWillUnmount() {
@@ -332,6 +317,17 @@ class Footer extends PureComponent {
 
     // 滚动
     document.removeEventListener('scroll', this.handleScroll)
+  }
+
+  // 添加监听器
+  addPlayerListener = () => {
+    this.audio = document.querySelector('audio')
+    if (this.audio) {
+      this.audio.addEventListener('play', this.handleListen)
+      this.audio.addEventListener('pause', this.handleListen)
+    } else {
+      setTimeout(this.addListener, 2000)
+    }
   }
 
   // 监听播放器状态
@@ -350,7 +346,7 @@ class Footer extends PureComponent {
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
-        showTop: osTop >= 200,
+        showTop: osTop >= 100,
       },
     })
   }

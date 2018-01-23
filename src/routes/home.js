@@ -26,6 +26,7 @@ const PostList = styled.div`
   align-items: center;
   width: 100%;
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 const Button = styled.button`
@@ -71,6 +72,10 @@ const MobileBtn = Button.extend`
   }
 `
 
+// connect(({ loading, home }) => ({
+//   // loading: loading.models.home,
+//   ...home,
+// }))
 class Home extends PureComponent {
   componentDidMount() {
     // 获取文章总数
@@ -78,7 +83,8 @@ class Home extends PureComponent {
       type: 'home/queryTotal',
     })
 
-    this.postList = window.$('#postList')
+    // 动画监听
+    this.performAndDisapper()
   }
 
   componentWillUnmount() {
@@ -87,9 +93,29 @@ class Home extends PureComponent {
     })
   }
 
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    this.ACom.addEventListener('animationend', this.animationEnd)
+  }
+
+  // 动画结束
+  animationEnd = () => {
+    const { loading } = this.props
+    // 如果动画结束数据还未加载，那么隐藏
+    if (loading) {
+      this.props.dispatch({
+        type: 'home/update',
+        payload: {
+          onHide: true,
+        },
+      })
+    }
+  }
+
   // 前一页
   prev = () => {
-    this.postList.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'home/queryList',
       payload: {
@@ -100,7 +126,7 @@ class Home extends PureComponent {
 
   // 后一页
   next = () => {
-    this.postList.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'home/queryList',
       payload: {
@@ -125,19 +151,6 @@ class Home extends PureComponent {
         tips,
       },
     })
-  }
-
-  // 动画结束
-  onHide = () => {
-    const { loading } = this.props
-    if (loading) {
-      this.props.dispatch({
-        type: 'home/update',
-        payload: {
-          onHide: true,
-        },
-      })
-    }
   }
 
   renderCard = () => {
@@ -171,14 +184,16 @@ class Home extends PureComponent {
 
         <NextBtn
           onClick={this.next}
-          onMouseOver={() => this.handleMouseOver({ type: 'next' })}>
+          onMouseOver={() => this.handleMouseOver({ type: 'next' })}
+        >
           <i className="fa fa-angle-double-right" aria-hidden="true"></i>
         </NextBtn>
 
         <PostList
-          id="postList"
+          id="ACom"
           className={!loading ? show : hide}
-          onHide={onHide}>
+          onHide={onHide}
+        >
           {this.renderCard()}
         </PostList>
 
@@ -191,4 +206,7 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ home }) => ({ ...home }))(Home)
+export default connect(({ loading, home }) => ({
+  loading: loading.models.home,
+  ...home,
+}))(Home)

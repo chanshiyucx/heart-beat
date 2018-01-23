@@ -25,6 +25,7 @@ const Wapper = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 const CatList = styled.div`
@@ -141,23 +142,44 @@ class Categories extends PureComponent {
     this.props.dispatch({
       type: 'page/queryCats',
     })
-    this.categories = window.$('#categories')
+
+    // 动画监听
+    this.performAndDisapper()
   }
 
   componentWillUnmount() {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        cats: [],
         catsOnHide: true,
+        cats: [],
         filterTitle: '',
         filterPost: [],
       },
     })
   }
 
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    this.ACom.addEventListener('animationend', this.animationEnd)
+  }
+
+  // 动画结束
+  animationEnd = () => {
+    const { loading } = this.props
+    if (loading) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          catsOnHide: true,
+        },
+      })
+    }
+  }
+
   filterPost = cat => {
-    this.categories.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'page/filterPost',
       payload: {
@@ -169,7 +191,6 @@ class Categories extends PureComponent {
   }
 
   clearFilter = () => {
-    // this.categories.animateCss(hide)
     this.props.dispatch({
       type: 'page/update',
       payload: {
@@ -178,18 +199,6 @@ class Categories extends PureComponent {
         filterPost: [],
       },
     })
-  }
-
-  onHide = () => {
-    const { filterPost } = this.props
-    if (!filterPost.length) {
-      this.props.dispatch({
-        type: 'page/update',
-        payload: {
-          catsOnHide: true,
-        },
-      })
-    }
   }
 
   renderCats = cats => {
@@ -220,12 +229,18 @@ class Categories extends PureComponent {
   }
 
   render() {
-    const { cats, catsOnHide, filterTitle, filterPost } = this.props
+    const {
+      loading,
+      catsOnHide,
+      cats,
+      filterTitle,
+      filterPost,
+    } = this.props
     return (
       <Container>
         <Wapper
-          id="categories"
-          className={catsOnHide ? hide : show}
+          id="ACom"
+          className={loading ? hide : show}
           onHide={catsOnHide}
         >
           {!!filterPost.length
@@ -254,10 +269,13 @@ class Categories extends PureComponent {
               </div>
           }
         </Wapper>
-        { catsOnHide && <Loading />}
+        {loading && catsOnHide && <Loading />}
       </Container>
     )
   }
 }
 
-export default connect(({ page }) => ({ ...page }))(Categories)
+export default connect(({ loading, page }) => ({
+  loading: loading.models.page,
+  ...page,
+}))(Categories)

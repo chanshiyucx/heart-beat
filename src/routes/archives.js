@@ -25,6 +25,7 @@ const Wapper = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 const ArchiveList = styled.div`
@@ -43,7 +44,8 @@ class Archives extends PureComponent {
       type: 'page/queryTotal',
     })
 
-    this.archives = window.$('#archives')
+    // 动画监听
+    this.performAndDisapper()
   }
 
   componentWillUnmount() {
@@ -51,7 +53,6 @@ class Archives extends PureComponent {
       type: 'page/reset',
       payload: {
         archivesOnHide: true,
-        loading: true,
         total: 0,
         page: 0,
         archives: [],
@@ -59,30 +60,16 @@ class Archives extends PureComponent {
     })
   }
 
-  // 前一页
-  prev = () => {
-    this.archives.animateCss(hide, this.onHide)
-    this.props.dispatch({
-      type: 'page/queryArchives',
-      payload: {
-        queryType: 'prev',
-      },
-    })
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    this.ACom.addEventListener('animationend', this.animationEnd)
   }
 
-  // 后一页
-  next = () => {
-    this.archives.animateCss(hide, this.onHide)
-    this.props.dispatch({
-      type: 'page/queryArchives',
-      payload: {
-        queryType: 'next',
-      },
-    })
-  }
-
-  onHide = () => {
+  // 动画结束
+  animationEnd = () => {
     const { loading } = this.props
+    // 如果动画结束数据还未加载，那么隐藏
     if (loading) {
       this.props.dispatch({
         type: 'page/update',
@@ -93,14 +80,43 @@ class Archives extends PureComponent {
     }
   }
 
+  // 前一页
+  prev = () => {
+    this.performAndDisapper()
+    this.props.dispatch({
+      type: 'page/queryArchives',
+      payload: {
+        queryType: 'prev',
+      },
+    })
+  }
+
+  // 后一页
+  next = () => {
+    this.performAndDisapper()
+    this.props.dispatch({
+      type: 'page/queryArchives',
+      payload: {
+        queryType: 'next',
+      },
+    })
+  }
+
   render() {
-    const { archivesOnHide, loading, archives, total, page, pageSize } = this.props
+    const {
+      loading,
+      archivesOnHide,
+      archives,
+      total,
+      page,
+      pageSize,
+    } = this.props
     const maxPage = Math.ceil(total / pageSize)
     return (
       <Container>
         <Wapper
-          id="archives"
-          className={!loading ? show : hide}
+          id="ACom"
+          className={loading ? hide : show}
           onHide={archivesOnHide}
         >
           <Quote text={qoutes.archives} />
@@ -114,7 +130,7 @@ class Archives extends PureComponent {
               })
             }
           </ArchiveList>
-          <Pagination mexPage={maxPage} page={page} prev={this.prev} next={this.next} />
+          <Pagination maxPage={maxPage} page={page} prev={this.prev} next={this.next} />
         </Wapper>
         {(!archives || archives.length === 0 || archivesOnHide) && <Loading />}
       </Container>
@@ -122,4 +138,7 @@ class Archives extends PureComponent {
   }
 }
 
-export default connect(({ page }) => ({ ...page }))(Archives)
+export default connect(({ loading, page }) => ({
+  loading: loading.models.page,
+  ...page,
+}))(Archives)

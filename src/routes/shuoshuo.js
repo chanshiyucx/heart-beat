@@ -27,6 +27,7 @@ const Wapper = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
+  animation-fill-mode: forwards;
 `
 
 class ShuoShuo extends PureComponent {
@@ -36,8 +37,6 @@ class ShuoShuo extends PureComponent {
       type: 'page/queryShuoShuoTotal',
     })
 
-    this.shuoshuo = window.$('#shuoshuo')
-
     if (enableGitalk) {
       const gitalk = new Gitalk({
         ...gitalkOptions,
@@ -46,13 +45,15 @@ class ShuoShuo extends PureComponent {
       // 渲染评论
       gitalk.render('gitalk')
     }
+
+    // 动画监听
+    this.performAndDisapper()
   }
 
   componentWillUnmount() {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
-        shuoshuoLoading: true,
         shuoshuoHasMore: true,
         shuoshuoTotal: 0,
         shuoshuoPage: 0,
@@ -61,9 +62,28 @@ class ShuoShuo extends PureComponent {
     })
   }
 
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    this.ACom.addEventListener('animationend', this.animationEnd)
+  }
+
+  // 动画结束
+  animationEnd = () => {
+    const { loading } = this.props
+    if (loading) {
+      this.props.dispatch({
+        type: 'page/update',
+        payload: {
+          shuoshuoOnHide: true,
+        },
+      })
+    }
+  }
+
   // 前一页
   prev = () => {
-    this.shuoshuo.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'page/queryShuoShuo',
       payload: {
@@ -74,7 +94,7 @@ class ShuoShuo extends PureComponent {
 
   // 后一页
   next = () => {
-    this.shuoshuo.animateCss(hide, this.onHide)
+    this.performAndDisapper()
     this.props.dispatch({
       type: 'page/queryShuoShuo',
       payload: {
@@ -83,22 +103,10 @@ class ShuoShuo extends PureComponent {
     })
   }
 
-  onHide = () => {
-    const { shuoshuoLoading } = this.props
-    if (shuoshuoLoading) {
-      this.props.dispatch({
-        type: 'page/update',
-        payload: {
-          shuoshuoOnHide: true,
-        },
-      })
-    }
-  }
-
   render() {
     const {
+      loading,
       shuoshuoOnHide,
-      shuoshuoLoading,
       myShuoShuo,
       shuoshuoTotal,
       shuoshuoPage,
@@ -108,8 +116,8 @@ class ShuoShuo extends PureComponent {
     return (
       <Container>
         <Wapper
-          id="shuoshuo"
-          className={!shuoshuoLoading ? show : hide}
+          id="ACom"
+          className={!loading ? show : hide}
           onHide={shuoshuoOnHide}
         >
           <Quote text={qoutes.shuoshuo} />
@@ -133,4 +141,7 @@ class ShuoShuo extends PureComponent {
   }
 }
 
-export default connect(({ page }) => ({ ...page }))(ShuoShuo)
+export default connect(({ loading, page }) => ({
+  loading: loading.models.page,
+  ...page,
+}))(ShuoShuo)
