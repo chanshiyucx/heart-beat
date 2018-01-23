@@ -8,7 +8,8 @@ import skPlayer from 'skplayer'
 
 import { throttle } from '../utils'
 import config from '../config'
-const { playerBg, playerType, playListId, playList, backstretch } = config
+const { playerBg, playerType, playListId, playList, backstretch, transitions } = config
+const { show, hide } = transitions.footer
 
 // 一言
 const hitokoto = require('../assets/hitokoto.json')
@@ -78,7 +79,7 @@ const Container = styled.div`
   }
 
   i.like {
-    color: ${props => (props.likeChanshiyu ? '#faf!important' : '')};
+    color: ${props => (props.likeChanshiyu ? '#faf' : '')};
   }
 `
 
@@ -147,6 +148,7 @@ const SkyPlayer = styled.div`
   position: fixed;
   right: 10px;
   bottom: 334px;
+  margin-right: ${props => props.initFlag ? '-600px' : '0'};
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
   #skPlayer, .skPlayer-list {
@@ -211,6 +213,7 @@ const ScrollToTop = FooterIcon.extend`
   position: fixed;
   right: 10px;
   bottom: 110px;
+  margin-right: ${props => props.initFlag ? '-100px' : '0'};
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
 `
@@ -285,6 +288,11 @@ const Item = styled.div`
 `
 
 class Footer extends PureComponent {
+  componentWillMount() {
+    this.playerInitFlag = true
+    this.scrollInitFlag = true
+  }
+
   componentDidMount() {
     // 加载 waifu!!!
     const initTips = '欢迎来到<font color=#f6f> 蝉時雨 </font>，今天也要元气满满哦！'
@@ -306,7 +314,7 @@ class Footer extends PureComponent {
     this.addPlayerListener()
 
     // 滚动
-    document.addEventListener('scroll', throttle(this.handleScroll, 160, {trailing: true}))
+    document.addEventListener('scroll', throttle(this.handleScroll, 400, {trailing: true}))
   }
 
   componentWillUnmount() {
@@ -343,10 +351,11 @@ class Footer extends PureComponent {
   // 监听页面滚动
   handleScroll = e => {
     const osTop = document.documentElement.scrollTop || document.body.scrollTop
+    this.scrollInitFlag = false
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
-        showTop: osTop >= 100,
+        showTop: osTop > 50,
       },
     })
   }
@@ -454,6 +463,7 @@ class Footer extends PureComponent {
 
   // 显示隐藏播放器
   togglePlayer = () => {
+    this.playerInitFlag = false
     const { showPlayer } = this.props
     this.props.dispatch({
       type: 'appModel/update',
@@ -557,13 +567,17 @@ class Footer extends PureComponent {
             </WaifuBtn>
           </div>
         </Waifu>
-        <SkyPlayer className={showPlayer ? 'bounceInRight' : 'bounceOutRight'}>
+        <SkyPlayer
+          initFlag={this.playerInitFlag}
+          className={showPlayer ? show : hide}
+        >
           <div id="skPlayer" />
         </SkyPlayer>
         <ScrollToTop
           onClick={this.scrollToTop}
           onMouseOver={() => this.handleMouseOver('scroll')}
-          className={showTop ? 'bounceInRight' : 'bounceOutRight'}
+          initFlag={this.scrollInitFlag}
+          className={showTop ? show : hide}
         >
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>

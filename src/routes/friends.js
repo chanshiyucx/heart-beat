@@ -69,7 +69,7 @@ const Content = styled.div`
   width: 200px;
   height: 112px;
   background: rgba(255, 255, 255, .4);
-  transition: transform .4s ease-out;
+  transition: transform 0.5s cubic-bezier(.6, .2, .1, 1) 0s;
 `
 
 const Avatar = styled.img`

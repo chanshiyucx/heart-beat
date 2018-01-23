@@ -4,12 +4,11 @@ import styled from 'styled-components'
 
 import { Archive, Quote, Loading } from '../components'
 import { shuffle } from '../utils'
-import { colors } from '../theme'
 import config from '../config'
 
-const { duration, transitions, qoutes } = config
+const { duration, transitions, qoutes, themeColors } = config
 const { show, hide } = transitions.page
-const newColors = shuffle(colors)
+const newColors = shuffle(themeColors)
 
 const Container = styled.div`
   margin: 0 auto;

@@ -17,7 +17,7 @@ export default {
   },
   reducers: {
     queryEnd(state, { payload }) {
-      return { ...state, ...payload, onHide: false }
+      return { ...state, ...payload }
     },
 
     setPostList(state, { payload }) {
@@ -29,7 +29,7 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, loading: true, onHide: true, times: [] }
+      return { ...state, onHide: true, times: [] }
     },
   },
   effects: {
@@ -56,7 +56,7 @@ export default {
       const postList = yield call(queryList, { page: queryPage, pageSize })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'queryEnd', payload: { postList, page: queryPage } })
+      yield put({ type: 'queryEnd', payload: { postList, page: queryPage, onHide: false } })
       const times = yield call(queryHot, { postList })
       yield put({ type: 'update', payload: { times } })
     },

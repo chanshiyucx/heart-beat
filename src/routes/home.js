@@ -72,10 +72,6 @@ const MobileBtn = Button.extend`
   }
 `
 
-// connect(({ loading, home }) => ({
-//   // loading: loading.models.home,
-//   ...home,
-// }))
 class Home extends PureComponent {
   componentDidMount() {
     // 获取文章总数
@@ -173,6 +169,7 @@ class Home extends PureComponent {
 
   render() {
     const { loading, onHide } = this.props
+    console.log('loading, onHide--->', loading, onHide)
     return (
       <Container>
         <PreBtn
@@ -191,7 +188,7 @@ class Home extends PureComponent {
 
         <PostList
           id="ACom"
-          className={!loading ? show : hide}
+          className={loading ? hide : show}
           onHide={onHide}
         >
           {this.renderCard()}

@@ -4,13 +4,12 @@ import styled from 'styled-components'
 import Gitalk from 'gitalk'
 
 import { Segment, Quote, Loading } from '../components'
-import { colors } from '../theme'
 import { shuffle } from '../utils'
 import config from '../config'
 
-const { gitalkOptions, duration, transitions, qoutes, aboutOptions } = config
+const { gitalkOptions, duration, transitions, qoutes, aboutOptions, themeColors } = config
 const { avatar, info, enableGitalk } = aboutOptions
-const newColors = shuffle(colors)
+const newColors = shuffle(themeColors)
 
 const Container = styled.div`
   margin: 0 auto;

@@ -5,13 +5,12 @@ import Gitalk from 'gitalk'
 
 import { Segment, Quote, Pagination, Loading } from '../components'
 import { shuffle } from '../utils'
-import { colors } from '../theme'
 import config from '../config'
 
-const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions } = config
+const { gitalkOptions, duration, transitions, qoutes, shuoshuoOptions, themeColors } = config
 const { enableGitalk } = shuoshuoOptions
 const { show, hide } = transitions.page
-const newColors = shuffle(colors)
+const newColors = shuffle(themeColors)
 
 const Container = styled.div`
   margin: 0 auto;
@@ -54,6 +53,7 @@ class ShuoShuo extends PureComponent {
     this.props.dispatch({
       type: 'page/reset',
       payload: {
+        shuoshuoOnHide: true,
         shuoshuoHasMore: true,
         shuoshuoTotal: 0,
         shuoshuoPage: 0,
