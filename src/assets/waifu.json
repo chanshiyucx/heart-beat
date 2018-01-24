@@ -17,26 +17,8 @@
             {"file":"mtn/Breath1.mtn"},
             {"file":"mtn/Breath2.mtn"},
             {"file":"mtn/Breath4.mtn"},
-            {"file":"mtn/Breath6.mtn"},
             {"file":"mtn/Breath7.mtn"},
-            {"file":"mtn/Breath8.mtn"},
-            {"file":"mtn/Breath9.mtn"}
-        ],
-        "flick_head":[
-            {"file":"mtn/Touch Dere1.mtn"},
-            {"file":"mtn/Touch Dere2.mtn"},
-            {"file":"mtn/Touch Dere3.mtn"},
-            {"file":"mtn/Touch Dere4.mtn"},
-            {"file":"mtn/Touch Dere5.mtn"},
-            {"file":"mtn/Touch Dere6.mtn"}
-        ],
-        "tap_body":[
-            {"file":"mtn/Touch1.mtn"},
-            {"file":"mtn/Touch2.mtn"},
-            {"file":"mtn/Touch3.mtn"},
-            {"file":"mtn/Touch4.mtn"},
-            {"file":"mtn/Touch5.mtn"},
-            {"file":"mtn/Touch6.mtn"}
+            {"file":"mtn/Breath8.mtn"}
         ],
         "":[
             {"file":"mtn/Breath1.mtn"},

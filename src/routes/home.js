@@ -20,7 +20,7 @@ const Container = styled.div`
 `
 
 const PostList = styled.div`
-  display: ${props => props.onHide ? 'none' : 'flex'};
+  display: ${props => props.init ? 'none' : 'flex'};
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
@@ -78,6 +78,10 @@ const QAQ = styled.div`
 `
 
 class Home extends PureComponent {
+  componentWillMount() {
+    this.initFlag = true
+  }
+
   componentDidMount() {
     // 获取文章总数
     this.props.dispatch({
@@ -174,7 +178,7 @@ class Home extends PureComponent {
 
   render() {
     const { loading, onHide } = this.props
-    console.log('loading, onHide--->', loading, onHide)
+    if (!loading && this.initFlag) this.initFlag = false
     return (
       <Container>
         <PreBtn
@@ -194,12 +198,11 @@ class Home extends PureComponent {
         <PostList
           id="ACom"
           className={loading ? hide : show}
-          onHide={onHide}
+          init={this.initFlag}
         >
           {this.renderCard()}
         </PostList>
 
-        {/* 有个匪夷所思的 bug, 惊了 */}
         {loading && onHide && <QAQ><Loading /></QAQ>}
         <MobileBtn onClick={this.next}>
           <i className="fa fa-angle-double-down" aria-hidden="true"></i>
@@ -209,7 +212,4 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ loading, home }) => ({
-  loading: loading.models.home,
-  ...home,
-}))(Home)
+export default connect(({ home }) => ({ ...home }))(Home)

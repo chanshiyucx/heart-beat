@@ -175,8 +175,8 @@ export default {
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
-  duration: 1200, // ms, 动画时间
-  minDelay: 1600, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  duration: 1000, // ms, 动画时间
+  minDelay: 2600, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
   // 加载动画，Motion CSS： http://pavlyukpetr.com/awesome/
   transitions: {
     home: {
