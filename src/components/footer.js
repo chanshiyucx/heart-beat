@@ -105,7 +105,7 @@ const Waifu = styled.div`
     width: 250px;
     height: 66px;
     margin: ${props => (props.waifu === 'pio' ? 0 : '-30px')} 20px;
-    padding: 5px 10px;
+    padding: .05rem .1rem;
     border-radius: 12px;
     background-color: rgba(255, 255, 255, 0.6);
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16);

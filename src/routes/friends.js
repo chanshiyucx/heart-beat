@@ -17,7 +17,6 @@ const Container = styled.div`
 `
 
 const Wapper = styled.div`
-  display: ${props => props.onShow ? 'block' : 'none'};
   padding: .16rem;
   border-radius: .03rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);

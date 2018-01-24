@@ -34,7 +34,6 @@ renderer.image = function(href, title, text) {
 
 const Container = styled.div`
   border-radius: .03rem;
-  overflow: hidden;
 `
 
 const Header = styled.div`

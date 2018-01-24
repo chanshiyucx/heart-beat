@@ -23,8 +23,8 @@ const Header = styled.div`
   display: flex;
   justify-content: flex-start;
   img {
-    width: 120px;
-    height: 160px;
+    width: 1.2rem;
+    height: 1.6rem;
     margin-right: .16rem;
     box-shadow: 4px 6px 10px rgba(0, 0, 0, .2);
   }

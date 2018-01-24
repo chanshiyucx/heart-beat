@@ -175,22 +175,22 @@ export default {
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
-  duration: 1600, // ms, 动画时间
-  minDelay: 2000, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
-  // 加载动画类型，animate.css, 详见 https://daneden.github.io/animate.css/
+  duration: 1200, // ms, 动画时间
+  minDelay: 1600, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  // 加载动画，Motion CSS： http://pavlyukpetr.com/awesome/
   transitions: {
     home: {
-      show: 'spinIn',
-      hide: 'spinOut',
+      show: 'rotate-in-scale',
+      hide: 'rotate-out-scale',
     }, // 首页文章卡切换动画
     page: {
-      show: 'popInTop',
-      hide: 'popOut',
+      show: 'bounce-in',
+      hide: 'flip-out-x',
     }, // 其余页面的加载动画
-    post: 'popIn', // 文章页加载动画
+    post: 'clip-y-in', // 文章页加载动画
     footer: { // 播放器和滚动按钮
-      show: 'driveInRight',
-      hide: 'driveOutRight',
+      show: 'bounce-in-left',
+      hide: 'back-out-right',
     },
   },
 

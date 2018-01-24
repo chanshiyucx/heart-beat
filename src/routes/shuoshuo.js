@@ -132,7 +132,7 @@ class ShuoShuo extends PureComponent {
               })
             }
           </div>
-          <Pagination mexPage={maxPage} page={shuoshuoPage} prev={this.prev} next={this.next} />
+          <Pagination maxPage={maxPage} page={shuoshuoPage} prev={this.prev} next={this.next} />
         </Wapper>
         {(!myShuoShuo || myShuoShuo.length === 0 || shuoshuoOnHide) && <Loading />}
         {enableGitalk && <div id="gitalk" />}

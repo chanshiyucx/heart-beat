@@ -72,6 +72,11 @@ const MobileBtn = Button.extend`
   }
 `
 
+const QAQ = styled.div`
+  position: absolute;
+  width: 100%;
+`
+
 class Home extends PureComponent {
   componentDidMount() {
     // 获取文章总数
@@ -194,7 +199,8 @@ class Home extends PureComponent {
           {this.renderCard()}
         </PostList>
 
-        {loading && onHide && <Loading />}
+        {/* 有个匪夷所思的 bug, 惊了 */}
+        {loading && onHide && <QAQ><Loading /></QAQ>}
         <MobileBtn onClick={this.next}>
           <i className="fa fa-angle-double-down" aria-hidden="true"></i>
         </MobileBtn>
