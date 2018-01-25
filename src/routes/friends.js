@@ -133,28 +133,30 @@ class Friends extends PureComponent {
                     })
     return (
       <Container>
-        <Wapper
-          onShow={showFriends}
-          className={showFriends ? transitions.page.show : ''}
-        >
-          <Quote text={qoutes.friends} />
-          <FriendList>
-            {!!section.length &&
-              section.map((o, i) => {
-                return (
-                  <Friend key={i} href={o.link} target="_blank">
-                    <Cover className="cover" alt="" src={o.cover} />
-                    <Content className="content">
-                      <Avatar alt="" src={o.avatar} />
-                      <Site>{o.name}</Site>
-                    </Content>
-                  </Friend>
-                )
-              })
-            }
-          </FriendList>
-        </Wapper>
-        {!showFriends && <Loading />}
+        {showFriends
+          ? <Wapper
+              onShow={showFriends}
+              className={showFriends ? transitions.page.show : ''}
+            >
+              <Quote text={qoutes.friends} />
+              <FriendList>
+                {
+                  section.map((o, i) => {
+                    return (
+                      <Friend key={i} href={o.link} target="_blank">
+                        <Cover className="cover" alt="" src={o.cover} />
+                        <Content className="content">
+                          <Avatar alt="" src={o.avatar} />
+                          <Site>{o.name}</Site>
+                        </Content>
+                      </Friend>
+                    )
+                  })
+                }
+              </FriendList>
+            </Wapper>
+          : <Loading />
+        }
 
         {enableGitalk && <div id="gitalk" />}
       </Container>

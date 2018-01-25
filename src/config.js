@@ -175,8 +175,8 @@ export default {
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
-  duration: 1000, // ms, 动画时间
-  minDelay: 2600, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  duration: 800, // ms, 动画时间
+  minDelay: 1600, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
   // 加载动画，Motion CSS： http://pavlyukpetr.com/awesome/
   transitions: {
     home: {
@@ -267,13 +267,20 @@ export default {
    themeColors: [
     '#DC9FB4', // 撫子
     '#E16B8C', // 紅梅
-    '#8E354A', // 蘇芳
-    '#E1A679', // 赤白橡
     '#3A8FB7', // 千草
     '#8F77B5', // 紫苑
     '#6A4C9C', // 桔梗
     '#60373E', // 紫鳶
     '#6F3381', // 菖蒲
     '#005CAF', // 瑠璃
+    '#855B32', // 煎茶
+    '#D05A6E', // 今様
+    '#E79460', // 洗柿
+    '#91AD70', // 柳染
+    '#516E41', // 青丹
+    '#1B813E', // 常磐
+    '#33A6B8', // 浅葱
+    '#2EA9DF', // 露草
+    '#E03C8A', // 躑躅
   ],
 }

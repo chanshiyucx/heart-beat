@@ -85,22 +85,24 @@ class Books extends PureComponent {
     const showBooks = !!section.length
     return (
       <Container>
-        <Wapper
-          onShow={showBooks}
-          className={showBooks ? transitions.page.show : ''}
-        >
-          <Quote text={qoutes.books} />
-          <BookList>
-            {showBooks &&
-              section.map((o, i) => {
-                return (
-                  <Book key={i} book={o} />
-                )
-              })
-            }
-          </BookList>
-        </Wapper>
-        {!showBooks && <Loading />}
+        {showBooks
+          ? <Wapper
+            onShow={showBooks}
+            className={showBooks ? transitions.page.show : ''}
+          >
+            <Quote text={qoutes.books} />
+            <BookList>
+              {
+                section.map((o, i) => {
+                  return (
+                    <Book key={i} book={o} />
+                  )
+                })
+              }
+            </BookList>
+          </Wapper>
+          : <Loading />
+        }
 
         {enableGitalk && <div id="gitalk" />}
       </Container>
