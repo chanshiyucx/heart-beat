@@ -36,17 +36,16 @@ const CatList = styled.div`
 
 const Cat = styled.div`
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: .16rem;
   width: 32%;
   height: 160px;
   overflow: hidden;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.16);
-  transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
-    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s !important;
+  border-radius: .03rem;
+  background: rgba(255, 255, 255, .4);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .16);
+  transition: all .25s ease 0s, transform .5s cubic-bezier(.6, .2, .1, 1) 0s;
   &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24);
     transform: translateY(-4px);
     img {
       animation-play-state: paused;
@@ -69,31 +68,31 @@ const CatHeader = styled.div`
 
 const StyledImg = styled.img`
   position: absolute;
-  left: 20px;
-  bottom: -40px;
-  width: 80px;
-  height: 80px;
+  left: .2rem;
+  bottom: -.4rem;
+  width: .8rem;
+  height: .8rem;
   border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
   transition: transform 1s ease-out;
 `
 
 const StyledTitle = styled.span`
   position: absolute;
-  right: 20px;
-  bottom: -20px;
+  right: .2rem;
+  bottom: -.2px;
   padding: 0 10px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  height: .4rem;
+  line-height: .4rem;
+  border-radius: .03rem;
+  background: rgba(255, 255, 255, .8);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
 `
 
 const CatContent = styled.div`
   position: absolute;
   bottom: 0;
-  padding: 10px 16px 12px;
+  padding: .12rem .16rem;
 `
 
 const ArchiveList = styled.div`
@@ -147,6 +146,7 @@ class Categories extends PureComponent {
   }
 
   componentWillUnmount() {
+    console.log('componentWillUnmount')
     this.props.dispatch({
       type: 'page/reset',
       payload: {
@@ -160,7 +160,7 @@ class Categories extends PureComponent {
 
   // 监听动画结束，其他方法都太复杂了QAQ
   performAndDisapper = () => {
-    if (!this.ACom) this.ACom = document.getElementById('ACom');
+    if (!this.ACom) this.ACom = document.getElementById('ACom')
     this.ACom.addEventListener('animationend', this.animationEnd)
   }
 
@@ -235,6 +235,7 @@ class Categories extends PureComponent {
       filterTitle,
       filterPost,
     } = this.props
+    console.log('catsOnHide------>', catsOnHide)
     return (
       <Container>
         <Wapper

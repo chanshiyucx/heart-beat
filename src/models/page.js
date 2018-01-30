@@ -140,7 +140,10 @@ export default {
       const filterPost = yield call(filterList, payload)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
-      yield put({ type: 'queryEnd', payload: { filterPost, filterTitle, catsOnHide: false, tagsOnHide: false } })
+      // 需要根据当前页置为 false
+      const { type } = payload
+      const onHide = type === 'labels' ? { tagsOnHide: false } : { catsOnHide: false }
+      yield put({ type: 'queryEnd', payload: { filterPost, filterTitle, ...onHide } })
     },
   },
 }
