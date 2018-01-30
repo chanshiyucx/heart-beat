@@ -16,12 +16,12 @@ const Header = styled.div`
     font-size: .18rem;
   }
   .fa-quote-left {
-    top: 16px;
-    left: 16px;
+    top: .16rem;
+    left: .16rem;
   }
   .fa-quote-right {
     bottom: 0;
-    right: 16px;
+    right: .16rem;
   }
 `
 
