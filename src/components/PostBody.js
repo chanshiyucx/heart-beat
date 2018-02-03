@@ -94,7 +94,7 @@ const Content = styled.div`
     margin: .12rem .16rem 0;
   }
   ol, ul {
-    margin: .06rem .24rem;
+    margin: .06rem .24rem .06rem .5rem;
   }
   h2, h3 {
     font-weight: normal;
@@ -136,13 +136,29 @@ const Content = styled.div`
     }
   }
   pre {
+    overflow: scroll;
+    max-height: 600px;
     line-height: 1.6;
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #888;
+      background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .6) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .6) 50%,rgba(255, 255, 255, .6) 75%,transparent 75%,transparent);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
     code {
       padding: 0;
       color: currentColor;
       background-color: transparent;
     }
   }
+
   blockquote {
     margin: 10px 0;
     border-left: 4px solid #666;

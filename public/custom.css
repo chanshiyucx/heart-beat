@@ -121,7 +121,7 @@ a:hover {
 }
 
 /* 隐藏滚动条 */
-::-webkit-scrollbar {
+html::-webkit-scrollbar {
   display: none;
 }
 
