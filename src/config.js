@@ -175,18 +175,18 @@ export default {
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
-  duration: 800, // ms, 动画时间
-  minDelay: 1400, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
+  duration: 700, // ms, 动画时间
+  minDelay: 1200, // ms, 数据加载的最小等待间隔，使切换更流畅，值不能小于动画时间
   // 加载动画，Motion CSS： http://pavlyukpetr.com/awesome/
   transitions: {
-    home: {
+    home: { // 首页文章卡切换动画
       show: 'scale-in',
       hide: 'scale-out',
-    }, // 首页文章卡切换动画
-    page: {
-      show: 'bounce-in',
+    }, 
+    page: { // 其余页面的加载动画
+      show: 'scale-in',
       hide: 'flip-out-x',
-    }, // 其余页面的加载动画
+    }, 
     post: 'clip-y-in', // 文章页加载动画
     footer: { // 播放器和滚动按钮
       show: 'bounce-in-left',

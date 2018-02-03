@@ -119,7 +119,7 @@ const Content = styled.div`
     box-shadow: 0 0 10px #999;
   }
   code {
-    padding: 2px 4px;
+    padding: 0 4px;
     font-size: 14px;
     color: #f6f;
     word-wrap: break-word;

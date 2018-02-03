@@ -103,13 +103,14 @@ const Waifu = styled.div`
   .waifu-tips {
     opacity: ${props => (props.showTips ? 1 : 0)};
     width: 250px;
-    height: 66px;
+    min-height: 46px;
     margin: ${props => (props.waifu === 'pio' ? 0 : '-30px')} 20px;
     padding: .05rem .1rem;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: .08rem;
+    background-color: rgba(255, 255, 255, .6);
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-    font-size: 12px;
+    font-size: .12rem;
+    line-height: .22rem;
     text-overflow: ellipsis;
     overflow: hidden;
     position: absolute;

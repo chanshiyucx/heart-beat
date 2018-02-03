@@ -5,8 +5,8 @@
 }
 
 @font-face {
-  font-family: PT-Serif;
-  src: url('/fonts/PT-Serif.ttf');
+  font-family: Iosevka;
+  src: url('/fonts/iosevka.ttf');
   font-weight: bold;
 }
 
@@ -29,7 +29,7 @@ body {
   user-select: none;
   text-shadow: 0 0 1px rgba(0, 0, 0, .2);
   scroll-behavior: smooth;
-  font-family: 'PT-Serif';
+  font-family: 'Iosevka';
   cursor: url('../img/cursor.cur'), auto!important;
 }
 
@@ -49,7 +49,7 @@ body::before {
 }
 
 h1, h2, h3, code, a {
-  font-family: 'PT-Serif', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Iosevka', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 a {
@@ -73,7 +73,7 @@ a:hover {
   color: #faf!important;
 }
 
-.gt-container a: hover {
+.gt-container a:hover {
   color: #f6f!important;
   border-color: #f6f!important;
 }

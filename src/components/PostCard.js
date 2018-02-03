@@ -22,7 +22,7 @@ const Card = styled.div`
   width: 100%;
   overflow: hidden;
   border-radius: .03rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, .6);
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
   transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(.6, .2, .1, 1) 0s;
   &:hover {
@@ -39,7 +39,7 @@ const Header = styled.div`
   overflow: hidden;
   img {
     display: block;
-    min-height: 246px;
+    // min-height: 246px;
     width: 100%;
     transition: transform 0.6s ease-out;
   }
@@ -54,7 +54,7 @@ const Title = styled.div`
   color: #eee;
   font-size: .18rem;
   font-weight: normal;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, .4);
 `
 
 const Content = styled.div`

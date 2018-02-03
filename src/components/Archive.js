@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: inline-block;
   margin: .06rem 0;
-  width: 49%;
+  width: 49.2%;
   @media (max-width: 700px) {
     width: 96%;
   }

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: inline-block;
   margin: .06rem 0;
-  width: 49%;
+  width: 49.2%;
   border-radius: .03rem;
   background: rgba(255, 255, 255, .4);
   box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
@@ -25,7 +25,7 @@ const Header = styled.div`
   img {
     width: 1.2rem;
     height: 1.6rem;
-    margin-right: .16rem;
+    margin-right: .12rem;
     box-shadow: 4px 6px 10px rgba(0, 0, 0, .2);
   }
 `
@@ -35,13 +35,16 @@ const Info = styled.div`
     display: flex;
     align-items: center;
     padding: .06rem 0;
+    i {
+      margin-top: .03rem;
+    }
   }
   i {
     font-size: .16rem;
   }
   h2 {
-    margin-left: .06rem;
-    font-size: .2rem;
+    margin-left: .04rem;
+    font-size: .18rem;
     font-weight: normal;
   }
   p {
