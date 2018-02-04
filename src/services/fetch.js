@@ -1,6 +1,7 @@
 import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from '../config'
+import { resolve } from 'url';
 
 const { posts, pages, pre, suf, params } = config
 const token = `access_token=${pre}${suf}`

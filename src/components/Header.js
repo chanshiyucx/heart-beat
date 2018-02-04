@@ -59,6 +59,7 @@ const Menu = styled.ul`
   margin-top: .14rem;
   padding: 0 .32rem;
   height: .6rem;
+  z-index: 999;
   background: rgba(0, 0, 0, .1);
   box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
   transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
@@ -77,7 +78,7 @@ const Menu = styled.ul`
     margin: .03rem
   }
   @media (max-width: 600px) {
-    position: absolute;
+    position: fixed;
     top: ${props => props.dropMenu ? '0' : '-1rem'};
     left: 0;
     margin: 0;
