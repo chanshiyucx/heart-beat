@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { PostCard, Loading } from '../components'
 import config from '../config'
+import { loadavg } from 'os';
 
 const { duration, transitions } = config
 const { show, hide } = transitions.home
@@ -160,20 +161,18 @@ class Home extends PureComponent {
 
   renderCard = () => {
     const { postList, times } = this.props
-    if (postList && postList.length > 0) {
-      const cardList = postList.map((o, i) => {
-        return (
-          <PostCard
-            key={o.id}
-            {...o}
-            time={times ? times[i] : 1}
-            gotoCat={this.gotoCat}
-            handleMouseOver={this.handleMouseOver}
-          />
-        )
-      })
-      return cardList
-    }
+    const cardList = postList.map((o, i) => {
+      return (
+        <PostCard
+          key={o.id}
+          {...o}
+          time={times ? times[i] : 1}
+          gotoCat={this.gotoCat}
+          handleMouseOver={this.handleMouseOver}
+        />
+      )
+    })
+    return cardList
   }
 
   render() {
@@ -212,4 +211,7 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ home }) => ({ ...home }))(Home)
+export default connect(({ loading, home }) => ({
+  loading: loading.models.home,
+  ...home,
+}))(Home)

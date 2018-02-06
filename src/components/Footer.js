@@ -63,7 +63,7 @@ const Container = styled.div`
   position: absolute;
   bottom: 0;
   margin: 0 auto;
-  padding-bottom: .1rem;
+  padding-bottom: .04rem;
   width: 100%;
   &::before {
     content: '';
@@ -191,8 +191,8 @@ const SkyPlayer = styled.div`
 
 const FooterIcon = styled.button`
   padding: .1rem;
-  width: .22rem;
-  height: .22rem;
+  width: .18rem;
+  height: .18rem;
   outline: 0;
   box-sizing: content-box;
   color: rgba(255, 255, 255, 0.8);
@@ -200,7 +200,7 @@ const FooterIcon = styled.button`
   border: 2px solid rgba(0, 0, 0, .2);
   background: transparent;
   i {
-    font-size: .22rem;
+    font-size: .2rem;
   }
   &:hover {
     color: rgba(0, 0, 0, .2);
@@ -217,6 +217,9 @@ const ScrollToTop = FooterIcon.extend`
   margin-right: ${props => props.initFlag ? '-100px' : '0'};
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
+  i {
+    margin-top: -.02rem;
+  }
 `
 
 const PlayBtn = FooterIcon.extend`
@@ -224,7 +227,7 @@ const PlayBtn = FooterIcon.extend`
   right: 10px;
   bottom: 58px;
   i {
-    margin-top: -.03rem;
+    margin: -.02rem 0 0 -.01rem;
     transform: ${props => props.showPlayer && !props.loading ? 'rotateY(180deg)' : 'none' };
     animation: ${props => props.loading ? rotate + ' 6s linear infinite' : 'none'};
   }
@@ -265,6 +268,7 @@ const LikeCount = styled.div`
 
 const LikeBtn = FooterIcon.extend`
   i {
+    margin-left: -.01rem;
     color: ${props => props.likeChanshiyu ? '#faf' : 'inherit' };
   }
 `

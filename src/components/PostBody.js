@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import marked from 'marked'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 import Zooming from 'zooming'
+
+import hljs from '../utils/highlight'
 
 const zooming = new Zooming({
   scaleBase: 0.8,

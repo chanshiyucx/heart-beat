@@ -29,19 +29,17 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, onHide: true, times: [], loading: true }
+      return { ...state, onHide: true, times: [] }
     },
   },
   effects: {
     *queryTotal({ payload }, { call, put }) {
-      yield put({ type: 'update', payload: { loading: true } })
       const total = yield call(queryTotal, payload)
       yield put({ type: 'update', payload: { total } })
       yield put({ type: 'queryList' })
     },
 
     *queryList({ payload }, { select, call, put }) {
-      yield put({ type: 'update', payload: { loading: true } })
       const startTime = new Date()
       const data = yield select(state => state.home)
       const { total, page, pageSize } = data
@@ -60,7 +58,7 @@ export default {
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({ type: 'queryEnd', payload: { postList, page: queryPage, onHide: false } })
       const times = yield call(queryHot, { postList })
-      yield put({ type: 'update', payload: { times, loading: false } })
+      yield put({ type: 'update', payload: { times } })
     },
   },
 }

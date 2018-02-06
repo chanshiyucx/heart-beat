@@ -172,6 +172,9 @@ export default {
    *            主题配置
    * ----------------------------------
    */
+
+  // highlight: 'javascript',
+
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
@@ -283,4 +286,8 @@ export default {
     '#2EA9DF', // 露草
     '#E03C8A', // 躑躅
   ],
+}
+
+export function getLang() {
+  return 'css';
 }
