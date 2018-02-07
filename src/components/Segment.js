@@ -49,7 +49,7 @@ const Inner = styled.div`
     margin-top: .12rem;
   }
   ol, ul {
-    margin: .06rem .24rem .06rem .5rem;
+    margin: .06rem .24rem .06rem .34rem;
   }
 `
 const Segment = ({

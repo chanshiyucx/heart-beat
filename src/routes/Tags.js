@@ -204,6 +204,7 @@ class Tags extends PureComponent {
 }
 
 export default connect(({ loading, page }) => ({
-  loading: loading.models.page,
+  // loading: loading.models.page,
+  loading: loading.effects['page/queryTags'] || loading.effects['page/filterPost'],
   ...page,
 }))(Tags)

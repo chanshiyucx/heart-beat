@@ -32,7 +32,7 @@ export default {
   },
   effects: {
     *queryTotal({ payload }, { call, put }) {
-        yield put({ type: 'update', payload: { loading: true } })
+      yield put({ type: 'update', payload: { loading: true } })
       // 一次获取全部，目前没有好的方法优化翻页对称性，数据量也不大
       const totalList = yield call(queryTotal, payload)
       yield put({ type: 'update', payload: { totalList } })

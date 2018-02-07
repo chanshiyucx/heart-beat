@@ -86,12 +86,14 @@ const Menu = styled.ul`
     width: 100%;
     height: .8rem;
     flex-wrap: wrap;
+    background: rgba(0, 0, 0, .4);
     li {
       width: 25%;
     }
     a {
       flex-direction: row;
       justify-content: center;
+      color: #eee;
     }
   }
 `

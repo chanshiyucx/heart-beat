@@ -276,6 +276,6 @@ class Categories extends PureComponent {
 }
 
 export default connect(({ loading, page }) => ({
-  loading: loading.models.page,
+  loading: loading.effects['page/queryCats'] || loading.effects['page/filterPost'], 
   ...page,
 }))(Categories)

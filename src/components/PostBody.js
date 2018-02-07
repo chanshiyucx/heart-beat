@@ -1,24 +1,14 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import marked from 'marked'
-// import hljs from 'highlight.js'
 import Zooming from 'zooming'
-
 import hljs from '../utils/highlight'
-
-// const hljs = require('highlight.js/lib/highlight')
 
 const zooming = new Zooming({
   scaleBase: 0.8,
   bgOpacity: 0.6,
   scrollThreshold: 10,
 })
-
-// hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'))
-// hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
-// hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
-//
-
 
 marked.setOptions({
   highlight: code => hljs.highlightAuto(code).value,
@@ -67,13 +57,17 @@ const Info = styled.div`
   padding: .12rem .16rem;
   width: 100%;
   color: #eee;
+  box-sizing: border-box;
   background: rgba(0, 0, 0, .4);
 `
 
 const Title = styled.h2`
   font-weight: normal;
-  font-size: .24rem;
+  font-size: .22rem;
   letter-spacing: 1px;
+  @media (max-width: 900px) {
+    font-size: .18rem;
+  }
 `
 
 const Meta = styled.div`
@@ -104,7 +98,7 @@ const Content = styled.div`
     margin: .12rem .16rem 0;
   }
   ol, ul {
-    margin: .06rem .24rem .06rem .5rem;
+    margin: .06rem .24rem .06rem .34rem;
   }
   h2, h3 {
     font-weight: normal;

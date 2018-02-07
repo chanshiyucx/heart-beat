@@ -52,8 +52,8 @@ class Archives extends PureComponent {
       type: 'page/reset',
       payload: {
         archivesOnHide: true,
-        total: 0,
         page: 0,
+        totalList: [],
         archives: [],
       },
     })
@@ -106,11 +106,10 @@ class Archives extends PureComponent {
       loading,
       archivesOnHide,
       archives,
-      total,
+      totalList,
       page,
-      pageSize,
     } = this.props
-    const maxPage = Math.ceil(total / pageSize)
+    const maxPage = Math.ceil(totalList.length / 10)
     return (
       <Container>
         <Wapper
@@ -138,6 +137,6 @@ class Archives extends PureComponent {
 }
 
 export default connect(({ loading, page }) => ({
-  loading: loading.models.page,
+  loading: loading.effects['page/queryTotal'] || loading.effects['page/queryArchives'],
   ...page,
 }))(Archives)

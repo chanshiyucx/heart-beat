@@ -24,13 +24,13 @@ export async function queryTotal() {
 }
 
 // 文章列表
-export async function queryList({ page = 1, pageSize = 4 }) {
-  const url = `${posts}/issues?${params}&page=${page}&per_page=${pageSize}&${token}`
-  const response = await fetch(url)
-  checkStatus(response)
-  const postList = await response.json()
-  return postList
-}
+// export async function queryList({ page = 1, pageSize = 4 }) {
+//   const url = `${posts}/issues?${params}&page=${page}&per_page=${pageSize}&${token}`
+//   const response = await fetch(url)
+//   checkStatus(response)
+//   const postList = await response.json()
+//   return postList
+// }
 
 // 分类文章
 export async function filterList({ type, filter }) {
@@ -70,11 +70,11 @@ export async function queryTags() {
 
 // 说说总数
 export async function queryShuoShuoTotal() {
-  const url = `${pages}/issues?${params}&labels=shuoshuo&page=1&per_page=1&${token}`
+  const url = `${pages}/issues?${params}&labels=shuoshuo&page=1&per_page=300&${token}`
   const response = await fetch(url)
   checkStatus(response)
-  const data = await response.json()
-  return data[0].number
+  const shuoshuoTotal = await response.json()
+  return shuoshuoTotal
 }
 
 // 说说

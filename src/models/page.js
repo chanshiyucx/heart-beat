@@ -1,6 +1,5 @@
 import {
   queryTotal,
-  queryList,
   queryCats,
   queryTags,
   filterList,
@@ -18,10 +17,9 @@ export default {
   state: {
     // 归档
     archivesOnHide: true,
+    totalList: [],
     archives: [],
-    total: 0,
     page: 0,
-    pageSize: 10,
     // 分类 & 标签
     catsOnHide: true,
     tagsOnHide: true,
@@ -31,10 +29,9 @@ export default {
     filterPost: [],
     // 说说
     shuoshuoOnHide: true,
+    shuoshuoTotal: [],
     myShuoShuo: [],
-    shuoshuoTotal: 0,
     shuoshuoPage: 0,
-    shuoshuoPageSize: 6,
     // 书单 && 友链 && 关于
     books: {},
     friends: {},
@@ -55,19 +52,18 @@ export default {
   },
   effects: {
     *queryTotal({ payload }, { call, put }) {
-      const total = yield call(queryTotal, payload)
-      yield put({ type: 'update', payload: { total } })
+      const totalList = yield call(queryTotal, payload)
+      yield put({ type: 'update', payload: { totalList } })
       yield put({ type: 'queryArchives' })
     },
 
     *queryArchives({ payload }, { select, call, put }) {
-      yield put({ type: 'queryStart' })
       const startTime = new Date()
       const data = yield select(state => state.page)
-      const { page, pageSize } = data
+      const { totalList, page } = data
       const queryType = payload ? payload.queryType : ''
       const queryPage = queryType === 'prev' ? page - 1 : page + 1
-      const archives = yield call(queryList, { page: queryPage, pageSize })
+      const archives = totalList.slice((queryPage - 1) * 10, queryPage * 10)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({
@@ -98,21 +94,17 @@ export default {
 
     *queryShuoShuoTotal({ payload }, { call, put }) {
       const shuoshuoTotal = yield call(queryShuoShuoTotal, payload)
-      yield put({ type: 'queryEnd', payload: { shuoshuoTotal } })
+      yield put({ type: 'update', payload: { shuoshuoTotal } })
       yield put({ type: 'queryShuoShuo' })
     },
 
     *queryShuoShuo({ payload }, { select, call, put }) {
-      yield put({ type: 'queryEnd', payload: { shuoshuoLoading: true } })
       const startTime = new Date()
       const data = yield select(state => state.page)
-      const { shuoshuoPage, shuoshuoPageSize } = data
+      const { shuoshuoTotal ,shuoshuoPage } = data
       const queryType = payload ? payload.queryType : ''
       const queryPage = queryType === 'prev' ? shuoshuoPage - 1 : shuoshuoPage + 1
-      const myShuoShuo = yield call(queryShuoShuo, {
-        page: queryPage,
-        pageSize: shuoshuoPageSize,
-      })
+      const myShuoShuo = shuoshuoTotal.slice((queryPage - 1) * 6, queryPage * 6)
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({

@@ -54,9 +54,8 @@ class ShuoShuo extends PureComponent {
       type: 'page/reset',
       payload: {
         shuoshuoOnHide: true,
-        shuoshuoHasMore: true,
-        shuoshuoTotal: 0,
         shuoshuoPage: 0,
+        shuoshuoTotal: [],
         myShuoShuo: [],
       },
     })
@@ -110,9 +109,8 @@ class ShuoShuo extends PureComponent {
       myShuoShuo,
       shuoshuoTotal,
       shuoshuoPage,
-      shuoshuoPageSize,
     } = this.props
-    const maxPage = Math.ceil(shuoshuoTotal / shuoshuoPageSize)
+    const maxPage = Math.ceil(shuoshuoTotal.length / 6)
     return (
       <Container>
         <Wapper
@@ -142,6 +140,6 @@ class ShuoShuo extends PureComponent {
 }
 
 export default connect(({ loading, page }) => ({
-  loading: loading.models.page,
+  loading: loading.effects['page/queryShuoShuo'] || loading.effects['page/queryShuoShuoTotal'],
   ...page,
 }))(ShuoShuo)
