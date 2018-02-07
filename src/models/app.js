@@ -5,7 +5,8 @@ export default {
   namespace: 'appModel',
   state: {
     currCover: 4,
-    openCover: false,
+    hideCover: false,
+    coverOnHide: false,
     dropMenu: false,
     showTop: false,
     showPlayer: false,

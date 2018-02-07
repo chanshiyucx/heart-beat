@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
-import config from '../config'
 
-const { duration } = config
+import { throttle } from '../utils'
 
 const Container = styled.div`
   position: fixed;
@@ -13,52 +12,93 @@ const Container = styled.div`
   top: 0;
   display: flex;
   z-index: 1000;
+  ${props => props.onHide ? 'display: none;' : ''}
   @media (max-width: 1200px) {
     display: none;
   }
-  animation-duration: ${duration / 1000}s;
-  animation-fill-mode: forwards;
 `
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
   position: absolute;
   width: 100%;
   height: 100%;
 `
 
-const Card = styled.img`
+const Card = styled.li`
   display: inline-block;
   z-index: ${props => props.isCurr ? 1 : 0};
-  width: ${props => props.isCurr ? '40%' : '14%'};
+  width: ${props => props.isCurr ? '52%' : '12%'};
   height: 100%;
   object-fit: cover;
-  animation-duration: ${duration / 1000}s;
+  animation-duration: .6s;
   animation-fill-mode: forwards;
-  transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+  transition: all 0.5s cubic-bezier(.6, .2, .1, 1) 0s;
+  background: url(${props => props.src}) no-repeat center/cover;
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .2);
+  }
 `
 
-const More = styled.div`
+const More = styled.a`
   position: fixed;
   right: .2rem;
-  bottom: .2rem;
+  bottom: .1rem;
   font-size: 1rem;
+  color: #888;
   z-index: 10;
 `
 
 class Cover extends PureComponent {
-  openCover = () => {
+  componentDidMount() {
+    const node = document.getElementById('wrapper')
+    node.addEventListener('mouseover', throttle(this.handleMouseOver, 600, {trailing: true}))
+
+    // 监听动画结束
+    this.performAndDisapper()
+  }
+
+  // 监听动画结束，其他方法都太复杂了QAQ
+  performAndDisapper = () => {
+    if (!this.Card) this.Card = document.getElementById('card-0');
+    this.Card.addEventListener('animationend', this.animationEnd)
+  }
+
+  // 动画结束
+  animationEnd = () => {
+    console.log('endddd')
+    const { hideCover } = this.props
+    // 如果动画结束数据还未加载，那么隐藏
+    if (hideCover) {
+      console.log('隐藏！！！')
+      this.props.dispatch({
+        type: 'appModel/update',
+        payload: {
+          coverOnHide: true,
+        },
+      })
+    }
+  }
+
+
+  // 隐藏启动图
+  hideCover = () => {
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
-        openCover: true,
+        hideCover: true,
       }
     })
   }
 
-  handleMouseOver = (i) => {
+  // 处理图片放大
+  handleMouseOver = (e) => {
+    const curr = e.target.id.split('-')[1]
     this.props.dispatch({
       type: 'appModel/update',
       payload: {
-        currCover: i,
+        currCover: +curr,
       },
     })
   }
@@ -66,21 +106,21 @@ class Cover extends PureComponent {
   // TODO 渲染一个百叶窗？？？
   renderCard = () => {
     const imgs = [
-      'https://dn-coding-net-production-pp.qbox.me/18fea7a2-22d7-4688-84b4-0da4db042813.png',
-      'https://dn-coding-net-production-pp.qbox.me/18fea7a2-22d7-4688-84b4-0da4db042813.png',
-      'https://dn-coding-net-production-pp.qbox.me/18fea7a2-22d7-4688-84b4-0da4db042813.png',
-      'https://dn-coding-net-production-pp.qbox.me/18fea7a2-22d7-4688-84b4-0da4db042813.png',
-      'https://dn-coding-net-production-pp.qbox.me/18fea7a2-22d7-4688-84b4-0da4db042813.png',
+      'https://dn-coding-net-production-pp.qbox.me/be7f2f1c-51f1-40ef-9ab9-7b453153dd6e.jpg',
+      'https://dn-coding-net-production-pp.qbox.me/be7f2f1c-51f1-40ef-9ab9-7b453153dd6e.jpg',
+      'https://dn-coding-net-production-pp.qbox.me/42388d66-ecb0-41a2-a57c-88d90feabbfc.jpg',
+      'https://dn-coding-net-production-pp.qbox.me/42388d66-ecb0-41a2-a57c-88d90feabbfc.jpg',
+      'https://dn-coding-net-production-pp.qbox.me/42388d66-ecb0-41a2-a57c-88d90feabbfc.jpg',
     ]
-    const { currCover, openCover } = this.props
+    const { currCover, hideCover } = this.props
     const CardList = imgs.map((o, i) => {
       return (
         <Card
-          key={o}
+          id={`card-${i}`}
+          key={i}
           src={o}
           isCurr={currCover === i}
-          className={openCover ? (i % 2 === 0 ? 'back-out-up' : 'back-out-down') : '' }
-          onMouseOver={() => this.handleMouseOver(i)}
+          className={hideCover ? (i % 2 === 0 ? 'back-out-up' : 'back-out-down') : '' }
         />
       )
     })
@@ -88,12 +128,16 @@ class Cover extends PureComponent {
   }
 
   render() {
+    const { coverOnHide, hideCover } = this.props
     return (
-      <Container>
-        <Wrapper>
+      <Container onHide={coverOnHide}>
+        <Wrapper id="wrapper">
             { this.renderCard() }
         </Wrapper>
-        <More onClick={this.openCover}>
+        <More 
+          className={hideCover ? 'fade-out' : '' }
+          onClick={this.hideCover} 
+        >
           つづく
         </More>
       </Container>
