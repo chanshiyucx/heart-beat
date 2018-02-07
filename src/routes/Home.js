@@ -175,8 +175,8 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { loading, onHide, postList } = this.props
-    if (postList.length && this.initFlag) this.initFlag = false
+    const { loading, onHide } = this.props
+    if (!loading && this.initFlag) this.initFlag = false
     return (
       <Container>
         <PreBtn
@@ -210,7 +210,4 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ loading, home }) => ({
-  loading: loading.models.home,
-  ...home,
-}))(Home)
+export default connect(({ home }) => ({ ...home }))(Home)

@@ -7,6 +7,7 @@ const { minDelay } = config
 export default {
   namespace: 'home',
   state: {
+    loading: true,
     onHide: true,
     totalList: [],
     postList: [],
@@ -26,11 +27,12 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, totalList: [], postList: [], onHide: true, times: [] }
+      return { ...state, totalList: [], postList: [], loading: true, onHide: true, times: [] }
     },
   },
   effects: {
     *queryTotal({ payload }, { call, put }) {
+        yield put({ type: 'update', payload: { loading: true } })
       // 一次获取全部，目前没有好的方法优化翻页对称性，数据量也不大
       const totalList = yield call(queryTotal, payload)
       yield put({ type: 'update', payload: { totalList } })
@@ -38,6 +40,7 @@ export default {
     },
 
     *queryList({ payload }, { select, call, put }) {
+      yield put({ type: 'update', payload: { loading: true } })
       const startTime = new Date()
       const data = yield select(state => state.home)
       const { totalList, postList } = data
@@ -69,7 +72,7 @@ export default {
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({ type: 'queryEnd', payload: { postList: newPostList, onHide: false } })
       const times = yield call(queryHot, { postList: newPostList })
-      yield put({ type: 'update', payload: { times } })
+      yield put({ type: 'update', payload: { times, loading: false } })
     },
   },
 }
