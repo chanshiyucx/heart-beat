@@ -1,7 +1,6 @@
 import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from '../config'
-import { resolve } from 'url';
 
 const { posts, pages, pre, suf, params } = config
 const token = `access_token=${pre}${suf}`
@@ -16,21 +15,22 @@ function checkStatus(response) {
 
 // 文章总数
 export async function queryTotal() {
-  const url = `${posts}/issues?${params}&page=1&per_page=1&${token}`
+  // 一次获取全部文章，估测没什么影响，先以 200 做限制
+  const url = `${posts}/issues?${params}&page=1&per_page=200&${token}`
   const response = await fetch(url)
   checkStatus(response)
-  const data = await response.json()
-  return data[0].number
+  const totalList = await response.json()
+  return totalList
 }
 
 // 文章列表
-export async function queryList({ page = 1, pageSize = 4 }) {
-  const url = `${posts}/issues?${params}&page=${page}&per_page=${pageSize}&${token}`
-  const response = await fetch(url)
-  checkStatus(response)
-  const postList = await response.json()
-  return postList
-}
+// export async function queryList({ page = 1, pageSize = 4 }) {
+//   const url = `${posts}/issues?${params}&page=${page}&per_page=${pageSize}&${token}`
+//   const response = await fetch(url)
+//   checkStatus(response)
+//   const postList = await response.json()
+//   return postList
+// }
 
 // 分类文章
 export async function filterList({ type, filter }) {

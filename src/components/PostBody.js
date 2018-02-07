@@ -6,11 +6,19 @@ import Zooming from 'zooming'
 
 import hljs from '../utils/highlight'
 
+// const hljs = require('highlight.js/lib/highlight')
+
 const zooming = new Zooming({
   scaleBase: 0.8,
   bgOpacity: 0.6,
   scrollThreshold: 10,
 })
+
+// hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'))
+// hljs.registerLanguage('css', require('highlight.js/lib/languages/css'))
+// hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'))
+//
+
 
 marked.setOptions({
   highlight: code => hljs.highlightAuto(code).value,

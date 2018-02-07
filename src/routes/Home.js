@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { PostCard, Loading } from '../components'
 import config from '../config'
-import { loadavg } from 'os';
 
 const { duration, transitions } = config
 const { show, hide } = transitions.home
