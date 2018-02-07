@@ -2,7 +2,7 @@ import { Router, Switch, Route } from 'dva/router'
 import styled from 'styled-components'
 
 // 公共组件
-import { Header, Footer } from './components'
+import { Cover, Header, Footer } from './components'
 
 // 路由页面
 import Home from './routes/Home'
@@ -34,6 +34,7 @@ function RouterConfig({ history, app }) {
   return (
     <Router history={history}>
       <Container>
+        <Cover />
         <Header />
         <Content>
           <Switch>

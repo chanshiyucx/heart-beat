@@ -4,6 +4,8 @@ import { delay } from '../utils'
 export default {
   namespace: 'appModel',
   state: {
+    currCover: 4,
+    openCover: false,
     dropMenu: false,
     showTop: false,
     showPlayer: false,

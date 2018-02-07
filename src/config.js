@@ -173,8 +173,6 @@ export default {
    * ----------------------------------
    */
 
-  // highlight: 'javascript',
-
   // 加载动画相关
   loadingImg:
     'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
@@ -185,11 +183,11 @@ export default {
     home: { // 首页文章卡切换动画
       show: 'scale-in',
       hide: 'scale-out',
-    }, 
+    },
     page: { // 其余页面的加载动画
       show: 'scale-in',
       hide: 'flip-out-x',
-    }, 
+    },
     post: 'clip-y-in', // 文章页加载动画
     footer: { // 播放器和滚动按钮
       show: 'bounce-in-left',

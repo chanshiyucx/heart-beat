@@ -39,7 +39,6 @@ const Header = styled.div`
   overflow: hidden;
   img {
     display: block;
-    // min-height: 246px;
     width: 100%;
     transition: transform 0.6s ease-out;
   }
