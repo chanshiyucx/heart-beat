@@ -8,7 +8,6 @@ export default {
   namespace: 'home',
   state: {
     onHide: true,
-    hasMore: true,
     totalList: [],
     postList: [],
     times: [],
@@ -27,7 +26,7 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, onHide: true, times: [] }
+      return { ...state, totalList: [], postList: [], onHide: true, times: [] }
     },
   },
   effects: {

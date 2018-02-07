@@ -175,8 +175,8 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { loading, onHide } = this.props
-    if (!loading && this.initFlag) this.initFlag = false
+    const { loading, onHide, postList } = this.props
+    if (postList.length && this.initFlag) this.initFlag = false
     return (
       <Container>
         <PreBtn
