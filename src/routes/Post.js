@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import styled from 'styled-components'
+import SmoothScroll from 'smooth-scroll'
 
 import { PostBody, Preview, Loading } from '../components'
 import config from '../config'
-import { setTimeout } from 'timers';
 const { reward, duration, transitions } = config
+
+// 滚动
+const scroll = new SmoothScroll()
 
 const Container = styled.div`
   margin: 0 auto;
@@ -104,8 +107,8 @@ class Post extends PureComponent {
     this.queryPost()
 
     // 滚动到顶部
-    const header = document.getElementById('header')
-    header.scrollIntoView()
+    this.header = document.getElementById('header')
+    this.header.scrollIntoView()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -126,6 +129,7 @@ class Post extends PureComponent {
   // 获取文章
   queryPost = (num) => {
     const number = num || this.props.match.params.number
+    if (this.header) scroll.animateScroll(this.header)
     this.props.dispatch({
       type: 'post/queryPost',
       payload: {
