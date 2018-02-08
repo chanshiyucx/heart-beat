@@ -25,11 +25,11 @@ const Wapper = styled.div`
 const Footer = styled.div`
   position: relative;
   text-align: center;
+  margin: .12rem 0 .16rem;
 `
 
 const RewardIcon = styled.span`
   display: inline-block;
-  margin-bottom: .12rem;
   width: .4rem;
   height: .4rem;
   line-height: .4rem;
@@ -92,6 +92,9 @@ const MorePost = styled.div`
   display: flex;
   overflow: hidden;
   border-radius: 0 0 .03rem .03rem;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `
 
 class Post extends PureComponent {

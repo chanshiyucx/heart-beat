@@ -25,6 +25,9 @@ const Container = styled(Link)`
       transform: translateY(-1.6rem);
     }
   }
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `
 
 const Content = styled.div`
@@ -43,11 +46,13 @@ const Info = styled.div`
   padding: .24rem .36rem;
   height: 100%;
   line-height: 1.7;
-  color: #eee;
+  color: #ddd;
   box-sizing: border-box;
   background: rgba(0, 0, 0, .4);
   h2 {
-    font-size: .2rem;
+    margin: .06rem 0;
+    font-size: .22rem;
+    font-weight: normal;
     letter-spacing: .01rem;
   }
 `

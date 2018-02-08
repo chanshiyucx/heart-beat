@@ -124,7 +124,7 @@ const Waifu = styled.div`
     position: absolute;
     bottom: 6px;
     left: 0;
-    width: 20px;
+    width: .2rem;
     z-index: 999;
     i {
       font-size: .16rem;
@@ -136,9 +136,9 @@ const Waifu = styled.div`
 `
 
 const WaifuBtn = styled.button`
-  width: .16rem;
-  height: .16rem;
-  margin: .04rem 0;
+  width: .2rem;
+  height: .2rem;
+  // margin: .04rem 0;
   color: #444;
   border: none;
   outline: 0;
@@ -320,6 +320,10 @@ class Footer extends PureComponent {
 
     // 滚动
     document.addEventListener('scroll', throttle(this.handleScroll, 400, {trailing: true}))
+
+    // hover 事件
+    this.tool = document.getElementById('waifu-tool')
+    this.tool.addEventListener('mouseover', throttle(this.handleMouseOver, 100, {trailing: true}))
   }
 
   componentWillUnmount() {
@@ -330,6 +334,9 @@ class Footer extends PureComponent {
 
     // 滚动
     document.removeEventListener('scroll', this.handleScroll)
+
+    // hover
+    this.tool.removeEventListener('mouseover', this.handleMouseOver)
   }
 
   // 添加监听器
@@ -446,7 +453,11 @@ class Footer extends PureComponent {
   }
 
   // hover 触发对话
-  handleMouseOver = type => {
+  handleMouseOver = e => {
+    const { id } = e.target
+    if (!id || !id.includes('waifu-') || id === 'waifu-tool') return
+    console.log('eee', id)
+    const type = id.split('-')[1]
     const { waifu, likeChanshiyu } = this.props
     let tips = ''
     if (type === 'changeWaifu') {
@@ -458,6 +469,8 @@ class Footer extends PureComponent {
     } else {
       tips = hoverTips[type]
     }
+    console.log('tips', tips)
+    if (!tips) return
     this.props.dispatch({
       type: 'appModel/showTips',
       payload: {
@@ -515,58 +528,58 @@ class Footer extends PureComponent {
             <Link to="/">
               <WaifuBtn
                 className="waifu-btn"
-                onMouseOver={() => this.handleMouseOver('backHome')}
+                id="waifu-backHome"
               >
                 <i className="fa fa-university" aria-hidden="true"></i>
               </WaifuBtn>
             </Link>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-changeWaifu"
               onClick={() => this.dressup({ changeWaifu: true })}
-              onMouseOver={() => this.handleMouseOver('changeWaifu')}
             >
               <i className="fa fa-venus-double" aria-hidden="true"></i>
             </WaifuBtn>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-dressup"
               onClick={() => this.dressup({ changeWaifu: false })}
-              onMouseOver={() => this.handleMouseOver('dressup')}
             >
               <i className="fa fa-female" aria-hidden="true"></i>
             </WaifuBtn>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-takePhoto"
               onClick={this.takePhoto}
-              onMouseOver={() => this.handleMouseOver('takePhoto')}
             >
               <i className="fa fa-camera-retro" aria-hidden="true"></i>
             </WaifuBtn>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-talk"
               onClick={() => this.showTips({ forced: true })}
-              onMouseOver={() => this.handleMouseOver('talk')}
             >
               <i className="fa fa-commenting" aria-hidden="true"></i>
             </WaifuBtn>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-lightbulb"
               onClick={this.lightbulb}
-              onMouseOver={() => this.handleMouseOver('lightbulb')}
             >
               <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
             </WaifuBtn>
             <Link to="/post/4">
               <WaifuBtn
                 className="waifu-btn"
-                onMouseOver={() => this.handleMouseOver('info')}
+                id="waifu-info"
               >
                 <i className="fa fa-info-circle" aria-hidden="true"></i>
               </WaifuBtn>
             </Link>
             <WaifuBtn
               className="waifu-btn"
+              id="waifu-hidden"
               onClick={this.hiddenWaifu}
-              onMouseOver={() => this.handleMouseOver('hidden')}
             >
               <i className="fa fa-times-circle" aria-hidden="true"></i>
             </WaifuBtn>
@@ -579,16 +592,16 @@ class Footer extends PureComponent {
           <div id="skPlayer" />
         </SkyPlayer>
         <ScrollToTop
+          id="waifu-scroll"
           onClick={this.scrollToTop}
-          onMouseOver={() => this.handleMouseOver('scroll')}
           initFlag={this.scrollInitFlag}
           className={showTop ? show : hide}
         >
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>
         <PlayBtn
+          id="waifu-music"
           onClick={this.togglePlayer}
-          onMouseOver={() => this.handleMouseOver('music')}
           loading={isPlaying}
           showPlayer={showPlayer}
         >
@@ -599,8 +612,8 @@ class Footer extends PureComponent {
             已有 {likeTime} 人点赞了哦
           </div>
           <LikeBtn
+            id="waifu-like"
             onClick={this.likeSite}
-            onMouseOver={() => this.handleMouseOver('like')}
             likeChanshiyu={likeChanshiyu}
           >
             <i className="fa fa-heart" aria-hidden="true"></i>
