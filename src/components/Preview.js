@@ -51,7 +51,7 @@ const Info = styled.div`
   background: rgba(0, 0, 0, .4);
   h2 {
     margin: .06rem 0;
-    font-size: .22rem;
+    font-size: .2rem;
     font-weight: normal;
     letter-spacing: .01rem;
   }

@@ -11,11 +11,11 @@ export default {
     post: {},
     prevPost: {},
     nextPost: {},
-    showReward: false,
+    rewardStatu: 0,
   },
   reducers: {
     queryStart(state, { payload }) {
-      return { ...state, post: {} }
+      return { ...state, post: {}, rewardStatu: 0 }
     },
 
     queryEnd(state, { payload }) {

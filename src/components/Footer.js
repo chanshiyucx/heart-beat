@@ -138,10 +138,11 @@ const Waifu = styled.div`
 const WaifuBtn = styled.button`
   width: .2rem;
   height: .2rem;
-  // margin: .04rem 0;
+  padding: .02rem 0;
   color: #444;
   border: none;
   outline: 0;
+  box-sizing: content-box;
   background: transparent;
 `
 
@@ -323,7 +324,7 @@ class Footer extends PureComponent {
 
     // hover 事件
     this.tool = document.getElementById('waifu-tool')
-    this.tool.addEventListener('mouseover', throttle(this.handleMouseOver, 100, {trailing: true}))
+    this.tool.addEventListener('mouseover', this.middleHover)
   }
 
   componentWillUnmount() {
@@ -336,7 +337,7 @@ class Footer extends PureComponent {
     document.removeEventListener('scroll', this.handleScroll)
 
     // hover
-    this.tool.removeEventListener('mouseover', this.handleMouseOver)
+    this.tool.removeEventListener('mouseover', this.middleHover)
   }
 
   // 添加监听器
@@ -346,7 +347,7 @@ class Footer extends PureComponent {
       this.audio.addEventListener('play', this.handleListen)
       this.audio.addEventListener('pause', this.handleListen)
     } else {
-      setTimeout(this.addListener, 2000)
+      setTimeout(this.addPlayerListener, 2000)
     }
   }
 
@@ -452,12 +453,16 @@ class Footer extends PureComponent {
     setTimeout(() => this.showTips({}), 16000)
   }
 
-  // hover 触发对话
-  handleMouseOver = e => {
+  // hover 代理
+  middleHover = e => {
     const { id } = e.target
     if (!id || !id.includes('waifu-') || id === 'waifu-tool') return
-    console.log('eee', id)
     const type = id.split('-')[1]
+    this.handleMouseOver(type)
+  }
+ 
+  // hover 触发对话
+  handleMouseOver = type => {
     const { waifu, likeChanshiyu } = this.props
     let tips = ''
     if (type === 'changeWaifu') {
@@ -469,7 +474,6 @@ class Footer extends PureComponent {
     } else {
       tips = hoverTips[type]
     }
-    console.log('tips', tips)
     if (!tips) return
     this.props.dispatch({
       type: 'appModel/showTips',
@@ -592,18 +596,18 @@ class Footer extends PureComponent {
           <div id="skPlayer" />
         </SkyPlayer>
         <ScrollToTop
-          id="waifu-scroll"
-          onClick={this.scrollToTop}
-          initFlag={this.scrollInitFlag}
           className={showTop ? show : hide}
+          initFlag={this.scrollInitFlag}
+          onClick={this.scrollToTop}
+          onMouseOver={() => this.handleMouseOver('scroll')}
         >
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
           </ScrollToTop>
         <PlayBtn
-          id="waifu-music"
-          onClick={this.togglePlayer}
           loading={isPlaying}
           showPlayer={showPlayer}
+          onClick={this.togglePlayer}
+          onMouseOver={() => this.handleMouseOver('music')}
         >
           <i className="fa fa-music" aria-hidden="true"></i>
         </PlayBtn>

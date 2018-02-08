@@ -47,7 +47,7 @@ const RewardIcon = styled.span`
 const Reward = styled.ul`
   position: absolute;
   padding: .12rem .16rem;
-  display: flex;
+  display: ${props => props.init ? 'none' : 'flex'};
   justify-content: space-between;
   top: .56rem;
   left: 50%;
@@ -136,17 +136,18 @@ class Post extends PureComponent {
 
   // 打赏
   toggleReward = () => {
-    const { showReward } = this.props
+    const { rewardStatu } = this.props
+    console.log('rewardStatu', rewardStatu, rewardStatu === 0)
     this.props.dispatch({
       type: 'post/update',
       payload: {
-        showReward: !showReward
+        rewardStatu: rewardStatu === 0 ? 1 : -rewardStatu
       }
     })
   }
 
   render() {
-    const { loading, post, prevPost, nextPost, showReward } = this.props
+    const { loading, post, prevPost, nextPost, rewardStatu } = this.props
     const showPost = !loading && !!Object.keys(post).length
     return (
       <Container className="Post">
@@ -163,7 +164,10 @@ class Post extends PureComponent {
                 >
                   赏
                 </RewardIcon>
-                <Reward className={showReward ? 'flip-in-y' : 'flip-out-y'}>
+                <Reward 
+                  className={rewardStatu === 1 ? 'flip-in-y' : 'flip-out-y'}
+                  init={rewardStatu === 0}
+                >
                   {
                     reward.map((o, i) => {
                       return (
