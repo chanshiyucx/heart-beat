@@ -4,7 +4,6 @@ import {
   queryTags,
   filterList,
   queryShuoShuoTotal,
-  queryShuoShuo,
   queryPage,
 } from '../services/fetch'
 import { delay } from '../utils'

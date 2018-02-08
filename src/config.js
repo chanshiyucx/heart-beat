@@ -172,6 +172,17 @@ export default {
    *            主题配置
    * ----------------------------------
    */
+  // 文章打赏
+  reward: [
+    {
+      type: '支付宝',
+      qr: 'https://dn-coding-net-production-pp.qbox.me/b8fd74b0-e563-4aa5-9d49-09f459b9afee.png',
+    },
+    {
+      type: '微信',
+      qr: 'https://dn-coding-net-production-pp.qbox.me/9ba82f12-1eb9-4593-89df-f827de4bc0e7.png'
+    }
+  ],
 
   // 加载动画相关
   loadingImg:

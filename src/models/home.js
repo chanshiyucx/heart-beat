@@ -27,7 +27,7 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, totalList: [], postList: [], loading: true, onHide: true, times: [] }
+      return { ...state, postList: [], loading: true, onHide: true, times: [] }
     },
   },
   effects: {

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import marked from 'marked'
 import Zooming from 'zooming'
+
 import hljs from '../utils/highlight'
 
 const zooming = new Zooming({
@@ -39,6 +40,7 @@ const Container = styled.div`
 const Header = styled.div`
   position: relative;
   overflow: hidden;
+  border-radius: .03rem .03rem 0 0;
   img {
     display: block;
     width: 100%;
@@ -85,7 +87,7 @@ const Tag = styled.span`
   padding-right: .06rem;
 `
 
-const Content = styled.div`
+const Content = styled.article`
   margin: 0 auto;
   padding-bottom: .12rem;
   user-select: text;

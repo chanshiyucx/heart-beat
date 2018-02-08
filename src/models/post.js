@@ -1,24 +1,25 @@
 import Gitalk from 'gitalk'
-import { queryPost, queryPostHot } from '../services/fetch'
+import { queryTotal, queryPost, queryPostHot } from '../services/fetch'
 import { delay } from '../utils'
 import config from '../config'
 
-const { gitalkOptions } = config
+const { minDelay, gitalkOptions } = config
 
 export default {
   namespace: 'post',
   state: {
-    loading: true,
     post: {},
-    time: 1,
+    prevPost: {},
+    nextPost: {},
+    showReward: false,
   },
   reducers: {
     queryStart(state, { payload }) {
-      return { ...state, loading: true }
+      return { ...state, post: {} }
     },
 
     queryEnd(state, { payload }) {
-      return { ...state, ...payload, loading: false }
+      return { ...state, ...payload }
     },
 
     setComments(state, { payload }) {
@@ -30,26 +31,40 @@ export default {
     },
 
     reset(state, { payload }) {
-      return { ...state, loading: true, post: {}, comment: [] }
+      return { ...state, post: {}, prevPost: {}, nextPost: {}, showReward: false }
     },
   },
   effects: {
-    *queryPost({ payload }, { call, put }) {
+    *queryPost({ payload }, { select, call, put }) {
+      const startTime = new Date()
       yield put({ type: 'queryStart' })
       const post = yield call(queryPost, payload)
-      yield call(delay, 500)
-      const { title } = post
-
+      const { title, id } = post
+      // 前篇和后篇
+      let totalList = yield select(state => state.page.totalList)
+      if (!totalList.length) {
+        totalList = yield call(queryTotal, payload)
+      }
+      const inx = totalList.findIndex(o => o.id === id)
+      const prevPost = totalList[inx-1] || totalList[totalList.length - 1]
+      const nextPost = totalList[inx+1] || totalList[0]
+      // 阅读次数
+      const time = yield call(queryPostHot, { post })
+      const prevTime = yield call(queryPostHot, { post: prevPost })
+      const nextTime = yield call(queryPostHot, { post: nextPost })
       // 渲染评论
       const gitalk = new Gitalk({
         ...gitalkOptions,
         title,
       })
       gitalk.render('gitalk')
-
-      yield put({ type: 'queryEnd', payload: { post } })
-      const time = yield call(queryPostHot, { post })
-      yield put({ type: 'update', payload: { time } })
+      const delayTime = new Date() - startTime
+      if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
+      yield put({ type: 'queryEnd', payload: { 
+        post: { ...post, time }, 
+        prevPost: { ...prevPost, time: prevTime }, 
+        nextPost: { ...nextPost, time: nextTime },
+      } })
     },
   },
 }

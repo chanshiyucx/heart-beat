@@ -78,13 +78,13 @@ export async function queryShuoShuoTotal() {
 }
 
 // 说说
-export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
-  const url = `${pages}/issues?${params}&labels=shuoshuo&page=${page}&per_page=${pageSize}&${token}`
-  const response = await fetch(url)
-  checkStatus(response)
-  const myShuoShuo = await response.json()
-  return myShuoShuo
-}
+// export async function queryShuoShuo({ page = 1, pageSize = 5 }) {
+//   const url = `${pages}/issues?${params}&labels=shuoshuo&page=${page}&per_page=${pageSize}&${token}`
+//   const response = await fetch(url)
+//   checkStatus(response)
+//   const myShuoShuo = await response.json()
+//   return myShuoShuo
+// }
 
 // 书单 && 友链 && 关于
 export async function queryPage({ type }) {
@@ -141,7 +141,7 @@ export async function queryHot({ postList }) {
 // 增热度
 export async function queryPostHot({ post }) {
   return new Promise(resolve => {
-    if (window.location.href.includes('http://localhost:8000/')) resolve()
+    if (window.location.href.includes('http://localhost:8000/')) resolve(1)
     const query = new AV.Query('Counter')
     const Counter = AV.Object.extend('Counter')
     const { title, id } = post
