@@ -62,12 +62,11 @@ export default {
       } })
       // 渲染评论，是否有更好的更新方式？
       setTimeout(() => {
-        console.log('重载评论', post.id)
-          const gitalk = new Gitalk({
+        const gitalk = new Gitalk({
           ...gitalkOptions,
           title,
         })
-        gitalk.render(`gitalk-${post.id || 999}`)
+        gitalk.render(`gitalk-${post.id}`)
       }, 1000)
     },
   },

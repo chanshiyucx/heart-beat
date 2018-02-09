@@ -25,10 +25,13 @@ const Wapper = styled.div`
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
 `
-const Footer = styled.div`
+const Reward = styled.div`
   position: relative;
   text-align: center;
-  margin: .12rem 0 .16rem;
+  margin: .12rem 0;
+  & > div {
+    display: inline-block;
+  }
 `
 
 const RewardIcon = styled.span`
@@ -47,47 +50,51 @@ const RewardIcon = styled.span`
   }
 `
 
-const Reward = styled.ul`
+const RewardMain = styled.div`
   position: absolute;
-  padding: .12rem .16rem;
-  display: ${props => props.init ? 'none' : 'flex'};
-  justify-content: space-between;
-  top: .56rem;
+  top: .4rem;
   left: 50%;
-  width: 3.64rem;
   margin-left: -1.82rem;
-  box-sizing: border-box;
-  border-radius: .03rem;
+  padding-top: .12rem;
+  width: 3.64rem;
   z-index: 1;
-  background: rgba(255, 255, 255, .88);
+  box-sizing: border-box;
   animation-duration: .6s;
   animation-fill-mode: forwards;
-  li {
+  ${props => props.init ? 'display: none;' : ''}
+  ul {
+    padding: .12rem .16rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 1.6rem;
-      height: 1.6rem;
-      border-radius: .03rem;
+    justify-content: space-between;
+    border-radius: .03rem;
+    background: rgba(255, 255, 255, .88);
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: .03rem;
+      }
+      span {
+        margin-top: .1rem;
+      }
     }
-    span {
-      margin-top: .1rem;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 0;
+      height: 0;
+      border-left: .12rem solid transparent;
+      border-right: .12rem solid transparent;
+      border-bottom: .12rem solid rgba(255, 255, 255, .6);
     }
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: -.13rem;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 0;
-    height: 0;
-    border-left: .13rem solid transparent;
-    border-right: .13rem solid transparent;
-    border-bottom: .13rem solid rgba(255, 255, 255, .88);
   }
 `
 
@@ -141,7 +148,6 @@ class Post extends PureComponent {
   // 打赏
   toggleReward = () => {
     const { rewardStatu } = this.props
-    console.log('rewardStatu', rewardStatu, rewardStatu === 0)
     this.props.dispatch({
       type: 'post/update',
       payload: {
@@ -161,29 +167,33 @@ class Post extends PureComponent {
               className={showPost ? transitions.post : ''}
             >
               <PostBody {...post} />
-              <Footer>
-                <RewardIcon 
-                  onMouseOver={this.toggleReward}
-                  onMouseOut={this.toggleReward}
+              <Reward>
+                <div
+                  onMouseEnter={this.toggleReward}
+                  onMouseLeave={this.toggleReward}
                 >
-                  赏
-                </RewardIcon>
-                <Reward 
-                  className={rewardStatu === 1 ? 'flip-in-y' : 'flip-out-y'}
-                  init={rewardStatu === 0}
-                >
-                  {
-                    reward.map((o, i) => {
-                      return (
-                        <li key={i}>
-                          <img alt="" src={o.qr} />
-                          <span>{o.type}</span>
-                        </li>
-                      )
-                    })
-                  }
-                </Reward>
-              </Footer>
+                  <RewardIcon>
+                    赏
+                  </RewardIcon>
+                  <RewardMain
+                    className={rewardStatu === 1 ? 'flip-in-y' : 'flip-out-y'}
+                    init={rewardStatu === 0}
+                  >
+                    <ul> 
+                      {
+                        reward.map((o, i) => {
+                          return (
+                            <li key={i}>
+                              <img alt="" src={o.qr} />
+                              <span>{o.type}</span>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </RewardMain>
+                </div>
+              </Reward>
               <MorePost>
                 <Preview {...prevPost} /> 
                 <Preview {...nextPost} />
