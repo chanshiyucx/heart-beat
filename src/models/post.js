@@ -2,6 +2,7 @@ import Gitalk from 'gitalk'
 import { queryTotal, queryPost, queryPostHot } from '../services/fetch'
 import { delay } from '../utils'
 import config from '../config'
+import { setTimeout } from 'timers';
 
 const { minDelay, gitalkOptions } = config
 
@@ -52,12 +53,6 @@ export default {
       const time = yield call(queryPostHot, { post })
       const prevTime = yield call(queryPostHot, { post: prevPost })
       const nextTime = yield call(queryPostHot, { post: nextPost })
-      // 渲染评论
-      const gitalk = new Gitalk({
-        ...gitalkOptions,
-        title,
-      })
-      gitalk.render('gitalk')
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) yield call(delay, minDelay - delayTime)
       yield put({ type: 'queryEnd', payload: { 
@@ -65,6 +60,15 @@ export default {
         prevPost: { ...prevPost, time: prevTime }, 
         nextPost: { ...nextPost, time: nextTime },
       } })
+      // 渲染评论，是否有更好的更新方式？
+      setTimeout(() => {
+        console.log('重载评论', post.id)
+          const gitalk = new Gitalk({
+          ...gitalkOptions,
+          title,
+        })
+        gitalk.render(`gitalk-${post.id || 999}`)
+      }, 1000)
     },
   },
 }

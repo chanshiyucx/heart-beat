@@ -192,7 +192,7 @@ class Post extends PureComponent {
           : <Loading />
         }
 
-        <div id="gitalk" />
+        {showPost && post.id && <div id={`gitalk-${post.id}`} /> }
       </Container>
     )
   }
