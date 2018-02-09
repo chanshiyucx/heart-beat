@@ -25,12 +25,16 @@ const Wapper = styled.div`
   background: rgba(255, 255, 255, .6);
   animation-duration: ${duration / 1000}s;
 `
+
 const Reward = styled.div`
   position: relative;
   text-align: center;
   margin: .12rem 0;
   & > div {
     display: inline-block;
+  }
+  .flip-out-y {
+    pointer-events: none;
   }
 `
 
@@ -158,7 +162,7 @@ class Post extends PureComponent {
 
   render() {
     const { loading, post, prevPost, nextPost, rewardStatu } = this.props
-    const showPost = !loading && !!Object.keys(post).length
+    const showPost = !loading && Object.keys(post).length
     return (
       <Container className="Post">
         {showPost
