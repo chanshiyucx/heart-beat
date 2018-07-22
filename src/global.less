@@ -11,6 +11,10 @@
   src: url("./assets/fonts/iosevka.woff2");
 }
 
+a, button {
+  cursor: url('./assets/cursor/cursor_link.cur'), auto;
+}
+
 html,
 body,
 :global(#root) {
@@ -42,6 +46,7 @@ body {
   user-select: none;
   text-shadow: 0 0 1px rgba(0, 0, 0, .2);
   scroll-behavior: smooth;
+  cursor: url('./assets/cursor/cursor.cur'), auto;
   &::before {
     content: "";
     position: fixed;
