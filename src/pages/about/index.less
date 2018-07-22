@@ -1,0 +1,45 @@
+.container {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+  .body {
+    padding: .16rem;
+    border-radius: .03rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+    background-color: rgba(255, 255, 255, .6);
+    .header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: .16rem;
+      img {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        border: .04rem solid rgba(255, 255, 255, .6);
+        box-shadow: 0 0 10px 2px #888;
+        transition: transform 1s ease-out;
+        &:hover {
+          animation-play-state: paused;
+          transform: rotateZ(360deg);
+        }
+      }
+      .info {
+        margin-left: .16rem;
+        &>span {
+          margin: .03rem;
+          display: block;
+          i {
+            margin-right: .03rem;
+            width: .16rem;
+          }
+        }
+      }
+    }
+  }
+  .loading {
+    margin-top: 2rem;
+  }
+}

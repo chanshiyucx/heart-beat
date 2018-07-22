@@ -1,5 +1,13 @@
-dist
-node_modules
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# misc
 .DS_Store
-code.js
-.idea/
+npm-debug.log*
+
+# umi
+.umi
+.umi-production

@@ -1,0 +1,94 @@
+.container {
+  width: 100%;
+  button {
+    display: none;
+    position: fixed;
+    padding: .1rem;
+    color: #666;
+    font-size: .26rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    outline: 0;
+    border: none;
+    background: transparent;
+    z-index: 100;
+    transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+    @media (max-width: 600px) {
+      display: block;
+    }
+  }
+  .inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: .7rem 0 .6rem;  
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+    .title,
+    .sub-title {
+      font-family: GuDianMingChaoTi;
+    }
+    .title {
+      margin-bottom: .06rem;
+      font-size: .52rem;
+      line-height: .6rem;
+      letter-spacing: .02rem;
+    }
+    .sub-title {
+      font-size: .22rem;
+      line-height: .26rem;
+      letter-spacing: .04rem;
+    }
+    .menu {
+      margin-top: .14rem;
+      padding: 0 .32rem;
+      height: .6rem;
+      display: flex;
+      justify-content: center;
+      z-index: 999;
+      background: rgba(0, 0, 0, .1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, .2) inset;
+      transition: all 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+      li {
+        width: .48rem;
+        font-size: .16rem;
+        list-style: none;
+      }
+      a {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      i {
+        margin: .03rem;
+      }
+      @media (max-width: 600px) {
+        position: fixed;
+        top: -1rem;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: .8rem;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, .4);
+        li {
+          width: 25%;
+        }
+        a {
+          flex-direction: row;
+          justify-content: center;
+          color: #eee;
+        }
+        &.dropMenu {
+          top: 0;
+        }
+      }
+    }
+  }
+}

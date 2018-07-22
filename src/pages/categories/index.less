@@ -1,0 +1,109 @@
+.container {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+  .body {
+    padding: .16rem;
+    border-radius: .03rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+    background-color: rgba(255, 255, 255, .6);
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 900px) {
+        justify-content: space-around;
+      }
+      .cat {
+        position: relative;
+        margin-bottom: .16rem;
+        width: 32.4%;
+        height: 1.6rem;
+        overflow: hidden;
+        border-radius: .03rem;
+        background: rgba(255, 255, 255, .4);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .16);
+        transition: all .25s ease 0s, transform .5s cubic-bezier(.6, .2, .1, 1) 0s;
+        &:hover {
+          box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24);
+          transform: translateY(-4px);
+          .avatar {
+            animation-play-state: paused;
+            transform: rotateZ(360deg);
+          }
+        }
+        .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .meta {
+          position: relative;
+          padding: 0 .16rem;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          background-color: rgba(255, 255, 255, .6);
+          text-shadow: 0 0 1px #666;
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80%;
+          }
+          .avatar {
+            width: .8rem;
+            height: .8rem;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, .4);
+            transition: transform 1s ease-out;
+          }
+          span {
+            padding: 0 .1rem;
+            height: .4rem;
+            line-height: .4rem;
+            border-radius: .03rem;
+            background: rgba(255, 255, 255, .8);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, .4);
+          }
+        }
+        .desc {
+          position: absolute;
+          bottom: 0;
+          padding: .12rem .16rem;
+        }
+        @media (max-width: 900px) {
+          width: 96%;
+        }
+      }
+    }
+    button {
+      margin: 0 .04rem .1rem .12rem;
+      padding: .08rem .12rem;
+      font-size: .15rem;
+      text-align: center;
+      text-decoration: none;
+      outline: 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+      border: none;
+      border-radius: .03rem;
+      background: rgba(0, 0, 0, .12);
+      i {
+        color: #f6f;
+        margin-left: .06rem;
+      }
+      &:hover {
+        background: rgba(0, 0, 0, .2);
+      }
+    }
+  }
+  .loading {
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,90 @@
+.container {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+  .body {
+    padding: .16rem;
+    border-radius: .03rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+    background-color: rgba(255, 255, 255, .6);
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      @media (max-width: 900px) {
+        justify-content: space-around;
+      }
+    }
+    .book {
+      display: inline-block;
+      margin: .06rem 0;
+      width: 49.2%;
+      text-align: justify;
+      border-radius: .03rem;
+      background: rgba(255, 255, 255, .4);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+      transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(.6, .2, .1, 1) 0s;
+      &:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24);
+        transform: translateY(-4px);
+      }
+      .header {
+        display: flex;
+        justify-content: flex-start;
+        padding: 0.12rem 0.16rem 0;
+        img {
+          width: 1.2rem;
+          height: 1.6rem;
+          margin-right: .12rem;
+          box-shadow: 4px 6px 10px rgba(0, 0, 0, .2);
+        }
+        .info {
+          a {
+            display: flex;
+            align-items: center;
+            padding: .06rem 0;
+            i {
+              margin-top: .03rem;
+            }
+          }
+          i {
+            font-size: .16rem;
+          }
+          h2 {
+            margin-left: .04rem;
+            font-size: .18rem;
+            font-weight: normal;
+          }
+          p {
+            margin-top: .06rem;
+          }
+          p:first-child {
+            margin-top: .1rem;
+          }
+          p:last-child {
+            margin-top: .05rem;
+            i {
+              margin-right: .02rem;
+              color: #888;
+            }
+          }
+        }
+      }
+      .desc {
+        padding: .12rem .16rem;
+        line-height: 1.6;
+        font-size: .15rem;
+      }
+      @media (max-width: 900px) {
+        width: 96%;
+      }
+    }
+  }
+  .loading {
+    margin-top: 2rem;
+  }
+}

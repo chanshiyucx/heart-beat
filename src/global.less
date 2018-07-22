@@ -1,0 +1,144 @@
+@import "./assets/prism/prism";
+@font-face {
+  font-family: GuDianMingChaoTi;
+  font-weight: bold;
+  src: url("./assets/fonts/GuDianMingChaoTi.ttf");
+}
+
+@font-face {
+  font-family: Iosevka;
+  font-weight: bold;
+  src: url("./assets/fonts/iosevka.woff2");
+}
+
+html,
+body,
+:global(#root) {
+  height: 100%;
+}
+
+html {
+  font-size: 625%;
+}
+
+body,
+p,
+blockquote,
+h1,
+h2,
+h3,
+ul,
+ol,
+button,
+code {
+  margin: 0;
+  padding: 0;
+  font-family: "Iosevka", "Helvetica", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: .15rem;
+  color: #666;
+}
+
+body {
+  user-select: none;
+  text-shadow: 0 0 1px rgba(0, 0, 0, .2);
+  scroll-behavior: smooth;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: rgba(255, 255, 255, .5);
+  }
+}
+
+img {
+  display: block;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  &:hover {
+    color: #faf;
+  }
+}
+
+code {
+  padding: 0 .04rem;
+  color: #f6f;
+  word-wrap: break-word;
+  border-radius: .03rem;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+/* 隐藏滚动条 */
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+::selection,
+::-moz-selection {
+  color: #fff;
+  background: #888;
+}
+
+/* gitalk */
+.gt-comment-content,
+.gt-header-textarea,
+.gt-container .gt-avatar img {
+  background: rgba(255, 255, 255, .6);
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+}
+
+.gt-container {
+  a {
+    color: #faf;
+    &:hover {
+      color: #f6f;
+      border-color: #f6f;
+    }
+  }
+  .gt-btn {
+    color: #eee;
+    border: 1px solid #faf;
+    background: #faf;
+    &:hover {
+      border-color: #f6f;
+      background: #f6f;
+    }
+    &.gt-btn-login {
+      margin-top: .1rem;
+    }
+  }
+  .gt-link {
+    border-bottom: 1px dotted #faf;
+  }
+  .gt-header-controls-tip {
+    color: #faf;
+  }
+  svg {
+    fill: #faf;
+  }
+  .gt-ico-github svg {
+    fill: #666;
+  }
+  .gt-comment-username {
+    color: #f6f;
+  }
+  .gt-comment-body {
+    font-size: .15rem;
+  }
+  .gt-comment-content {
+    transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s;
+  }
+  .gt-comment-content:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+    transform: translateY(-4px);
+  }
+}

@@ -1,0 +1,75 @@
+.container {
+  margin: .16rem 0;
+  padding: .16rem 0;
+  border-radius: .03rem;
+  background: rgba(255, 255, 255, .4);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  transition: transform 0.6s cubic-bezier(.6, .2, .1, 1) 0s;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24);
+    transform: translateY(-4px);
+  }
+  .label {
+    position: relative;
+    left: -.304rem;
+    padding: .06rem .144rem .06rem .304rem;
+    font-size: .12rem;
+    color: #fff;
+    border-radius: 0 .03rem .03rem 0;
+    i {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 0;
+      height: 0;
+      background-color: transparent;
+      border-style: solid;
+      border-width: 0 .144rem .144rem 0;
+      border-color: transparent;
+      border-right-color: currentColor;
+      filter: brightness(120%)
+    }
+  }
+  .content {
+    margin: 0 auto;
+    padding-bottom: .12rem;
+    user-select: text;
+    text-align: justify;
+    img {
+      width: calc(~"100% + .32rem");
+      margin-left: -16px;
+      box-shadow: 0 0 10px #888;
+    }
+    p, ul, ol, blockquote {
+      line-height: 1.6;
+      font-size: .15rem;
+      letter-spacing: .6px;
+    }
+    p {
+      margin: .12rem .16rem 0;
+    }
+    ol, ul {
+      margin: .06rem .24rem .06rem .42rem;
+    }
+    h2 {
+      margin: .12rem .16rem;
+      padding: .08rem 0;
+      font-size: .22rem;
+      border-bottom: 1px dashed rgba(0, 0, 0, .2);
+    }
+    h3 {
+      margin: .12rem .16rem -.08rem;
+      font-size: .18rem;
+      i {
+        font-size: .15rem;
+      }
+    }
+    a {
+      border-bottom: 1px solid #888;
+      &:hover {
+        border-bottom-color: #faf;
+      }
+    }
+  }
+}

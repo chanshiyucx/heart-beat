@@ -1,0 +1,60 @@
+.container {
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  @media (max-width: 900px) {
+    width: 96%;
+  }
+  .body {
+    padding: .16rem;
+    border-radius: .03rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+    background-color: rgba(255, 255, 255, .6);
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        margin: 0 .04rem .1rem;
+        padding: .08rem .12rem;
+        font-size: .15rem;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 0 0 1px currentColor;
+        outline: 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        border: none;
+        border-radius: .03rem;
+        background: rgba(0, 0, 0, .12);
+        &:hover {
+          background: rgba(0, 0, 0, .2);
+        }
+      }
+    }
+    .filter-post {
+      margin-top: .08rem;
+    }
+    button {
+      margin: 0 .04rem .1rem .12rem;
+      padding: .08rem .12rem;
+      font-size: .15rem;
+      text-align: center;
+      text-decoration: none;
+      outline: 0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+      border: none;
+      border-radius: .03rem;
+      background: rgba(0, 0, 0, .12);
+      i {
+        color: #f6f;
+        margin-left: .06rem;
+      }
+      &:hover {
+        background: rgba(0, 0, 0, .2);
+      }
+    }
+  }
+  .loading {
+    margin-top: 2rem;
+  }
+}
