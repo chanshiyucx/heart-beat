@@ -30,8 +30,8 @@ const DIRECTIONAL_TRANSITIONS = [
   'zoom',
 ]
 
-const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce', 'glow']
-const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
+// const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce', 'glow']
+// const TRANSITIONS = [...DIRECTIONAL_TRANSITIONS, ...STATIC_TRANSITIONS]
 
 const TRANSITION_TYPE = {
   ENTERING: 'show',

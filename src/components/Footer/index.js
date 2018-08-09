@@ -5,7 +5,6 @@
  */
 
 import React, { PureComponent } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'dva'
 import Link from 'umi/link'
 import _ from 'lodash'
@@ -38,22 +37,12 @@ class Footer extends PureComponent {
     }
   }
 
-  componentDidMount() {
-    this.findDom()             // 获取元素节点       
+  componentDidMount() {   
     this.bind()                // 绑定事件
   }
 
   componentWillUnmount() {
     this.removeBind()          // 注销事件
-  }
-
-  // 获取元素节点 
-  findDom = () => {
-    this.dom = {
-      waifu: ReactDOM.findDOMNode(this.refs.waifu),
-      tool: ReactDOM.findDOMNode(this.refs.tool),
-      rightBtnWapper: ReactDOM.findDOMNode(this.refs.rightBtnWapper),
-    }
   }
 
   // 绑定事件
@@ -64,21 +53,21 @@ class Footer extends PureComponent {
     this.TRightBtnWapperMouseOver = _.throttle(this.rightBtnWapperMouseOver, 400, { trailing: true })
 
     document.addEventListener('scroll', this.THandleScroll)
-    this.dom.waifu.addEventListener('click', this.TWaifuClick)
-    this.dom.tool.addEventListener('click', this.toolClick)
-    this.dom.tool.addEventListener('mouseover', this.TToolCMouseOver)
-    this.dom.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
-    this.dom.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
+    this.waifu.addEventListener('click', this.TWaifuClick)
+    this.tool.addEventListener('click', this.toolClick)
+    this.tool.addEventListener('mouseover', this.TToolCMouseOver)
+    this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
+    this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 注销事件
   removeBind = () => {
     document.removeEventListener('scroll', this.THandleScroll)
-    this.dom.waifu.removeEventListener('click', this.TWaifuClick)
-    this.dom.tool.removeEventListener('click', this.toolClick)
-    this.dom.tool.removeEventListener('mouseover', this.TToolCMouseOver)
-    this.dom.rightBtnWapper.removeEventListener('click', this.rightBtnWapperClick)
-    this.dom.rightBtnWapper.removeEventListener('mouseover', this.TRightBtnWapperMouseOver)
+    this.waifu.removeEventListener('click', this.TWaifuClick)
+    this.tool.removeEventListener('click', this.toolClick)
+    this.tool.removeEventListener('mouseover', this.TToolCMouseOver)
+    this.rightBtnWapper.removeEventListener('click', this.rightBtnWapperClick)
+    this.rightBtnWapper.removeEventListener('mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 监听：页面滚动
@@ -289,8 +278,8 @@ class Footer extends PureComponent {
             <div class={cx('waifu-tips', !tips && 'hide', waifu === 'tia' && 'tia')}>
               <MarkeDown content={tips} />
             </div>
-            <canvas ref="waifu" id="live2d" width="280" height="250" />
-            <ul ref="tool" class={cx('waifu-tool')}>
+            <canvas ref={c => this.waifu = c} id="live2d" width="280" height="250" />
+            <ul ref={c => this.tool = c} class={cx('waifu-tool')}>
               <li data-type='home'>
                 <Link to='/'>
                   <i className="fa fa-university" aria-hidden="true"></i>
@@ -346,7 +335,7 @@ class Footer extends PureComponent {
             <SKPlayer handlePlaying={this.handlePlaying} />
           </div>
         </Transition>
-        <ul ref="rightBtnWapper" class={cx('right-btn-wapper')}>
+        <ul ref={c => this.rightBtnWapper = c} class={cx('right-btn-wapper')}>
           <Transition visible={showScrollTop} animation='zoom' duration={600}>
             <li class={cx('right-btn', 'scroll-btn')} data-index="0">
               <i class="fa fa-chevron-up" aria-hidden="true"></i>

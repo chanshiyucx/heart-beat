@@ -5,7 +5,6 @@
  */
 
 import React, { PureComponent } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'dva'
 import _ from 'lodash'
 import classNames from 'classnames/bind'
@@ -81,7 +80,6 @@ class Home extends PureComponent {
   // 获取文章列表 
   getPostListNode = () => {
     if (this.postListNode) return
-    this.postListNode = ReactDOM.findDOMNode(this.refs.postList)
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
     this.postListNode.addEventListener('mouseover', this.TPostListNodeMouseOver)
   }
@@ -147,7 +145,7 @@ class Home extends PureComponent {
             onShow={this.getPostListNode}
           >
             <div>
-              <div class={cx('post-list')} ref='postList'>
+              <div class={cx('post-list')} ref={c => this.postListNode = c}>
                 {postList.map((post, index) => {
                   return (
                     <PostCard

@@ -5,7 +5,6 @@
  */
 
 import React, { PureComponent } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'dva'
 import Link from 'umi/link'
 import classNames from 'classnames/bind'
@@ -23,7 +22,6 @@ class Header extends PureComponent {
   }
 
   componentDidMount() {
-    this.findDom()
     this.bind()
   }
 
@@ -31,21 +29,14 @@ class Header extends PureComponent {
     this.removeBind()
   }
 
-  // 获取元素节点 
-  findDom = () => {
-    this.dom = {
-      menu: ReactDOM.findDOMNode(this.refs.menu),
-    }
-  }
-
   // 绑定事件
   bind = () => {
-    this.dom.menu.addEventListener('mouseover', this.handleMouseOver)
+    this.menuRef.addEventListener('mouseover', this.handleMouseOver)
   }
 
   // 注销事件
   removeBind = (e) => {
-    this.dom.menu.removeEventListener('mouseover', this.handleMouseOver)
+    this.menuRef.removeEventListener('mouseover', this.handleMouseOver)
   }
 
   // 监听: 菜单悬停并触发对话
@@ -114,7 +105,7 @@ class Header extends PureComponent {
         <div class={cx('inner')}  style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem'}}>
           <a class={cx('title')} href="/">蝉時雨</a>
           <span class={cx('sub-title')}>蝉鸣如雨 花宵道中</span>
-          <ul ref="menu" class={cx('menu', dropMenu && 'dropMenu')}>
+          <ul ref={c => this.menuRef = c} class={cx('menu', dropMenu && 'dropMenu')}>
             <li data-menu="home">
               <Link to="/">
                 <i class="fa fa-university" aria-hidden="true"></i>

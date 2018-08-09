@@ -5,7 +5,6 @@
  */
 
 import React, { PureComponent } from 'react'
-import ReactDOM from 'react-dom'
 import classNames from 'classnames/bind'
 
 import Transition from '../Transition'
@@ -72,26 +71,9 @@ class SKPlayer extends PureComponent {
       console.error('请正确配置音乐播放器！')
       return
     }
-    this.init()
     this.bind()
   }
 
-  // 获取元素节点
-  init = () => {
-    this.dom = {
-      playbutton: ReactDOM.findDOMNode(this.refs.playbutton),
-      timeline_total: ReactDOM.findDOMNode(this.refs.skPlayerPercent),
-      timeline_loaded: ReactDOM.findDOMNode(this.refs.skPlayerLoaded),
-      timeline_played: ReactDOM.findDOMNode(this.refs.skPlayerPlayed),
-      switchbutton: ReactDOM.findDOMNode(this.refs.switchbutton),
-      volumebutton: ReactDOM.findDOMNode(this.refs.volumebutton),
-      volumeline_total: ReactDOM.findDOMNode(this.refs.volumelineTotal),
-      volumeline_value: ReactDOM.findDOMNode(this.refs.volumelineValue),
-      modebutton: ReactDOM.findDOMNode(this.refs.modebutton),
-      musiclist: ReactDOM.findDOMNode(this.refs.musiclist),
-    }
-    this.audio = ReactDOM.findDOMNode(this.refs.audio)
-  }
 
   // 绑定事件
   bind = () => {
@@ -102,14 +84,14 @@ class SKPlayer extends PureComponent {
     this.audio.addEventListener('seeked', this.seeked)
     this.audio.addEventListener('ended', this.next)
 
-    this.dom.playbutton.addEventListener('click', this.toggle)
-    this.dom.switchbutton.addEventListener('click', this.toggleList)
-    this.dom.modebutton.addEventListener('click', this.switchMode)
-    this.dom.musiclist.addEventListener('click', this.musiclistClick)
-    this.dom.timeline_total.addEventListener('click', this.timelineClick)
+    this.playbutton.addEventListener('click', this.toggle)
+    this.switchbutton.addEventListener('click', this.toggleList)
+    this.modebutton.addEventListener('click', this.switchMode)
+    this.musiclist.addEventListener('click', this.musiclistClick)
+    this.timeline_total.addEventListener('click', this.timelineClick)
     if (!this.isMobile) {
-      this.dom.volumebutton.addEventListener('click', this.toggleMute)
-      this.dom.volumeline_total.addEventListener('click', this.volumelineClick)
+      this.volumebutton.addEventListener('click', this.toggleMute)
+      this.volumeline_total.addEventListener('click', this.volumelineClick)
     }
   }
 
@@ -122,14 +104,14 @@ class SKPlayer extends PureComponent {
     this.audio.removeEventListener('seeked', this.seeked)
     this.audio.removeEventListener('ended', this.ended)
 
-    this.dom.playbutton.removeEventListener('click', this.toggle)
-    this.dom.switchbutton.removeEventListener('click', this.toggleList)
-    this.dom.modebutton.removeEventListener('click', this.switchMode)
-    this.dom.musiclist.removeEventListener('click', this.musiclistClick)
-    this.dom.timeline_total.removeEventListener('click', this.timelineClick)
+    this.playbutton.removeEventListener('click', this.toggle)
+    this.switchbutton.removeEventListener('click', this.toggleList)
+    this.modebutton.removeEventListener('click', this.switchMode)
+    this.musiclist.removeEventListener('click', this.musiclistClick)
+    this.timeline_total.removeEventListener('click', this.timelineClick)
     if (!this.isMobile) {
-      this.dom.volumebutton.removeEventListener('click', this.toggleMute)
-      this.dom.volumeline_total.removeEventListener('click', this.volumelineClick)
+      this.volumebutton.removeEventListener('click', this.toggleMute)
+      this.volumeline_total.removeEventListener('click', this.volumelineClick)
     }
   }
 
@@ -155,7 +137,7 @@ class SKPlayer extends PureComponent {
   // 监听：播放时间
   timeupdate = () => {
     let percent = this.audio.currentTime / this.audio.duration
-    this.dom.timeline_played.style.width = Util.percentFormat(percent)
+    this.timeline_played.style.width = Util.percentFormat(percent)
     const timetext_played = Util.timeFormat(this.audio.currentTime)
     this.setState({ timetext_played })
   }
@@ -184,10 +166,10 @@ class SKPlayer extends PureComponent {
   toggleMute = () => {
     if (this.state.muted) {
       this.setState({ muted: false })
-      this.dom.volumeline_value.style.width = Util.percentFormat(this.audio.volume)
+      this.volumeline_value.style.width = Util.percentFormat(this.audio.volume)
     } else {
       this.setState({ muted: true })
-      this.dom.volumeline_value.style.width = '0%'
+      this.volumeline_value.style.width = '0%'
     }
   }
 
@@ -219,9 +201,9 @@ class SKPlayer extends PureComponent {
   // 监听: 跳转进度
   timelineClick = (event) => {
     let e = event || window.event
-    let percent = (e.clientX - Util.leftDistance(this.dom.timeline_total)) / this.dom.timeline_total.clientWidth
+    let percent = (e.clientX - Util.leftDistance(this.timeline_total)) / this.timeline_total.clientWidth
     if (!isNaN(this.audio.duration)) {
-      this.dom.timeline_played.style.width = Util.percentFormat(percent)
+      this.timeline_played.style.width = Util.percentFormat(percent)
       this.audio.currentTime = percent * this.audio.duration
       const timetext_played = Util.timeFormat(percent * this.audio.duration)
       this.setState({ timetext_played })
@@ -231,8 +213,8 @@ class SKPlayer extends PureComponent {
   // 监听: 调整音量
   volumelineClick = (event) => {
     let e = event || window.event
-    let percent = (e.clientX - Util.leftDistance(this.dom.volumeline_total)) / this.dom.volumeline_total.clientWidth
-    this.dom.volumeline_value.style.width = Util.percentFormat(percent)
+    let percent = (e.clientX - Util.leftDistance(this.volumeline_total)) / this.volumeline_total.clientWidth
+    this.volumeline_value.style.width = Util.percentFormat(percent)
     this.audio.volume = percent
     if (this.audio.muted) {
       this.toggleMute()
@@ -242,7 +224,7 @@ class SKPlayer extends PureComponent {
   // 更新播放进度条
   updateLine = () => {
     let percent = this.audio.buffered.length ? (this.audio.buffered.end(this.audio.buffered.length - 1) / this.audio.duration) : 0
-    this.dom.timeline_loaded.style.width = Util.percentFormat(percent)
+    this.timeline_loaded.style.width = Util.percentFormat(percent)
   }
 
   // 前一首
@@ -328,13 +310,13 @@ class SKPlayer extends PureComponent {
   }
 
   render() {
-    const { 
-      listshow, 
-      mode, 
-      playerIndex, 
-      isPlaying, 
-      muted, 
-      timetext_total, 
+    const {
+      listshow,
+      mode,
+      playerIndex,
+      isPlaying,
+      muted,
+      timetext_total,
       timetext_played,
     } = this.state
     const curMusic = this.music[playerIndex]
@@ -342,7 +324,7 @@ class SKPlayer extends PureComponent {
     return (
       <div id="skPlayer" class={cx('skPlayer')}>
         <audio
-          ref="audio"
+          ref={c => this.audio = c}
           class={cx('skPlayer-source')}
           src={curMusic.src}
           preload="auto"
@@ -350,7 +332,7 @@ class SKPlayer extends PureComponent {
           muted={muted}
         />
         <Transition visible={listshow} animation='horizontal flip' duration={600}>
-          <ul ref="musiclist" class={cx('skPlayer-list')}>
+          <ul ref={c => this.musiclist = c} class={cx('skPlayer-list')}>
             {this.template()}
           </ul>
         </Transition>
@@ -358,7 +340,7 @@ class SKPlayer extends PureComponent {
         <div class={cx('skPlayer-body')}>
           <div class={cx('skPlayer-picture')}>
             <img class={cx('skPlayer-cover', isPlaying && 'skPlayer-pause')} src={curMusic.cover} alt="" />
-            <div ref="playbutton" class={cx('skPlayer-play-btn', isPlaying && 'skPlayer-pause')}>
+            <div ref={c => this.playbutton = c} class={cx('skPlayer-play-btn', isPlaying && 'skPlayer-pause')}>
               <span class={cx('skPlayer-left')}></span>
               <span class={cx('skPlayer-right')}></span>
             </div>
@@ -366,23 +348,23 @@ class SKPlayer extends PureComponent {
           <div class={cx('skPlayer-control')}>
             <p class={cx('skPlayer-name')}>{curMusic.name}</p>
             <p class={cx('skPlayer-author')}>{curMusic.author}</p>
-            <div ref="skPlayerPercent" class={cx('skPlayer-percent')}>
-              <div ref="skPlayerLoaded" class={cx('skPlayer-line-loading')} ></div>
-              <div ref="skPlayerPlayed" class={cx('skPlayer-line')}></div>
+            <div ref={c => this.skPlayerPercent = c} class={cx('skPlayer-percent')}>
+              <div ref={c => this.skPlayerLoaded = c} class={cx('skPlayer-line-loading')} ></div>
+              <div ref={c => this.skPlayerPlayed = c} class={cx('skPlayer-line')}></div>
             </div>
             <p class={cx('skPlayer-time')}>
               <span class={cx('skPlayer-cur')}>{timetext_total}</span>/<span class="skPlayer-total">{timetext_played}</span>
             </p>
             <div class={cx('skPlayer-volume')} style={this.isMobile ? 'display:none;' : ''}>
-              <i ref="volumebutton" class={cx('skPlayer-icon', muted && 'skPlayer-quiet')}></i>
-              <div ref="volumelineTotal" class={cx('skPlayer-percent')}>
-                <div ref="volumelineValue" class={cx('skPlayer-line')}></div>
+              <i ref={c => this.volumebutton = c} class={cx('skPlayer-icon', muted && 'skPlayer-quiet')}></i>
+              <div ref={c => this.volumelineTotal = c} class={cx('skPlayer-percent')}>
+                <div ref={c => this.volumelineValue = c} class={cx('skPlayer-line')}></div>
               </div>
             </div>
-            <div ref="switchbutton" class={cx('skPlayer-list-switch')}>
+            <div ref={c => this.switchbutton = c} class={cx('skPlayer-list-switch')}>
               <i class="fa fa-list-ul" aria-hidden="true"></i>
             </div>
-            <i ref="modebutton" class={cx('skPlayer-mode', mode === 'singleloop' && 'skPlayer-mode-loop')}></i>
+            <i ref={c => this.modebutton = c} class={cx('skPlayer-mode', mode === 'singleloop' && 'skPlayer-mode-loop')}></i>
           </div>
         </div>
       </div>
