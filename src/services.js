@@ -137,11 +137,10 @@ export async function queryHot({ postList }) {
 }
 
 // 增加热度
-export async function queryPostHot({ post }) {
+export async function queryPostHot({ post, add = true }) {
   return new Promise(resolve => {
     if (window.location.href.includes('http://localhost:8000/')) {
-      post.times = 1
-      resolve(post)
+      add = false
     }
     const query = new AV.Query('Counter')
     const Counter = AV.Object.extend('Counter')
@@ -153,10 +152,9 @@ export async function queryPostHot({ post }) {
         if (res.length > 0) {
           // 已存在则加热度
           const counter = res[0]
-          counter.fetchWhenSave(true)
-          counter.increment('time')
           counter
-            .save()
+            .increment('time', add ? 1 : 0)
+            .save(null, { fetchWhenSave: true })
             .then(counter => {
               post.times = counter.get('time')
               resolve(post)
@@ -194,10 +192,9 @@ export async function likeSite(params) {
           if (params && params.type === 'getTime') {
             resolve(res.get('time'))
           } else {
-            res.fetchWhenSave(true)
-            res.increment('time')
             res
-              .save()
+              .increment('time', 1)
+              .save(null, { fetchWhenSave: true })
               .then(counter => {
                 resolve(counter.get('time'))
               })

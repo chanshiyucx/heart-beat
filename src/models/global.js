@@ -146,8 +146,8 @@ export default {
       let prevPost = formatPost(totalList[index - 1] || totalList[totalList.length - 1])
       let nextPost = formatPost(totalList[index + 1] || totalList[0])
       post = yield call(queryPostHot, { post })
-      prevPost = yield call(queryPostHot, { post: prevPost })
-      nextPost = yield call(queryPostHot, { post: nextPost })
+      prevPost = yield call(queryPostHot, { post: prevPost, add: false })
+      nextPost = yield call(queryPostHot, { post: nextPost, add: false })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
         yield call(delay, minDelay - delayTime)
