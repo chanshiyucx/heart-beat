@@ -90,7 +90,7 @@ export default {
         if (queryType === 'prev') {
           const endInx = totalList.findIndex(o => o.id === postList[0].id)
           for (let i = 1; i < 5; i++) {
-            const addInx = endInx - i < 0 ? length - i : endInx - i
+            const addInx = endInx - i < 0 ? length + endInx - i : endInx - i
             nextPostList.unshift(totalList[addInx])
           }
         } else if (queryType === 'next') {

@@ -973,9 +973,9 @@ address@1.0.3, address@^1.0.1, address@^1.0.3:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/address/download/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
 
-af-webpack@^0.22.10:
-  version "0.22.10"
-  resolved "http://registry.npm.taobao.org/af-webpack/download/af-webpack-0.22.10.tgz#44628190008321d04d44e1943fb7830256eee727"
+af-webpack@^0.22.11:
+  version "0.22.11"
+  resolved "http://registry.npm.taobao.org/af-webpack/download/af-webpack-0.22.11.tgz#bdcc84df4a9b191f6e10914e8d5415874ee999ba"
   dependencies:
     "@babel/core" "7.0.0-beta.46"
     "@babel/plugin-transform-modules-commonjs" "7.0.0-beta.46"
@@ -988,7 +988,7 @@ af-webpack@^0.22.10:
     babel-loader "^8.0.0-beta.0"
     babel-plugin-add-module-exports "^0.2.1"
     babel-plugin-dynamic-import-node-sync "^2.0.1"
-    babel-preset-umi "^0.3.0"
+    babel-preset-umi "^0.3.1"
     case-sensitive-paths-webpack-plugin "^2.1.1"
     chalk "^2.1.0"
     chokidar "^2.0.3"
@@ -1672,9 +1672,9 @@ babel-preset-jest@^22.0.1, babel-preset-jest@^22.4.4:
     babel-plugin-jest-hoist "^22.4.4"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
-babel-preset-umi@^0.3.0:
-  version "0.3.0"
-  resolved "http://registry.npm.taobao.org/babel-preset-umi/download/babel-preset-umi-0.3.0.tgz#1acb1e96d619f50bae69af3d683fb2cc09e250a2"
+babel-preset-umi@^0.3.1:
+  version "0.3.1"
+  resolved "http://registry.npm.taobao.org/babel-preset-umi/download/babel-preset-umi-0.3.1.tgz#8d454a055c822cf1f7586e64f011c9ab0d954459"
   dependencies:
     "@babel/plugin-proposal-async-generator-functions" "7.0.0-beta.46"
     "@babel/plugin-proposal-class-properties" "7.0.0-beta.46"
@@ -7441,7 +7441,7 @@ preact@8.1.0:
   version "8.1.0"
   resolved "http://registry.npm.taobao.org/preact/download/preact-8.1.0.tgz#f035b808eebb74e46d56246b02ca0f190b6d6574"
 
-preact@^8.2.5:
+preact@~8.2.9:
   version "8.2.9"
   resolved "http://registry.npm.taobao.org/preact/download/preact-8.2.9.tgz#813ba9dd45e5d97c5ea0d6c86d375b3be711cc40"
 
@@ -9885,13 +9885,13 @@ uglifyjs-webpack-plugin@^0.4.6:
     uglify-js "^2.8.29"
     webpack-sources "^1.0.1"
 
-umi-build-dev@^0.22.0:
-  version "0.22.0"
-  resolved "http://registry.npm.taobao.org/umi-build-dev/download/umi-build-dev-0.22.0.tgz#819c8ed3d53cd61a1a87c327c490a871b958cceb"
+umi-build-dev@^0.22.2:
+  version "0.22.2"
+  resolved "http://registry.npm.taobao.org/umi-build-dev/download/umi-build-dev-0.22.2.tgz#3467dda774ab8f59151164fcdfc0b309ac530cfd"
   dependencies:
     "@babel/runtime" "7.0.0-beta.46"
     address "^1.0.3"
-    af-webpack "^0.22.10"
+    af-webpack "^0.22.11"
     antd "^3.0.0"
     antd-mobile "^2.0.0"
     babel-plugin-import "^1.6.4"
@@ -9916,7 +9916,7 @@ umi-build-dev@^0.22.0:
     path-is-absolute "^1.0.1"
     path-to-regexp "^1.7.0"
     postcss-plugin-px2rem "^0.7.0"
-    preact "^8.2.5"
+    preact "~8.2.9"
     preact-compat "^3.17.0"
     react "^16.3.0"
     react-dom "^16.3.0"
@@ -9959,16 +9959,16 @@ umi-plugin-dva@^0.9.1:
     path-to-regexp "^1.7.0"
     slash2 "^2.0.0"
 
-umi-test@^0.5.5:
-  version "0.5.5"
-  resolved "http://registry.npm.taobao.org/umi-test/download/umi-test-0.5.5.tgz#125f3850113651ed1dd85c00a5dca642545b8bcf"
+umi-test@^0.5.6:
+  version "0.5.6"
+  resolved "http://registry.npm.taobao.org/umi-test/download/umi-test-0.5.6.tgz#3c559d1fd04522fdc8604897bdb1dd09c7e66c3a"
   dependencies:
     "@babel/core" "7.0.0-beta.46"
     "@babel/polyfill" "7.0.0-beta.46"
     babel-core "7.0.0-bridge.0"
     babel-jest "^22.0.3"
     babel-plugin-module-resolver "^3.1.1"
-    babel-preset-umi "^0.3.0"
+    babel-preset-umi "^0.3.1"
     debug "^3.1.0"
     enzyme "^3.3.0"
     enzyme-adapter-react-16 "^1.1.1"
@@ -9980,13 +9980,13 @@ umi-test@^0.5.5:
     ts-jest-babel-7 "^22.0.6"
     typescript "^2.8.1"
 
-umi@^1.3.13:
-  version "1.3.16"
-  resolved "http://registry.npm.taobao.org/umi/download/umi-1.3.16.tgz#1fdd85f3df813bea1b3528c48491ac1287048ce6"
+umi@^1.3.18:
+  version "1.3.18"
+  resolved "http://registry.npm.taobao.org/umi/download/umi-1.3.18.tgz#71b78d9e2b5de853a9bb6fd18907245e7beecc86"
   dependencies:
     "@babel/runtime" "7.0.0-beta.46"
     "@types/react" "^16.1.0"
-    babel-preset-umi "^0.3.0"
+    babel-preset-umi "^0.3.1"
     chai "^4.1.2"
     cross-spawn "^6.0.5"
     ejs "^2.5.7"
@@ -9994,8 +9994,8 @@ umi@^1.3.13:
     path-is-absolute "^1.0.1"
     query-string "^5.0.0"
     slash2 "^2.0.0"
-    umi-build-dev "^0.22.0"
-    umi-test "^0.5.5"
+    umi-build-dev "^0.22.2"
+    umi-test "^0.5.6"
     update-notifier "^2.3.0"
     uppercamelcase "^3.0.0"
     url "^0.11.0"
