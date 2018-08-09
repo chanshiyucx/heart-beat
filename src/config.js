@@ -216,31 +216,31 @@ export default {
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        src: 'http://link.hhtjim.com/163/729434.mp3',
+        src: 'https://attachments-cdn.shimo.im/nv19kJQgVmcXemEX/FELT_%E9%A3%8E_%E8%9D%89%E6%97%B6%E9%9B%A8.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/b706547f-9237-48fb-ace9-89f9506ab099.jpg',
       },
       {
         name: '春の凑に ~ Lost shiners',
         author: '莲弾奏结界',
-        src: 'http://link.hhtjim.com/163/714830.mp3',
+        src: 'https://attachments-cdn.shimo.im/iDl5cU81iY40nY5i/dBu_music_%E6%98%A5_%E5%87%91_Lost_shiners.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg',
       },
       {
         name: '夏阳炎',
         author: '天威梦方',
-        src: 'http://link.hhtjim.com/163/803557.mp3',
+        src: 'https://attachments-cdn.shimo.im/SaDfaUDfmwAZnLRt/QLOCKS_%E5%A4%8F%E9%98%B3%E7%82%8E_inst.ver_instrumental.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg',
       },
       {
         name: '秋风のとおり道',
         author: '风神华伝',
-        src: 'http://link.hhtjim.com/163/766272.mp3',
+        src: 'https://attachments-cdn.shimo.im/dUxulYUSKuEnJVkq/%E8%B6%A3%E5%91%B3%E5%B7%A5%E6%88%BF_%E7%A7%8B%E9%A3%8E_%E9%81%93.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg',
       },
       {
         name: '冬のわすれもの',
         author: 'ハルノカゼ',
-        src: 'http://link.hhtjim.com/163/729461.mp3',
+        src: 'https://attachments-cdn.shimo.im/ycvgWoqg7pYFrIon/Forest306_%E5%86%AC_.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg',
       },
     ]

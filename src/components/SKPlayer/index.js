@@ -88,10 +88,10 @@ class SKPlayer extends PureComponent {
     this.switchbutton.addEventListener('click', this.toggleList)
     this.modebutton.addEventListener('click', this.switchMode)
     this.musiclist.addEventListener('click', this.musiclistClick)
-    this.timeline_total.addEventListener('click', this.timelineClick)
+    this.skPlayerPercent.addEventListener('click', this.timelineClick)
     if (!this.isMobile) {
       this.volumebutton.addEventListener('click', this.toggleMute)
-      this.volumeline_total.addEventListener('click', this.volumelineClick)
+      this.volumelineTotal.addEventListener('click', this.volumelineClick)
     }
   }
 
@@ -108,10 +108,10 @@ class SKPlayer extends PureComponent {
     this.switchbutton.removeEventListener('click', this.toggleList)
     this.modebutton.removeEventListener('click', this.switchMode)
     this.musiclist.removeEventListener('click', this.musiclistClick)
-    this.timeline_total.removeEventListener('click', this.timelineClick)
+    this.skPlayerPercent.removeEventListener('click', this.timelineClick)
     if (!this.isMobile) {
       this.volumebutton.removeEventListener('click', this.toggleMute)
-      this.volumeline_total.removeEventListener('click', this.volumelineClick)
+      this.volumelineTotal.removeEventListener('click', this.volumelineClick)
     }
   }
 
@@ -137,7 +137,7 @@ class SKPlayer extends PureComponent {
   // 监听：播放时间
   timeupdate = () => {
     let percent = this.audio.currentTime / this.audio.duration
-    this.timeline_played.style.width = Util.percentFormat(percent)
+    this.skPlayerPlayed.style.width = Util.percentFormat(percent)
     const timetext_played = Util.timeFormat(this.audio.currentTime)
     this.setState({ timetext_played })
   }
@@ -166,10 +166,10 @@ class SKPlayer extends PureComponent {
   toggleMute = () => {
     if (this.state.muted) {
       this.setState({ muted: false })
-      this.volumeline_value.style.width = Util.percentFormat(this.audio.volume)
+      this.volumelineValue.style.width = Util.percentFormat(this.audio.volume)
     } else {
       this.setState({ muted: true })
-      this.volumeline_value.style.width = '0%'
+      this.volumelineValue.style.width = '0%'
     }
   }
 
@@ -201,9 +201,9 @@ class SKPlayer extends PureComponent {
   // 监听: 跳转进度
   timelineClick = (event) => {
     let e = event || window.event
-    let percent = (e.clientX - Util.leftDistance(this.timeline_total)) / this.timeline_total.clientWidth
+    let percent = (e.clientX - Util.leftDistance(this.skPlayerPercent)) / this.skPlayerPercent.clientWidth
     if (!isNaN(this.audio.duration)) {
-      this.timeline_played.style.width = Util.percentFormat(percent)
+      this.skPlayerPlayed.style.width = Util.percentFormat(percent)
       this.audio.currentTime = percent * this.audio.duration
       const timetext_played = Util.timeFormat(percent * this.audio.duration)
       this.setState({ timetext_played })
@@ -213,8 +213,8 @@ class SKPlayer extends PureComponent {
   // 监听: 调整音量
   volumelineClick = (event) => {
     let e = event || window.event
-    let percent = (e.clientX - Util.leftDistance(this.volumeline_total)) / this.volumeline_total.clientWidth
-    this.volumeline_value.style.width = Util.percentFormat(percent)
+    let percent = (e.clientX - Util.leftDistance(this.volumelineTotal)) / this.volumelineTotal.clientWidth
+    this.volumelineValue.style.width = Util.percentFormat(percent)
     this.audio.volume = percent
     if (this.audio.muted) {
       this.toggleMute()
@@ -224,7 +224,7 @@ class SKPlayer extends PureComponent {
   // 更新播放进度条
   updateLine = () => {
     let percent = this.audio.buffered.length ? (this.audio.buffered.end(this.audio.buffered.length - 1) / this.audio.duration) : 0
-    this.timeline_loaded.style.width = Util.percentFormat(percent)
+    this.skPlayerLoaded.style.width = Util.percentFormat(percent)
   }
 
   // 前一首
