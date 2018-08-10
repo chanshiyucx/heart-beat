@@ -94,7 +94,6 @@ html::-webkit-scrollbar {
 
 /* gitalk */
 .gt-comment-content,
-.gt-header-textarea,
 .gt-container .gt-avatar img {
   background: rgba(255, 255, 255, .6);
   border-radius: 3px;
@@ -109,6 +108,12 @@ html::-webkit-scrollbar {
       border-color: #f6f;
     }
   }
+  .gt-header-textarea {
+    background: rgba(255, 255, 255, .6);
+    &:hover {
+      background: rgba(255, 255, 255, .6);
+    }
+  }
   .gt-btn {
     color: #eee;
     border: 1px solid #faf;
@@ -116,9 +121,6 @@ html::-webkit-scrollbar {
     &:hover {
       border-color: #f6f;
       background: #f6f;
-    }
-    &.gt-btn-login {
-      margin-top: .1rem;
     }
   }
   .gt-link {
@@ -141,6 +143,7 @@ html::-webkit-scrollbar {
   }
   .gt-comment-content {
     transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s;
+    background: rgba(255, 255, 255, .6);
   }
   .gt-comment-content:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
