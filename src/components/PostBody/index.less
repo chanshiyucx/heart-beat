@@ -58,6 +58,33 @@
     p {
       margin: .12rem .16rem 0;
     }
+    blockquote {
+      position: relative;
+      padding: .3rem 0;
+      & > p {
+        margin: .12rem .4rem;
+      }
+      &::before, &::after {
+        position: absolute;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        /*--adjust as necessary--*/
+        color: #666;
+        font-size: .24rem;
+      }
+      &::before {
+        content: "\f10d";
+        top: .06rem;
+        left: .16rem;
+      }
+      &::after {
+        content: "\f10e";
+        bottom: .06rem;
+        right: .16rem;
+      }
+    }
     ol, ul {
       margin: .06rem .24rem .06rem .42rem;
     }
@@ -66,18 +93,26 @@
       padding: .08rem 0;
       font-size: .22rem;
       border-bottom: 1px dashed rgba(0, 0, 0, .2);
+      i {
+        padding-right: .04rem;
+        font-size: .24rem;
+      }
     }
     h3 {
-      margin: .12rem .16rem -.08rem;
+      margin: .12rem .16rem 0;
       font-size: .18rem;
       i {
+        padding-right: .04rem;
         font-size: .15rem;
       }
     }
     a {
       border-bottom: 1px solid #888;
       &:hover {
-        border-bottom-color: #faf;
+        border-bottom-color: #f6f;
+      }
+      i {
+        padding: 0 .04rem;
       }
     }
   }

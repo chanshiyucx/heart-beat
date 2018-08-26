@@ -18,13 +18,13 @@ const Segment = ({
 }) => {
   return (
     <div class={cx('container')} style={{
-      borderTop: `2px solid ${color || '#faf'}`
+      borderTop: `2px solid ${color || '#f6f'}`
     }}>
       <span class={cx('label')} style={{
-        background: color || '#faf',
+        background: color || '#f6f',
       }}>
         <i style={{
-          color: color || '#faf',
+          color: color || '#f6f',
         }} />
         {title}
       </span>

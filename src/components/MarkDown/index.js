@@ -20,11 +20,11 @@ const renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
   return `<h${level} id="${text}"><i class="fa fa-${
     level === 2 ? 'gift' : 'envira'
-    }" aria-hidden="true"></i> ${text}</h${level}>`
+    }" aria-hidden="true"></i>${text}</h${level}>`
 }
 
 renderer.link = function (href, title, text) {
-  return `<a href="${href}" target="_blank"> <i class="fa fa-link" aria-hidden="true"></i> ${text}</a>`
+  return `<a href="${href}" target="_blank"><i class="fa fa-link" aria-hidden="true"></i>${text}</a>`
 }
 
 renderer.image = function (href, title, text) {

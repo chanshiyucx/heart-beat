@@ -91,7 +91,7 @@ class Books extends PureComponent {
               {section && section.map((o, i) => {
                 const { name, author, published, progress, rating, postTitle, postLink, cover, link, desc } = o
                 const rateList = new Array(10).fill(1).map((o, i) => {
-                  return (<i key={i} className={'fa fa-star'} style={{ color: i <= 4 && '#faf' }} aria-hidden="true"></i>)
+                  return (<i key={i} className={'fa fa-star'} style={{ color: i <= 4 && '#f6f' }} aria-hidden="true"></i>)
                 })
                 const rate = [].slice.call(rateList, 5 - parseInt(rating, 10), 10 - parseInt(rating, 10))
                 return (
