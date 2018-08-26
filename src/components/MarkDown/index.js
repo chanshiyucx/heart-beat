@@ -24,6 +24,10 @@ renderer.heading = function (text, level) {
 }
 
 renderer.link = function (href, title, text) {
+  // 只显示一个图标
+  if (text.includes('aria-hidden="true"')) {
+    return `<a href="${href}" target="_blank">${text}</a>`
+  }
   return `<a href="${href}" target="_blank"><i class="fa fa-link" aria-hidden="true"></i>${text}</a>`
 }
 
