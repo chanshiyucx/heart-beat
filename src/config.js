@@ -276,5 +276,18 @@ export default {
     '#2EA9DF', // 露草
     '#E03C8A', // 躑躅
   ],
+
+  /**
+   * 文章封面配图
+   * -----------------------------------------------------------------------
+   */
+  covers: [
+    'https://dn-coding-net-production-pp.qbox.me/8e7e14e4-69f0-4763-b208-2b5a27a9c732.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/40294ec6-39aa-4663-89ec-73940dbc1cf7.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/e55b19a7-3f5c-4654-a131-9460c0ec865a.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
+  ]
 }
 

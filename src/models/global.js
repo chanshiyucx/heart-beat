@@ -1,6 +1,5 @@
 import router from 'umi/router'
 import _ from 'lodash'
-import timeago from 'timeago.js'
 
 import {
   queryTotal,
@@ -13,25 +12,10 @@ import {
   queryPage,
   likeSite,
 } from '../services'
-import { loadImgs } from '../utils'
-const t = timeago()
-const delay = time => new Promise(resolve => setTimeout(resolve, time))
+import { delay, formatPost, loadImgs } from '../utils'
+
 const minDelay = 1000
 let lastTipsUpdateAt
-
-// 文章格式化
-const formatPost = (post) => {
-  const { created_at, body, labels } = post
-  const [desc, content] = body.split('<!-- more -->')
-  const result = /http.+(jpg|jpeg|png|gif)/g.exec(desc)
-  const cover = result[0]
-  post.date = t.format(created_at, 'zh_CN')
-  post.cover = cover
-  post.desc = desc.split(`${cover})`)[1].trim()
-  post.content = content
-  post.filterLabels = labels.sort((a, b) => a.name.length >= b.name.length).slice(0, 2)
-  return post
-}
 
 export default {
   namespace: 'global',

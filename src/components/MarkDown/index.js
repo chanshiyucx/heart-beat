@@ -23,12 +23,10 @@ renderer.heading = function (text, level) {
     }" aria-hidden="true"></i> ${text}</h${level}>`
 }
 
-// 新开标签页打开
 renderer.link = function (href, title, text) {
-  return `<a href="${href}" target="_blank">${text}</a>`
+  return `<a href="${href}" target="_blank"> <i class="fa fa-link" aria-hidden="true"></i> ${text}</a>`
 }
 
-// 图片预览
 renderer.image = function (href, title, text) {
   return `<img class="zoomable" src="${href}" alt="${text}" data-action="zoom" />`
 }

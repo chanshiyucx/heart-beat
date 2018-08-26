@@ -1,5 +1,26 @@
+import timeago from 'timeago.js'
+import config from './config'
+
+const t = timeago()
+const { covers } = config
+
 // 是否为移动端
 export const isMobile = /mobile/i.test(window.navigator.userAgent)
+
+// 延时
+export const delay = time => new Promise(resolve => setTimeout(resolve, time))
+
+// 文章格式化
+export const formatPost = post => {
+  const { created_at, body, labels } = post
+  const desc = body.split('<!-- more -->')[0]
+  post.desc = desc
+  post.content = body
+  post.cover = covers[post.id % covers.length]
+  post.date = t.format(created_at, 'zh_CN')
+  post.filterLabels = labels.sort((a, b) => a.name.length >= b.name.length)
+  return post
+}
 
 // 预加载图片
 export async function loadImgs({ images, width, height }) {
