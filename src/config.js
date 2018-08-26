@@ -286,8 +286,14 @@ export default {
     'https://dn-coding-net-production-pp.qbox.me/40294ec6-39aa-4663-89ec-73940dbc1cf7.jpg',
     'https://dn-coding-net-production-pp.qbox.me/e55b19a7-3f5c-4654-a131-9460c0ec865a.jpg',
     'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
-    'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
-    'https://dn-coding-net-production-pp.qbox.me/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/22865cc2-73a6-4530-9a9f-1bbc910dfddd.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/8bbcf13b-01e5-4c3c-91b2-2ca2dbf02317.jpg',
+
+    'https://dn-coding-net-production-pp.qbox.me/a62a631b-391c-4fef-a34c-98d9a00d26b9.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/c09befb1-5619-4322-ac30-8d38fa954768.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/d27c7842-8d29-41b9-aae9-aa305534a38c.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/a294a561-82b3-48b5-baeb-57459c9f5e64.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/e1b343d2-d211-47a1-bc14-4ad09bee33cd.jpg',
+    'https://dn-coding-net-production-pp.qbox.me/2d44888e-7d96-4d17-a1ef-7e7d4502f76f.jpg',
   ]
 }
-

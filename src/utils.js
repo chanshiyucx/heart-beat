@@ -16,7 +16,7 @@ export const formatPost = post => {
   const desc = body.split('<!-- more -->')[0]
   post.desc = desc
   post.content = body
-  post.cover = covers[post.id % covers.length]
+  post.cover = covers[(post.number - 1) % covers.length]
   post.date = t.format(created_at, 'zh_CN')
   post.filterLabels = labels.sort((a, b) => a.name.length >= b.name.length)
   return post
