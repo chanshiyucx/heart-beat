@@ -1,10 +1,10 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-17 10:28:21 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:28:21 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 14:02:53
  * @Description: 书单
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
@@ -98,6 +98,7 @@ class Books extends PureComponent {
                 const rate = [].slice.call(rateList, 5 - parseInt(rating, 10), 10 - parseInt(rating, 10))
                 return (
                   <div key={i} class={cx('book')}>
+                    <h2>{name}</h2>
                     <div class={cx('header')}>
                       <img alt="" src={cover} />
                       <div class={cx('info')}>

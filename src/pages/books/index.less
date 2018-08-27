@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding-bottom: 1rem;
   @media (max-width: 900px) {
-    width: 96%;
+    width: 100%;
   }
   .body {
     padding: .16rem;
@@ -32,6 +32,14 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, .2), 0 6px 6px rgba(0, 0, 0, .24);
         transform: translateY(-4px);
       }
+      h2 {
+        display: none;
+        @media (max-width: 900px) {
+          display: block;
+          padding: .12rem .16rem 0;
+          font-size: .18rem;
+        }
+      }
       .header {
         display: flex;
         justify-content: flex-start;
@@ -46,18 +54,22 @@
           a {
             display: flex;
             align-items: center;
-            padding: .06rem 0;
+            padding-top: .04rem;
             i {
               margin-top: .03rem;
+            }
+            @media (max-width: 900px) {
+              display: none;
             }
           }
           i {
             font-size: .16rem;
           }
           h2 {
-            margin-left: .04rem;
+            display: block;
             font-size: .18rem;
             font-weight: normal;
+            letter-spacing: 0;
           }
           p {
             margin-top: .06rem;
