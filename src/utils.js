@@ -5,7 +5,7 @@ const t = timeago()
 const { covers } = config
 
 // 是否为移动端
-export const isMobile = /mobile/i.test(window.navigator.userAgent)
+export const isMobile = /mobile/i.test(window.navigator.userAgent) || document.body.clientWidth < 1200
 
 // 延时
 export const delay = time => new Promise(resolve => setTimeout(resolve, time))

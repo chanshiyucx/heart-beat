@@ -19,9 +19,11 @@
     }
     .reward {
       position: relative;
-      margin: 0 0 .12rem;
-      text-align: center; // animation-name: horizontalFlipOut;
+      margin: 0 auto .12rem;
+      width: .4rem;
+      text-align: center;
       &:hover {
+        width: 3rem;
         .reward-body {
           animation-name: flip-in-y;
         }
@@ -38,7 +40,7 @@
         background: rgba(255, 255, 255, .6);
         box-shadow: 0 0 10px rgba(0, 0, 0, .1);
         &:hover {
-          color: #f6f;
+          color: #faf;
         }
       }
       .reward-body {
@@ -88,6 +90,9 @@
           }
         }
       }
+    }
+    .lincenses {
+      margin: .16rem auto;
     }
     .post-squares {
       display: flex;

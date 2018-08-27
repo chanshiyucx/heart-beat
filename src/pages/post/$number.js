@@ -1,10 +1,10 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-05 10:27:03 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:27:03 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 15:14:24
  * @Description: 文章页
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
@@ -90,6 +90,9 @@ class Post extends PureComponent {
                     }
                   </ul>
                 </div>
+              </div>
+              <div class={cx('lincenses')}>
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际</a>
               </div>
               <div class={cx('post-squares')}>
                 <PostPV {...prevPost} />

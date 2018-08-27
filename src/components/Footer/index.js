@@ -1,8 +1,8 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-06-30 10:33:20 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:33:20 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 14:46:21
  * Description: 页脚
  */ 
 
@@ -353,7 +353,6 @@ class Footer extends PureComponent {
             </div>
           </li>
         </ul>
-
       </div>
     )
   }
