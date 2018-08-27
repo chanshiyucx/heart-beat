@@ -1,10 +1,10 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-15 10:23:21 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:23:21 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 11:44:17
  * @Description: 首页
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
@@ -29,7 +29,7 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    this.queryList(this.props.postList.length ? '': 'next')
+    this.queryList(this.props.postList.length ? '' : 'next')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,6 +57,10 @@ class Home extends PureComponent {
 
   // 获取文章列表 
   getPostListNode = () => {
+    // 对于移动端只展示第一次动画
+    if (isMobile) {
+      this.setState({ disabled: true })
+    }
     if (this.postListNode) return
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
     this.postListNode.addEventListener('mouseover', this.TPostListNodeMouseOver)
@@ -116,8 +120,8 @@ class Home extends PureComponent {
           </button>
 
           <Transition
-            visible={disabled || !loading && !showLoading}
-            animation={isMobile ? 'drop' : 'zoom'}
+            visible={!loading && !showLoading}
+            animation={isMobile ? (disabled ? '' : 'drop') : 'zoom'}
             duration={600}
             onHide={this.onHide}
             onShow={this.getPostListNode}
@@ -136,7 +140,7 @@ class Home extends PureComponent {
               </div>
             </div>
           </Transition>
-          {!disabled && showLoading && <Loading />}
+          {showLoading && <Loading />}
 
           <button
             class={cx('page-btn', 'next')}
