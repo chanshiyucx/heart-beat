@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-07-04 10:32:32 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 18:21:11
+ * @Last Modified time: 2018-08-27 18:22:55
  * Description: MarkeDown 渲染
  */
 
@@ -10,7 +10,6 @@ import React, { PureComponent } from 'react'
 import marked from 'marked'
 
 import Prism from '../../assets/prism/prism.js'
-import { isMobile } from '../../utils'
 
 const renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
@@ -40,8 +39,6 @@ marked.setOptions({
 
 class MarkeDown extends PureComponent {
   componentDidMount() {
-    const osWidth = document.documentElement.clientWidth || document.body.scrollWidth
-    if (osWidth > 600) zooming.listen('.zoomable')
     Prism.highlightAll()
   }
 
