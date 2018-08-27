@@ -38,8 +38,11 @@
         &:hover {
           box-shadow: 0 0 .4rem #888 inset;
         }
+        &:disabled {
+          color: #888;
+        }
         &:disabled:hover {
-          box-shadow: none;
+          box-shadow: 0 0 .1rem rgba(0, 0, 0, .2);
         }
         &.prevBtn {
           margin-right: -.1rem;

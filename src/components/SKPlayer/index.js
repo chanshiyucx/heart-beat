@@ -1,10 +1,10 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-06-30 10:31:06 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:31:06 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 14:40:01
  * Description: 音乐播放器
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import classNames from 'classnames/bind'
