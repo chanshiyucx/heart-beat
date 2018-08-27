@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-07-05 10:27:03 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 15:14:24
+ * @Last Modified time: 2018-08-27 15:24:49
  * @Description: 文章页
  */
 
@@ -92,7 +92,7 @@ class Post extends PureComponent {
                 </div>
               </div>
               <div class={cx('lincenses')}>
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际</a>
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener noreferrer" target="_blank">署名-非商业性使用-相同方式共享 4.0 国际</a>
               </div>
               <div class={cx('post-squares')}>
                 <PostPV {...prevPost} />
