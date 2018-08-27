@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-07-17 10:28:21 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 14:02:53
+ * @Last Modified time: 2018-08-27 15:32:24
  * @Description: 书单
  */
 
@@ -109,8 +109,7 @@ class Books extends PureComponent {
                         <p>作者：{author}</p>
                         <p>出版时间：{published}</p>
                         <p>阅读进度：{progress}</p>
-                        <p>
-                          读书笔记：
+                        <p>读书笔记：
                         {!!(postLink.trim().length) ? (
                             <a href={postLink} rel="noopener noreferrer" target="_blank">
                               {postTitle}

@@ -1,10 +1,10 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-08 10:32:18 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:32:18 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 16:31:50
  * Description: 文章内容
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import classNames from 'classnames/bind'
@@ -22,7 +22,6 @@ class PostBody extends PureComponent {
     content,
     filterLabels,
     milestone,
-    time,
     times,
   }) {
     return (

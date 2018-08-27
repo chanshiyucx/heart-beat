@@ -1,8 +1,8 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-04 10:32:32 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:32:32 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 15:56:29
  * Description: MarkeDown 渲染
  */ 
 
@@ -11,9 +11,10 @@ import marked from 'marked'
 import Zooming from 'zooming'
 
 import Prism from '../../assets/prism/prism.js'
+import { isMobile } from '../../utils'
 
 const zooming = new Zooming({
-  scaleBase: 0.8,
+  scaleBase: isMobile ? 1 : 0.8,
   bgOpacity: 0.6,
   scrollThreshold: 10,
 })
