@@ -47,7 +47,7 @@ class Books extends PureComponent {
       payload: { books: {} },
     })
   }
-  
+
   // 渲染评论
   renderGitalk = () => {
     if (enableGitalk) {
@@ -56,7 +56,7 @@ class Books extends PureComponent {
         title: '书单',
       })
       gitalk.render('gitalk')
-    }  
+    }
   }
 
   render({ books, loading }, { showLoading }) {

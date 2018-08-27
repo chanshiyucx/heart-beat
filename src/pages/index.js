@@ -27,7 +27,7 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    this.next()
+    this.queryList(this.props.postList.length ? '': 'next')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,38 +37,14 @@ class Home extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.dispatch({
-      type: 'global/updateState',
-      payload: { postList: [] },
-    })
-
     // 移除事件
     this.postListNode.removeEventListener('mouseover', this.TPostListNodeMouseOver)
   }
 
-  // 前一页
-  prev = () => {
+  queryList = queryType => {
     this.props.dispatch({
       type: 'global/queryList',
-      payload: { queryType: 'prev' },
-    })
-  }
-
-  // 后一页
-  next = () => {
-    this.props.dispatch({
-      type: 'global/queryList',
-      payload: { queryType: 'next' },
-    })
-  }
-
-  // 移动端为追加文章
-  add = () => {
-    this.setState({ disabled: true }, () => {
-      this.props.dispatch({
-        type: 'global/queryList',
-        payload: { queryType: 'add' },
-      })
+      payload: { queryType },
     })
   }
 
@@ -131,7 +107,7 @@ class Home extends PureComponent {
         <div class={cx('content')}>
           <button
             class={cx('page-btn', 'prev')}
-            onClick={this.prev}
+            onClick={() => this.queryList('prev')}
             onMouseMove={() => this.handleMouseOver('prev')}
           >
             <i className="fa fa-angle-double-left" aria-hidden="true"></i>
@@ -162,12 +138,12 @@ class Home extends PureComponent {
 
           <button
             class={cx('page-btn', 'next')}
-            onClick={this.next}
+            onClick={() => this.queryList('next')}
             onMouseMove={() => this.handleMouseOver('next')}
           >
             <i className="fa fa-angle-double-right" aria-hidden="true"></i>
           </button>
-          <button class={cx('mobile-btn')} onClick={this.add}>
+          <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
             <i className="fa fa-angle-double-down" aria-hidden="true"></i>
           </button>
         </div>

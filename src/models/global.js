@@ -91,6 +91,8 @@ export default {
             nextPostList.push(totalList[addInx])
           }
           nextPostList = postList.concat(nextPostList)
+        } else {
+          nextPostList = postList
         }
       } else {
         nextPostList = totalList.slice(0, 4)

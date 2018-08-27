@@ -43,7 +43,9 @@ class Post extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { post: {} },
+      payload: { 
+        post: {},
+      },
     })
   }
 

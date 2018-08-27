@@ -1,30 +1,48 @@
-/*
- * 图片懒加载
- * @author: 蝉時雨
- * @date: 2018-07-05
- */
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-05 10:13:51 
+ * @Last Modified by: chenxin 
+ * @Last Modified time: 2018-08-27 10:13:51 
+ * Description: 图片懒加载
+ */ 
 
 import React, { PureComponent } from 'react'
 
 class LazyImage extends PureComponent {
   constructor(props) {
     super(props)
-    const { src, width, height } = this.props
-    const temp = `${src}?imageView2/2/w/${width}/h/${height}`
+    const { width, height } = this.props
     this.state = {
-      src: temp
+      width,
+      height,
     }
   }
 
   componentDidMount() {
+    this.loadImg(this.props.src)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.src !== this.props.src) {
+      this.loadImg(nextProps.src)
+    }
+  }
+
+  loadImg = src => {
+    // 加载小图
+    const { width, height } = this.state
+    const temp = `${src}?imageView2/2/w/${width}/h/${height}`
+    this.setState({ src: temp })
+
+    // 加载大图
     let imgObj = new Image()
     imgObj.onload = () => {
-      this.setState({ src: this.props.src })
+      this.setState({ src })
     }
     imgObj.onerror = () => {
-      this.setState({ src: this.props.src })
+      this.setState({ src })
     }
-    imgObj.src = this.props.src
+    imgObj.src = src
   }
 
   render({ className, alt }, { src }) {
