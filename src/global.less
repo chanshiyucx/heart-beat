@@ -1,4 +1,6 @@
 @import "./assets/prism/prism";
+@import '../node_modules/baguettebox.js/dist/baguetteBox.min.css';
+
 @font-face {
   font-family: GuDianMingChaoTi;
   font-weight: bold;
@@ -155,5 +157,23 @@ html::-webkit-scrollbar {
   .gt-comment-content:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
     transform: translateY(-4px);
+  }
+}
+
+/* 灯箱 */
+#baguetteBox-overlay .full-image img {
+  max-height: 80%;
+  max-width: 80%;
+  box-shadow: 0 0 1.6rem #eee;
+}
+
+#baguetteBox-overlay .full-image figcaption {
+  line-height: 3;
+}
+
+.baguetteBox-button {
+  background: transparent;
+  &:hover {
+    background: transparent;
   }
 }

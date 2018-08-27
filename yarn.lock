@@ -1773,6 +1773,10 @@ babylon@^6.18.0:
   version "6.18.0"
   resolved "http://registry.npm.taobao.org/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
+baguettebox.js@^1.10.0:
+  version "1.10.0"
+  resolved "http://registry.npm.taobao.org/baguettebox.js/download/baguettebox.js-1.10.0.tgz#f24500b2f02433f52338cf77016ecf00cfe7f974"
+
 balanced-match@^0.4.2:
   version "0.4.2"
   resolved "http://registry.npm.taobao.org/balanced-match/download/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
@@ -10700,10 +10704,6 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
-
-zooming@^2.1.0:
-  version "2.1.0"
-  resolved "http://registry.npm.taobao.org/zooming/download/zooming-2.1.0.tgz#a65c2a955a1af55959e56e9294e992bb28bf6c2e"
 
 zscroller@~0.4.0:
   version "0.4.7"

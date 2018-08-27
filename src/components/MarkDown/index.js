@@ -2,9 +2,9 @@
  * @Author: chenxin 
  * @Date: 2018-07-04 10:32:32 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 15:56:29
+ * @Last Modified time: 2018-08-27 18:01:35
  * Description: MarkeDown 渲染
- */ 
+ */
 
 import React, { PureComponent } from 'react'
 import marked from 'marked'
@@ -35,7 +35,7 @@ renderer.link = function (href, title, text) {
 }
 
 renderer.image = function (href, title, text) {
-  return `<img class="zoomable" src="${href}" alt="${text}" data-action="zoom" />`
+  return `<a href="${href}" data-caption="${text}"><img src="${href}" alt="${text}" /></a>`
 }
 
 marked.setOptions({

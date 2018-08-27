@@ -2,12 +2,13 @@
  * @Author: chenxin 
  * @Date: 2018-07-08 10:32:18 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 16:31:50
+ * @Last Modified time: 2018-08-27 18:12:13
  * Description: 文章内容
  */
 
 import React, { PureComponent } from 'react'
 import classNames from 'classnames/bind'
+import baguetteBox from 'baguettebox.js'
 
 import MarkeDown from '../MarkDown'
 import styles from './index.less'
@@ -15,6 +16,20 @@ import styles from './index.less'
 const cx = classNames.bind(styles)
 
 class PostBody extends PureComponent {
+  componentDidMount() {
+    this.initLightBox()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.title !== this.props.title) {
+      this.initLightBox()
+    }
+  }
+
+  initLightBox = () => {
+    baguetteBox.run('#post-body')
+  }
+
   render({
     title,
     date,
@@ -25,7 +40,7 @@ class PostBody extends PureComponent {
     times,
   }) {
     return (
-      <div class={cx('container')}>
+      <div class={cx('container')} id='post-body'>
         <div class={cx('header')}>
           <img alt="" src={cover} />
           <div class={cx('info')}>
