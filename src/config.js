@@ -157,8 +157,7 @@ export default {
   aboutOption: {
     enableGitalk: true, // 是否开启评论功能
     avatar: 'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
-    // 右侧的介绍，不建议超过四行
-    info: [
+    info: [ // 个人介绍
       {
         icon: 'user',
         text: '蝉時雨',
@@ -174,6 +173,24 @@ export default {
       {
         icon: 'graduation-cap',
         text: 'Communication&Information Engineering',
+      },
+    ],
+    contact: [ // 联系方式
+      {
+        icon: 'https://dn-coding-net-production-pp.qbox.me/44351583-d016-479a-a231-d3946f3fdc50.png',
+        link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5dTU19HQ3NXc1tSllJTLhoqI',
+      },
+      {
+        icon: 'https://dn-coding-net-production-pp.qbox.me/6a7cfb7b-ebb7-48db-966e-7e748d70cfb0.png',
+        link: 'https://github.com/chanshiyucx',
+      },
+      {
+        icon: 'https://dn-coding-net-production-pp.qbox.me/c8dda842-7003-4c6c-a76d-6971419267e0.png',
+        link: 'https://www.zhihu.com/people/ichanshiyu/activities',
+      },
+      {
+        icon: 'https://dn-coding-net-production-pp.qbox.me/801a63e7-1abf-4443-ad0e-661acda1f950.png',
+        link: 'https://music.163.com/#/user/home?id=103060582',
       },
     ],
   },

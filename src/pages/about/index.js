@@ -18,7 +18,7 @@ import config from '../../config'
 import styles from './index.less'
 
 const { gitalkOption, aboutOption, qoutes, themeColors } = config
-const { avatar, info, enableGitalk } = aboutOption
+const { avatar, info, contact, enableGitalk } = aboutOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -58,7 +58,7 @@ class About extends PureComponent {
         title: '关于',
       })
       gitalk.render('gitalk')
-    }  
+    }
   }
 
   render({ about, loading }, { showLoading }) {
@@ -94,11 +94,25 @@ class About extends PureComponent {
                   })}
                 </div>
               </div>
+              <div class={cx('concat')}>
+                {contact.map((o, i) => {
+                  return (
+                    <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
+                      <img alt="" src={o.icon} />
+                    </a>
+                  )
+                })}
+              </div>
               <div class={cx('content')}>
                 {section && section.map((o, i) => {
                   const color = colors[i]
                   return (
-                    <Segment key={i} color={color} title={o.title} content={o.content} />
+                    <Segment
+                      key={i}
+                      color={color}
+                      title={o.title}
+                      content={o.content}
+                    />
                   )
                 })}
               </div>
