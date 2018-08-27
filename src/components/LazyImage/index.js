@@ -3,7 +3,7 @@
  * @Date: 2018-07-05 10:13:51 
  * @Last Modified by: chenxin 
  * @Last Modified time: 2018-08-27 10:13:51 
- * Description: 图片懒加载
+ * @Description: 图片懒加载
  */ 
 
 import React, { PureComponent } from 'react'

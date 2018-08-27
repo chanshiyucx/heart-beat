@@ -1,7 +1,9 @@
-/*
- * 文章卡
- * @author: 蝉時雨
- * @date: 2018-07-21
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-21 10:33:35 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 10:33:59
+ * Description: 文章卡
  */
 
 import React from 'react'

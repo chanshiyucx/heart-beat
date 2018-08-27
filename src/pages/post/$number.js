@@ -1,8 +1,10 @@
-/*
- * 文章页
- * @author: 蝉時雨
- * @date: 2018-07-05
- */
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-05 10:27:03 
+ * @Last Modified by: chenxin 
+ * @Last Modified time: 2018-08-27 10:27:03 
+ * @Description: 文章页
+ */ 
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
@@ -43,7 +45,7 @@ class Post extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { 
+      payload: {
         post: {},
       },
     })

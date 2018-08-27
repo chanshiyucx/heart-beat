@@ -1,8 +1,11 @@
-/*
- * https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/modules/Transition/Transition.js
- * Modified by 蝉時雨
- * Modified date 2018-07-01
- */
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-01 10:29:16 
+ * @Last Modified by: chenxin
+ * @Last Modified time: 2018-08-27 10:30:51
+ * @Description: 动效
+ */ 
+
 
 import { cloneElement, Component } from 'react'
 import _ from 'lodash'

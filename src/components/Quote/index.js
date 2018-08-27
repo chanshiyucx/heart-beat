@@ -1,9 +1,11 @@
-/*
- * 页面一言
- * @author: 蝉時雨
- * @date: 2018-07-16
- */
-
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-16 10:31:34 
+ * @Last Modified by: chenxin 
+ * @Last Modified time: 2018-08-27 10:31:34 
+ * Description: 页面一言
+ */ 
+ 
 import classNames from 'classnames/bind'
 
 import styles from './index.less'

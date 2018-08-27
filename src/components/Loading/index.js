@@ -1,8 +1,10 @@
-/*
- *  卡哇伊的加载图
- * @author: 蝉時雨
- * @date: 2018-07-11
- */
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-11 10:32:46 
+ * @Last Modified by: chenxin 
+ * @Last Modified time: 2018-08-27 10:32:46 
+ * Description: 卡哇伊的加载图
+ */ 
 
 import classNames from 'classnames/bind'
 

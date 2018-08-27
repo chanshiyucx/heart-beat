@@ -1,8 +1,10 @@
-/*
- * 书单
- * @author: 蝉時雨
- * @date: 2018-07-17
- */
+/** 
+ * @Author: chenxin 
+ * @Date: 2018-07-17 10:28:21 
+ * @Last Modified by: chenxin 
+ * @Last Modified time: 2018-08-27 10:28:21 
+ * @Description: 书单
+ */ 
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
