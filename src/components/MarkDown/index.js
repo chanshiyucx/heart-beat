@@ -2,22 +2,15 @@
  * @Author: chenxin 
  * @Date: 2018-07-04 10:32:32 
  * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 18:01:35
+ * @Last Modified time: 2018-08-27 18:21:11
  * Description: MarkeDown 渲染
  */
 
 import React, { PureComponent } from 'react'
 import marked from 'marked'
-import Zooming from 'zooming'
 
 import Prism from '../../assets/prism/prism.js'
 import { isMobile } from '../../utils'
-
-const zooming = new Zooming({
-  scaleBase: isMobile ? 1 : 0.8,
-  bgOpacity: 0.6,
-  scrollThreshold: 10,
-})
 
 const renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
