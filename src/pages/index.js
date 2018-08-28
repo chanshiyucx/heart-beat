@@ -1,8 +1,8 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-07-15 10:23:21 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 11:44:17
+ * @Last Modified by: chanshiyu
+ * @Last Modified time: 2018-08-28 21:09:00
  * @Description: 首页
  */
 
@@ -44,6 +44,7 @@ class Home extends PureComponent {
   }
 
   queryList = queryType => {
+    if (this.props.loading) return
     this.props.dispatch({
       type: 'global/queryList',
       payload: { queryType },
