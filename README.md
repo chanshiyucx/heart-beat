@@ -9,7 +9,6 @@ HeartBeat 是一个使用 Preact 开发的 SPA 单页面博客应用程序，后
 技术栈：UmiJS + Github Issues + Gitalk
 
 演示地址：[蝉時雨 ](https://chanshiyu.com)  
-踩坑记：[从零开始制作博客の不完全指北](https://chanshiyu.com/#/post/8)
 
 ## 食用指南
 ### 下载并安装
