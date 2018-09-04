@@ -19,7 +19,7 @@ npm install
 ```
 
 ### 配置
-修改目录 `src/config.js` 的配置文件，每个配置项都有详细说明，亦可参考 [HeartBeat 风味食用指南](https://chanshiyu.com/#/post/11)。
+修改目录 `src/config.js` 的配置文件，每个配置项都有详细说明。
 
 ### 预览
 ```bash
