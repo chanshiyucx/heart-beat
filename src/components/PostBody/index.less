@@ -116,5 +116,22 @@
         border-bottom-color: #f6f;
       }
     }
+    table {
+      margin: .14rem auto;
+      border: 1px solid rgba(0, 0, 0, .08);
+      border-radius: .03rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      tr {
+        height: .32rem;
+      }
+      tr:nth-child(2n), thead > tr {
+        background-color: rgba(0, 0, 0,.1);
+      }
+      td, th {
+        padding: 0 .36rem;
+        border-right: 1px solid rgba(0, 0, 0, .08);
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-07-15 10:23:21 
  * @Last Modified by: chanshiyu
- * @Last Modified time: 2018-08-28 21:09:00
+ * @Last Modified time: 2018-09-06 22:28:52
  * @Description: 首页
  */
 
@@ -108,7 +108,7 @@ class Home extends PureComponent {
     })
   }
 
-  render({ postList, loading }, { showLoading, disabled }) {
+  render({ totalList, postList, loading }, { showLoading, disabled }) {
     return (
       <div class={cx('container')}>
         <div class={cx('content')}>
@@ -150,9 +150,11 @@ class Home extends PureComponent {
           >
             <i className="fa fa-angle-double-right" aria-hidden="true"></i>
           </button>
-          <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
-            <i className="fa fa-angle-double-down" aria-hidden="true"></i>
-          </button>
+          { totalList.length !== postList.length && (
+            <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
+              <i className="fa fa-angle-double-down" aria-hidden="true"></i>
+            </button>
+          )}
         </div>
       </div>
     )
@@ -160,6 +162,7 @@ class Home extends PureComponent {
 }
 
 export default connect(({ global, loading }) => ({
+  totalList: global.totalList,
   postList: global.postList,
   loading: loading.effects['global/queryList'],
 }))(Home)
