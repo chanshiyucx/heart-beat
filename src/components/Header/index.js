@@ -1,8 +1,8 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-06-30 10:33:03 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:33:03 
+ * @Last Modified by: chanshiyu
+ * @Last Modified time: 2018-09-08 00:00:38
  * Description: 页头
  */ 
 
@@ -27,18 +27,9 @@ class Header extends PureComponent {
     this.bind()
   }
 
-  componentWillUnmount() {
-    this.removeBind()
-  }
-
   // 绑定事件
   bind = () => {
     this.menuRef.addEventListener('mouseover', this.handleMouseOver)
-  }
-
-  // 注销事件
-  removeBind = (e) => {
-    this.menuRef.removeEventListener('mouseover', this.handleMouseOver)
   }
 
   // 监听: 菜单悬停并触发对话

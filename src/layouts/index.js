@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import router from 'umi/router'
 import { Helmet } from 'react-helmet'
 
 import Header from '../components/Header'
@@ -14,6 +15,11 @@ class App extends PureComponent {
   componentDidMount() {
     // 动态背景
     window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
+
+    const { pathname } = this.props.location
+    if (pathname !== '/') {
+      router.push(pathname)
+    }
   }
 
   // 等待 live2d.js 加载完成

@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-07-15 10:23:21 
  * @Last Modified by: chanshiyu
- * @Last Modified time: 2018-09-06 22:28:52
+ * @Last Modified time: 2018-09-08 00:00:10
  * @Description: 首页
  */
 
@@ -36,11 +36,6 @@ class Home extends PureComponent {
     if (!nextProps.loading && nextProps.postList.length) {
       this.setState({ showLoading: false })
     }
-  }
-
-  componentWillUnmount() {
-    // 移除事件
-    this.postListNode.removeEventListener('mouseover', this.TPostListNodeMouseOver)
   }
 
   queryList = queryType => {

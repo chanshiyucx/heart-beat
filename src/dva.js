@@ -13,7 +13,6 @@ export function config() {
   }
 }
 
-window.LOG = console.log
 if (process.env.NODE_ENV !== 'development') {
   console.log = function () { }
   console.warn = function () { }

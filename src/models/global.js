@@ -273,10 +273,7 @@ export default {
 
   // 启动
   subscriptions: {
-    setup({ dispatch, history }) {
-      if (history.location.pathname !== '/') {
-        router.push(history.location.pathname)
-      }
+    setup({ dispatch }) {
       dispatch({ type: 'queryTotal' })  // 获取所有文章
       dispatch({ type: 'loadStorage' }) // 加载本地缓存
     },

@@ -1,8 +1,8 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-06-30 10:31:06 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 14:40:01
+ * @Last Modified by: chanshiyu
+ * @Last Modified time: 2018-09-08 00:00:21
  * Description: 音乐播放器
  */
 
@@ -63,10 +63,6 @@ class SKPlayer extends PureComponent {
     this.createPlayer()
   }
 
-  componentWillUnmount() {
-    this.removeBind()
-  }
-
   // 创建播放器
   createPlayer = () => {
     if (!this.music.length) {
@@ -94,26 +90,6 @@ class SKPlayer extends PureComponent {
     if (!this.isMobile) {
       this.volumebutton.addEventListener('click', this.toggleMute)
       this.volumelineTotal.addEventListener('click', this.volumelineClick)
-    }
-  }
-
-  // 注销事件
-  removeBind = () => {
-    this.audio.removeEventListener('durationchange', this.durationchange)
-    this.audio.removeEventListener('progress', this.progress)
-    this.audio.removeEventListener('canplay', this.canplay)
-    this.audio.removeEventListener('timeupdate', this.timeupdate)
-    this.audio.removeEventListener('seeked', this.seeked)
-    this.audio.removeEventListener('ended', this.ended)
-
-    this.playbutton.removeEventListener('click', this.toggle)
-    this.switchbutton.removeEventListener('click', this.toggleList)
-    this.modebutton.removeEventListener('click', this.switchMode)
-    this.musiclist.removeEventListener('click', this.musiclistClick)
-    this.skPlayerPercent.removeEventListener('click', this.timelineClick)
-    if (!this.isMobile) {
-      this.volumebutton.removeEventListener('click', this.toggleMute)
-      this.volumelineTotal.removeEventListener('click', this.volumelineClick)
     }
   }
 

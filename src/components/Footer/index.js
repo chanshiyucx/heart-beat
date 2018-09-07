@@ -2,7 +2,7 @@
  * @Author: chenxin 
  * @Date: 2018-06-30 10:33:20 
  * @Last Modified by: chanshiyu
- * @Last Modified time: 2018-09-07 20:53:56
+ * @Last Modified time: 2018-09-07 23:59:58
  * Description: 页脚
  */ 
 
@@ -43,10 +43,6 @@ class Footer extends PureComponent {
     this.bind()                // 绑定事件
   }
 
-  componentWillUnmount() {
-    this.removeBind()          // 注销事件
-  }
-
   // 绑定事件
   bind = () => {
     this.THandleScroll = _.throttle(this.handleScroll, 400, { trailing: true })
@@ -60,16 +56,6 @@ class Footer extends PureComponent {
     this.tool.addEventListener('mouseover', this.TToolCMouseOver)
     this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
     this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
-  }
-
-  // 注销事件
-  removeBind = () => {
-    document.removeEventListener('scroll', this.THandleScroll)
-    this.waifu.removeEventListener('click', this.TWaifuClick)
-    this.tool.removeEventListener('click', this.toolClick)
-    this.tool.removeEventListener('mouseover', this.TToolCMouseOver)
-    this.rightBtnWapper.removeEventListener('click', this.rightBtnWapperClick)
-    this.rightBtnWapper.removeEventListener('mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 监听：页面滚动
