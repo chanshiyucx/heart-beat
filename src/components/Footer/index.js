@@ -1,14 +1,14 @@
 /** 
  * @Author: chenxin 
  * @Date: 2018-06-30 10:33:20 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 14:46:21
+ * @Last Modified by: chanshiyu
+ * @Last Modified time: 2018-09-07 20:53:56
  * Description: 页脚
  */ 
 
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
-import Link from 'umi/link'
+import router from 'umi/router'
 import _ from 'lodash'
 import classNames from 'classnames/bind'
 import SmoothScroll from 'smooth-scroll'
@@ -109,6 +109,9 @@ class Footer extends PureComponent {
     }
     const type = target.getAttribute('data-type')
     switch (type) {
+      case 'home': 
+        router.push('/')
+        break
       case 'switch':
         this.dressup(true)
         break
@@ -130,6 +133,9 @@ class Footer extends PureComponent {
           type: 'global/showTips',
           payload: { tips: nextTips },
         })
+        break
+      case 'info':
+        router.push('/about')
         break
       case 'close':
         this.props.dispatch({
@@ -283,9 +289,7 @@ class Footer extends PureComponent {
             <canvas ref={c => this.waifu = c} id="live2d" width="280" height="250" />
             <ul ref={c => this.tool = c} class={cx('waifu-tool')}>
               <li data-type='home'>
-                <Link to='/'>
-                  <i className="fa fa-university" aria-hidden="true"></i>
-                </Link>
+                <i className="fa fa-university" aria-hidden="true"></i>
               </li>
               <li data-type='switch'>
                 <i className="fa fa-venus-double" aria-hidden="true"></i>
@@ -300,9 +304,7 @@ class Footer extends PureComponent {
                 <i className="fa fa-commenting" aria-hidden="true"></i>
               </li>
               <li data-type='info'>
-                <Link to='/post/4'>
-                  <i className="fa fa-info-circle" aria-hidden="true"></i>
-                </Link>
+                <i className="fa fa-info-circle" aria-hidden="true"></i>
               </li>
               <li data-type='close'>
                 <i className="fa fa-times-circle" aria-hidden="true"></i>
