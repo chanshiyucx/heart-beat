@@ -25,7 +25,7 @@ npm install
 ```bash
 npm start
 ```
-打开一个新的标签页 http://localhost:8000/#/。
+在线预览 http://localhost:8000/#/。
 
 ### 打包和发布
 ```bash
