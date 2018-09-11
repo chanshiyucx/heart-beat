@@ -25,7 +25,6 @@ npm install
 ```bash
 npm start
 ```
-在线预览 http://localhost:8000/#/。
 
 ### 打包和发布
 ```bash
