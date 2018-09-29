@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-17 10:24:44 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 10:26:37
- * @Description: 说说
- */ 
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'
@@ -19,12 +11,12 @@ import Segment from '../../components/Segment'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, shuoshuoOption, qoutes, themeColors } = config
-const { enableGitalk } = shuoshuoOption
+const { gitalkOption, moodOption, qoutes, themeColors } = config
+const { enableGitalk } = moodOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
-class ShuoShuo extends PureComponent {
+class Mood extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -46,7 +38,7 @@ class ShuoShuo extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.loading && nextProps.shuoshuo.length) {
+    if (!nextProps.loading && nextProps.mood.length) {
       this.setState({ showLoading: false })
     }
   }
@@ -54,14 +46,14 @@ class ShuoShuo extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { shuoshuo: [] },
+      payload: { mood: [] },
     })
   }
 
   // 前一页
   prev = () => {
     this.props.dispatch({
-      type: 'global/queryShuoShuo',
+      type: 'global/queryMood',
       payload: { queryType: 'prev' },
     })
   }
@@ -69,7 +61,7 @@ class ShuoShuo extends PureComponent {
   // 后一页
   next = () => {
     this.props.dispatch({
-      type: 'global/queryShuoShuo',
+      type: 'global/queryMood',
       payload: { queryType: 'next' },
     })
   }
@@ -94,10 +86,10 @@ class ShuoShuo extends PureComponent {
     }
   }
 
-  render({ totalShuoShuo, shuoshuo, loading }, { showLoading }) {
-    const index = shuoshuo.length && totalShuoShuo.findIndex(o => o.id === shuoshuo[0].id)
+  render({ totalMood, mood, loading }, { showLoading }) {
+    const index = mood.length && totalMood.findIndex(o => o.id === mood[0].id)
     const page = index / 6 + 1
-    const maxPage = Math.ceil(totalShuoShuo.length / 6)
+    const maxPage = Math.ceil(totalMood.length / 6)
 
     return (
       <div class={cx('container')}>
@@ -109,9 +101,9 @@ class ShuoShuo extends PureComponent {
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.shuoshuo} />
+            <Quote text={qoutes.mood} />
             <div class={cx('content')}>
-              {shuoshuo.map((o, i) => {
+              {mood.map((o, i) => {
                 const date = o.created_at.slice(0, 10)
                 const color = colors[i]
                 return (
@@ -146,7 +138,7 @@ class ShuoShuo extends PureComponent {
 }
 
 export default connect(({ global, loading }) => ({
-  totalShuoShuo: global.totalShuoShuo,
-  shuoshuo: global.shuoshuo,
-  loading: loading.effects['global/queryShuoShuo'],
-}))(ShuoShuo)
+  totalMood: global.totalMood,
+  mood: global.mood,
+  loading: loading.effects['global/queryMood'],
+}))(Mood)

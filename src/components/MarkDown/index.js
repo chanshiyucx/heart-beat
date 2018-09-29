@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-04 10:32:32 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 18:22:55
- * Description: MarkeDown 渲染
- */
-
 import React, { PureComponent } from 'react'
 import marked from 'marked'
 

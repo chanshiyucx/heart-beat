@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-05 10:13:51 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 17:02:38
- * @Description: 图片懒加载
- */ 
-
 import React, { PureComponent } from 'react'
 
 class LazyImage extends PureComponent {

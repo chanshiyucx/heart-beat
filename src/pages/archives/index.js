@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-19 10:28:32 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:28:32 
- * @Description: 归档
- */ 
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'
@@ -82,7 +74,7 @@ class Archives extends PureComponent {
           onHide={this.onHide}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.shuoshuo} />
+            <Quote text={qoutes.mood} />
             <div class={cx('content')}>
               {archives.map((o, i) => {
                 const color = colors[i]

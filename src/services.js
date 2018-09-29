@@ -2,7 +2,7 @@ import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from './config'
 
-const { posts, pages, pre, suf, params } = config
+const { blog, pre, suf, params } = config
 const token = `access_token=${pre}${suf}`
 
 // 状态检测
@@ -16,7 +16,7 @@ function checkStatus(response) {
 // 文章总数,一次获取全部文章，先以 200 做限制
 export async function queryTotal() {
   try {
-    const url = `${posts}/issues?${params}&page=1&per_page=200&${token}`
+    const url = `${blog}/issues?${params}&page=1&per_page=200&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -29,7 +29,7 @@ export async function queryTotal() {
 // 分类
 export async function queryCats() {
   try {
-    const url = `${posts}/milestones?${token}`
+    const url = `${blog}/milestones?${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -42,7 +42,7 @@ export async function queryCats() {
 // 标签
 export async function queryTags() {
   try {
-    const url = `${posts}/labels?${token}`
+    const url = `${blog}/labels?${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -55,7 +55,7 @@ export async function queryTags() {
 // 筛选文章
 export async function queryFilterPost({ type, filter }) {
   try {
-    const url = `${posts}/issues?${type}=${filter}&${token}`
+    const url = `${blog}/issues?${type}=${filter}&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -66,9 +66,9 @@ export async function queryFilterPost({ type, filter }) {
 }
 
 // 说说总数
-export async function queryShuoShuoTotal() {
+export async function queryMoodTotal() {
   try {
-    const url = `${pages}/issues?${params}&labels=shuoshuo&page=1&per_page=300&${token}`
+    const url = `${blog}/issues?${params}&labels=mood&page=1&per_page=300&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -81,7 +81,7 @@ export async function queryShuoShuoTotal() {
 // 书单 && 友链 && 关于
 export async function queryPage({ type }) {
   try {
-    const url = `${pages}/issues?labels=${type}&${token}`
+    const url = `${blog}/issues?labels=${type}&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()

@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-05 10:27:03 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 18:00:21
- * @Description: 文章页
- */
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Gitalk from 'gitalk'

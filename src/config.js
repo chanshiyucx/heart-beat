@@ -4,7 +4,6 @@ export default {
    *            站点功能【必需】
    * ====================================
    * /
-
   /**
    * 站点标题
    * ------------------------------------
@@ -13,22 +12,20 @@ export default {
   subtitle: '蝉鸣如雨，花宵道中',
 
   /**
-   * Github Issues 配置【文章、说说、书单、友链等】，了解更多 Github Issues api: https://developer.github.com/v3/issues/
-   * 为了方便更新，书单、友链、关于页面都单独提取一条 issue，与说说同仓库，如下：
-   * 书单： https://github.com/chanshiyucx/BlogPages/issues/10， labels = books
-   * 友链： https://github.com/chanshiyucx/BlogPages/issues/9,   labels = friends
-   * 关于： https://github.com/chanshiyucx/BlogPages/issues/8,   labels = about
+   * Github Issues 配置【文章、说说、书单、友链】, Github Issues api: https://developer.github.com/v3/issues/
+   * 书单： https://github.com/chanshiyucx/Blog/issues/10， labels = books
+   * 友链： https://github.com/chanshiyucx/Blog/issues/9,   labels = friends
+   * 关于： https://github.com/chanshiyucx/Blog/issues/8,   labels = about
    * -----------------------------------------------------------------------------------------------
    */
   // 文章仓库
-  posts: 'https://api.github.com/repos/chanshiyucx/BlogPosts',
-  // 说说、书单、友链、关于仓库
-  pages: 'https://api.github.com/repos/chanshiyucx/BlogPages',
+  blog: 'https://api.github.com/repos/chanshiyucx/Blog',
   // token 从中间任意位置拆开成两部分，避免 github 代码检测失效
   pre: '0ad1a0539c5b96fd18fa',
   suf: 'aaafba9c7d1362a5746c',
   // 额外的限制参数【作者和状态】
   params: 'creator=chanshiyucx&state=open',
+  mood: 'creator=chanshiyucx&state=closed',
 
   /**
    * leancloud 配置 【文章浏览次数】
@@ -74,7 +71,6 @@ export default {
    *            页面配置【自定义】
    * ====================================
    * /
-
   /**
    * 吟诗一句【各个页面置顶的引言】
    * ------------------------------------
@@ -84,7 +80,7 @@ export default {
     categories: '行云流水，落笔生花',
     tags: '列卒周匝，星罗云布',
     books: '吾生也有涯，而知也无涯',
-    shuoshuo: '欲言又止，止言又欲',
+    mood: '欲言又止，止言又欲',
     friends: '莫愁前路无知己，天下谁人不识君',
     about: '蝉鸣如雨，花宵道中',
   },
@@ -130,7 +126,7 @@ export default {
    * 说说页面
    * -------------------------------------------
    */
-  shuoshuoOption: {
+  moodOption: {
     enableGitalk: true,
   },
 

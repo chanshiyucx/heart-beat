@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-17 10:28:21 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 15:32:24
- * @Description: 书单
- */
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'

@@ -16,10 +16,10 @@ class App extends PureComponent {
     // 动态背景
     window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
 
-    const { pathname } = this.props.location
-    if (pathname !== '/') {
-      router.push(pathname)
-    }
+    // const { pathname } = this.props.location
+    // if (pathname !== '/') {
+    //   router.push(pathname)
+    // }
   }
 
   // 等待 live2d.js 加载完成
@@ -32,7 +32,7 @@ class App extends PureComponent {
 
   // 加载 live2d
   dressup = () => {
-    this.footer._component.dressup()
+    // this.footer._component.dressup()
   }
 
   render({ children }) {
@@ -51,9 +51,8 @@ class App extends PureComponent {
         />
 
         <Header />
-        {/* 蜜汁 bug， 第一次进入时 children 为 undefined 导致首页不渲染 */}
-        {children || <Home />} 
-        <Footer ref={c => this.footer = c} />
+        {/* {children || <Home />}  */}
+        {/* <Footer ref={c => this.footer = c} /> */}
       </div>
     )
   }

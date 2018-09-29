@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-06-30 10:33:03 
- * @Last Modified by: chanshiyu
- * @Last Modified time: 2018-09-08 00:00:38
- * Description: 页头
- */ 
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import Link from 'umi/link'
@@ -59,7 +51,7 @@ class Header extends PureComponent {
       case 'tags':
         tips = '去看看主人的文章吧'
         break
-      case 'shuoshuo':
+      case 'mood':
         tips = '主人最近又在发什么牢骚呢'
         break
       case 'books':
@@ -95,7 +87,7 @@ class Header extends PureComponent {
         >
           <i className="fa fa-list-ul" aria-hidden="true"></i>
         </button>
-        <div class={cx('inner')}  style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem'}}>
+        <div class={cx('inner')} style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem' }}>
           <a class={cx('title')} href="/">蝉時雨</a>
           <span class={cx('sub-title')}>蝉鸣如雨 花宵道中</span>
           <ul ref={c => this.menuRef = c} class={cx('menu', dropMenu && 'dropMenu')}>
@@ -123,8 +115,8 @@ class Header extends PureComponent {
                 <span>标签</span>
               </Link>
             </li>
-            <li data-menu="shuoshuo">
-              <Link to="/shuoshuo">
+            <li data-menu="mood">
+              <Link to="/mood">
                 <i class="fa fa-commenting" aria-hidden="true"></i>
                 <span>说说</span>
               </Link>

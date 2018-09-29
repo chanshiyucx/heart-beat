@@ -8,7 +8,7 @@ import {
   queryCats,
   queryTags,
   queryFilterPost,
-  queryShuoShuoTotal,
+  queryMoodTotal,
   queryPage,
   likeSite
 } from "../services";
@@ -30,8 +30,8 @@ export default {
     cats: [], // 分类
     tags: [], // 标签
 
-    totalShuoShuo: [], // 所有说说列表
-    shuoshuo: [], // 说说
+    totalMood: [], // 所有心情列表
+    mood: [], // 心情
 
     about: {}, // 关于
     books: {}, // 书单
@@ -206,38 +206,38 @@ export default {
     },
 
     // 说说列表
-    *queryShuoShuoTotal({ payload }, { call, put }) {
-      const totalShuoShuo = yield call(queryShuoShuoTotal, payload);
-      yield put({ type: "updateState", payload: { totalShuoShuo } });
+    *queryMoodTotal({ payload }, { call, put }) {
+      const totalMood = yield call(queryMoodTotal, payload);
+      yield put({ type: "updateState", payload: { totalMood } });
     },
 
     // 当前说说
-    *queryShuoShuo({ payload }, { select, take, call, put }) {
+    *queryMood({ payload }, { select, take, call, put }) {
       const startTime = new Date();
       const state = yield select(state => state.global);
-      let { totalShuoShuo, shuoshuo } = state;
+      let { totalMood, mood } = state;
       // 说说列表不存在先获取说说
-      if (!totalShuoShuo.length) {
-        yield put({ type: "queryShuoShuoTotal" });
-        yield take("queryShuoShuoTotal/@@end");
-        totalShuoShuo = yield select(state => state.global.totalShuoShuo);
+      if (!totalMood.length) {
+        yield put({ type: "queryMoodTotal" });
+        yield take("queryMoodTotal/@@end");
+        totalMood = yield select(state => state.global.totalMood);
       }
       const { queryType } = payload;
       // 直接根据当前说说的角标来截取
-      if (shuoshuo.length) {
+      if (mood.length) {
         // 计算当前页
-        const index = totalShuoShuo.findIndex(o => o.id === shuoshuo[0].id);
+        const index = totalMood.findIndex(o => o.id === mood[0].id);
         const curPage = index / 6 + 1;
         const nextPage = queryType === "next" ? curPage + 1 : curPage - 1;
-        shuoshuo = totalShuoShuo.slice((nextPage - 1) * 6, nextPage * 6);
+        mood = totalMood.slice((nextPage - 1) * 6, nextPage * 6);
       } else {
-        shuoshuo = totalShuoShuo.slice(0, 6);
+        mood = totalMood.slice(0, 6);
       }
       const delayTime = new Date() - startTime;
       if (delayTime < minDelay) {
         yield call(delay, minDelay - delayTime);
       }
-      yield put({ type: "updateState", payload: { shuoshuo } });
+      yield put({ type: "updateState", payload: { mood } });
     },
 
     // 书单/友链/关于
@@ -285,10 +285,10 @@ export default {
   },
 
   // 启动
-  subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ type: "queryTotal" }); // 获取所有文章
-      dispatch({ type: "loadStorage" }); // 加载本地缓存
-    }
-  }
+  // subscriptions: {
+  //   setup({ dispatch }) {
+  //     dispatch({ type: "queryTotal" }); // 获取所有文章
+  //     dispatch({ type: "loadStorage" }); // 加载本地缓存
+  //   }
+  // }
 };

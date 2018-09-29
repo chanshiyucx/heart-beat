@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-06-30 10:33:20 
- * @Last Modified by: chanshiyu
- * @Last Modified time: 2018-09-07 23:59:58
- * Description: 页脚
- */ 
-
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import router from 'umi/router'

@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-03 10:32:03 
- * @Last Modified by: chenxin 
- * @Last Modified time: 2018-08-27 10:32:03 
- * Description: 首页文章卡
- */ 
-
 import Link from 'umi/link'
 import classNames from 'classnames/bind'
 

@@ -1,11 +1,3 @@
-/** 
- * @Author: chenxin 
- * @Date: 2018-07-21 10:33:35 
- * @Last Modified by: chenxin
- * @Last Modified time: 2018-08-27 10:33:59
- * Description: 文章卡
- */
-
 import React from 'react'
 import Link from 'umi/link'
 import classNames from 'classnames/bind'
