@@ -10,8 +10,8 @@ import Quote from '../../components/Quote'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, booksOption, qoutes } = config
-const { enableGitalk } = booksOption
+const { gitalkOption, booksOption } = config
+const { enableGitalk, qoute } = booksOption
 const cx = classNames.bind(styles)
 
 class Books extends PureComponent {
@@ -19,6 +19,7 @@ class Books extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
     }
   }
 
@@ -50,6 +51,7 @@ class Books extends PureComponent {
         title: '书单',
       })
       gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
     }
   }
 
@@ -80,7 +82,7 @@ class Books extends PureComponent {
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.books} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {section && section.map((o, i) => {
                 const { name, author, published, progress, rating, postTitle, postLink, cover, link, desc } = o

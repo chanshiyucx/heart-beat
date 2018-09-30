@@ -1,16 +1,18 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'
+import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Archive from '../../components/Archive'
 import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
+import Archive from '../../components/Archive'
 import Quote from '../../components/Quote'
 import config from '../../config'
 import styles from './index.less'
 
-const { qoutes, catsOption, themeColors } = config
+const { gitalkOption, catsOption, themeColors } = config
+const { enableGitalk, qoute, list } = catsOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -19,6 +21,7 @@ class Categories extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
       filterTitle: '',
       filterPost: [],
     }
@@ -67,6 +70,18 @@ class Categories extends PureComponent {
     })
   }
 
+  // 渲染评论
+  renderGitalk = () => {
+    if (enableGitalk && !this.state.renderGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOption,
+        title: '分类',
+      })
+      gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
+    }
+  }
+
   render({ cats, loading }, { showLoading, filterTitle, filterPost }) {
     return (
       <div class={cx('container')}>
@@ -74,12 +89,13 @@ class Categories extends PureComponent {
           visible={!loading && !showLoading}
           animation='drop'
           duration={600}
+          onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.categories} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {cats.map((o, i) => {
-                const info = catsOption.find(cat => cat.name === o.title)
+                const info = list.find(cat => cat.name === o.title)
                 const catText = info.text
                 const catImg = info.img
                 return (
@@ -122,6 +138,7 @@ class Categories extends PureComponent {
           </div>
         </Transition>
 
+        {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )

@@ -11,8 +11,8 @@ import Segment from '../../components/Segment'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, aboutOption, qoutes, themeColors } = config
-const { avatar, info, contact, enableGitalk } = aboutOption
+const { gitalkOption, aboutOption, themeColors } = config
+const { enableGitalk, qoute, avatar, info, contact } = aboutOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -21,6 +21,7 @@ class About extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
     }
   }
 
@@ -52,6 +53,7 @@ class About extends PureComponent {
         title: '关于',
       })
       gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
     }
   }
 
@@ -74,7 +76,7 @@ class About extends PureComponent {
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.about} />
+            <Quote text={qoute} />
             <div>
               <div class={cx('header')}>
                 <img src={avatar} alt="" />
@@ -113,6 +115,7 @@ class About extends PureComponent {
             </div>
           </div>
         </Transition>
+        
         {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>

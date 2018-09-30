@@ -10,8 +10,8 @@ import Quote from '../../components/Quote'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, friendsOption, qoutes } = config
-const { enableGitalk } = friendsOption
+const { gitalkOption, friendsOption } = config
+const { enableGitalk, qoute } = friendsOption
 const cx = classNames.bind(styles)
 
 class Friends extends PureComponent {
@@ -19,6 +19,7 @@ class Friends extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
     }
   }
 
@@ -50,6 +51,7 @@ class Friends extends PureComponent {
         title: '友链',
       })
       gitalk.render('gitalk')
+      this.setState({ showLoading: true })
     }  
   }
 
@@ -74,7 +76,7 @@ class Friends extends PureComponent {
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.friends} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {section && section.map((o, i) => {
                 return (

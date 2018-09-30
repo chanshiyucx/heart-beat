@@ -2,7 +2,7 @@ import AV from 'leancloud-storage'
 import fetch from 'dva/fetch'
 import config from './config'
 
-const { blog, pre, suf, params } = config
+const { blog, pre, suf, open, closed } = config
 const token = `access_token=${pre}${suf}`
 
 // 状态检测
@@ -16,7 +16,7 @@ function checkStatus(response) {
 // 文章总数,一次获取全部文章，先以 200 做限制
 export async function queryTotal() {
   try {
-    const url = `${blog}/issues?${params}&page=1&per_page=200&${token}`
+    const url = `${blog}/issues?${open}&page=1&per_page=200&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -68,7 +68,7 @@ export async function queryFilterPost({ type, filter }) {
 // 说说总数
 export async function queryMoodTotal() {
   try {
-    const url = `${blog}/issues?${params}&labels=mood&page=1&per_page=300&${token}`
+    const url = `${blog}/issues?${closed}&labels=mood&page=1&per_page=300&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
@@ -80,8 +80,9 @@ export async function queryMoodTotal() {
 
 // 书单 && 友链 && 关于
 export async function queryPage({ type }) {
+  let upperType = type.replace(/^\S/,function(s) {return s.toUpperCase()})
   try {
-    const url = `${blog}/issues?labels=${type}&${token}`
+    const url = `${blog}/issues?${closed}&labels=${upperType}&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()

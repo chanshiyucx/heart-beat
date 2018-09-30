@@ -1,16 +1,18 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'
+import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Archive from '../../components/Archive'
 import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
+import Archive from '../../components/Archive'
 import Quote from '../../components/Quote'
 import config from '../../config'
 import styles from './index.less'
 
-const { qoutes, themeColors } = config
+const { gitalkOption, tagsOption, themeColors } = config
+const { enableGitalk, qoute } = tagsOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -19,6 +21,7 @@ class Tags extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
       filterTitle: '',
       filterPost: [],
     }
@@ -66,6 +69,18 @@ class Tags extends PureComponent {
     })
   }
 
+  // 渲染评论
+  renderGitalk = () => {
+    if (enableGitalk && !this.state.renderGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOption,
+        title: '标签',
+      })
+      gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
+    }
+  }
+
   render({ tags, loading }, { showLoading, filterTitle, filterPost }) {
     return (
       <div class={cx('container')}>
@@ -73,9 +88,10 @@ class Tags extends PureComponent {
           visible={!loading && !showLoading}
           animation='drop'
           duration={600}
+          onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.tags} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {tags.map((o, i) => {
                 const color = colors[i % colors.length]
@@ -110,6 +126,7 @@ class Tags extends PureComponent {
           </div>
         </Transition>
 
+        {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )

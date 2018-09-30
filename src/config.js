@@ -6,52 +6,45 @@ export default {
    * /
   /**
    * 站点标题
-   * ------------------------------------
    */
   title: '蝉時雨',
   subtitle: '蝉鸣如雨，花宵道中',
 
   /**
    * Github Issues 配置【文章、说说、书单、友链】, Github Issues api: https://developer.github.com/v3/issues/
-   * 书单： https://github.com/chanshiyucx/Blog/issues/10， labels = books
-   * 友链： https://github.com/chanshiyucx/Blog/issues/9,   labels = friends
-   * 关于： https://github.com/chanshiyucx/Blog/issues/8,   labels = about
-   * -----------------------------------------------------------------------------------------------
    */
-  // 文章仓库
+  // 博客仓库
   blog: 'https://api.github.com/repos/chanshiyucx/Blog',
   // token 从中间任意位置拆开成两部分，避免 github 代码检测失效
   pre: '0ad1a0539c5b96fd18fa',
   suf: 'aaafba9c7d1362a5746c',
   // 额外的限制参数【作者和状态】
-  params: 'creator=chanshiyucx&state=open',
-  mood: 'creator=chanshiyucx&state=closed',
-
-  /**
-   * leancloud 配置 【文章浏览次数】
-   * -------------------------------------------
-   */
-  leancloud: {
-    appId: 'b6DWxsCOWuhurfp4YqbD5cDE-gzGzoHsz',
-    appKey: 'h564RR5uVuJV5uSeP7oFTBye',
-  },
+  open: 'creator=chanshiyucx&state=open',
+  closed: 'creator=chanshiyucx&state=closed',
 
   /**
    * Gittalk 配置【评论功能】，详细文档参见：https://github.com/gitalk/gitalk
-   * ---------------------------------------------------------------------
    */
   gitalkOption: {
     clientID: '655fdc97b211a9f4f4a9',
     clientSecret: '77867cd14723002397338fcb76d139b13bdec439',
-    repo: 'BlogComments',
+    repo: 'Comment',
     owner: 'chanshiyucx',
     admin: ['chanshiyucx'],
     distractionFreeMode: false, // 是否开始无干扰模式【背景遮罩】
   },
 
   /**
+   * leancloud 配置 【文章浏览次数】
+   */
+  leancloud: {
+    appId: 'b6DWxsCOWuhurfp4YqbD5cDE-gzGzoHsz',
+    appKey: 'h564RR5uVuJV5uSeP7oFTBye',
+  },
+
+
+  /**
    * 文章打赏
-   * -------------------------------------------
    */
   reward: [
     {
@@ -65,93 +58,98 @@ export default {
   ],
 
 
-
   /**
    * ====================================
    *            页面配置【自定义】
    * ====================================
    * /
   /**
-   * 吟诗一句【各个页面置顶的引言】
-   * ------------------------------------
+   * 归档配置
    */
-  qoutes: {
-    archives: '文章千古事，得失寸心知',
-    categories: '行云流水，落笔生花',
-    tags: '列卒周匝，星罗云布',
-    books: '吾生也有涯，而知也无涯',
-    mood: '欲言又止，止言又欲',
-    friends: '莫愁前路无知己，天下谁人不识君',
-    about: '蝉鸣如雨，花宵道中',
+  archivesOption: {
+    enableGitalk: false,
+    qoute: '文章千古事，得失寸心知',
   },
 
   /**
    * 分类页面【与 Github Issues 的 Milestone 对应】
-   * ----------------------------------------------
    */
-  catsOption: [
-    {
-      name: '事件簿', // name 和 Milestone 必须一致
-      text: '今天又是和平的一天~',
-      img: 'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
-    },
-    {
-      name: '技术向',
-      text: '技术什么的真是不懂啦',
-      img: 'https://dn-coding-net-production-pp.qbox.me/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
-    },
-    {
-      name: '笔记本',
-      text: '诶！？我刚刚想说什么来着',
-      img: 'https://dn-coding-net-production-pp.qbox.me/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
-    },
-    {
-      name: '代码库',
-      text: 'Write the code, Change the World',
-      img: 'https://dn-coding-net-production-pp.qbox.me/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
-    },
-    {
-      name: '分享境',
-      text: '偷偷给你看点东西',
-      img: 'https://dn-coding-net-production-pp.qbox.me/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
-    },
-    {
-      name: '自言语',
-      text: '欲言又止，止言又欲',
-      img: 'https://dn-coding-net-production-pp.qbox.me/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
-    },
-  ],
+  catsOption: {
+    enableGitalk: false,
+    qoute: '行云流水，落笔生花',
+    list: [
+      {
+        name: '事件簿', // name 和 Milestone 必须一致
+        text: '今天又是和平的一天~',
+        img: 'https://dn-coding-net-production-pp.qbox.me/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
+      },
+      {
+        name: '技术向',
+        text: '技术什么的真是不懂啦',
+        img: 'https://dn-coding-net-production-pp.qbox.me/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
+      },
+      {
+        name: '笔记本',
+        text: '诶！？我刚刚想说什么来着',
+        img: 'https://dn-coding-net-production-pp.qbox.me/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
+      },
+      {
+        name: '代码库',
+        text: 'Write the code, Change the World',
+        img: 'https://dn-coding-net-production-pp.qbox.me/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
+      },
+      {
+        name: '分享境',
+        text: '偷偷给你看点东西',
+        img: 'https://dn-coding-net-production-pp.qbox.me/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
+      },
+      {
+        name: '自言语',
+        text: '欲言又止，止言又欲',
+        img: 'https://dn-coding-net-production-pp.qbox.me/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
+      },
+    ]
+  },
+
+  
+  /**
+   * 标签配置
+   */
+  tagsOption: {
+    enableGitalk: false,
+    qoute: '列卒周匝，星罗云布',
+  },
 
   /**
    * 说说页面
-   * -------------------------------------------
    */
   moodOption: {
     enableGitalk: true,
+    qoute: '欲言又止，止言又欲',
   },
 
   /**
    * 书单页面
-   * -------------------------------------------
    */
   booksOption: {
     enableGitalk: true,
+    qoute: '吾生也有涯，而知也无涯',
   },
 
   /**
    * 友链页面
-   * -------------------------------------------
    */
   friendsOption: {
     enableGitalk: true,
+    qoute: '青青子衿，悠悠我心',
   },
 
   /**
    * 关于页面
-   * -------------------------------------------
    */
   aboutOption: {
-    enableGitalk: true, // 是否开启评论功能
+    enableGitalk: true,
+    qoute: '蝉鸣如雨，花宵道中',
     avatar: 'https://dn-coding-net-production-pp.qbox.me/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
     info: [ // 个人介绍
       {
@@ -194,7 +192,6 @@ export default {
   /**
    * 动态背景 Backstretch
    * 配置参数详见： https://github.com/jquery-backstretch/jquery-backstretch
-   * ----------------------------------------------------------------------
    */
   backstretch: {
     bgImg: [
@@ -218,7 +215,6 @@ export default {
 
   /**
    * 音乐播放器, 在 skPlayer 基础上修改，详见： http://www.chengfeilong.com/skPlayer/ 
-   * --------------------------------------------------------------------------------------
    */
   skPlayerOption: {
     bgImg: 'https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
@@ -260,15 +256,13 @@ export default {
   },
 
   /**
-   * 萌萌哒加载动画
-   * -----------------------------------------------------------------------
+   * 加载动画
    */
   loadingImg: 'https://dn-coding-net-production-pp.qbox.me/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
 
   /**
    * 主题配色，目前主要用于文章、说说、关于等卡片配色，以后可能会有其他用途
    * 推荐一个好看的取色站，日本の伝統色：http://nipponcolors.com/
-   * -----------------------------------------------------------------------
    */
   themeColors: [
     '#DC9FB4', // 撫子
@@ -292,7 +286,6 @@ export default {
 
   /**
    * 文章封面配图
-   * -----------------------------------------------------------------------
    */
   covers: [
     'https://dn-coding-net-production-pp.qbox.me/8e7e14e4-69f0-4763-b208-2b5a27a9c732.jpg',

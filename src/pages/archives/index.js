@@ -1,16 +1,18 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'dva'
 import _ from 'lodash'
+import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Archive from '../../components/Archive'
 import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
+import Archive from '../../components/Archive'
 import Quote from '../../components/Quote'
 import config from '../../config'
 import styles from './index.less'
 
-const { qoutes, themeColors } = config
+const { gitalkOption, archivesOption, themeColors } = config
+const { enableGitalk, qoute } = archivesOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -19,6 +21,7 @@ class Archives extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
+      renderGitalk: false,
     }
   }
 
@@ -60,6 +63,18 @@ class Archives extends PureComponent {
     this.setState({ showLoading: true })
   }
 
+  // 渲染评论
+  renderGitalk = () => {
+    if (enableGitalk && !this.state.renderGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOption,
+        title: '归档',
+      })
+      gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
+    }
+  }
+
   render({ totalList, archives, loading }, { showLoading }) {
     const index = archives.length && totalList.findIndex(o => o.id === archives[0].id)
     const page = index / 12 + 1
@@ -72,9 +87,10 @@ class Archives extends PureComponent {
           animation='drop'
           duration={600}
           onHide={this.onHide}
+          onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.mood} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {archives.map((o, i) => {
                 const color = colors[i]
@@ -101,6 +117,7 @@ class Archives extends PureComponent {
           </div>
         </Transition>
 
+        {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )
