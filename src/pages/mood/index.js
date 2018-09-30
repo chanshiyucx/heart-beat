@@ -11,8 +11,8 @@ import Segment from '../../components/Segment'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, moodOption, qoutes, themeColors } = config
-const { enableGitalk } = moodOption
+const { gitalkOption, moodOption, themeColors } = config
+const { enableGitalk, qoute } = moodOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -27,14 +27,6 @@ class Mood extends PureComponent {
 
   componentDidMount() {
     this.next()
-
-    if (enableGitalk) {
-      const gitalk = new Gitalk({
-        ...gitalkOption,
-        title: '说说',
-      })
-      gitalk.render('gitalk')
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,16 +65,13 @@ class Mood extends PureComponent {
 
   // 渲染评论
   renderGitalk = () => {
-    if (!this.state.renderGitalk) {
-      this.setState({ renderGitalk: true }, () => {
-        if (enableGitalk) {
-          const gitalk = new Gitalk({
-            ...gitalkOption,
-            title: '说说',
-          })
-          gitalk.render('gitalk')
-        }
+    if (enableGitalk && !this.state.renderGitalk) {
+      const gitalk = new Gitalk({
+        ...gitalkOption,
+        title: '说说',
       })
+      gitalk.render('gitalk')
+      this.setState({ renderGitalk: true })
     }
   }
 
@@ -101,7 +90,7 @@ class Mood extends PureComponent {
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
-            <Quote text={qoutes.mood} />
+            <Quote text={qoute} />
             <div class={cx('content')}>
               {mood.map((o, i) => {
                 const date = o.created_at.slice(0, 10)
@@ -130,6 +119,7 @@ class Mood extends PureComponent {
             </div>
           </div>
         </Transition>
+
         {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>

@@ -45,14 +45,14 @@ class Friends extends PureComponent {
 
   // 渲染评论
   renderGitalk = () => {
-    if (enableGitalk) {
+    if (enableGitalk && !this.state.renderGitalk) {
       const gitalk = new Gitalk({
         ...gitalkOption,
         title: '友链',
       })
       gitalk.render('gitalk')
-      this.setState({ showLoading: true })
-    }  
+      this.setState({ renderGitalk: true })
+    }
   }
 
   render({ friends, loading }, { showLoading }) {

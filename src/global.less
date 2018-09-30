@@ -91,13 +91,11 @@ code {
 }
 
 /* 隐藏滚动条 */
-
 html::-webkit-scrollbar {
   display: none;
 }
 
-::selection,
-::-moz-selection {
+::selection {
   color: #fff;
   background: #888;
 }
@@ -130,7 +128,7 @@ html::-webkit-scrollbar {
   .gt-btn {
     color: #eee;
     border: 1px solid #faf;
-    background: #faf;
+    background: #faf!important;
     &:hover {
       border-color: #f6f;
       background: #f6f;

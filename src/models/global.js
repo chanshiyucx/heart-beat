@@ -195,7 +195,7 @@ export default {
       // 筛选 tags 【Friends, Books, About, Mood】
       const filterTags = tags.filter(o => {
         const { name } = o
-        return !(name === 'Friends' || name === 'Books' || name === 'About' || name ===  'Mood')
+        return !(name === 'Friends' || name === 'Books' || name === 'About' || name === 'Mood')
       })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {

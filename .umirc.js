@@ -1,9 +1,7 @@
 export default {
   plugins: [
     ['umi-plugin-react', {
-      dva: {
-        immer: true,
-      },
+      dva: true,
       routes: {
         exclude: [/models\//],
       },

@@ -94,7 +94,7 @@ class Post extends PureComponent {
           </Transition>
           {showLoading && <Loading className={cx('loading')} />}
         </div>
-        
+
         {!showLoading && post.id && <div id={`gitalk-${post.id}`} />}
       </div>
     )

@@ -137,7 +137,7 @@ class Home extends PureComponent {
           >
             <i className="fa fa-angle-double-right" aria-hidden="true"></i>
           </button>
-          { totalList.length !== postList.length && (
+          {totalList.length !== postList.length && (
             <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
               <i className="fa fa-angle-double-down" aria-hidden="true"></i>
             </button>
