@@ -40,11 +40,11 @@ class App extends PureComponent {
       <div class={styles.container}>
         <Helmet
           link={[
-            { rel: "apple-touch-icon", sizes: "180x180", href: `${window.publicPath}img/apple-touch-icon.png` },
-            { rel: "icon", type: "image/png", sizes: "32x32", href: `${window.publicPath}img/favicon-32x32.png` },
-            { rel: "icon", type: "image/png", sizes: "16x16", href: `${window.publicPath}img/favicon-16x16.png` },
+            { rel: "apple-touch-icon", sizes: "180x180", href: `${window.publicPath}/img/apple-touch-icon.png` },
+            { rel: "icon", type: "image/png", sizes: "32x32", href: `${window.publicPath}/img/favicon-32x32.png` },
+            { rel: "icon", type: "image/png", sizes: "16x16", href: `${window.publicPath}/img/favicon-16x16.png` },
           ]}
-          script={[{ src: `${window.publicPath}live2d/live2d.min.js` }]}
+          script={[{ src: `${window.publicPath}/live2d/live2d.min.js` }]}
           // Helmet doesn't support `onload` in script objects so we have to hack in our own
           onChangeClientState={(newState, addedTags) => this.handleScriptInject(addedTags)}
           title={title}

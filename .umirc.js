@@ -11,7 +11,7 @@ export default {
       dynamicImport: {
         webpackChunkName: true,
       },
-      hash: true,
+      history: 'hash',
       pwa: true,
       fastClick: true,
       title: '蝉時雨',
