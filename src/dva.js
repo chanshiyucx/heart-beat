@@ -13,9 +13,8 @@ export function config() {
   }
 }
 
-window.publicPath = '/public/'
+window.publicPath = '/'
 if (process.env.NODE_ENV !== 'development') {
-  window.publicPath = '/'
   console.log = function () { }
   console.warn = function () { }
   console.error = function () { }

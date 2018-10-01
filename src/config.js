@@ -27,8 +27,8 @@ export default {
    * Gittalk 配置【评论功能】，详细文档参见：https://github.com/gitalk/gitalk
    */
   gitalkOption: {
-    clientID: '655fdc97b211a9f4f4a9',
-    clientSecret: '77867cd14723002397338fcb76d139b13bdec439',
+    clientID: '864b1c2cbc4e4aad9ed8',
+    clientSecret: '6ca16373efa03347e11a96ff92e355c5cea189bb',
     repo: 'Comment',
     owner: 'chanshiyucx',
     admin: ['chanshiyucx'],
@@ -224,31 +224,31 @@ export default {
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        src: 'https://app.yinxiang.com/shard/s48/res/366dd9ed-b382-4cb7-a3c5-8be07b355ee8/FELT%20-%20%E3%81%86%E3%81%9F%E3%81%8B%E3%81%9F%E3%81%AE%E9%A3%8E%E3%81%A8%E8%9D%89%E6%97%B6%E9%9B%A8.mp3',
+        src: 'https://music.163.com/song/media/outer/url?id=729434.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/b706547f-9237-48fb-ace9-89f9506ab099.jpg',
       },
       {
         name: '春の凑に ~ Lost shiners',
         author: '莲弾奏结界',
-        src: 'https://app.yinxiang.com/shard/s48/res/3d2f8909-41d2-43dd-a097-16c92d068fe7/dBu%20music%20-%20%E6%98%A5%E3%81%AE%E5%87%91%E3%81%AB%20~%20Lost%20shiners.mp3',
+        src: 'https://music.163.com/song/media/outer/url?id=714830.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg',
       },
       {
         name: '夏阳炎',
         author: '天威梦方',
-        src: 'https://app.yinxiang.com/shard/s48/res/778306b7-96ef-4a9c-96b4-461b8eba57ee/QLOCKS%20-%20%E5%A4%8F%E9%98%B3%E7%82%8E%28inst.ver%29%20-%20instrumental.mp3',
+        src: 'https://music.163.com/song/media/outer/url?id=803557.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg',
       },
       {
         name: '秋风のとおり道',
         author: '风神华伝',
-        src: 'https://app.yinxiang.com/shard/s48/res/16cf0815-a34f-4b8d-b97d-a357f4320a21/%E8%B6%A3%E5%91%B3%E5%B7%A5%E6%88%BF%E3%81%AB%E3%82%93%E3%81%98%E3%82%93%E3%82%8F%E3%81%84%E3%82%93%20-%20%E7%A7%8B%E9%A3%8E%E3%81%AE%E3%81%A8%E3%81%8A%E3%82%8A%E9%81%93.mp3',
+        src: 'https://music.163.com/song/media/outer/url?id=766272.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg',
       },
       {
         name: '冬のわすれもの',
         author: 'ハルノカゼ',
-        src: 'https://app.yinxiang.com/shard/s48/res/246ee070-fdcf-49e4-939f-ebfb2acc39e6/Forest306%20-%20%E5%86%AC%E3%81%AE%E3%82%8F%E3%81%99%E3%82%8C%E3%82%82%E3%81%AE.mp3',
+        src: 'https://music.163.com/song/media/outer/url?id=729461.mp3',
         cover: 'https://dn-coding-net-production-pp.qbox.me/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg',
       },
     ]

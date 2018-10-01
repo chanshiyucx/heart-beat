@@ -1,4 +1,6 @@
 export default {
+  hash: true,
+  history: 'hash',
   plugins: [
     ['umi-plugin-react', {
       dva: true,
@@ -9,7 +11,6 @@ export default {
       dynamicImport: {
         webpackChunkName: true,
       },
-      history: 'hash',
       pwa: true,
       fastClick: true,
       title: '蝉時雨',

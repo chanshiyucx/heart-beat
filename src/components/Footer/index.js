@@ -11,6 +11,7 @@ import SKPlayer from '../SKPlayer'
 import styles from './index.less'
 
 // 看板娘
+import '../../assets/live2d/live2d.min'
 import model from '../../assets/live2d/waifu.json'
 import tips from '../../assets/live2d/tips.json'
 
@@ -33,6 +34,10 @@ class Footer extends PureComponent {
 
   componentDidMount() {   
     this.bind()                // 绑定事件
+
+    setTimeout(() => {
+      this.dressup()
+    }, 500)
   }
 
   // 绑定事件
@@ -219,7 +224,7 @@ class Footer extends PureComponent {
     // 贴图资源路径
     if (window.location.href.includes('http://localhost')) {
       // 开发环境 & 本地环境
-      textures = 'https://i.loli.net/2018/07/01/5b38502a45a15.png'
+      textures = nextWaifu === 'tia' ? 'https://i.loli.net/2018/07/01/5b38502a45a15.png' : 'https://i.loli.net/2018/10/01/5bb23800b3506.png'
     } else {
       // 线上环境
       textures = `https://song.acg.sx/textures/${nextWaifu}?${Date.now()}`
@@ -307,7 +312,7 @@ class Footer extends PureComponent {
               Theme&nbsp;-<a href="https://github.com/chanshiyucx/HeartBeat">&nbsp;HeartBeat</a>
             </p>|
             <p>
-              Hosted by <a href="https://pages.coding.me">&nbsp;Coding Pages</a>
+              蝉鸣如雨 - 花宵道中
             </p>
           </div>
         </div>

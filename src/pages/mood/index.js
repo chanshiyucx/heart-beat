@@ -66,11 +66,13 @@ class Mood extends PureComponent {
   // 渲染评论
   renderGitalk = () => {
     if (enableGitalk && !this.state.renderGitalk) {
-      const gitalk = new Gitalk({
-        ...gitalkOption,
-        title: '说说',
-      })
-      gitalk.render('gitalk')
+      setTimeout(() => {
+        const gitalk = new Gitalk({
+          ...gitalkOption,
+          title: '心情',
+        })
+        gitalk.render('gitalk')
+      }, 100)
       this.setState({ renderGitalk: true })
     }
   }

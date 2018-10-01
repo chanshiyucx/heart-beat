@@ -118,7 +118,7 @@ class Header extends PureComponent {
             <li data-menu="mood">
               <Link to="/mood">
                 <i class="fa fa-commenting" aria-hidden="true"></i>
-                <span>说说</span>
+                <span>心情</span>
               </Link>
             </li>
             <li data-menu="books">

@@ -46,11 +46,13 @@ class Books extends PureComponent {
   // 渲染评论
   renderGitalk = () => {
     if (enableGitalk) {
-      const gitalk = new Gitalk({
-        ...gitalkOption,
-        title: '书单',
-      })
-      gitalk.render('gitalk')
+      setTimeout(() => {
+        const gitalk = new Gitalk({
+          ...gitalkOption,
+          title: '书单',
+        })
+        gitalk.render('gitalk')
+      }, 100)
       this.setState({ renderGitalk: true })
     }
   }

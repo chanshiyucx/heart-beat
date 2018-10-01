@@ -48,11 +48,13 @@ class About extends PureComponent {
   // 渲染评论
   renderGitalk = () => {
     if (enableGitalk) {
-      const gitalk = new Gitalk({
-        ...gitalkOption,
-        title: '关于',
-      })
-      gitalk.render('gitalk')
+      setTimeout(() => {
+        const gitalk = new Gitalk({
+          ...gitalkOption,
+          title: '关于',
+        })
+        gitalk.render('gitalk')
+      }, 100)
       this.setState({ renderGitalk: true })
     }
   }
