@@ -355,7 +355,7 @@ class Footer extends PureComponent {
               <i class="fa fa-chevron-up" aria-hidden="true"></i>
             </li>
           </Transition>
-          <li class={cx('right-btn', 'player-btn', showPlayer && 'reserve', isPlying && 'rotate')} data-index="1">
+          <li class={cx('right-btn', 'player-btn', showPlayer && !isPlying && 'reserve', isPlying && 'rotate')} data-index="1">
             <i class="fa fa-music" aria-hidden="true"></i>
           </li>
           <li class={cx('right-btn', 'like-btn')} data-index="2">
