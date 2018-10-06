@@ -36,7 +36,7 @@ class PostBody extends PureComponent {
         <div class={cx('header')}>
           <img alt="" src={cover} />
           <div class={cx('info')}>
-            <h3>{title}</h3>
+            <h1>{title}</h1>
             <div class={cx('meta')}>
               <span>
                 <i className="fa fa-clock-o" aria-hidden="true"></i>
