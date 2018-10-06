@@ -70,8 +70,7 @@ class Books extends PureComponent {
           postTitle: content[5].split('postTitle:')[1],
           postLink: content[6].split('postLink:')[1],
           cover: content[7].split('cover:')[1],
-          link: content[8].split('link:')[1],
-          desc: content[9].split('desc:')[1],
+          desc: content[8].split('desc:')[1],
         }
       })
 
@@ -87,7 +86,7 @@ class Books extends PureComponent {
             <Quote text={qoute} />
             <div class={cx('content')}>
               {section && section.map((o, i) => {
-                const { name, author, published, progress, rating, postTitle, postLink, cover, link, desc } = o
+                const { name, author, published, progress, rating, postTitle, postLink, cover, desc } = o
                 const rateList = new Array(10).fill(1).map((o, i) => {
                   return (<i key={i} className={'fa fa-star'} style={{ color: i <= 4 && '#f6f' }} aria-hidden="true"></i>)
                 })
@@ -98,10 +97,7 @@ class Books extends PureComponent {
                     <div class={cx('header')}>
                       <img alt="" src={cover} />
                       <div class={cx('info')}>
-                        <a href={link} rel="noopener noreferrer" target="_blank">
-                          <i className="fa fa-external-link" aria-hidden="true"></i>
-                          <h2>{name}</h2>
-                        </a>
+                        <h2>{name}</h2>
                         <p>作者：{author}</p>
                         <p>出版时间：{published}</p>
                         <p>阅读进度：{progress}</p>
