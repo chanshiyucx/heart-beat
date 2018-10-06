@@ -17,6 +17,7 @@ class Home extends PureComponent {
     this.state = {
       showLoading: true,
       disabled: false,
+      addEventListener: false,
     }
   }
 
@@ -49,7 +50,8 @@ class Home extends PureComponent {
     if (isMobile) {
       this.setState({ disabled: true })
     }
-    if (this.postListNode) return
+    if (this.state.addEventListener) return
+    this.setState({ addEventListener: true })
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
     this.postListNode.addEventListener('mouseover', this.TPostListNodeMouseOver)
   }
