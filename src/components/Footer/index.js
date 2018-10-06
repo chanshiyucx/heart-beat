@@ -10,6 +10,8 @@ import Transition from '../Transition'
 import SKPlayer from '../SKPlayer'
 import styles from './index.less'
 
+import '../../assets/lib/fireworks'
+
 // 看板娘
 import '../../assets/live2d/live2d.min'
 import model from '../../assets/live2d/waifu.json'
