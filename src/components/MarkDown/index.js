@@ -5,9 +5,8 @@ import Prism from '../../assets/prism/prism.js'
 
 const renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
-  return `<h${level} id="${text}"><i class="fa fa-${
-    level === 2 ? 'gift' : 'envira'
-    }" aria-hidden="true"></i>${text}</h${level}>`
+  const icon = ['gift', 'envira', 'hashtag'][level - 2]
+  return `<h${level} id="${text}"><i class="fa fa-${icon}" aria-hidden="true"></i>${text}</h${level}>`
 }
 
 renderer.link = function (href, title, text) {

@@ -8,7 +8,7 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: #666;
   /* base00 */
-	font-family: "Iosevka", "Helvetica", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: "FiraCode", "Helvetica", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	text-shadow: 0 0 1px rgba(0, 0, 0, .4);
   text-align: left;
   white-space: pre;
@@ -23,18 +23,13 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
 	hyphens: none;
-	&::selection {
-		color: #fff;
-	}
-	&::-moz-selection { 
-		color: #fff;
-	}
 }
 
 pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection {
+  color: currentColor;
 	background: #073642;
   /* base02 */
 }
@@ -43,6 +38,7 @@ pre[class*="language-"]::selection,
 pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
+  color: currentColor;
 	background: #073642;
   /* base02 */
 }

@@ -49,7 +49,7 @@
     img {
       width: calc(~"100% + .32rem");
       margin-left: -.16rem;
-      box-shadow: 0 0 10px #888;
+      box-shadow: 0 0 10px #999;
     }
     p, ul, ol, blockquote {
       line-height: 1.6;
@@ -61,7 +61,9 @@
     blockquote {
       position: relative;
       padding: .3rem 0;
+      margin: 1em 0;
       font-style: italic;
+      box-shadow: #999 0px 11px 8px -10px inset, #999 0px -11px 8px -10px inset;
       & > p {
         margin: .12rem .4rem;
       }
@@ -89,10 +91,12 @@
     ol, ul {
       margin: .06rem .24rem .06rem .42rem;
     }
-    h2 {
+    h2, h3, h4 {
       margin: .14rem .16rem;
+    }
+    h2 {
       padding: .08rem 0;
-      font-size: .22rem;
+      font-size: .26rem;
       border-bottom: 1px dashed rgba(0, 0, 0, .2);
       i {
         padding-right: .04rem;
@@ -100,7 +104,13 @@
       }
     }
     h3 {
-      margin: .14rem .16rem 0;
+      font-size: .22rem;
+      i {
+        padding-right: .04rem;
+        font-size: .15rem;
+      }
+    }
+    h4 {
       font-size: .18rem;
       i {
         padding-right: .04rem;

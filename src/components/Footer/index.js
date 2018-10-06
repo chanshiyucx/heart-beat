@@ -15,6 +15,37 @@ import '../../assets/live2d/live2d.min'
 import model from '../../assets/live2d/waifu.json'
 import tips from '../../assets/live2d/tips.json'
 
+const costume = {
+  pio: [
+    'https://i.loli.net/2018/10/06/5bb8615aa1e81.png',
+    'https://i.loli.net/2018/10/06/5bb8615b600d0.png',
+    'https://i.loli.net/2018/10/06/5bb8615b85583.png',
+    'https://i.loli.net/2018/10/06/5bb8615bc457f.png',
+    'https://i.loli.net/2018/10/06/5bb8615c033fe.png',
+    'https://i.loli.net/2018/10/06/5bb8625474429.png',
+    'https://i.loli.net/2018/10/06/5bb862547ee3e.png',
+    'https://i.loli.net/2018/10/06/5bb8625481cfc.png',
+    'https://i.loli.net/2018/10/06/5bb8625485fc2.png',
+    'https://i.loli.net/2018/10/06/5bb8625487c84.png',
+    'https://i.loli.net/2018/10/06/5bb86254869d0.png',
+    'https://i.loli.net/2018/10/06/5bb86321d6d71.png',
+  ],
+  tia: [
+    'https://i.loli.net/2018/10/06/5bb85a0f18664.png',
+    'https://i.loli.net/2018/10/06/5bb85d5ceaeca.png',
+    'https://i.loli.net/2018/10/06/5bb85d5d0028f.png', 
+    'https://i.loli.net/2018/10/06/5bb85ea1bb1a5.png',
+    'https://i.loli.net/2018/10/06/5bb85ea1bf9ad.png',
+    'https://i.loli.net/2018/10/06/5bb85ea1c3757.png',
+    'https://i.loli.net/2018/10/06/5bb85ea1c448f.png',
+    'https://i.loli.net/2018/10/06/5bb85f8f84b16.png',
+    'https://i.loli.net/2018/10/06/5bb85f8f8a512.png',
+    'https://i.loli.net/2018/10/06/5bb85f8f8d3e9.png',
+    'https://i.loli.net/2018/10/06/5bb85f8f90422.png',
+    'https://i.loli.net/2018/10/06/5bb8609e0bbe2.png',
+  ]
+}
+
 const { waifuClick, hoverTips, clickTips, hitokotos } = tips
 const cx = classNames.bind(styles)
 const scroll = new SmoothScroll()
@@ -220,16 +251,12 @@ class Footer extends PureComponent {
 
     this.setState({ waifu: nextWaifu })
 
-    let textures
-    // 贴图资源路径
-    if (window.location.href.includes('http://localhost')) {
-      // 开发环境 & 本地环境
-      textures = nextWaifu === 'tia' ? 'https://i.loli.net/2018/07/01/5b38502a45a15.png' : 'https://i.loli.net/2018/10/01/5bb23800b3506.png'
-    } else {
-      // 线上环境
-      textures = `https://song.acg.sx/textures/${nextWaifu}?${Date.now()}`
+    const waifuCostume = costume[nextWaifu]
+    let textures = waifuCostume[_.random(0, waifuCostume.length - 1)]
+    while (this.textures === textures) {
+      textures = waifuCostume[_.random(0, waifuCostume.length - 1)]
     }
-
+    this.textures = textures
     model.model = `moc/${nextWaifu || 'tia'}.moc`
     model.textures = [textures]
     window.modelObj = model
@@ -328,7 +355,7 @@ class Footer extends PureComponent {
               <i class="fa fa-chevron-up" aria-hidden="true"></i>
             </li>
           </Transition>
-          <li class={cx('right-btn', 'player-btn', isPlying && 'rotate')} data-index="1">
+          <li class={cx('right-btn', 'player-btn', showPlayer && 'reserve', isPlying && 'rotate')} data-index="1">
             <i class="fa fa-music" aria-hidden="true"></i>
           </li>
           <li class={cx('right-btn', 'like-btn')} data-index="2">

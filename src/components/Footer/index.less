@@ -88,6 +88,9 @@
       outline: 0;
       box-sizing: content-box;
       background: transparent;
+      &:hover {
+        color: #f6f;
+      }
     }
     i {
       font-size: .16rem;
@@ -202,7 +205,7 @@
   .rotate {
     i {
       color: #f8f;
-      animation-duration: 4s;
+      animation-duration: 6s;
       animation-name: rotate;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
@@ -210,12 +213,15 @@
     &:hover {
       i {
         color: #f8f;
-        animation-duration: 4s;
+        animation-duration: 6s;
         animation-name: rotate;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
       }
     }
+  }
+  .reserve {
+    transform: rotateY(-180deg);
   }
 }
 
