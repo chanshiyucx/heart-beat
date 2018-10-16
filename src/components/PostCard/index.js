@@ -41,7 +41,7 @@ const PostCard = ({
           <span>
             <i className="fa fa-tags" aria-hidden="true"></i>
             <span>
-              {filterLabels.map(o => (<span key={o.id}>{o.name}</span>))}
+              {filterLabels.slice(0, 2).map(o => (<span key={o.id}>{o.name}</span>))}
             </span>
           </span>
         </div>
