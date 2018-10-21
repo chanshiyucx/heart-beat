@@ -52,6 +52,10 @@ export default {
     // 所有文章
     *queryTotal({ payload }, { call, put }) {
       const totalList = yield call(queryTotal, payload)
+      let length = totalList.length
+      _.forEach(totalList, (post, index) => {
+        formatPost(post, length - 1 - index)
+      })
       yield put({ type: "updateState", payload: { totalList } })
     },
 
@@ -102,7 +106,6 @@ export default {
       }
       let images = []
       _.forEach(nextPostList, post => {
-        formatPost(post)
         images.push(post.cover)
       })
       nextPostList = yield call(queryHot, { postList: nextPostList }) // 获取热度
@@ -133,11 +136,9 @@ export default {
         return
       }
       // 前篇和后篇
-      let post = formatPost(totalList[index]);
-      let prevPost = formatPost(
-        totalList[index - 1] || totalList[totalList.length - 1]
-      )
-      let nextPost = formatPost(totalList[index + 1] || totalList[0])
+      let post = totalList[index]
+      let prevPost = totalList[index - 1] || totalList[totalList.length - 1]
+      let nextPost = totalList[index + 1] || totalList[0]
       post = yield call(queryPostHot, { post });
       prevPost = yield call(queryPostHot, { post: prevPost, add: false })
       nextPost = yield call(queryPostHot, { post: nextPost, add: false })

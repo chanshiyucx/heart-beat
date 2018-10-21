@@ -13,12 +13,12 @@ export const isMobile =
 export const delay = time => new Promise(resolve => setTimeout(resolve, time));
 
 // 文章格式化
-export const formatPost = post => {
+export const formatPost = (post, index) => {
   const { created_at, body, labels } = post;
   const desc = body.split("<!-- more -->")[0];
   post.desc = desc;
   post.content = body;
-  post.cover = covers[(post.number - 1) % covers.length];
+  post.cover = covers[index % covers.length];
   post.date = t.format(created_at, "zh_CN");
   post.filterLabels = labels.sort((a, b) => a.name.length >= b.name.length);
   return post;
