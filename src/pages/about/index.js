@@ -61,7 +61,7 @@ class About extends PureComponent {
 
   render({ about, loading }, { showLoading }) {
     const section = about.body &&
-      about.body.split('## ').filter(o => o.length).map(o => {
+      about.body.trim().split('## ').filter(o => o.length).map(o => {
         const title = o.match(/.+?\r\n/)[0]
         return {
           title,
@@ -117,7 +117,7 @@ class About extends PureComponent {
             </div>
           </div>
         </Transition>
-        
+
         {enableGitalk && <div id='gitalk' />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>

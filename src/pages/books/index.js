@@ -59,7 +59,7 @@ class Books extends PureComponent {
 
   render({ books, loading }, { showLoading }) {
     const section = books.body &&
-      books.body.split('## ').filter(o => o.length).map(o => {
+      books.body.trim().split('## ').filter(o => o.length).map(o => {
         const content = o.split('\r\n').filter(o => o.length)
         return {
           name: content[0],

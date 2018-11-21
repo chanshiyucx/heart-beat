@@ -59,7 +59,7 @@ class Friends extends PureComponent {
 
   render({ friends, loading }, { showLoading }) {
     const section = friends.body &&
-      friends.body.split('## ').filter(o => o.length > 0).map((o) => {
+      friends.body.trim().split('## ').filter(o => o.length > 0).map((o) => {
         const content = o.split('\r\n').filter(o => o.length)
         return {
           name: content[0],
