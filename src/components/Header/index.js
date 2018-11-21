@@ -4,8 +4,10 @@ import Link from 'umi/link'
 import classNames from 'classnames/bind'
 
 import styles from './index.less'
+import config from '../../config'
 
 const cx = classNames.bind(styles)
+const { title, subtitle } = config
 
 class Header extends PureComponent {
   constructor(props) {
@@ -88,8 +90,8 @@ class Header extends PureComponent {
           <i className="fa fa-list-ul" aria-hidden="true"></i>
         </button>
         <div class={cx('inner')} style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem' }}>
-          <a class={cx('title')} href="/">蝉時雨</a>
-          <span class={cx('sub-title')}>蝉鸣如雨 花宵道中</span>
+          <a class={cx('title')} href="/">{title}</a>
+          <span class={cx('sub-title')}>{subtitle}</span>
           <ul ref={c => this.menuRef = c} class={cx('menu', dropMenu && 'dropMenu')}>
             <li data-menu="home">
               <Link to="/">
