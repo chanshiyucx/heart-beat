@@ -24,7 +24,7 @@ npm install
 
 修改目录 `src/config.js` 的配置文件，每个配置项都有详细说明。
 
-[template](https://github.com/chanshiyucx/Blog/tree/master/Pages)
+书单、友链、关于页面模板参考： [template](https://github.com/chanshiyucx/Blog/tree/master/Pages)
 
 ### Preview
 
