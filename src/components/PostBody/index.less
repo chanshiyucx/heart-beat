@@ -1,9 +1,9 @@
 .container {
-  border-radius: .03rem;
+  border-radius: 0.03rem;
   .header {
     position: relative;
     text-align: left;
-    border-radius: .03rem .03rem 0 0;
+    border-radius: 0.03rem 0.03rem 0 0;
     overflow: hidden;
     &:hover {
       img {
@@ -17,57 +17,91 @@
     .info {
       position: absolute;
       bottom: 0;
-      padding: .12rem .16rem;
+      padding: 0.12rem 0.16rem;
       width: 100%;
       color: #eee;
       box-sizing: border-box;
-      background: rgba(0, 0, 0, .4);
+      background: rgba(0, 0, 0, 0.4);
     }
     h1 {
       font-weight: normal;
-      font-size: .22rem;
+      font-size: 0.22rem;
       color: #eee;
+      letter-spacing: 1px;
     }
     .meta {
-      padding-top: .06rem;
-      &>span {
-        margin-right: .06rem;
+      padding-top: 0.06rem;
+      & > span {
+        margin-right: 0.06rem;
         i {
-          margin-right: .04rem;
+          margin-right: 0.04rem;
         }
         span {
-          padding-right: .06rem;
+          padding-right: 0.06rem;
         }
       }
     }
   }
   .content {
     margin: 0 auto;
-    padding-bottom: .12rem;
+    padding-bottom: 0.12rem;
     user-select: text;
     text-align: justify;
-    img {
-      width: calc(~"100% + .32rem");
-      margin-left: -.16rem;
-      box-shadow: 0 0 10px #999;
+    span[class*='img-box'] {
+      display: block;
+      text-align: center;
+      a {
+        display: inline-block;
+        padding: 0.12rem;
+        border: 1px dashed #ddd;
+        border-radius: 0.03rem;
+      }
+      span {
+        display: block;
+        font-style: italic;
+        text-align: center;
+      }
+      img {
+        max-width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 0 10px #999;
+      }
     }
-    p, ul, ol, blockquote {
+    span[class*='full-box'] {
+      a {
+        display: inline-block;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+      }
+      img {
+        max-width: calc(~'100% + .32rem');
+        margin-left: -0.16rem;
+        box-shadow: 0 0 10px #999;
+      }
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
       line-height: 1.6;
-      font-size: .15rem;
+      font-size: 0.15rem;
     }
     p {
-      margin: .14rem .16rem 0;
+      margin: 0.14rem 0.16rem 0;
     }
     blockquote {
       position: relative;
-      padding: .3rem 0;
+      padding: 0.3rem 0;
       margin: 1em 0;
       font-style: italic;
       box-shadow: #999 0px 11px 8px -10px inset, #999 0px -11px 8px -10px inset;
       & > p {
-        margin: .12rem .4rem;
+        margin: 0.12rem 0.4rem;
       }
-      &::before, &::after {
+      &::before,
+      &::after {
         position: absolute;
         font-family: FontAwesome;
         font-style: normal;
@@ -75,46 +109,49 @@
         text-decoration: inherit;
         /*--adjust as necessary--*/
         color: #666;
-        font-size: .24rem;
+        font-size: 0.24rem;
       }
       &::before {
-        content: "\f10d";
-        top: .06rem;
-        left: .16rem;
+        content: '\f10d';
+        top: 0.06rem;
+        left: 0.16rem;
       }
       &::after {
-        content: "\f10e";
-        bottom: .06rem;
-        right: .16rem;
+        content: '\f10e';
+        bottom: 0.06rem;
+        right: 0.16rem;
       }
     }
-    ol, ul {
-      margin: .06rem .24rem .06rem .42rem;
+    ol,
+    ul {
+      margin: 0.06rem 0.24rem 0.06rem 0.42rem;
     }
-    h2, h3, h4 {
-      margin: .14rem .16rem;
+    h2,
+    h3,
+    h4 {
+      margin: 0.14rem 0.16rem;
     }
     h2 {
-      padding: .08rem 0;
-      font-size: .26rem;
-      border-bottom: 1px dashed rgba(0, 0, 0, .2);
+      padding: 0.08rem 0;
+      font-size: 0.26rem;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
       i {
-        padding-right: .04rem;
-        font-size: .24rem;
+        padding-right: 0.04rem;
+        font-size: 0.24rem;
       }
     }
     h3 {
-      font-size: .22rem;
+      font-size: 0.22rem;
       i {
-        padding-right: .04rem;
-        font-size: .15rem;
+        padding-right: 0.04rem;
+        font-size: 0.15rem;
       }
     }
     h4 {
-      font-size: .18rem;
+      font-size: 0.18rem;
       i {
-        padding-right: .04rem;
-        font-size: .15rem;
+        padding-right: 0.04rem;
+        font-size: 0.15rem;
       }
     }
     a {
@@ -127,20 +164,22 @@
       }
     }
     table {
-      margin: .14rem auto;
-      border: 1px solid rgba(0, 0, 0, .08);
-      border-radius: .03rem;
+      margin: 0.14rem auto;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0.03rem;
       border-collapse: separate;
       border-spacing: 0;
       tr {
-        height: .32rem;
+        height: 0.32rem;
       }
-      tr:nth-child(2n), thead > tr {
-        background-color: rgba(0, 0, 0,.1);
+      tr:nth-child(2n),
+      thead > tr {
+        background-color: rgba(0, 0, 0, 0.1);
       }
-      td, th {
-        padding: 0 .36rem;
-        border-right: 1px solid rgba(0, 0, 0, .08);
+      td,
+      th {
+        padding: 0 0.36rem;
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
       }
     }
   }
