@@ -1,19 +1,20 @@
-@import "./assets/prism/prism";
+@import './assets/prism/prism';
 @import '../node_modules/baguettebox.js/dist/baguetteBox.min.css';
 
 @font-face {
   font-family: GuDianMingChaoTi;
   font-weight: bold;
-  src: url("./assets/fonts/GuDianMingChaoTi.ttf");
+  src: url('./assets/fonts/GuDianMingChaoTi.ttf');
 }
 
 @font-face {
   font-family: FiraCode;
   font-weight: bold;
-  src: url("./assets/fonts/FiraCode-Medium.woff2");
+  src: url('./assets/fonts/FiraCode-Medium.woff2');
 }
 
-a, button {
+a,
+button {
   cursor: url('./assets/cursor/cursor_link.cur'), auto;
 }
 
@@ -40,30 +41,32 @@ table,
 code {
   margin: 0;
   padding: 0;
-  font-family: "FiraCode", "Helvetica", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: .15rem;
+  font-family: 'FiraCode', 'Helvetica', 'PingFang SC', 'Microsoft YaHei',
+    sans-serif;
+  font-size: 0.15rem;
   color: #666;
 }
 
 body {
   user-select: none;
-  text-shadow: 0 0 1px rgba(0, 0, 0, .2);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   scroll-behavior: smooth;
   cursor: url('./assets/cursor/cursor.cur'), auto;
   &::before {
-    content: "";
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, 0.5);
   }
 }
 
-h2, h3 {
-  letter-spacing: .01rem;
+h2,
+h3 {
+  letter-spacing: 0.01rem;
 }
 
 img {
@@ -78,16 +81,16 @@ a {
     color: #faf;
   }
   i {
-    padding: 0 .04rem;
+    padding: 0 0.04rem;
   }
 }
 
 code {
-  padding: 0 .04rem;
+  padding: 0.02rem 0.04rem;
   color: #f6f;
   word-wrap: break-word;
-  border-radius: .03rem;
-  background-color: rgba(0, 0, 0, .1);
+  border-radius: 0.03rem;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* 隐藏滚动条 */
@@ -109,77 +112,79 @@ html::-webkit-scrollbar {
 /* gitalk */
 .gt-comment-content,
 .gt-container .gt-avatar img {
-  background: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .24);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
 }
 
 .gt-container {
   @media (max-width: 900px) {
-    padding: 0 .16rem;
+    padding: 0 0.16rem;
   }
   a {
-    color: #faf!important;
+    color: #faf !important;
     &:hover {
-      color: #f6f!important;
-      border-color: #f6f!important;
+      color: #f6f !important;
+      border-color: #f6f !important;
     }
   }
   .gt-header-textarea {
-    background: rgba(255, 255, 255, .6)!important;
+    background: rgba(255, 255, 255, 0.6) !important;
     &:hover {
-      background: rgba(255, 255, 255, .6)!important;
+      background: rgba(255, 255, 255, 0.6) !important;
     }
   }
   .gt-btn {
     color: #eee;
-    border: 1px solid #faf!important;
-    background: #faf!important;
+    border: 1px solid #faf !important;
+    background: #faf !important;
     &:hover {
       border-color: #f6f;
       background: #f6f;
     }
   }
   .gt-btn-preview {
-    color: #fff!important;
+    color: #fff !important;
   }
   .gt-meta {
     border-bottom: 1px solid #e9e9e9;
   }
   .gt-link {
-    border-bottom: 1px dotted #faf!important;
+    border-bottom: 1px dotted #faf !important;
   }
   .gt-header-controls-tip {
     color: #faf;
   }
   svg {
-    fill: #faf!important;
+    fill: #faf !important;
   }
   .gt-ico-github svg {
-    fill: #666!important;
+    fill: #666 !important;
   }
   .gt-comment-username {
     color: #f6f;
   }
   .gt-comment-body {
-    font-size: .15rem;
+    font-size: 0.15rem;
   }
   .gt-comment-content {
-    transition: all 0.25s ease 0s, transform 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier( 0.6, 0.2, 0.1, 1) 0s;
-    background: rgba(255, 255, 255, .6);
+    transition: all 0.25s ease 0s,
+      transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+      opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    background: rgba(255, 255, 255, 0.6);
   }
   .gt-comment-content:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     transform: translateY(-4px);
   }
 }
 .gt-container .gt-comment-admin .gt-comment-content {
-  background-color: rgba(255, 255, 255, .6);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 /* 灯箱 */
 #baguetteBox-overlay {
-  animation: elastic .5s;
+  animation: elastic 0.5s;
 }
 #baguetteBox-overlay .full-image img {
   max-height: 80%;
@@ -198,9 +203,17 @@ html::-webkit-scrollbar {
   }
 }
 
-@keyframes elastic{
-  0% {transform:scale(0)}
-  55% {transform:scale(1)}
-  70% {transform:scale(.98)}
-  100% {transform:scale(1)}
+@keyframes elastic {
+  0% {
+    transform: scale(0);
+  }
+  55% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
