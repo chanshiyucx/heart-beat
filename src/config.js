@@ -220,39 +220,40 @@ export default {
    */
   skPlayerOption: {
     bgImg: 'https://i.loli.net/2018/12/09/5c0cc2b905841.png',
-    autoplay: false, // 自动播放, 默认为 false, true/false
-    listshow: true, // 列表显示, 默认为 true, true/false
+    autoplay: false, // 自动播放, 默认为 false
+    listshow: true, // 列表显示, 默认为 true
     mode: 'listloop', // 循环模式, 默认为 'listloop', 【'listloop', 列表循环; 'singleloop', 单曲循环】
+    br: 128000, // 码率，[64000, 128000, 198000, 320000]
     source: [
       // 自定义歌单
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=729434&br=128000',
+        id: '729434',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3ca1081b.jpg'
       },
       {
         name: '春の凑に ~ Lost shiners',
         author: '莲弾奏结界',
-        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=714830&br=128000',
+        id: '714830',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3cc582ce.jpg'
       },
       {
         name: '夏阳炎',
         author: '天威梦方',
-        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=803557&br=128000',
+        id: '803557',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3cee372a.jpg'
       },
       {
         name: '秋风のとおり道',
         author: '风神华伝',
-        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=766272&br=128000',
+        id: '766272',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3d13844a.jpg'
       },
       {
         name: '冬のわすれもの',
         author: 'ハルノカゼ',
-        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=729461&br=128000',
+        id: '729461',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3d36349c.jpg'
       }
     ]
