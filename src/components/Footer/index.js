@@ -364,11 +364,7 @@ class Footer extends PureComponent {
         <div class={cx('site-desc')}>
           <div class={cx('site-desc-row')}>
             <p>
-              <i
-                className="fa fa-copyright"
-                aria-hidden="true"
-                style={{ marginTop: '-.02rem' }}
-              />
+              <i className="fa fa-copyright" aria-hidden="true" />
               <span>2017 - 2018</span>
             </p>
             <p>
