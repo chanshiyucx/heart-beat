@@ -9,7 +9,7 @@ export default {
    * 站点标题
    */
   title: '蝉時雨',
-  subtitle: '蝉鸣如雨，花宵道中',
+  subtitle: '蝉鸣如雨 花宵道中',
 
   /**
    * Github Issues 配置【文章、说说、书单、友链】, Github Issues api: https://developer.github.com/v3/issues/
@@ -225,11 +225,10 @@ export default {
     mode: 'listloop', // 循环模式, 默认为 'listloop', 【'listloop', 列表循环; 'singleloop', 单曲循环】
     br: 128000, // 码率，[64000, 128000, 198000, 320000]
     source: [
-      // 自定义歌单
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        id: '729434',
+        id: '729434', //网易云音乐 id
         cover: 'https://i.loli.net/2018/12/09/5c0cc3ca1081b.jpg'
       },
       {
