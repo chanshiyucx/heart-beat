@@ -30,12 +30,12 @@ const costume = {
     'https://i.loli.net/2018/10/06/5bb8625485fc2.png',
     'https://i.loli.net/2018/10/06/5bb8625487c84.png',
     'https://i.loli.net/2018/10/06/5bb86254869d0.png',
-    'https://i.loli.net/2018/10/06/5bb86321d6d71.png',
+    'https://i.loli.net/2018/10/06/5bb86321d6d71.png'
   ],
   tia: [
     'https://i.loli.net/2018/10/06/5bb85a0f18664.png',
     'https://i.loli.net/2018/10/06/5bb85d5ceaeca.png',
-    'https://i.loli.net/2018/10/06/5bb85d5d0028f.png', 
+    'https://i.loli.net/2018/10/06/5bb85d5d0028f.png',
     'https://i.loli.net/2018/10/06/5bb85ea1bb1a5.png',
     'https://i.loli.net/2018/10/06/5bb85ea1bf9ad.png',
     'https://i.loli.net/2018/10/06/5bb85ea1c3757.png',
@@ -44,7 +44,7 @@ const costume = {
     'https://i.loli.net/2018/10/06/5bb85f8f8a512.png',
     'https://i.loli.net/2018/10/06/5bb85f8f8d3e9.png',
     'https://i.loli.net/2018/10/06/5bb85f8f90422.png',
-    'https://i.loli.net/2018/10/06/5bb8609e0bbe2.png',
+    'https://i.loli.net/2018/10/06/5bb8609e0bbe2.png'
   ]
 }
 
@@ -55,18 +55,18 @@ const scroll = new SmoothScroll()
 class Footer extends PureComponent {
   constructor(props) {
     super(props)
-    this.onLoadWaifu = false   // 看板娘已经加载完成
+    this.onLoadWaifu = false // 看板娘已经加载完成
     this.state = {
-      waifu: 'tia',            // 默认看板娘
-      showWaifu: true,         // 是否显示看板娘
-      showScrollTop: false,    // 是否显示滚动到顶部按钮
-      showPlayer: false,       // 是否显示音乐播放器
-      isPlying: false,         // 是否正在播放音乐
+      waifu: 'tia', // 默认看板娘
+      showWaifu: true, // 是否显示看板娘
+      showScrollTop: false, // 是否显示滚动到顶部按钮
+      showPlayer: false, // 是否显示音乐播放器
+      isPlying: false // 是否正在播放音乐
     }
   }
 
-  componentDidMount() {   
-    this.bind()                // 绑定事件
+  componentDidMount() {
+    this.bind() // 绑定事件
 
     setTimeout(() => {
       this.dressup()
@@ -77,15 +77,24 @@ class Footer extends PureComponent {
   bind = () => {
     this.THandleScroll = _.throttle(this.handleScroll, 400, { trailing: true })
     this.TWaifuClick = _.throttle(this.waifuClick, 400, { trailing: true })
-    this.TToolCMouseOver = _.throttle(this.toolMouseOver, 400, { trailing: true })
-    this.TRightBtnWapperMouseOver = _.throttle(this.rightBtnWapperMouseOver, 400, { trailing: true })
+    this.TToolCMouseOver = _.throttle(this.toolMouseOver, 400, {
+      trailing: true
+    })
+    this.TRightBtnWapperMouseOver = _.throttle(
+      this.rightBtnWapperMouseOver,
+      400,
+      { trailing: true }
+    )
 
     document.addEventListener('scroll', this.THandleScroll)
     this.waifu.addEventListener('click', this.TWaifuClick)
     this.tool.addEventListener('click', this.toolClick)
     this.tool.addEventListener('mouseover', this.TToolCMouseOver)
     this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
-    this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
+    this.rightBtnWapper.addEventListener(
+      'mouseover',
+      this.TRightBtnWapperMouseOver
+    )
   }
 
   // 监听：页面滚动
@@ -103,12 +112,13 @@ class Footer extends PureComponent {
     const { dispatch, tips } = this.props
     const index = _.random(0, waifuClick.length - 1)
     const nextTips = waifuClick[index]
-    if (tips === nextTips) { // 相同提示则继续生成
+    if (tips === nextTips) {
+      // 相同提示则继续生成
       this.waifuClick()
     } else {
       dispatch({
         type: 'global/showTips',
-        payload: { tips: nextTips },
+        payload: { tips: nextTips }
       })
     }
   }
@@ -125,7 +135,7 @@ class Footer extends PureComponent {
     }
     const type = target.getAttribute('data-type')
     switch (type) {
-      case 'home': 
+      case 'home':
         router.push('/')
         break
       case 'switch':
@@ -139,7 +149,7 @@ class Footer extends PureComponent {
         window.Live2D.captureFrame = true
         this.props.dispatch({
           type: 'appModel/showTips',
-          payload: { tips: clickTips.takePhoto },
+          payload: { tips: clickTips.takePhoto }
         })
         break
       case 'talk':
@@ -147,7 +157,7 @@ class Footer extends PureComponent {
         const nextTips = hitokotos[index].hitokoto
         this.props.dispatch({
           type: 'global/showTips',
-          payload: { tips: nextTips },
+          payload: { tips: nextTips }
         })
         break
       case 'info':
@@ -156,7 +166,7 @@ class Footer extends PureComponent {
       case 'close':
         this.props.dispatch({
           type: 'global/showTips',
-          payload: { tips: clickTips.close },
+          payload: { tips: clickTips.close }
         })
         setTimeout(() => {
           this.setState({ showWaifu: false })
@@ -179,14 +189,16 @@ class Footer extends PureComponent {
     }
     const type = target.getAttribute('data-type')
     if (type === 'switch') {
-      tips = `要介绍<font color=#f6f>${this.state.waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio '} </font>给你认识么ヾ(●゜▽゜●)♡`
+      tips = `要介绍<font color=#f6f>${
+        this.state.waifu === 'pio' ? ' 姐姐 Tia ' : ' 妹妹 Pio '
+      } </font>给你认识么ヾ(●゜▽゜●)♡`
     } else {
       tips = hoverTips[type]
     }
     if (!tips) return
     this.props.dispatch({
       type: 'global/showTips',
-      payload: { tips },
+      payload: { tips }
     })
   }
 
@@ -202,17 +214,20 @@ class Footer extends PureComponent {
     }
     index = parseInt(target.getAttribute('data-index'), 10)
     let tips = ''
-    if (index === 0) {          // 覆盖滚动按钮
+    if (index === 0) {
+      // 覆盖滚动按钮
       tips = hoverTips.scrollBtn
-    } else if (index === 1) {   // 覆盖音乐按钮 
+    } else if (index === 1) {
+      // 覆盖音乐按钮
       tips = hoverTips.playerBtn
-    } else {                    // 覆盖喜欢按钮
+    } else {
+      // 覆盖喜欢按钮
       tips = hoverTips.likeBtn
       this.setState({ showLikeTimes: true })
     }
     this.props.dispatch({
       type: 'global/showTips',
-      payload: { tips },
+      payload: { tips }
     })
   }
 
@@ -227,11 +242,14 @@ class Footer extends PureComponent {
       return
     }
     index = parseInt(target.getAttribute('data-index'), 10)
-    if (index === 0) {          // 点击滚动按钮
+    if (index === 0) {
+      // 点击滚动按钮
       scroll.animateScroll(0)
-    } else if (index === 1) {   // 点击音乐按钮 
+    } else if (index === 1) {
+      // 点击音乐按钮
       this.setState({ showPlayer: !this.state.showPlayer })
-    } else {                    // 点击喜欢按钮
+    } else {
+      // 点击喜欢按钮
       this.likeSite()
     }
   }
@@ -241,7 +259,7 @@ class Footer extends PureComponent {
     const { isLikeSite } = this.props
     if (isLikeSite) return
     this.props.dispatch({
-      type: 'global/likeSite',
+      type: 'global/likeSite'
     })
   }
 
@@ -276,12 +294,16 @@ class Footer extends PureComponent {
       this.loopTips()
     }, 16000)
     const { dispatch, tips, lastTipsUpdateAt } = this.props
-    if (tips || (lastTipsUpdateAt !== '' && (new Date() - lastTipsUpdateAt) < 6000)) return
+    if (
+      tips ||
+      (lastTipsUpdateAt !== '' && new Date() - lastTipsUpdateAt < 6000)
+    )
+      return
     const index = _.random(0, hitokotos.length - 1)
     const nextTips = hitokotos[index].hitokoto
     dispatch({
       type: 'global/showTips',
-      payload: { tips: nextTips },
+      payload: { tips: nextTips }
     })
   }
 
@@ -290,36 +312,50 @@ class Footer extends PureComponent {
     this.setState({ isPlying })
   }
 
-  render({ tips, isLikeSite, likeTimes }, { waifu, showWaifu, showScrollTop, showPlayer, isPlying }) {
+  render(
+    { tips, isLikeSite, likeTimes },
+    { waifu, showWaifu, showScrollTop, showPlayer, isPlying }
+  ) {
     return (
       <div class={cx('container')}>
         {showWaifu && (
           <div class={cx('waifu')}>
-            <div class={cx('waifu-tips', !tips && 'hide', waifu === 'tia' && 'tia')}>
+            <div
+              class={cx(
+                'waifu-tips',
+                !tips && 'hide',
+                waifu === 'tia' && 'tia'
+              )}
+            >
               <MarkeDown content={tips} />
             </div>
-            <canvas ref={c => this.waifu = c} id="live2d" width="280" height="250" />
-            <ul ref={c => this.tool = c} class={cx('waifu-tool')}>
-              <li data-type='home'>
-                <i className="fa fa-university" aria-hidden="true"></i>
+            <canvas
+              ref={c => (this.waifu = c)}
+              id="live2d"
+              width="280"
+              height="250"
+            />
+            <ul ref={c => (this.tool = c)} class={cx('waifu-tool')}>
+              <li data-type="home">
+                <i className="fa fa-university" aria-hidden="true" />
               </li>
-              <li data-type='switch'>
-                <i className="fa fa-venus-double" aria-hidden="true"></i>
+              <li data-type="switch">
+                <i className="fa fa-venus-double" aria-hidden="true" />
               </li>
-              <li data-type='dressup'>
-                <i className="fa fa-female" aria-hidden="true"></i>
+              <li data-type="dressup">
+                <i className="fa fa-female" aria-hidden="true" />
               </li>
-              <li data-type='takephoto'>
-                <i className="fa fa-camera-retro" aria-hidden="true"></i>
+              <li data-type="takephoto">
+                <i className="fa fa-camera-retro" aria-hidden="true" />
               </li>
-              <li data-type='talk'>
-                <i className="fa fa-commenting" aria-hidden="true"></i>
+              <li data-type="talk">
+                <i className="fa fa-commenting" aria-hidden="true" />
               </li>
-              <li data-type='info'>
-                <i className="fa fa-info-circle" aria-hidden="true"></i>
+              <li data-type="info">
+                <i className="fa fa-info-circle" aria-hidden="true" />
               </li>
-              <li data-type='close'>
-                <i className="fa fa-times-circle" aria-hidden="true"></i>
+              <li data-type="close">
+                <i className="fa fa-times-circle" aria-hidden="true" />
               </li>
             </ul>
           </div>
@@ -328,43 +364,50 @@ class Footer extends PureComponent {
         <div class={cx('site-desc')}>
           <div class={cx('site-desc-row')}>
             <p>
-              <i className="fa fa-copyright" aria-hidden="true" style={{ marginTop: '-.02rem' }}></i>
+              <i
+                className="fa fa-copyright"
+                aria-hidden="true"
+                style={{ marginTop: '-.02rem' }}
+              />
               <span>2017 - 2018</span>
             </p>
             <p>
-              <i className="fa fa-heartbeat" aria-hidden="true"></i>
+              <i className="fa fa-heartbeat" aria-hidden="true" />
               <span>蝉時雨</span>
             </p>
           </div>
           <div class={cx('site-desc-row')}>
             <p>
-              Theme&nbsp;-<a href="https://github.com/chanshiyucx/HeartBeat">&nbsp;HeartBeat</a>
-            </p>|
-            <p>
-              蝉鸣如雨 - 花宵道中
+              Theme&nbsp;-
+              <a href="https://github.com/chanshiyucx/HeartBeat">
+                &nbsp;HeartBeat
+              </a>
             </p>
+            |<p>蝉鸣如雨 - 花宵道中</p>
           </div>
         </div>
 
-        <Transition visible={showPlayer} animation='fade left' duration={600}>
+        <Transition visible={showPlayer} animation="fade left" duration={600}>
           <div class={cx('player-wapper')}>
             <SKPlayer handlePlaying={this.handlePlaying} />
           </div>
         </Transition>
-        <ul ref={c => this.rightBtnWapper = c} class={cx('right-btn-wapper')}>
-          <Transition visible={showScrollTop} animation='zoom' duration={600}>
+        <ul ref={c => (this.rightBtnWapper = c)} class={cx('right-btn-wapper')}>
+          <Transition visible={showScrollTop} animation="zoom" duration={600}>
             <li class={cx('right-btn', 'scroll-btn')} data-index="0">
-              <i class="fa fa-chevron-up" aria-hidden="true"></i>
+              <i class="fa fa-chevron-up" aria-hidden="true" />
             </li>
           </Transition>
-          <li class={cx('right-btn', 'player-btn', showPlayer && !isPlying && 'reserve', isPlying && 'rotate')} data-index="1">
+          {/* <li class={cx('right-btn', 'player-btn', showPlayer && !isPlying && 'reserve', isPlying && 'rotate')} data-index="1">
             <i class="fa fa-music" aria-hidden="true"></i>
-          </li>
+          </li> */}
           <li class={cx('right-btn', 'like-btn')} data-index="2">
-            <i class="fa fa-heart" style={{ color: isLikeSite && '#f8f' }} aria-hidden="true"></i>
-            <div class={cx('popup')}>
-              已有 {likeTimes} 人点赞了哦！
-            </div>
+            <i
+              class="fa fa-heart"
+              style={{ color: isLikeSite && '#f8f' }}
+              aria-hidden="true"
+            />
+            <div class={cx('popup')}>已有 {likeTimes} 人点赞了哦！</div>
           </li>
         </ul>
       </div>
@@ -375,7 +418,5 @@ class Footer extends PureComponent {
 export default connect(({ global }) => ({
   tips: global.tips,
   isLikeSite: global.isLikeSite,
-  likeTimes: global.likeTimes,
+  likeTimes: global.likeTimes
 }))(Footer)
-
-

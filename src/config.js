@@ -32,7 +32,7 @@ export default {
     repo: 'Comment',
     owner: 'chanshiyucx',
     admin: ['chanshiyucx'],
-    distractionFreeMode: false, // 是否开始无干扰模式【背景遮罩】
+    distractionFreeMode: false // 是否开始无干扰模式【背景遮罩】
   },
 
   /**
@@ -40,7 +40,7 @@ export default {
    */
   leancloud: {
     appId: 'b6DWxsCOWuhurfp4YqbD5cDE-gzGzoHsz',
-    appKey: 'h564RR5uVuJV5uSeP7oFTBye',
+    appKey: 'h564RR5uVuJV5uSeP7oFTBye'
   },
 
   /**
@@ -49,11 +49,11 @@ export default {
   reward: [
     {
       type: '支付宝',
-      qr: 'https://dn-coding-net-production-pp.codehub.cn/b8fd74b0-e563-4aa5-9d49-09f459b9afee.png',
+      qr: 'https://i.loli.net/2018/12/09/5c0cc4646388f.png'
     },
     {
       type: '微信',
-      qr: 'https://dn-coding-net-production-pp.codehub.cn/9ba82f12-1eb9-4593-89df-f827de4bc0e7.png'
+      qr: 'https://i.loli.net/2018/12/09/5c0cc46309b68.png'
     }
   ],
 
@@ -68,7 +68,7 @@ export default {
    */
   archivesOption: {
     enableGitalk: false,
-    qoute: '文章千古事，得失寸心知',
+    qoute: '文章千古事，得失寸心知'
   },
 
   /**
@@ -81,33 +81,33 @@ export default {
       {
         name: '事件簿', // name 和 Milestone 必须一致
         text: '今天又是和平的一天~',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/ccde131b-2030-480c-9ae6-47864ec7b7a6.jpg',
+        img: 'https://i.loli.net/2018/12/09/5c0cc2e59a322.jpg'
       },
       {
         name: '技术向',
         text: '技术什么的真是不懂啦',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/40c9bd4d-e39a-436d-836d-152d5e8a0dee.jpg',
+        img: 'https://i.loli.net/2018/12/09/5c0cc2e8305b1.jpg'
       },
       {
         name: '笔记本',
         text: '诶！？我刚刚想说什么来着',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/5b558b08-5f3a-4e53-a5bd-24ce7a6a2213.jpg',
+        img: 'https://i.loli.net/2018/12/09/5c0cc2eabee8e.jpg'
       },
       {
         name: '代码库',
         text: 'Write the code, Change the World',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/aa42635d-caa9-47a5-bd52-92e568d2eef7.jpg',
+        img: 'https://i.loli.net/2018/12/09/5c0cc2ed1ef66.jpg'
       },
       {
         name: '分享境',
         text: '偷偷给你看点东西',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/3f9966dd-cd17-44fe-a476-2cd0d873d0ac.jpg',
+        img: 'https://i.loli.net/2018/12/09/5c0cc2efb6814.jpg'
       },
       {
         name: '自言语',
         text: '欲言又止，止言又欲',
-        img: 'https://dn-coding-net-production-pp.codehub.cn/cc4c43fe-3a0a-436f-a942-fed34bbb8748.jpg',
-      },
+        img: 'https://i.loli.net/2018/12/09/5c0cc2f1f254f.jpg'
+      }
     ]
   },
 
@@ -116,7 +116,7 @@ export default {
    */
   tagsOption: {
     enableGitalk: false,
-    qoute: '列卒周匝，星罗云布',
+    qoute: '列卒周匝，星罗云布'
   },
 
   /**
@@ -124,7 +124,7 @@ export default {
    */
   moodOption: {
     enableGitalk: true,
-    qoute: '欲言又止，止言又欲',
+    qoute: '欲言又止，止言又欲'
   },
 
   /**
@@ -132,7 +132,7 @@ export default {
    */
   booksOption: {
     enableGitalk: true,
-    qoute: '吾生也有涯，而知也无涯',
+    qoute: '吾生也有涯，而知也无涯'
   },
 
   /**
@@ -140,7 +140,7 @@ export default {
    */
   friendsOption: {
     enableGitalk: true,
-    qoute: '青青子衿，悠悠我心',
+    qoute: '青青子衿，悠悠我心'
   },
 
   /**
@@ -149,43 +149,46 @@ export default {
   aboutOption: {
     enableGitalk: true,
     qoute: '蝉鸣如雨，花宵道中',
-    avatar: 'https://dn-coding-net-production-pp.codehub.cn/2af1a90f-4b60-4abd-a7b3-a64a903aa921.png',
-    info: [ // 个人介绍
+    avatar: 'https://i.loli.net/2018/12/09/5c0cc2b4e0195.png',
+    info: [
+      // 个人介绍
       {
         icon: 'user',
-        text: '蝉時雨',
+        text: '蝉時雨'
       },
       {
         icon: 'envira',
-        text: '蝉鸣如雨，花宵道中',
+        text: '蝉鸣如雨，花宵道中'
       },
       {
         icon: 'university',
-        text: 'University of Electronic Science and Technology of China (UESTC)',
+        text: 'University of Electronic Science and Technology of China (UESTC)'
       },
       {
         icon: 'graduation-cap',
-        text: 'Communication&Information Engineering',
-      },
+        text: 'Communication&Information Engineering'
+      }
     ],
-    contact: [ // 联系方式
+    contact: [
+      // 联系方式
       {
-        icon: 'https://dn-coding-net-production-pp.codehub.cn/44351583-d016-479a-a231-d3946f3fdc50.png',
-        link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5dTU19HQ3NXc1tSllJTLhoqI',
+        icon: 'https://i.loli.net/2018/12/09/5c0cc5147e2e5.png',
+        link:
+          'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5dTU19HQ3NXc1tSllJTLhoqI'
       },
       {
-        icon: 'https://dn-coding-net-production-pp.codehub.cn/6a7cfb7b-ebb7-48db-966e-7e748d70cfb0.png',
-        link: 'https://github.com/chanshiyucx',
+        icon: 'https://i.loli.net/2018/12/09/5c0cc516d9d5f.png',
+        link: 'https://github.com/chanshiyucx'
       },
       {
-        icon: 'https://dn-coding-net-production-pp.codehub.cn/c8dda842-7003-4c6c-a76d-6971419267e0.png',
-        link: 'https://www.zhihu.com/people/ichanshiyu/activities',
+        icon: 'https://i.loli.net/2018/12/09/5c0cc518dc4f4.png',
+        link: 'https://www.zhihu.com/people/ichanshiyu/activities'
       },
       {
-        icon: 'https://dn-coding-net-production-pp.codehub.cn/801a63e7-1abf-4443-ad0e-661acda1f950.png',
-        link: 'https://music.163.com/#/user/home?id=103060582',
-      },
-    ],
+        icon: 'https://i.loli.net/2018/12/09/5c0cc51ae4f0c.png',
+        link: 'https://music.163.com/#/user/home?id=103060582'
+      }
+    ]
   },
 
   /**
@@ -194,70 +197,71 @@ export default {
    */
   backstretch: {
     bgImg: [
-      "https://dn-coding-net-production-pp.codehub.cn/d96a4494-5fe7-4417-9ff4-bf9fdb5714cd.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/8f0ada95-fa8e-41a0-a6cf-a3d54dfd29fb.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/43b04f6d-090f-419e-82d4-bd9fc0c9b2aa.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/2720527c-3c7f-4851-9269-41b910dd3ba8.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/a2bf66ed-7221-47b2-becb-9b7544353522.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/3f90e634-4738-435b-b654-303bff9eb2c9.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/a1649947-a5ac-4a9a-97a2-e030344f6e25.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/a1ec70b9-7a44-4485-8541-056c14af6c43.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/f0b596a6-b3d8-4cff-95fb-a3f21dbcd833.jpg",
-      "https://dn-coding-net-production-pp.codehub.cn/44815347-b667-4ef0-bacd-5d971ed524e1.jpg",
+      'https://i.loli.net/2018/12/09/5c0cc0f409d63.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc0faef46c.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc1010f9e5.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc108c3b5c.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc10d3d771.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc111f30a3.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc1159ea42.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc11b0691b.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc12115c2e.jpg',
+      'https://i.loli.net/2018/12/09/5c0cc1268cd42.jpg'
     ],
     bgOption: {
       duration: 10000,
       fade: 1000,
-      animateFirst: false,
-    },
+      animateFirst: false
+    }
   },
 
   /**
-   * 音乐播放器, 在 skPlayer 基础上修改，详见： http://www.chengfeilong.com/skPlayer/ 
+   * 音乐播放器, 在 skPlayer 基础上修改，详见： http://www.chengfeilong.com/skPlayer/
    */
   skPlayerOption: {
-    bgImg: 'https://dn-coding-net-production-pp.codehub.cn/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png',
-    autoplay: false,  // 自动播放, 默认为 false, true/false
-    listshow: true,   // 列表显示, 默认为 true, true/false
+    bgImg: 'https://i.loli.net/2018/12/09/5c0cc2b905841.png',
+    autoplay: false, // 自动播放, 默认为 false, true/false
+    listshow: true, // 列表显示, 默认为 true, true/false
     mode: 'listloop', // 循环模式, 默认为 'listloop', 【'listloop', 列表循环; 'singleloop', 单曲循环】
-    source: [         // 自定义歌单
+    source: [
+      // 自定义歌单
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        src: 'https://music.163.com/song/media/outer/url?id=729434.mp3',
-        cover: 'https://dn-coding-net-production-pp.codehub.cn/b706547f-9237-48fb-ace9-89f9506ab099.jpg',
+        src: 'https://share.dmca.gripe/CNa34GbCpGlVSKQm.mp3',
+        cover: 'https://i.loli.net/2018/12/09/5c0cc3ca1081b.jpg'
       },
       {
         name: '春の凑に ~ Lost shiners',
         author: '莲弾奏结界',
-        src: 'https://music.163.com/song/media/outer/url?id=714830.mp3',
-        cover: 'https://dn-coding-net-production-pp.codehub.cn/8fc9411a-4566-417c-8c7c-ea9d9b2bba2e.jpg',
+        src: 'https://link.hhtjim.com/163/714830.mp3',
+        cover: 'https://i.loli.net/2018/12/09/5c0cc3cc582ce.jpg'
       },
       {
         name: '夏阳炎',
         author: '天威梦方',
-        src: 'https://music.163.com/song/media/outer/url?id=803557.mp3',
-        cover: 'https://dn-coding-net-production-pp.codehub.cn/8ba4d0d1-b717-4506-bae7-ba511efabf9b.jpg',
+        src: 'https://share.dmca.gripe/j1tVdcq1NXbeFC2w.mp3',
+        cover: 'https://i.loli.net/2018/12/09/5c0cc3cee372a.jpg'
       },
       {
         name: '秋风のとおり道',
         author: '风神华伝',
-        src: 'https://music.163.com/song/media/outer/url?id=766272.mp3',
-        cover: 'https://dn-coding-net-production-pp.codehub.cn/324d613f-51b6-462e-8e63-b8f914e5e27b.jpg',
+        src: 'https://link.hhtjim.com/163/766272.mp3',
+        cover: 'https://i.loli.net/2018/12/09/5c0cc3d13844a.jpg'
       },
       {
         name: '冬のわすれもの',
         author: 'ハルノカゼ',
-        src: 'https://music.163.com/song/media/outer/url?id=729461.mp3',
-        cover: 'https://dn-coding-net-production-pp.codehub.cn/0d153fd1-e458-47e7-9f8b-78939301c9c4.jpg',
-      },
+        src: 'https://link.hhtjim.com/163/729461.mp3',
+        cover: 'https://i.loli.net/2018/12/09/5c0cc3d36349c.jpg'
+      }
     ]
   },
 
   /**
    * 加载动画
    */
-  loadingImg: 'https://dn-coding-net-production-pp.codehub.cn/06b36bf5-4fda-4afb-afcb-80700df05834.gif',
+  loadingImg: 'https://i.loli.net/2018/12/09/5c0cc2b04c976.gif',
 
   /**
    * 主题配色，目前主要用于文章、说说、关于等卡片配色，以后可能会有其他用途
@@ -280,32 +284,31 @@ export default {
     '#1B813E', // 常磐
     '#33A6B8', // 浅葱
     '#2EA9DF', // 露草
-    '#E03C8A', // 躑躅
+    '#E03C8A' // 躑躅
   ],
 
   /**
    * 文章封面配图
    */
   covers: [
-    'https://dn-coding-net-production-pp.codehub.cn/8e7e14e4-69f0-4763-b208-2b5a27a9c732.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/40294ec6-39aa-4663-89ec-73940dbc1cf7.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/e55b19a7-3f5c-4654-a131-9460c0ec865a.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/38f38e5f-eb33-40fc-89ab-79866c171e81.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/22865cc2-73a6-4530-9a9f-1bbc910dfddd.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/8bbcf13b-01e5-4c3c-91b2-2ca2dbf02317.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1bbbb6d0.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1bf5191e.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1c2ea2e4.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1c6e89f2.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1cb11699.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1d069835.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1d4c3000.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1d915ab6.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1dd58fb2.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc1e157dc6.jpg',
 
-    'https://dn-coding-net-production-pp.codehub.cn/a62a631b-391c-4fef-a34c-98d9a00d26b9.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/c09befb1-5619-4322-ac30-8d38fa954768.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/d27c7842-8d29-41b9-aae9-aa305534a38c.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/a294a561-82b3-48b5-baeb-57459c9f5e64.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/e1b343d2-d211-47a1-bc14-4ad09bee33cd.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/2d44888e-7d96-4d17-a1ef-7e7d4502f76f.jpg',
-
-    'https://dn-coding-net-production-pp.codehub.cn/0b8b1979-43c9-47a5-a94a-a1464a1aff1b.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/b2a61725-8073-4701-8a61-62ed7a6048cc.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/7bb01198-a0ce-4855-9d3d-8098eb707a53.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/d4fa9237-7d79-4440-9755-7e2bd57506ad.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/2e2b685e-1d5f-45d9-9aa7-86f74d4256ae.jpg',
-    'https://dn-coding-net-production-pp.codehub.cn/dd1d1bbf-ab88-4d1c-b0bd-e4daaf435eaa.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc23a8d17c.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc23d0edde.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc240c44b4.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc2447b075.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc2487465c.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc24e1809d.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc25263879.jpg',
+    'https://i.loli.net/2018/12/09/5c0cc2575b058.jpg'
   ]
 }

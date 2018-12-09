@@ -1,7 +1,8 @@
 .skPlayer {
   position: relative;
   user-select: none;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .16);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.16);
   * {
     margin: 0;
     padding: 0;
@@ -15,21 +16,21 @@
     width: 3.8rem;
     height: 1rem;
     background-color: rgba(255, 255, 255, 0.6);
-    border-bottom-left-radius: .03rem;
-    border-bottom-right-radius: .03rem;
+    border-bottom-left-radius: 0.03rem;
+    border-bottom-right-radius: 0.03rem;
   }
   .skPlayer-picture {
     position: relative;
     float: left;
     width: 1rem;
     height: 1rem;
-    border-radius: .07rem 0 0 .05rem;
+    border-radius: 0.07rem 0 0 0.05rem;
     z-index: 3;
   }
   .skPlayer-cover {
     width: 100%;
-    border-radius: .03rem;
-    transition: .37s;
+    border-radius: 0.03rem;
+    transition: 0.37s;
     &.skPlayer-pause {
       filter: blur(3px);
     }
@@ -39,23 +40,23 @@
     top: 50%;
     left: 0;
     display: block;
-    width: .6rem;
-    height: .6rem;
+    width: 0.6rem;
+    height: 0.6rem;
     background-color: rgba(255, 170, 255, 0.8);
     border-radius: 50%;
     overflow: hidden;
     z-index: 2;
-    transition: .37s;
+    transition: 0.37s;
     transform: translate(-50%, -50%) translateZ(0);
     &.skPlayer-pause {
       left: 50%;
       .skPlayer-left {
-        border: .14rem solid #fff;
-        border-left: .02rem solid #fff;
-        border-right: .02rem solid #fff;
+        border: 0.14rem solid #fff;
+        border-left: 0.02rem solid #fff;
+        border-right: 0.02rem solid #fff;
       }
       .skPlayer-right {
-        top: .16rem;
+        top: 0.16rem;
       }
     }
     span {
@@ -63,32 +64,32 @@
       width: 0;
       height: 0;
       position: absolute;
-      transition: .37s;
+      transition: 0.37s;
       transform: translateZ(0);
       &.skPlayer-left {
-        left: .21rem;
-        top: .16rem;
-        border-left: .24rem solid #fff;
-        border-top: .14rem solid transparent;
-        border-bottom: .14rem solid transparent;
+        left: 0.21rem;
+        top: 0.16rem;
+        border-left: 0.24rem solid #fff;
+        border-top: 0.14rem solid transparent;
+        border-bottom: 0.14rem solid transparent;
       }
       &.skPlayer-right {
-        right: .21rem;
-        top: -.76rem;
-        border: .14rem solid #fff;
-        border-left: .02rem solid #fff;
-        border-right: .02rem solid #fff;
+        right: 0.21rem;
+        top: -0.76rem;
+        border: 0.14rem solid #fff;
+        border-left: 0.02rem solid #fff;
+        border-right: 0.02rem solid #fff;
       }
     }
   }
   .skPlayer-control {
     position: relative;
     float: right;
-    padding: .1rem .15rem .15rem;
+    padding: 0.1rem 0.15rem 0.15rem;
     width: 2.5rem;
-    height: .75rem;
+    height: 0.75rem;
     background-color: transparent;
-    border-radius: 0 .07rem .07rem 0;
+    border-radius: 0 0.07rem 0.07rem 0;
     text-align: left;
     z-index: 2;
     color: #666;
@@ -96,21 +97,21 @@
       line-height: 1.2;
       overflow: hidden;
       &.skPlayer-name {
-        font-size: .18rem;
+        font-size: 0.18rem;
         font-weight: 700;
       }
       &.skPlayer-author {
         max-width: 90%;
-        font-size: .15rem;
+        font-size: 0.15rem;
       }
     }
-    >.skPlayer-percent {
+    > .skPlayer-percent {
       position: relative;
-      margin: .09rem 0;
+      margin: 0.09rem 0;
       width: 2.5rem;
-      height: .06rem;
-      background-color: #EBEBF2;
-      border-radius: .03rem;
+      height: 0.06rem;
+      background-color: #ebebf2;
+      border-radius: 0.03rem;
       cursor: pointer;
       overflow: hidden;
       .skPlayer-line {
@@ -130,29 +131,29 @@
         height: 100%;
         background-color: rgba(255, 255, 255, 0.8);
         z-index: 1;
-        transition: .7s;
+        transition: 0.7s;
         transform: translateZ(0);
       }
     }
     .skPlayer-time {
       float: left;
-      font-size: .15rem;
+      font-size: 0.15rem;
       color: #666;
     }
     .skPlayer-volume {
       width: 1rem;
-      height: .14rem;
+      height: 0.14rem;
       float: right;
       position: relative;
-      margin: .01rem .24rem 0 0;
+      margin: 0.01rem 0.24rem 0 0;
       .skPlayer-icon {
         position: absolute;
-        top: .04rem;
-        left: -.2rem;
+        top: 0.04rem;
+        left: -0.2rem;
         display: block;
-        width: .05rem;
-        height: .06rem;
-        background-color: #6A6B6F;
+        width: 0.05rem;
+        height: 0.06rem;
+        background-color: #6a6b6f;
         cursor: pointer;
         &.skPlayer-quiet::before {
           display: block;
@@ -160,25 +161,25 @@
         &::before {
           content: '';
           position: absolute;
-          top: -.08rem;
-          left: .05rem;
+          top: -0.08rem;
+          left: 0.05rem;
           display: none;
-          width: .02rem;
-          height: .22rem;
+          width: 0.02rem;
+          height: 0.22rem;
           transform: rotate(58deg);
-          background-color: #6A6B6F;
+          background-color: #6a6b6f;
         }
         &::after {
           content: '';
           position: absolute;
-          top: -.04rem;
-          left: -.05rem;
+          top: -0.04rem;
+          left: -0.05rem;
           display: block;
-          width: .05rem;
-          height: .06rem;
-          border-width: .04rem .05rem;
+          width: 0.05rem;
+          height: 0.06rem;
+          border-width: 0.04rem 0.05rem;
           border-style: solid;
-          border-color: transparent #6A6B6F transparent transparent;
+          border-color: transparent #6a6b6f transparent transparent;
         }
       }
       .skPlayer-percent {
@@ -186,9 +187,9 @@
         top: 0;
         left: 0;
         width: 1rem;
-        height: .14rem;
-        background-color: #EBEBF2;
-        border-radius: .06rem;
+        height: 0.14rem;
+        background-color: #ebebf2;
+        border-radius: 0.06rem;
         overflow: hidden;
         cursor: pointer;
       }
@@ -196,29 +197,29 @@
         height: 100%;
         width: 100%;
         background-color: rgba(255, 170, 255, 0.8);
-        transition: .37s;
+        transition: 0.37s;
       }
     }
     .skPlayer-list-switch {
       position: absolute;
-      right: .15rem;
-      bottom: .12rem;
+      right: 0.15rem;
+      bottom: 0.12rem;
       display: block;
-      width: .16rem;
-      height: .15rem;
+      width: 0.16rem;
+      height: 0.15rem;
       cursor: pointer;
       i::before {
-        font-size: .18rem;
-        color: #6A6B6F;
+        font-size: 0.18rem;
+        color: #6a6b6f;
       }
     }
     .skPlayer-mode {
       position: absolute;
-      right: .15rem;
-      bottom: .51rem;
+      right: 0.15rem;
+      bottom: 0.51rem;
       display: block;
-      width: .16rem;
-      height: .17rem;
+      width: 0.16rem;
+      height: 0.17rem;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABVklEQVQ4y5XTvY6NURQG4OdsnElMFFqFiCgk/htBaFAoRq0QHYO9JTsSVyB6+STfx4hO5QJMZTQkU0gw4gJM4wpIxH8x6+QMxndy3mZl7bXf911r/wwgl/oCJ/2Ll13bnNKDpB8nJtTXBMJlBi1+TjLIpW7+Y0MudYinKPiOeziObRuQL2Epl7oVRkp3cRYfMde1zZv/OA9xBzuDc3WQS92HlXA+1rXN276Zc6mH8CrMjyRcxibcn0SO81rBQwwwn3Auak8mkdfhccQzCbsjeT2FwKjTXQk/IpmdQmBLxG8Jq5HsnUJgf8TVhOeRXJhC4GLEZwkL+IVrcUW9yKUexJUY/VHq2uZdiMxgMZd6tId8GIuxd6Frm/ejl1ixx9prvG18tXKpszgQbc9jGGPfZPyZvuI8HuDWX8afsIwbQYbTWGL8F3Rt8wXXN+j8Mz5gO3asWx/AbzMQVi2KT5GSAAAAAElFTkSuQmCC);
       cursor: pointer;
       &.skPlayer-mode-loop {
@@ -231,24 +232,24 @@
     max-height: 1.71rem;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.6);
-    background-image: url(https://dn-coding-net-production-pp.qbox.me/a4dbbbec-97c8-4a90-9ecc-f71c61dac16e.png);
+    background-image: url(https://i.loli.net/2018/12/09/5c0cc2b905841.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    border-top-left-radius: .03rem;
-    border-top-right-radius: .03rem;
+    border-top-left-radius: 0.03rem;
+    border-top-right-radius: 0.03rem;
     overflow: hidden;
     list-style: none;
     overflow-y: auto;
     color: #666;
     li {
       position: relative;
-      height: .32rem;
-      line-height: .32rem;
-      padding: 0 .15rem;
-      font-size: .12rem;
+      height: 0.32rem;
+      line-height: 0.32rem;
+      padding: 0 0.15rem;
+      font-size: 0.12rem;
       cursor: pointer;
-      transition: .2s;
+      transition: 0.2s;
       overflow: hidden;
       &:hover {
         background-color: rgba(255, 170, 255, 0.6);
@@ -261,32 +262,32 @@
       }
     }
     &::-webkit-scrollbar {
-      width: .14rem;
+      width: 0.14rem;
     }
     &::-webkit-scrollbar-track {
-      border-left: .01rem solid #E9E9E9;
+      border-left: 0.01rem solid #e9e9e9;
     }
     &::-webkit-scrollbar-thumb {
       background-color: rgba(255, 102, 255, 1);
-      box-shadow: inset 0 0 .07rem rgba(0, 0, 0, .3);
+      box-shadow: inset 0 0 0.07rem rgba(0, 0, 0, 0.3);
     }
     .skPlayer-list-sign {
       position: absolute;
       left: 0;
-      top: .05rem;
+      top: 0.05rem;
       display: none;
-      width: .03rem;
-      height: .22rem;
+      width: 0.03rem;
+      height: 0.22rem;
       background-color: rgba(255, 102, 255, 1);
     }
     .skPlayer-list-index {
       position: absolute;
-      left: .15rem;
+      left: 0.15rem;
       top: 0;
     }
     .skPlayer-list-name {
       float: left;
-      margin-left: .24rem;
+      margin-left: 0.24rem;
       max-width: 2rem;
     }
     .skPlayer-list-author {
