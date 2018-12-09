@@ -228,31 +228,31 @@ export default {
       {
         name: 'うたかたの风と蝉时雨',
         author: 'Little Planet',
-        src: 'https://share.dmca.gripe/CNa34GbCpGlVSKQm.mp3',
+        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=729434&br=128000',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3ca1081b.jpg'
       },
       {
         name: '春の凑に ~ Lost shiners',
         author: '莲弾奏结界',
-        src: 'https://link.hhtjim.com/163/714830.mp3',
+        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=714830&br=128000',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3cc582ce.jpg'
       },
       {
         name: '夏阳炎',
         author: '天威梦方',
-        src: 'https://share.dmca.gripe/j1tVdcq1NXbeFC2w.mp3',
+        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=803557&br=128000',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3cee372a.jpg'
       },
       {
         name: '秋风のとおり道',
         author: '风神华伝',
-        src: 'https://link.hhtjim.com/163/766272.mp3',
+        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=766272&br=128000',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3d13844a.jpg'
       },
       {
         name: '冬のわすれもの',
         author: 'ハルノカゼ',
-        src: 'https://link.hhtjim.com/163/729461.mp3',
+        src: 'https://api.imjad.cn/cloudmusic/?type=song&id=729461&br=128000',
         cover: 'https://i.loli.net/2018/12/09/5c0cc3d36349c.jpg'
       }
     ]
