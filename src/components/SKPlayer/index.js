@@ -163,6 +163,19 @@ class SKPlayer extends PureComponent {
   // 监听: 展开/隐藏列表
   toggleList = () => {
     this.setState({ listshow: !this.state.listshow })
+
+    let obj = {
+      a: 1
+    }
+
+    let proxy = new Proxy(obj, {
+      get(target, key) {
+        return 'sb'
+      },
+      set(target, key, value) {
+        Reflect.set(target, key, value)
+      }
+    })
   }
 
   // 监听: 打开/关闭静音
