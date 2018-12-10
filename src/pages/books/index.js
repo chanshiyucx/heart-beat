@@ -72,10 +72,8 @@ class Books extends PureComponent {
             published: content[2].split('published:')[1].trim(),
             progress: content[3].split('progress:')[1].trim(),
             rating: content[4].split('rating:')[1].trim(),
-            postTitle: content[5].split('postTitle:')[1].trim(),
-            postLink: content[6].split('postLink:')[1].trim(),
-            cover: content[7].split('cover:')[1].trim(),
-            desc: content[9].split('desc:')[1].trim()
+            cover: content[5].split('cover:')[1].trim(),
+            desc: content[7].split('desc:')[1].trim()
           }
         })
 
