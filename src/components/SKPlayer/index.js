@@ -91,6 +91,8 @@ class SKPlayer extends PureComponent {
     })
 
     Promise.all(pro).then(res => {
+      console.log(res);
+      
       this.setState({
         urlList: res
       })
