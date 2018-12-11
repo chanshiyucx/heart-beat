@@ -58,6 +58,7 @@ class Books extends PureComponent {
   }
 
   render({ books, loading }, { showLoading }) {
+<<<<<<< HEAD
     const section =
       books.body &&
       books.body
@@ -78,6 +79,23 @@ class Books extends PureComponent {
             desc: content[9].split('desc:')[1].trim()
           }
         })
+=======
+    const section = books.body &&
+      books.body.trim().split('## ').filter(o => o.length).map(o => {
+        const content = o.split('\r\n').filter(o => o.length)
+        return {
+          name: content[0].trim(),
+          author: content[1].split('author:')[1].trim(),
+          published: content[2].split('published:')[1].trim(),
+          progress: content[3].split('progress:')[1].trim(),
+          rating: content[4].split('rating:')[1].trim(),
+          postTitle: content[5].split('postTitle:')[1].trim(),
+          postLink: content[6].split('postLink:')[1].trim(),
+          cover: content[7].split('cover:')[1].trim(),
+          desc: content[9].split('desc:')[1].trim(),
+        }
+      })
+>>>>>>> b7f2cfef72b4b88a6024736529c4b25858a89ef3
 
     return (
       <div class={cx('container')}>

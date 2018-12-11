@@ -8,7 +8,7 @@ AV.init(globalConfig.leancloud)
 export function config() {
   return {
     onError(err) {
-      err.preventDefault()
+      err.preventDefault();
     },
   }
 }
