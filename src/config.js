@@ -223,7 +223,7 @@ export default {
     autoplay: false, // 自动播放, 默认为 false
     listshow: true, // 列表显示, 默认为 true
     mode: 'listloop', // 循环模式, 默认为 'listloop', 【'listloop', 列表循环; 'singleloop', 单曲循环】
-    br: 128000, // 码率，[64000, 128000, 198000, 320000]
+    br: 320000, // 码率，[64000, 128000, 198000, 320000]
     source: [
       {
         name: 'うたかたの风と蝉时雨',
@@ -232,10 +232,10 @@ export default {
         cover: 'https://i.loli.net/2018/12/09/5c0cc3ca1081b.jpg'
       },
       {
-        name: '春の凑に ~ Lost shiners',
-        author: '莲弾奏结界',
-        id: '714830',
-        cover: 'https://i.loli.net/2018/12/09/5c0cc3cc582ce.jpg'
+        name: '春の凑に',
+        author: 'TUMENECO',
+        id: '852318',
+        cover: 'https://i.loli.net/2018/12/11/5c0f196d01a3a.jpg'
       },
       {
         name: '夏阳炎',

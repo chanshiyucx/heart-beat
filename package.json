@@ -20,7 +20,8 @@
     "prismjs": "^1.15.0",
     "smooth-scroll": "^14.2.1",
     "timeago.js": "^3.0.2",
-    "umi": "^2.1.1"
+    "umi": "^2.1.1",
+    "vue-cli": "^2.9.6"
   },
   "devDependencies": {
     "babel-plugin-lodash": "^3.3.4",
