@@ -19,9 +19,8 @@ export default {
   // token 从中间任意位置拆开成两部分，避免 github 代码检测失效
   pre: '0ad1a0539c5b96fd18fa',
   suf: 'aaafba9c7d1362a5746c',
-  // 额外的限制参数【作者和状态】
-  open: 'creator=chanshiyucx&state=open',
-  closed: 'creator=chanshiyucx&state=closed',
+  // 发布者
+  creator: 'chanshiyucx',
 
   /**
    * Gittalk 配置【评论功能】，详细文档参见：https://github.com/gitalk/gitalk
@@ -90,12 +89,12 @@ export default {
       },
       {
         name: '笔记本',
-        text: '诶！？我刚刚想说什么来着',
+        text: '拾花集',
         img: 'https://i.loli.net/2018/12/09/5c0cc2eabee8e.jpg'
       },
       {
         name: '代码库',
-        text: 'Write the code, Change the World',
+        text: 'Life is short, Code is long',
         img: 'https://i.loli.net/2018/12/09/5c0cc2ed1ef66.jpg'
       },
       {
