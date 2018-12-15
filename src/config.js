@@ -307,7 +307,8 @@ export default {
     'https://i.loli.net/2018/12/09/5c0cc2447b075.jpg',
     'https://i.loli.net/2018/12/09/5c0cc2487465c.jpg',
     'https://i.loli.net/2018/12/09/5c0cc24e1809d.jpg',
-    'https://i.loli.net/2018/12/09/5c0cc25263879.jpg',
-    'https://i.loli.net/2018/12/09/5c0cc2575b058.jpg'
+    'https://i.loli.net/2018/12/09/5c0cc2575b058.jpg',
+    'https://i.loli.net/2018/12/16/5c15312e40b70.jpg',
+    'https://i.loli.net/2018/12/16/5c15312e42ed3.jpg'
   ]
 }
