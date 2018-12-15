@@ -2,7 +2,7 @@
   "name": "HeartBeat",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "chanshiyu",
+  "author": "蝉時雨 <me@chanshiyu.com>",
   "license": "MIT",
   "scripts": {
     "start": "umi dev",
@@ -20,8 +20,7 @@
     "prismjs": "^1.15.0",
     "smooth-scroll": "^14.2.1",
     "timeago.js": "^3.0.2",
-    "umi": "^2.1.1",
-    "vue-cli": "^2.9.6"
+    "umi": "^2.1.1"
   },
   "devDependencies": {
     "babel-plugin-lodash": "^3.3.4",

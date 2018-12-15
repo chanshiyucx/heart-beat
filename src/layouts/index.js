@@ -4,23 +4,17 @@ import router from 'umi/router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Home from '../pages'
-
 import styles from './index.less'
 import config from '../config'
 
 const { backstretch } = config
 
 class App extends PureComponent {
-  componentWillMount() {
-    // 预加载 loading 图
-    
-  }
-
   componentDidMount() {
     // 动态背景
     window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
-    const { pathname } = this.props.location
 
+    const { pathname } = this.props.location
     if (pathname !== '/') {
       router.push(pathname)
     }

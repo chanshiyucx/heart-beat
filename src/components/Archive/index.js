@@ -25,8 +25,12 @@ const Archive = ({ number, created_at, milestone, labels, title, color }) => {
             </span>
             <span>
               <i className="fa fa-tags" aria-hidden="true" />
-              {labels.map(o => {
-                return <span key={o.id}>{o.name}</span>
+              {labels.slice(0, 2).map(o => {
+                return (
+                  <span class={cx('tag')} key={o.id}>
+                    {o.name}
+                  </span>
+                )
               })}
             </span>
           </div>

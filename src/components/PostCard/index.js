@@ -32,7 +32,9 @@ const PostCard = ({ number, title, date, cover, desc, filterLabels, milestone, t
             <i className="fa fa-tags" aria-hidden="true" />
             <span>
               {filterLabels.slice(0, 2).map(o => (
-                <span key={o.id}>{o.name}</span>
+                <span class={cx('tag')} key={o.id}>
+                  {o.name}
+                </span>
               ))}
             </span>
           </span>

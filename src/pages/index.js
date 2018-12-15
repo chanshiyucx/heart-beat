@@ -16,7 +16,7 @@ class Home extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      disabled: false,
+      disabledGif: false,
       addEventListener: false
     }
   }
@@ -48,7 +48,7 @@ class Home extends PureComponent {
   getPostListNode = () => {
     // 对于移动端只展示第一次动画
     if (isMobile) {
-      this.setState({ disabled: true })
+      this.setState({ disabledGif: true })
     }
     if (this.state.addEventListener) return
     this.setState({ addEventListener: true })
@@ -94,7 +94,7 @@ class Home extends PureComponent {
     })
   }
 
-  render({ totalList, postList, loading }, { showLoading, disabled }) {
+  render({ totalList, postList, loading }, { showLoading, disabledGif }) {
     return (
       <div class={cx('container')}>
         <div class={cx('content')}>
@@ -108,14 +108,14 @@ class Home extends PureComponent {
 
           <Transition
             visible={!loading && !showLoading}
-            animation={isMobile ? (disabled ? '' : 'drop') : 'zoom'}
+            animation={isMobile ? (disabledGif ? '' : 'drop') : 'zoom'}
             duration={600}
             onHide={this.onHide}
             onShow={this.getPostListNode}
           >
             <div>
               <div class={cx('post-list')} ref={c => (this.postListNode = c)}>
-                {postList.map((post, index) => {
+                {postList.map(post => {
                   return <PostCard key={post.id} {...post} gotoCat={this.gotoCat} />
                 })}
               </div>
