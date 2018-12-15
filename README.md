@@ -4,7 +4,7 @@
 
 ![蝉时雨](https://i.loli.net/2018/12/15/5c15047d6d235.png)
 
-HeartBeat 一个基于 UmiJs 开发的 SPA 单页面博客应用程序，后台数据源依托于 [Github Issues](https://developer.github.com/v3/issues/)，前端框架使用 [UmiJS](https://umijs.org/)。此外，还使用开源项目 [Gitalk](https://github.com/gitalk/gitalk) 作为博客的评论系统，该主题核心基于 Github 全家桶食用。
+HeartBeat 是一个基于 [UmiJS](https://umijs.org/) 开发的 SPA 单页面博客应用程序，后台数据源依托于 [Github Issues](https://developer.github.com/v3/issues/) ，使用开源项目 [Gitalk](https://github.com/gitalk/gitalk) 作为博客评论系统。该主题基于 Github 全家桶，脱离服务器与数据库，关注内容本身，免费食用。
 
 技术栈：UmiJS + Github Issues + Gitalk
 
@@ -24,7 +24,7 @@ npm install # or yarn
 
 修改目录 `src/config.js` 的配置文件，每个配置项都有详细说明。
 
-页面模板参考： [template](https://github.com/chanshiyucx/Blog/issues)
+页面模板参考： [文章、关于、标签、分类、书单等模板](https://github.com/chanshiyucx/Blog/issues)
 
 ### Preview
 
