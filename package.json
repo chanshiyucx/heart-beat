@@ -13,23 +13,23 @@
   "dependencies": {
     "baguettebox.js": "^1.11.0",
     "classnames": "^2.2.6",
-    "gitalk": "^1.4.0",
-    "leancloud-storage": "^3.10.0",
+    "gitalk": "^1.4.1",
+    "leancloud-storage": "^3.11.0",
     "lodash": "^4.17.11",
-    "marked": "^0.5.1",
+    "marked": "^0.5.2",
     "prismjs": "^1.15.0",
-    "smooth-scroll": "^14.2.1",
+    "smooth-scroll": "^15.0.0",
     "timeago.js": "^3.0.2",
-    "umi": "^2.1.1"
+    "umi": "^2.2.8"
   },
   "devDependencies": {
     "babel-plugin-lodash": "^3.3.4",
-    "eslint": "^5.6.1",
-    "eslint-config-umi": "^0.1.5",
-    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint": "^5.10.0",
+    "eslint-config-umi": "^1.2.0",
+    "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "umi-plugin-react": "^1.1.1"
+    "umi-plugin-react": "^1.2.3"
   }
 }
