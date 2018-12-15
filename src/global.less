@@ -41,8 +41,7 @@ table,
 code {
   margin: 0;
   padding: 0;
-  font-family: 'FiraCode', 'Helvetica', 'PingFang SC', 'Microsoft YaHei',
-    sans-serif;
+  font-family: 'FiraCode', 'Helvetica', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.15rem;
   color: #666;
 }
@@ -116,7 +115,6 @@ html::-webkit-scrollbar {
   border-radius: 3px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.24);
 }
-
 .gt-container {
   @media (max-width: 900px) {
     padding: 0 0.16rem;
@@ -127,6 +125,9 @@ html::-webkit-scrollbar {
       color: #f6f !important;
       border-color: #f6f !important;
     }
+  }
+  svg {
+    fill: #faf !important;
   }
   .gt-header-textarea {
     background: rgba(255, 255, 255, 0.6) !important;
@@ -154,9 +155,6 @@ html::-webkit-scrollbar {
   }
   .gt-header-controls-tip {
     color: #faf;
-  }
-  svg {
-    fill: #faf !important;
   }
   .gt-ico-github svg {
     fill: #666 !important;
@@ -192,8 +190,7 @@ html::-webkit-scrollbar {
     }
   }
   .gt-comment-content {
-    transition: all 0.25s ease 0s,
-      transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    transition: all 0.25s ease 0s, transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
       opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
     background: rgba(255, 255, 255, 0.6);
   }
@@ -210,23 +207,22 @@ html::-webkit-scrollbar {
 #baguetteBox-overlay {
   animation: elastic 0.5s;
 }
-#baguetteBox-overlay .full-image img {
-  max-height: 80%;
-  max-width: 80%;
-  box-shadow: 0 0 1.6rem #eee;
+#baguetteBox-overlay .full-image {
+  img {
+    max-height: 80%;
+    max-width: 80%;
+    box-shadow: 0 0 1.6rem #eee;
+  }
+  figcaption {
+    line-height: 3;
+  }
 }
-
-#baguetteBox-overlay .full-image figcaption {
-  line-height: 3;
-}
-
 .baguetteBox-button {
   background: transparent;
   &:hover {
     background: transparent;
   }
 }
-
 @keyframes elastic {
   0% {
     transform: scale(0);

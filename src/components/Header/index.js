@@ -13,7 +13,7 @@ class Header extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      dropMenu: false,
+      dropMenu: false
     }
   }
 
@@ -27,7 +27,7 @@ class Header extends PureComponent {
   }
 
   // 监听: 菜单悬停并触发对话
-  handleMouseOver = (e) => {
+  handleMouseOver = e => {
     let target
     if (e.target.tagName.toUpperCase() === 'LI') {
       target = e.target
@@ -70,7 +70,7 @@ class Header extends PureComponent {
     }
     this.props.dispatch({
       type: 'global/showTips',
-      payload: { tips },
+      payload: { tips }
     })
   }
 
@@ -80,64 +80,65 @@ class Header extends PureComponent {
   }
 
   render(props, { dropMenu }) {
-
     return (
       <div class={cx('container')}>
-        <button
-          style={{ top: dropMenu ? '0.8rem' : '0' }}
-          onClick={this.toggleMenu}
-        >
-          <i className="fa fa-list-ul" aria-hidden="true"></i>
+        <button style={{ top: dropMenu ? '0.8rem' : '0' }} onClick={this.toggleMenu}>
+          <i className="fa fa-list-ul" aria-hidden="true" />
         </button>
-        <div class={cx('inner')} style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem' }}>
-          <a class={cx('title')} href="/">{title}</a>
+        <div
+          class={cx('inner')}
+          style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem' }}
+        >
+          <a class={cx('title')} href="/">
+            {title}
+          </a>
           <span class={cx('sub-title')}>{subtitle}</span>
-          <ul ref={c => this.menuRef = c} class={cx('menu', dropMenu && 'dropMenu')}>
+          <ul ref={c => (this.menuRef = c)} class={cx('menu', dropMenu && 'dropMenu')}>
             <li data-menu="home">
               <Link to="/">
-                <i class="fa fa-university" aria-hidden="true"></i>
+                <i class="fa fa-university" aria-hidden="true" />
                 <span>首页</span>
               </Link>
             </li>
             <li data-menu="archives">
               <Link to="/archives">
-                <i class="fa fa-archive" aria-hidden="true"></i>
+                <i class="fa fa-archive" aria-hidden="true" />
                 <span>归档</span>
               </Link>
             </li>
             <li data-menu="categories">
               <Link to="/categories">
-                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                <i class="fa fa-bookmark" aria-hidden="true" />
                 <span>分类</span>
               </Link>
             </li>
             <li data-menu="tags">
               <Link to="/tags">
-                <i class="fa fa-tags" aria-hidden="true"></i>
+                <i class="fa fa-tags" aria-hidden="true" />
                 <span>标签</span>
               </Link>
             </li>
             <li data-menu="mood">
               <Link to="/mood">
-                <i class="fa fa-commenting" aria-hidden="true"></i>
+                <i class="fa fa-commenting" aria-hidden="true" />
                 <span>心情</span>
               </Link>
             </li>
             <li data-menu="books">
               <Link to="/books">
-                <i class="fa fa-book" aria-hidden="true"></i>
+                <i class="fa fa-book" aria-hidden="true" />
                 <span>书单</span>
               </Link>
             </li>
             <li data-menu="friends">
               <Link to="/friends">
-                <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                <i class="fa fa-heartbeat" aria-hidden="true" />
                 <span>友链</span>
               </Link>
             </li>
             <li data-menu="about">
               <Link to="/about">
-                <i class="fa fa-envira" aria-hidden="true"></i>
+                <i class="fa fa-envira" aria-hidden="true" />
                 <span>关于</span>
               </Link>
             </li>

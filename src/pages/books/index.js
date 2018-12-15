@@ -131,11 +131,7 @@ class Books extends PureComponent {
                           <p>
                             读书笔记：
                             {!!postLink.trim().length ? (
-                              <a
-                                href={postLink}
-                                rel="noopener noreferrer"
-                                target="_blank"
-                              >
+                              <a href={postLink} rel="noopener noreferrer" target="_blank">
                                 {postTitle}
                               </a>
                             ) : (

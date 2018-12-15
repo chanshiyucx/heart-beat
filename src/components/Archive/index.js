@@ -6,14 +6,7 @@ import styles from './index.less'
 
 const cx = classNames.bind(styles)
 
-const Archive = ({
-  number,
-  created_at,
-  milestone,
-  labels,
-  title,
-  color,
-}) => {
+const Archive = ({ number, created_at, milestone, labels, title, color }) => {
   const date = created_at.slice(0, 10)
 
   return (
@@ -23,15 +16,15 @@ const Archive = ({
           <div class={cx('title')}>{title}</div>
           <div class={cx('meta')}>
             <span>
-              <i className="fa fa-clock-o" aria-hidden="true"></i>
+              <i className="fa fa-clock-o" aria-hidden="true" />
               {date}
             </span>
             <span>
-              <i className="fa fa-bookmark" aria-hidden="true"></i>
+              <i className="fa fa-bookmark" aria-hidden="true" />
               {milestone && milestone.title ? milestone.title : '未分类'}
             </span>
             <span>
-              <i className="fa fa-tags" aria-hidden="true"></i>
+              <i className="fa fa-tags" aria-hidden="true" />
               {labels.map(o => {
                 return <span key={o.id}>{o.name}</span>
               })}

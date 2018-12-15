@@ -80,21 +80,16 @@ class Footer extends PureComponent {
     this.TToolCMouseOver = _.throttle(this.toolMouseOver, 400, {
       trailing: true
     })
-    this.TRightBtnWapperMouseOver = _.throttle(
-      this.rightBtnWapperMouseOver,
-      400,
-      { trailing: true }
-    )
+    this.TRightBtnWapperMouseOver = _.throttle(this.rightBtnWapperMouseOver, 400, {
+      trailing: true
+    })
 
     document.addEventListener('scroll', this.THandleScroll)
     this.waifu.addEventListener('click', this.TWaifuClick)
     this.tool.addEventListener('click', this.toolClick)
     this.tool.addEventListener('mouseover', this.TToolCMouseOver)
     this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
-    this.rightBtnWapper.addEventListener(
-      'mouseover',
-      this.TRightBtnWapperMouseOver
-    )
+    this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 监听：页面滚动
@@ -294,11 +289,7 @@ class Footer extends PureComponent {
       this.loopTips()
     }, 16000)
     const { dispatch, tips, lastTipsUpdateAt } = this.props
-    if (
-      tips ||
-      (lastTipsUpdateAt !== '' && new Date() - lastTipsUpdateAt < 6000)
-    )
-      return
+    if (tips || (lastTipsUpdateAt !== '' && new Date() - lastTipsUpdateAt < 6000)) return
     const index = _.random(0, hitokotos.length - 1)
     const nextTips = hitokotos[index].hitokoto
     dispatch({
@@ -320,21 +311,10 @@ class Footer extends PureComponent {
       <div class={cx('container')}>
         {showWaifu && (
           <div class={cx('waifu')}>
-            <div
-              class={cx(
-                'waifu-tips',
-                !tips && 'hide',
-                waifu === 'tia' && 'tia'
-              )}
-            >
+            <div class={cx('waifu-tips', !tips && 'hide', waifu === 'tia' && 'tia')}>
               <MarkeDown content={tips} />
             </div>
-            <canvas
-              ref={c => (this.waifu = c)}
-              id="live2d"
-              width="280"
-              height="250"
-            />
+            <canvas ref={c => (this.waifu = c)} id="live2d" width="280" height="250" />
             <ul ref={c => (this.tool = c)} class={cx('waifu-tool')}>
               <li data-type="home">
                 <i className="fa fa-university" aria-hidden="true" />
@@ -375,9 +355,7 @@ class Footer extends PureComponent {
           <div class={cx('site-desc-row')}>
             <p>
               Theme&nbsp;-
-              <a href="https://github.com/chanshiyucx/HeartBeat">
-                &nbsp;HeartBeat
-              </a>
+              <a href="https://github.com/chanshiyucx/HeartBeat">&nbsp;HeartBeat</a>
             </p>
             |<p>蝉鸣如雨 - 花宵道中</p>
           </div>
@@ -406,11 +384,7 @@ class Footer extends PureComponent {
             <i class="fa fa-music" aria-hidden="true" />
           </li>
           <li class={cx('right-btn', 'like-btn')} data-index="2">
-            <i
-              class="fa fa-heart"
-              style={{ color: isLikeSite && '#f8f' }}
-              aria-hidden="true"
-            />
+            <i class="fa fa-heart" style={{ color: isLikeSite && '#f8f' }} aria-hidden="true" />
             <div class={cx('popup')}>已有 {likeTimes} 人点赞了哦！</div>
           </li>
         </ul>

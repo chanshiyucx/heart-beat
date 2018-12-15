@@ -21,7 +21,7 @@ class Mood extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false,
+      renderGitalk: false
     }
   }
 
@@ -38,7 +38,7 @@ class Mood extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { mood: [] },
+      payload: { mood: [] }
     })
   }
 
@@ -46,7 +46,7 @@ class Mood extends PureComponent {
   prev = () => {
     this.props.dispatch({
       type: 'global/queryMood',
-      payload: { queryType: 'prev' },
+      payload: { queryType: 'prev' }
     })
   }
 
@@ -54,7 +54,7 @@ class Mood extends PureComponent {
   next = () => {
     this.props.dispatch({
       type: 'global/queryMood',
-      payload: { queryType: 'next' },
+      payload: { queryType: 'next' }
     })
   }
 
@@ -69,7 +69,7 @@ class Mood extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '心情',
+          title: '心情'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -86,7 +86,7 @@ class Mood extends PureComponent {
       <div class={cx('container')}>
         <Transition
           visible={!loading && !showLoading}
-          animation='drop'
+          animation="drop"
           duration={600}
           onHide={this.onHide}
           onShow={this.renderGitalk}
@@ -97,32 +97,22 @@ class Mood extends PureComponent {
               {mood.map((o, i) => {
                 const date = o.created_at.slice(0, 10)
                 const color = colors[i]
-                return (
-                  <Segment key={o.id} color={color} title={date} content={o.body} />
-                )
+                return <Segment key={o.id} color={color} title={date} content={o.body} />
               })}
             </div>
             <div class={cx('pagination')}>
-              <button
-                disabled={page <= 1}
-                class={cx('prevBtn')}
-                onClick={this.prev}
-              >
+              <button disabled={page <= 1} class={cx('prevBtn')} onClick={this.prev}>
                 前一页
               </button>
               <span>{page}</span>
-              <button
-                disabled={page >= maxPage}
-                class={cx('nextBtn')}
-                onClick={this.next}
-              >
+              <button disabled={page >= maxPage} class={cx('nextBtn')} onClick={this.next}>
                 后一页
               </button>
             </div>
           </div>
         </Transition>
 
-        {enableGitalk && <div id='gitalk' />}
+        {enableGitalk && <div id="gitalk" />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )
@@ -132,5 +122,5 @@ class Mood extends PureComponent {
 export default connect(({ global, loading }) => ({
   totalMood: global.totalMood,
   mood: global.mood,
-  loading: loading.effects['global/queryMood'],
+  loading: loading.effects['global/queryMood']
 }))(Mood)

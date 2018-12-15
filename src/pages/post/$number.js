@@ -20,7 +20,7 @@ class Post extends PureComponent {
     const { number } = match.params
     dispatch({
       type: 'global/queryPost',
-      payload: { number },
+      payload: { number }
     })
   }
 
@@ -29,7 +29,7 @@ class Post extends PureComponent {
     if (post.number && +post.number !== +nextProps.match.params.number) {
       dispatch({
         type: 'global/queryPost',
-        payload: { number: nextProps.match.params.number },
+        payload: { number: nextProps.match.params.number }
       })
     }
   }
@@ -38,8 +38,8 @@ class Post extends PureComponent {
     this.props.dispatch({
       type: 'global/updateState',
       payload: {
-        post: {},
-      },
+        post: {}
+      }
     })
   }
 
@@ -48,7 +48,7 @@ class Post extends PureComponent {
     const { post } = this.props
     const gitalk = new Gitalk({
       ...gitalkOption,
-      title: post.title,
+      title: post.title
     })
     gitalk.render(`gitalk-${post.id}`)
   }
@@ -60,7 +60,7 @@ class Post extends PureComponent {
         <div class={cx('wapper')}>
           <Transition
             visible={!showLoading}
-            animation='drop'
+            animation="drop"
             duration={600}
             onShow={this.renderGitalk}
           >
@@ -70,21 +70,25 @@ class Post extends PureComponent {
                 <span class={cx('reward-icon')}>赏</span>
                 <div class={cx('reward-body')}>
                   <ul>
-                    {
-                      reward.map((o, i) => {
-                        return (
-                          <li key={i}>
-                            <img alt="" src={o.qr} />
-                            <span>{o.type}</span>
-                          </li>
-                        )
-                      })
-                    }
+                    {reward.map((o, i) => {
+                      return (
+                        <li key={i}>
+                          <img alt="" src={o.qr} />
+                          <span>{o.type}</span>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
               </div>
               <div class={cx('lincenses')}>
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener noreferrer" target="_blank">署名-非商业性使用-相同方式共享 4.0 国际</a>
+                <a
+                  href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  署名-非商业性使用-相同方式共享 4.0 国际
+                </a>
               </div>
               <div class={cx('post-squares')}>
                 <PostPV {...prevPost} />
@@ -107,6 +111,6 @@ export default connect(({ global, loading }) => {
     post,
     prevPost,
     nextPost,
-    loading: loading.effects['global/queryPost'],
+    loading: loading.effects['global/queryPost']
   }
 })(Post)

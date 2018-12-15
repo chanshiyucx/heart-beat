@@ -1,29 +1,20 @@
-import Link from "umi/link";
-import classNames from "classnames/bind";
+import Link from 'umi/link'
+import classNames from 'classnames/bind'
 
-import MarkeDown from "../MarkDown";
-import styles from "./index.less";
+import MarkeDown from '../MarkDown'
+import styles from './index.less'
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(styles)
 
-const PostPV = ({
-  number,
-  title,
-  date,
-  cover,
-  desc,
-  filterLabels,
-  milestone,
-  times
-}) => {
+const PostPV = ({ number, title, date, cover, desc, filterLabels, milestone, times }) => {
   return (
-    <div class={cx("container")}>
+    <div class={cx('container')}>
       <Link to={`/post/${number}`}>
         <img src={cover} alt="" />
-        <div class={cx("content")}>
-          <div class={cx("info")}>
+        <div class={cx('content')}>
+          <div class={cx('info')}>
             <h3>{title}</h3>
-            <div class={cx("meta")}>
+            <div class={cx('meta')}>
               <span>
                 <i className="fa fa-clock-o" aria-hidden="true" />
                 <span>{date}</span>
@@ -34,9 +25,7 @@ const PostPV = ({
               </span>
               <span>
                 <i className="fa fa-bookmark" aria-hidden="true" />
-                <span>
-                  {milestone && milestone.title ? milestone.title : "未分类"}
-                </span>
+                <span>{milestone && milestone.title ? milestone.title : '未分类'}</span>
               </span>
               <span>
                 <i className="fa fa-tags" aria-hidden="true" />
@@ -48,11 +37,11 @@ const PostPV = ({
               </span>
             </div>
           </div>
-          <MarkeDown className={cx("desc")} content={desc} />
+          <MarkeDown className={cx('desc')} content={desc} />
         </div>
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default PostPV;
+export default PostPV

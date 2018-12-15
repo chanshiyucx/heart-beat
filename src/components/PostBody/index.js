@@ -22,38 +22,30 @@ class PostBody extends PureComponent {
     baguetteBox.run('#post-body')
   }
 
-  render({
-    title,
-    date,
-    cover,
-    content,
-    filterLabels,
-    milestone,
-    times,
-  }) {
+  render({ title, date, cover, content, filterLabels, milestone, times }) {
     return (
-      <div class={cx('container')} id='post-body'>
+      <div class={cx('container')} id="post-body">
         <div class={cx('header')}>
           <img alt="" src={cover} />
           <div class={cx('info')}>
             <h1>{title}</h1>
             <div class={cx('meta')}>
               <span>
-                <i className="fa fa-clock-o" aria-hidden="true"></i>
+                <i className="fa fa-clock-o" aria-hidden="true" />
                 <span>{date}</span>
               </span>
               <span>
-                <i className="fa fa-eye" aria-hidden="true"></i>
+                <i className="fa fa-eye" aria-hidden="true" />
                 <span>热度{times}℃</span>
               </span>
               <span>
-                <i className="fa fa-bookmark" aria-hidden="true"></i>
+                <i className="fa fa-bookmark" aria-hidden="true" />
                 <span>{milestone && milestone.title ? milestone.title : '未分类'}</span>
               </span>
               <span>
-                <i className="fa fa-tags" aria-hidden="true"></i>
+                <i className="fa fa-tags" aria-hidden="true" />
                 <span>
-                  {filterLabels && filterLabels.map(o => (<span key={o.id}>{o.name}</span>))}
+                  {filterLabels && filterLabels.map(o => <span key={o.id}>{o.name}</span>)}
                 </span>
               </span>
             </div>

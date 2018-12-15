@@ -8,14 +8,14 @@ AV.init(globalConfig.leancloud)
 export function config() {
   return {
     onError(err) {
-      err.preventDefault();
-    },
+      err.preventDefault()
+    }
   }
 }
 
 window.publicPath = '/'
 if (process.env.NODE_ENV !== 'development') {
-  console.log = function () { }
-  console.warn = function () { }
-  console.error = function () { }
+  console.log = function() {}
+  console.warn = function() {}
+  console.error = function() {}
 }

@@ -21,7 +21,7 @@ class About extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false,
+      renderGitalk: false
     }
   }
 
@@ -41,7 +41,7 @@ class About extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { about: {} },
+      payload: { about: {} }
     })
   }
 
@@ -51,7 +51,7 @@ class About extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '关于',
+          title: '关于'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -60,20 +60,25 @@ class About extends PureComponent {
   }
 
   render({ about, loading }, { showLoading }) {
-    const section = about.body &&
-      about.body.trim().split('## ').filter(o => o.length).map(o => {
-        const title = o.match(/.+?\r\n/)[0]
-        return {
-          title,
-          content: o.slice(title.length)
-        }
-      })
+    const section =
+      about.body &&
+      about.body
+        .trim()
+        .split('## ')
+        .filter(o => o.length)
+        .map(o => {
+          const title = o.match(/.+?\r\n/)[0]
+          return {
+            title,
+            content: o.slice(title.length)
+          }
+        })
 
     return (
       <div class={cx('container')}>
         <Transition
           visible={!loading && !showLoading}
-          animation='drop'
+          animation="drop"
           duration={600}
           onShow={this.renderGitalk}
         >
@@ -83,13 +88,14 @@ class About extends PureComponent {
               <div class={cx('header')}>
                 <img src={avatar} alt="" />
                 <div class={cx('info')}>
-                  {info.length && info.map((o, i) => {
-                    return (
-                      <span key={i}>
-                        <i className={`fa fa-${o.icon}`} aria-hidden='true'></i> {o.text}
-                      </span>
-                    )
-                  })}
+                  {info.length &&
+                    info.map((o, i) => {
+                      return (
+                        <span key={i}>
+                          <i className={`fa fa-${o.icon}`} aria-hidden="true" /> {o.text}
+                        </span>
+                      )
+                    })}
                 </div>
               </div>
               <div class={cx('concat')}>
@@ -102,23 +108,17 @@ class About extends PureComponent {
                 })}
               </div>
               <div class={cx('content')}>
-                {section && section.map((o, i) => {
-                  const color = colors[i]
-                  return (
-                    <Segment
-                      key={i}
-                      color={color}
-                      title={o.title}
-                      content={o.content}
-                    />
-                  )
-                })}
+                {section &&
+                  section.map((o, i) => {
+                    const color = colors[i]
+                    return <Segment key={i} color={color} title={o.title} content={o.content} />
+                  })}
               </div>
             </div>
           </div>
         </Transition>
 
-        {enableGitalk && <div id='gitalk' />}
+        {enableGitalk && <div id="gitalk" />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )

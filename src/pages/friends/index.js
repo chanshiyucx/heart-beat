@@ -19,7 +19,7 @@ class Friends extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false,
+      renderGitalk: false
     }
   }
 
@@ -39,7 +39,7 @@ class Friends extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { friends: {} },
+      payload: { friends: {} }
     })
   }
 
@@ -49,7 +49,7 @@ class Friends extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '友链',
+          title: '友链'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -58,44 +58,50 @@ class Friends extends PureComponent {
   }
 
   render({ friends, loading }, { showLoading }) {
-    const section = friends.body &&
-      friends.body.trim().split('## ').filter(o => o.length > 0).map((o) => {
-        const content = o.split('\r\n').filter(o => o.length)
-        return {
-          name: content[0],
-          link: content[1].split('link:')[1],
-          cover: content[2].split('cover:')[1],
-          avatar: content[3].split('avatar:')[1],
-        }
-      })
+    const section =
+      friends.body &&
+      friends.body
+        .trim()
+        .split('## ')
+        .filter(o => o.length > 0)
+        .map(o => {
+          const content = o.split('\r\n').filter(o => o.length)
+          return {
+            name: content[0],
+            link: content[1].split('link:')[1],
+            cover: content[2].split('cover:')[1],
+            avatar: content[3].split('avatar:')[1]
+          }
+        })
 
     return (
       <div class={cx('container')}>
         <Transition
           visible={!loading && !showLoading}
-          animation='drop'
+          animation="drop"
           duration={600}
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
             <Quote text={qoute} />
             <div class={cx('content')}>
-              {section && section.map((o, i) => {
-                return (
-                  <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
-                    <img class={cx('cover')} alt="" src={o.cover} />
-                    <div class={cx('info')}>
-                      <img src={o.avatar} alt='' />
-                      <span>{o.name}</span>
-                    </div>
-                  </a>
-                )
-              })}
+              {section &&
+                section.map((o, i) => {
+                  return (
+                    <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
+                      <img class={cx('cover')} alt="" src={o.cover} />
+                      <div class={cx('info')}>
+                        <img src={o.avatar} alt="" />
+                        <span>{o.name}</span>
+                      </div>
+                    </a>
+                  )
+                })}
             </div>
           </div>
         </Transition>
 
-        {enableGitalk && <div id='gitalk' />}
+        {enableGitalk && <div id="gitalk" />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )

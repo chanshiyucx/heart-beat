@@ -197,19 +197,19 @@
   animation-name: fadeIn;
 }
 
-.transition[class*="fade up"].in {
+.transition[class*='fade up'].in {
   animation-name: fadeInUp;
 }
 
-.transition[class*="fade down"].in {
+.transition[class*='fade down'].in {
   animation-name: fadeInDown;
 }
 
-.transition[class*="fade left"].in {
+.transition[class*='fade left'].in {
   animation-name: fadeInLeft;
 }
 
-.transition[class*="fade right"].in {
+.transition[class*='fade right'].in {
   animation-name: fadeInRight;
 }
 
@@ -217,19 +217,19 @@
   animation-name: fadeOut;
 }
 
-.transition[class*="fade up"].out {
+.transition[class*='fade up'].out {
   animation-name: fadeOutUp;
 }
 
-.transition[class*="fade down"].out {
+.transition[class*='fade down'].out {
   animation-name: fadeOutDown;
 }
 
-.transition[class*="fade left"].out {
+.transition[class*='fade left'].out {
   animation-name: fadeOutLeft;
 }
 
-.transition[class*="fade right"].out {
+.transition[class*='fade right'].out {
   animation-name: fadeOutRight;
 }
 
@@ -359,19 +359,19 @@
   animation-duration: 600ms;
 }
 
-.transition[class*="horizontal flip"].in {
+.transition[class*='horizontal flip'].in {
   animation-name: horizontalFlipIn;
 }
 
-.transition[class*="horizontal flip"].out {
+.transition[class*='horizontal flip'].out {
   animation-name: horizontalFlipOut;
 }
 
-.transition[class*="vertical flip"].in {
+.transition[class*='vertical flip'].in {
   animation-name: verticalFlipIn;
 }
 
-.transition[class*="vertical flip"].out {
+.transition[class*='vertical flip'].out {
   animation-name: verticalFlipOut;
 }
 
@@ -474,19 +474,19 @@
   animation-name: flyIn;
 }
 
-.transition[class*="fly up"].in {
+.transition[class*='fly up'].in {
   animation-name: flyInUp;
 }
 
-.transition[class*="fly down"].in {
+.transition[class*='fly down'].in {
   animation-name: flyInDown;
 }
 
-.transition[class*="fly left"].in {
+.transition[class*='fly left'].in {
   animation-name: flyInLeft;
 }
 
-.transition[class*="fly right"].in {
+.transition[class*='fly right'].in {
   animation-name: flyInRight;
 }
 
@@ -495,19 +495,19 @@
   animation-name: flyOut;
 }
 
-.transition[class*="fly up"].out {
+.transition[class*='fly up'].out {
   animation-name: flyOutUp;
 }
 
-.transition[class*="fly down"].out {
+.transition[class*='fly down'].out {
   animation-name: flyOutDown;
 }
 
-.transition[class*="fly left"].out {
+.transition[class*='fly left'].out {
   animation-name: flyOutLeft;
 }
 
-.transition[class*="fly right"].out {
+.transition[class*='fly right'].out {
   animation-name: flyOutRight;
 }
 
@@ -643,7 +643,8 @@
     transform: scale3d(0.9, 0.9, 0.9);
   }
 
-  50%, 55% {
+  50%,
+  55% {
     opacity: 1;
     transform: scale3d(1.1, 1.1, 1.1);
   }
@@ -659,7 +660,8 @@
     transform: translate3d(0, 10px, 0);
   }
 
-  40%, 45% {
+  40%,
+  45% {
     opacity: 1;
     transform: translate3d(0, -20px, 0);
   }
@@ -675,7 +677,8 @@
     transform: translate3d(0, -10px, 0);
   }
 
-  40%, 45% {
+  40%,
+  45% {
     opacity: 1;
     transform: translate3d(0, 20px, 0);
   }
@@ -714,43 +717,43 @@
      Slide
 ---------------*/
 .transition.slide.in,
-.transition[class*="slide down"].in {
+.transition[class*='slide down'].in {
   animation-name: slideInY;
   transform-origin: top center;
 }
 
-.transition[class*="slide up"].in {
+.transition[class*='slide up'].in {
   animation-name: slideInY;
   transform-origin: bottom center;
 }
 
-.transition[class*="slide left"].in {
+.transition[class*='slide left'].in {
   animation-name: slideInX;
   transform-origin: center right;
 }
 
-.transition[class*="slide right"].in {
+.transition[class*='slide right'].in {
   animation-name: slideInX;
   transform-origin: center left;
 }
 
 .transition.slide.out,
-.transition[class*="slide down"].out {
+.transition[class*='slide down'].out {
   animation-name: slideOutY;
   transform-origin: top center;
 }
 
-.transition[class*="slide up"].out {
+.transition[class*='slide up'].out {
   animation-name: slideOutY;
   transform-origin: bottom center;
 }
 
-.transition[class*="slide left"].out {
+.transition[class*='slide left'].out {
   animation-name: slideOutX;
   transform-origin: center right;
 }
 
-.transition[class*="slide right"].out {
+.transition[class*='slide right'].out {
   animation-name: slideOutX;
   transform-origin: center left;
 }
@@ -812,43 +815,43 @@
   animation-duration: 800ms;
 }
 
-.transition[class*="swing down"].in {
+.transition[class*='swing down'].in {
   animation-name: swingInX;
   transform-origin: top center;
 }
 
-.transition[class*="swing up"].in {
+.transition[class*='swing up'].in {
   animation-name: swingInX;
   transform-origin: bottom center;
 }
 
-.transition[class*="swing left"].in {
+.transition[class*='swing left'].in {
   animation-name: swingInY;
   transform-origin: center right;
 }
 
-.transition[class*="swing right"].in {
+.transition[class*='swing right'].in {
   animation-name: swingInY;
   transform-origin: center left;
 }
 
 .transition.swing.out,
-.transition[class*="swing down"].out {
+.transition[class*='swing down'].out {
   animation-name: swingOutX;
   transform-origin: top center;
 }
 
-.transition[class*="swing up"].out {
+.transition[class*='swing up'].out {
   animation-name: swingOutX;
   transform-origin: bottom center;
 }
 
-.transition[class*="swing left"].out {
+.transition[class*='swing left'].out {
   animation-name: swingOutY;
   transform-origin: center right;
 }
 
-.transition[class*="swing right"].out {
+.transition[class*='swing right'].out {
   animation-name: swingOutY;
   transform-origin: center left;
 }
@@ -1033,33 +1036,48 @@
 
 /* Flash */
 @keyframes flash {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     opacity: 1;
   }
 
-  25%, 75% {
+  25%,
+  75% {
     opacity: 0;
   }
 }
 
 /* Shake */
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
 
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-10px);
   }
 
-  20%, 40%, 60%, 80% {
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(10px);
   }
 }
 
 /* Bounce */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
 
@@ -1078,15 +1096,21 @@
     transform: scale(1);
   }
 
-  10%, 20% {
+  10%,
+  20% {
     transform: scale(0.9) rotate(-3deg);
   }
 
-  30%, 50%, 70%, 90% {
+  30%,
+  50%,
+  70%,
+  90% {
     transform: scale(1.1) rotate(3deg);
   }
 
-  40%, 60%, 80% {
+  40%,
+  60%,
+  80% {
     transform: scale(1.1) rotate(-3deg);
   }
 
@@ -1147,14 +1171,14 @@
 /* Glow */
 @keyframes glow {
   0% {
-    background-color: #FCFCFD;
+    background-color: #fcfcfd;
   }
 
   30% {
-    background-color: #FFF6CD;
+    background-color: #fff6cd;
   }
 
   100% {
-    background-color: #FCFCFD;
+    background-color: #fcfcfd;
   }
 }

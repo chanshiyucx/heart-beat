@@ -8,20 +8,34 @@ const cx = classNames.bind(styles)
 
 const useKeyOnly = (val, key) => val && key
 
-const normalizeTransitionDuration = (duration, type) => (
-  (typeof duration === 'number' || typeof duration === 'string') ? duration : duration[type]
-)
+const normalizeTransitionDuration = (duration, type) =>
+  typeof duration === 'number' || typeof duration === 'string' ? duration : duration[type]
 
 const DIRECTIONAL_TRANSITIONS = [
-  'browse', 'browse right',
+  'browse',
+  'browse right',
   'drop',
-  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
-  'fly up', 'fly down', 'fly left', 'fly right',
-  'horizontal flip', 'vertical flip',
+  'fade',
+  'fade up',
+  'fade down',
+  'fade left',
+  'fade right',
+  'fly up',
+  'fly down',
+  'fly left',
+  'fly right',
+  'horizontal flip',
+  'vertical flip',
   'scale',
-  'slide up', 'slide down', 'slide left', 'slide right',
-  'swing up', 'swing down', 'swing left', 'swing right',
-  'zoom',
+  'slide up',
+  'slide down',
+  'slide left',
+  'slide right',
+  'swing up',
+  'swing down',
+  'swing left',
+  'swing right',
+  'zoom'
 ]
 
 // const STATIC_TRANSITIONS = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce', 'glow']
@@ -29,7 +43,7 @@ const DIRECTIONAL_TRANSITIONS = [
 
 const TRANSITION_TYPE = {
   ENTERING: 'show',
-  EXITING: 'hide',
+  EXITING: 'hide'
 }
 
 /**
@@ -42,12 +56,12 @@ export default class Transition extends Component {
     visible: true,
     mountOnShow: true,
     transitionOnMount: false,
-    unmountOnHide: false,
+    unmountOnHide: false
   }
 
   static _meta = {
     name: 'Transition',
-    type: 'module',
+    type: 'module'
   }
 
   static ENTERED = 'ENTERED'
@@ -153,7 +167,7 @@ export default class Transition extends Component {
         useKeyOnly(status === Transition.EXITING, 'out'),
         useKeyOnly(status === Transition.EXITED, 'hidden'),
         useKeyOnly(status !== Transition.EXITED, 'visible'),
-        'transition',
+        'transition'
       )
     }
 
@@ -161,7 +175,7 @@ export default class Transition extends Component {
       animation,
       childClasses,
       useKeyOnly(animating, 'animating'),
-      useKeyOnly(animating, 'transition'),
+      useKeyOnly(animating, 'transition')
     )
   }
 
@@ -174,18 +188,13 @@ export default class Transition extends Component {
   }
 
   computeInitialStatuses = () => {
-    const {
-      visible,
-      mountOnShow,
-      transitionOnMount,
-      unmountOnHide,
-    } = this.props
+    const { visible, mountOnShow, transitionOnMount, unmountOnHide } = this.props
 
     if (visible) {
       if (transitionOnMount) {
         return {
           initial: Transition.EXITED,
-          next: Transition.ENTERING,
+          next: Transition.ENTERING
         }
       }
       return { initial: Transition.ENTERED }
@@ -202,19 +211,19 @@ export default class Transition extends Component {
     return status === Transition.ENTERED ? Transition.EXITING : Transition.ENTERING
   }
 
-  computeStatuses = (props) => {
+  computeStatuses = props => {
     const { status } = this.state
     const { visible } = props
 
     if (visible) {
       return {
         current: status === Transition.UNMOUNTED && Transition.EXITED,
-        next: (status !== Transition.ENTERING && status !== Transition.ENTERED) && Transition.ENTERING,
+        next: status !== Transition.ENTERING && status !== Transition.ENTERED && Transition.ENTERING
       }
     }
 
     return {
-      next: (status === Transition.ENTERING || status === Transition.ENTERED) && Transition.EXITING,
+      next: (status === Transition.ENTERING || status === Transition.ENTERED) && Transition.EXITING
     }
   }
 
@@ -242,7 +251,7 @@ export default class Transition extends Component {
     if (status === Transition.UNMOUNTED) return null
     return cloneElement(children, {
       className: this.computeClasses(),
-      style: this.computeStyle(),
+      style: this.computeStyle()
     })
   }
 }

@@ -218,8 +218,7 @@ class SKPlayer extends PureComponent {
   timelineClick = event => {
     let e = event || window.event
     let percent =
-      (e.clientX - Util.leftDistance(this.skPlayerPercent)) /
-      this.skPlayerPercent.clientWidth
+      (e.clientX - Util.leftDistance(this.skPlayerPercent)) / this.skPlayerPercent.clientWidth
     if (!isNaN(this.audio.duration)) {
       this.skPlayerPlayed.style.width = Util.percentFormat(percent)
       this.audio.currentTime = percent * this.audio.duration
@@ -232,8 +231,7 @@ class SKPlayer extends PureComponent {
   volumelineClick = event => {
     let e = event || window.event
     let percent =
-      (e.clientX - Util.leftDistance(this.volumelineTotal)) /
-      this.volumelineTotal.clientWidth
+      (e.clientX - Util.leftDistance(this.volumelineTotal)) / this.volumelineTotal.clientWidth
     this.volumelineValue.style.width = Util.percentFormat(percent)
     this.audio.volume = percent
     if (this.audio.muted) {
@@ -244,8 +242,7 @@ class SKPlayer extends PureComponent {
   // 更新播放进度条
   updateLine = () => {
     let percent = this.audio.buffered.length
-      ? this.audio.buffered.end(this.audio.buffered.length - 1) /
-        this.audio.duration
+      ? this.audio.buffered.end(this.audio.buffered.length - 1) / this.audio.duration
       : 0
     this.skPlayerLoaded.style.width = Util.percentFormat(percent)
   }
@@ -364,11 +361,7 @@ class SKPlayer extends PureComponent {
           loop={mode === 'singleloop'}
           muted={muted}
         />
-        <Transition
-          visible={listshow}
-          animation="horizontal flip"
-          duration={600}
-        >
+        <Transition visible={listshow} animation="horizontal flip" duration={600}>
           <ul ref={c => (this.musiclist = c)} class={cx('skPlayer-list')}>
             {this.template()}
           </ul>
@@ -392,53 +385,29 @@ class SKPlayer extends PureComponent {
           <div class={cx('skPlayer-control')}>
             <p class={cx('skPlayer-name')}>{curMusic.name}</p>
             <p class={cx('skPlayer-author')}>{curMusic.author}</p>
-            <div
-              ref={c => (this.skPlayerPercent = c)}
-              class={cx('skPlayer-percent')}
-            >
-              <div
-                ref={c => (this.skPlayerLoaded = c)}
-                class={cx('skPlayer-line-loading')}
-              />
-              <div
-                ref={c => (this.skPlayerPlayed = c)}
-                class={cx('skPlayer-line')}
-              />
+            <div ref={c => (this.skPlayerPercent = c)} class={cx('skPlayer-percent')}>
+              <div ref={c => (this.skPlayerLoaded = c)} class={cx('skPlayer-line-loading')} />
+              <div ref={c => (this.skPlayerPlayed = c)} class={cx('skPlayer-line')} />
             </div>
             <p class={cx('skPlayer-time')}>
               <span class={cx('skPlayer-cur')}>{timetext_total}</span>/
               <span class="skPlayer-total">{timetext_played}</span>
             </p>
-            <div
-              class={cx('skPlayer-volume')}
-              style={this.isMobile ? 'display:none;' : ''}
-            >
+            <div class={cx('skPlayer-volume')} style={this.isMobile ? 'display:none;' : ''}>
               <i
                 ref={c => (this.volumebutton = c)}
                 class={cx('skPlayer-icon', muted && 'skPlayer-quiet')}
               />
-              <div
-                ref={c => (this.volumelineTotal = c)}
-                class={cx('skPlayer-percent')}
-              >
-                <div
-                  ref={c => (this.volumelineValue = c)}
-                  class={cx('skPlayer-line')}
-                />
+              <div ref={c => (this.volumelineTotal = c)} class={cx('skPlayer-percent')}>
+                <div ref={c => (this.volumelineValue = c)} class={cx('skPlayer-line')} />
               </div>
             </div>
-            <div
-              ref={c => (this.switchbutton = c)}
-              class={cx('skPlayer-list-switch')}
-            >
+            <div ref={c => (this.switchbutton = c)} class={cx('skPlayer-list-switch')}>
               <i class="fa fa-list-ul" aria-hidden="true" />
             </div>
             <i
               ref={c => (this.modebutton = c)}
-              class={cx(
-                'skPlayer-mode',
-                mode === 'singleloop' && 'skPlayer-mode-loop'
-              )}
+              class={cx('skPlayer-mode', mode === 'singleloop' && 'skPlayer-mode-loop')}
             />
           </div>
         </div>

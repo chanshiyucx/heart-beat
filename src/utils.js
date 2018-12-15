@@ -24,11 +24,10 @@ export const formatPost = (post, index) => {
 }
 
 // 预加载图片
-export async function loadImg({ images, width, height }) {
+export const loadImg = async ({ images }) => {
   return new Promise(resolve => {
-    const seq = images.map(cover => {
+    const seq = images.map(img => {
       return new Promise(resolve => {
-        const src = `${cover}?imageView2/2/w/${width}/h/${height}`
         let imgObj = new Image()
         imgObj.onload = () => {
           resolve()
@@ -36,7 +35,7 @@ export async function loadImg({ images, width, height }) {
         imgObj.onerror = () => {
           resolve()
         }
-        imgObj.src = src
+        imgObj.src = img
       })
     })
     Promise.all(seq)

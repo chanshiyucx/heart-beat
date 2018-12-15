@@ -21,7 +21,7 @@ class Archives extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false,
+      renderGitalk: false
     }
   }
 
@@ -32,7 +32,7 @@ class Archives extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { archives: [] },
+      payload: { archives: [] }
     })
   }
 
@@ -46,7 +46,7 @@ class Archives extends PureComponent {
   prev = () => {
     this.props.dispatch({
       type: 'global/queryArchives',
-      payload: { queryType: 'prev' },
+      payload: { queryType: 'prev' }
     })
   }
 
@@ -54,7 +54,7 @@ class Archives extends PureComponent {
   next = () => {
     this.props.dispatch({
       type: 'global/queryArchives',
-      payload: { queryType: 'next' },
+      payload: { queryType: 'next' }
     })
   }
 
@@ -69,7 +69,7 @@ class Archives extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '归档',
+          title: '归档'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -86,7 +86,7 @@ class Archives extends PureComponent {
       <div class={cx('container')}>
         <Transition
           visible={!loading && !showLoading}
-          animation='drop'
+          animation="drop"
           duration={600}
           onHide={this.onHide}
           onShow={this.renderGitalk}
@@ -96,30 +96,22 @@ class Archives extends PureComponent {
             <div class={cx('content')}>
               {archives.map((o, i) => {
                 const color = colors[i]
-                return (<Archive key={i} color={color} {...o} />)
+                return <Archive key={i} color={color} {...o} />
               })}
             </div>
             <div class={cx('pagination')}>
-              <button
-                disabled={page <= 1}
-                class={cx('prevBtn')}
-                onClick={this.prev}
-              >
+              <button disabled={page <= 1} class={cx('prevBtn')} onClick={this.prev}>
                 前一页
               </button>
               <span>{page}</span>
-              <button
-                disabled={page >= maxPage}
-                class={cx('nextBtn')}
-                onClick={this.next}
-              >
+              <button disabled={page >= maxPage} class={cx('nextBtn')} onClick={this.next}>
                 后一页
               </button>
             </div>
           </div>
         </Transition>
 
-        {enableGitalk && <div id='gitalk' />}
+        {enableGitalk && <div id="gitalk" />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )
@@ -129,5 +121,5 @@ class Archives extends PureComponent {
 export default connect(({ global, loading }) => ({
   totalList: global.totalList,
   archives: global.archives,
-  loading: loading.effects['global/queryArchives'],
+  loading: loading.effects['global/queryArchives']
 }))(Archives)

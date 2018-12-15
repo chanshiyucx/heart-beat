@@ -7,7 +7,7 @@ const { loadingImg } = config
 const cx = classNames.bind(styles)
 
 const Loading = ({ className }) => {
-   return (<img class={cx('loading', className)} src={loadingImg} alt="" />)
- }
+  return <img class={cx('loading', className)} src={loadingImg} alt="" />
+}
 
- export default Loading
+export default Loading

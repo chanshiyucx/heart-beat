@@ -41,7 +41,7 @@ export default {
     lastTipsUpdateAt: '', // 最后一次更新 tips
 
     isLikeSite: false, // 是否已点赞
-    likeTimes: 0 //点赞次数
+    likeTimes: 0 // 点赞次数
   },
   reducers: {
     updateState(state, { payload }) {
@@ -54,7 +54,7 @@ export default {
       const totalList = yield call(queryTotal, payload)
       let length = totalList.length
       _.forEach(totalList, (post, index) => {
-        formatPost(post, length - 1 - index)
+        formatPost(post, length - index - 1)
       })
       yield put({ type: 'updateState', payload: { totalList } })
     },
@@ -84,14 +84,11 @@ export default {
         } else if (queryType === 'next') {
           const startInx = totalList.findIndex(o => o.id === postList[3].id)
           for (let i = 1; i < 5; i++) {
-            const addInx =
-              startInx + i < length ? startInx + i : startInx + i - length
+            const addInx = startInx + i < length ? startInx + i : startInx + i - length
             nextPostList.push(totalList[addInx])
           }
         } else if (queryType === 'add') {
-          const endInx = totalList.findIndex(
-            o => o.id === postList[postList.length - 1].id
-          )
+          const endInx = totalList.findIndex(o => o.id === postList[postList.length - 1].id)
           for (let i = 1; i < 5; i++) {
             const addInx = endInx + i
             if (addInx >= totalList.length) continue
@@ -127,9 +124,7 @@ export default {
         yield take('queryTotal/@@end')
         totalList = yield select(state => state.global.totalList)
       }
-      let index = totalList.findIndex(
-        post => post.number === parseInt(payload.number, 10)
-      )
+      let index = totalList.findIndex(post => post.number === parseInt(payload.number, 10))
       // 若文章不存在则跳转首页
       if (!totalList[index]) {
         router.push('/')
@@ -196,12 +191,7 @@ export default {
       // 筛选 tags 【Friends, Books, About, Mood】
       const filterTags = tags.filter(o => {
         const { name } = o
-        return !(
-          name === 'Friends' ||
-          name === 'Books' ||
-          name === 'About' ||
-          name === 'Mood'
-        )
+        return !(name === 'Friends' || name === 'Books' || name === 'About' || name === 'Mood')
       })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {

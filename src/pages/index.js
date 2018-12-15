@@ -17,7 +17,7 @@ class Home extends PureComponent {
     this.state = {
       showLoading: true,
       disabled: false,
-      addEventListener: false,
+      addEventListener: false
     }
   }
 
@@ -35,7 +35,7 @@ class Home extends PureComponent {
     if (this.props.loading) return
     this.props.dispatch({
       type: 'global/queryList',
-      payload: { queryType },
+      payload: { queryType }
     })
   }
 
@@ -44,7 +44,7 @@ class Home extends PureComponent {
     this.setState({ showLoading: true })
   }
 
-  // 获取文章列表 
+  // 获取文章列表
   getPostListNode = () => {
     // 对于移动端只展示第一次动画
     if (isMobile) {
@@ -61,10 +61,7 @@ class Home extends PureComponent {
     let target
     if (e.target.tagName.toUpperCase() === 'A') {
       target = e.target
-    } else if (
-      e.target.parentElement &&
-      e.target.parentElement.tagName.toUpperCase() === 'A'
-    ) {
+    } else if (e.target.parentElement && e.target.parentElement.tagName.toUpperCase() === 'A') {
       target = e.target.parentElement
     } else if (
       e.target.parentElement &&
@@ -79,7 +76,7 @@ class Home extends PureComponent {
     const tips = `要去看看<font color=#f6f> ${title} </font>吗？`
     this.props.dispatch({
       type: 'global/showTips',
-      payload: { tips },
+      payload: { tips }
     })
   }
 
@@ -93,7 +90,7 @@ class Home extends PureComponent {
     }
     this.props.dispatch({
       type: 'global/showTips',
-      payload: { tips },
+      payload: { tips }
     })
   }
 
@@ -106,7 +103,7 @@ class Home extends PureComponent {
             onClick={() => this.queryList('prev')}
             onMouseMove={() => this.handleMouseOver('prev')}
           >
-            <i className="fa fa-angle-double-left" aria-hidden="true"></i>
+            <i className="fa fa-angle-double-left" aria-hidden="true" />
           </button>
 
           <Transition
@@ -117,15 +114,9 @@ class Home extends PureComponent {
             onShow={this.getPostListNode}
           >
             <div>
-              <div class={cx('post-list')} ref={c => this.postListNode = c}>
+              <div class={cx('post-list')} ref={c => (this.postListNode = c)}>
                 {postList.map((post, index) => {
-                  return (
-                    <PostCard
-                      key={post.id}
-                      {...post}
-                      gotoCat={this.gotoCat}
-                    />
-                  )
+                  return <PostCard key={post.id} {...post} gotoCat={this.gotoCat} />
                 })}
               </div>
             </div>
@@ -137,11 +128,11 @@ class Home extends PureComponent {
             onClick={() => this.queryList('next')}
             onMouseMove={() => this.handleMouseOver('next')}
           >
-            <i className="fa fa-angle-double-right" aria-hidden="true"></i>
+            <i className="fa fa-angle-double-right" aria-hidden="true" />
           </button>
           {totalList.length !== postList.length && (
             <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
-              <i className="fa fa-angle-double-down" aria-hidden="true"></i>
+              <i className="fa fa-angle-double-down" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -153,5 +144,5 @@ class Home extends PureComponent {
 export default connect(({ global, loading }) => ({
   totalList: global.totalList,
   postList: global.postList,
-  loading: loading.effects['global/queryList'],
+  loading: loading.effects['global/queryList']
 }))(Home)

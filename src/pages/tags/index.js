@@ -23,13 +23,13 @@ class Tags extends PureComponent {
       showLoading: true,
       renderGitalk: false,
       filterTitle: '',
-      filterPost: [],
+      filterPost: []
     }
   }
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryTags',
+      type: 'global/queryTags'
     })
   }
   componentWillReceiveProps(nextProps) {
@@ -41,31 +41,34 @@ class Tags extends PureComponent {
   componentWillUnmount() {
     this.props.dispatch({
       type: 'global/updateState',
-      payload: { tags: [] },
+      payload: { tags: [] }
     })
   }
 
   // 筛选文章
   filterPost = tag => {
-    this.props.dispatch({
-      type: 'global/filterPost',
-      payload: {
-        type: 'labels',
-        filter: tag,
-      },
-    }).then(v => {
-      this.setState({
-        filterTitle: tag,
-        filterPost: v,
+    this.props
+      .dispatch({
+        type: 'global/filterPost',
+        payload: {
+          type: 'labels',
+          filter: tag
+        }
       })
-    }).catch(console.error)
+      .then(v => {
+        this.setState({
+          filterTitle: tag,
+          filterPost: v
+        })
+      })
+      .catch(console.error)
   }
 
   // 清空文章
   clearFilter = () => {
     this.setState({
       filterTitle: '',
-      filterPost: [],
+      filterPost: []
     })
   }
 
@@ -75,7 +78,7 @@ class Tags extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '标签',
+          title: '标签'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -88,7 +91,7 @@ class Tags extends PureComponent {
       <div class={cx('container')}>
         <Transition
           visible={!loading && !showLoading}
-          animation='drop'
+          animation="drop"
           duration={600}
           onShow={this.renderGitalk}
         >
@@ -104,23 +107,19 @@ class Tags extends PureComponent {
                 )
               })}
             </div>
-            <Transition
-              visible={filterPost.length}
-              animation='fade down'
-              duration={600}
-            >
+            <Transition visible={filterPost.length} animation="fade down" duration={600}>
               <div class={cx('filter-post')}>
                 <div>
                   <span>Tag:</span>
                   <button onClick={this.clearFilter}>
                     {filterTitle}
-                    <i className="fa fa-times" aria-hidden="true"></i>
+                    <i className="fa fa-times" aria-hidden="true" />
                   </button>
                 </div>
                 <div class={cx('content')}>
                   {filterPost.map((o, i) => {
                     const color = colors[i]
-                    return (<Archive key={i} color={color} {...o} />)
+                    return <Archive key={i} color={color} {...o} />
                   })}
                 </div>
               </div>
@@ -128,7 +127,7 @@ class Tags extends PureComponent {
           </div>
         </Transition>
 
-        {enableGitalk && <div id='gitalk' />}
+        {enableGitalk && <div id="gitalk" />}
         {showLoading && <Loading className={cx('loading')} />}
       </div>
     )
