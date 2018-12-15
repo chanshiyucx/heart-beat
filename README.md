@@ -6,6 +6,8 @@
 
 [![Email](https://img.shields.io/badge/Emali%20me-me@chanshiyu.com-green.svg?style=flat-square)](me@chanshiyu.com)
 
+![蝉时雨](https://i.loli.net/2018/12/15/5c15047d6d235.png)
+
 HeartBeat 一个基于 UmiJs 开发的 SPA 单页面博客应用程序，后台数据源依托于 [Github Issues](https://developer.github.com/v3/issues/)，前端框架使用 [UmiJS](https://umijs.org/)。此外，还使用开源项目 [Gitalk](https://github.com/gitalk/gitalk) 作为博客的评论系统，该主题核心基于 Github 全家桶食用。
 
 技术栈：UmiJS + Github Issues + Gitalk
