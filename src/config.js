@@ -259,7 +259,7 @@ export default {
   /**
    * 加载动画
    */
-  loadingImg: 'https://i.loli.net/2018/12/09/5c0cc2b04c976.gif',
+  loadingImg: 'https://i.loli.net/2018/12/15/5c14be28964d2.gif',
 
   /**
    * 主题配色，目前主要用于文章、说说、关于等卡片配色，以后可能会有其他用途

@@ -52,10 +52,8 @@ export default {
     // 所有文章
     *queryTotal({ payload }, { call, put }) {
       const totalList = yield call(queryTotal, payload)
-      let length = totalList.length
-      _.forEach(totalList, (post, index) => {
-        formatPost(post, length - index - 1)
-      })
+      const length = totalList.length
+      _.forEach(totalList, (post, index) => formatPost(post, index, length))
       yield put({ type: 'updateState', payload: { totalList } })
     },
 
@@ -101,12 +99,9 @@ export default {
       } else {
         nextPostList = totalList.slice(0, 4)
       }
-      let images = []
-      _.forEach(nextPostList, post => {
-        images.push(post.cover)
-      })
       nextPostList = yield call(queryHot, { postList: nextPostList }) // 获取热度
-      yield call(loadImg, { images, width: 240, height: 135 }) // 加载预览图
+      const images = _.map(nextPostList, post => post.cover)
+      yield call(loadImg, { images }) // 加载预览图
       const delayTime = new Date() - startTime
       if (delayTime < minDelay && queryType !== 'add') {
         yield call(delay, minDelay - delayTime)
@@ -124,7 +119,7 @@ export default {
         yield take('queryTotal/@@end')
         totalList = yield select(state => state.global.totalList)
       }
-      let index = totalList.findIndex(post => post.number === parseInt(payload.number, 10))
+      const index = totalList.findIndex(post => post.number === parseInt(payload.number, 10))
       // 若文章不存在则跳转首页
       if (!totalList[index]) {
         router.push('/')
@@ -132,8 +127,10 @@ export default {
       }
       // 前篇和后篇
       let post = totalList[index]
-      let prevPost = totalList[index - 1] || totalList[totalList.length - 1]
-      let nextPost = totalList[index + 1] || totalList[0]
+      const prev = index - 1 > 0 ? index - 1 : totalList.length - 1
+      const next = index + 1 < totalList.length ? index + 1 : 0
+      let prevPost = totalList[prev]
+      let nextPost = totalList[next]
       post = yield call(queryPostHot, { post })
       prevPost = yield call(queryPostHot, { post: prevPost, add: false })
       nextPost = yield call(queryPostHot, { post: nextPost, add: false })
@@ -149,7 +146,7 @@ export default {
       const startTime = new Date()
       const state = yield select(state => state.global)
       let { totalList, archives } = state
-      // 说说列表不存在先获取说说
+      // 文章列表不存在先获取文章
       if (!totalList.length) {
         yield put({ type: 'queryTotal' })
         yield take('queryTotal/@@end')
@@ -288,7 +285,6 @@ export default {
   // 启动
   subscriptions: {
     setup({ dispatch }) {
-      dispatch({ type: 'queryTotal' }) // 获取所有文章
       dispatch({ type: 'loadStorage' }) // 加载本地缓存
     }
   }

@@ -11,6 +11,11 @@ import config from '../config'
 const { backstretch } = config
 
 class App extends PureComponent {
+  componentWillMount() {
+    // 预加载 loading 图
+    
+  }
+
   componentDidMount() {
     // 动态背景
     window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
