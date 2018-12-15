@@ -24,6 +24,8 @@ npm install # or yarn
 
 修改目录 `src/config.js` 的配置文件，每个配置项都有详细说明。
 
+注意修改项目目录下 `.umirc.js` 的 `title` 为自己的站点标题！
+
 页面模板参考： [文章、关于、标签、分类、书单等模板](https://github.com/chanshiyucx/Blog/issues)
 
 ### Preview
