@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react"
 
 class LazyImage extends PureComponent {
   constructor(props) {
@@ -6,7 +6,7 @@ class LazyImage extends PureComponent {
     const { width, height } = this.props
     this.state = {
       width,
-      height,
+      height
     }
   }
 
@@ -38,7 +38,7 @@ class LazyImage extends PureComponent {
   }
 
   render({ className, alt }, { src }) {
-    return (<img class={className} src={src} alt={alt} />)
+    return <img class={className} src={src} alt={alt} />
   }
 }
 

@@ -8,8 +8,6 @@ const { covers } = config
 export const isMobile =
   /mobile/i.test(window.navigator.userAgent) || document.body.clientWidth < 1200
 
-console.log('isMobile-->', isMobile)
-
 // 延时
 export const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
@@ -26,7 +24,7 @@ export const formatPost = (post, index) => {
 }
 
 // 预加载图片
-export async function loadImgs({ images, width, height }) {
+export async function loadImg({ images, width, height }) {
   return new Promise(resolve => {
     const seq = images.map(cover => {
       return new Promise(resolve => {

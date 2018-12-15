@@ -21,8 +21,8 @@ export async function queryTotal() {
     checkStatus(response)
     const data = await response.json()
     return data
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -34,8 +34,8 @@ export async function queryCats() {
     checkStatus(response)
     const data = await response.json()
     return data
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -47,8 +47,8 @@ export async function queryTags() {
     checkStatus(response)
     const data = await response.json()
     return data
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -60,42 +60,44 @@ export async function queryFilterPost({ type, filter }) {
     checkStatus(response)
     const data = await response.json()
     return data
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
 // 说说总数
 export async function queryMoodTotal() {
   try {
-    const url = `${blog}/issues?${closed}&labels=mood&page=1&per_page=300&${token}`
+    const url = `${blog}/issues?${closed}&labels=mood&page=1&per_page=200&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
     return data
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
 // 书单 && 友链 && 关于
 export async function queryPage({ type }) {
-  let upperType = type.replace(/^\S/,function(s) {return s.toUpperCase()})
+  let upperType = type.replace(/^\S/, function(s) {
+    return s.toUpperCase()
+  })
   try {
     const url = `${blog}/issues?${closed}&labels=${upperType}&${token}`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()
     return data[0]
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
 }
 
 // 文章热度
 export async function queryHot({ postList }) {
   return new Promise(resolve => {
-    if (window.location.href.includes('http://localhost:8000/')) {
+    if (window.location.href.includes('http://localhost')) {
       resolve(postList)
     }
     const seq = postList.map(o => {
@@ -125,7 +127,8 @@ export async function queryHot({ postList }) {
                 })
                 .catch(console.error)
             }
-          }).catch(console.error)
+          })
+          .catch(console.error)
       }).catch(console.error)
     })
 
@@ -140,7 +143,7 @@ export async function queryHot({ postList }) {
 // 增加热度
 export async function queryPostHot({ post, add = true }) {
   return new Promise(resolve => {
-    if (window.location.href.includes('http://localhost:8000/')) {
+    if (window.location.href.includes('http://localhost')) {
       add = false
     }
     const query = new AV.Query('Counter')
@@ -208,7 +211,7 @@ export async function likeSite(params) {
           newcounter.set('time', 1)
           newcounter
             .save()
-            .then((counter) => {
+            .then(counter => {
               resolve(counter.get('time'))
             })
             .catch(console.error)

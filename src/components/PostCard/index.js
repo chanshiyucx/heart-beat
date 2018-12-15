@@ -2,7 +2,6 @@ import Link from 'umi/link'
 import classNames from 'classnames/bind'
 
 import MarkeDown from '../MarkDown'
-import LazyImage from '../LazyImage'
 import styles from './index.less'
 
 const cx = classNames.bind(styles)
@@ -21,7 +20,7 @@ const PostCard = ({
     <div class={cx('card')}>
       <Link to={`/post/${number}`} data-title={title}>
         <div class={cx('header')}>
-          <LazyImage src={cover} width={240} height={135} alt="" />
+          <img src={cover} alt="" />
           <h3>{title}</h3>
         </div>
         <MarkeDown className={cx('desc')} content={desc} />
