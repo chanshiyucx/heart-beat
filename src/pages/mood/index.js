@@ -8,6 +8,7 @@ import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
 import Quote from '../../components/Quote'
 import Segment from '../../components/Segment'
+import Pagination from '../../components/Pagination'
 import config from '../../config'
 import styles from './index.less'
 
@@ -21,46 +22,59 @@ class Mood extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false
+      renderGitalk: false,
+      mood: [],
+      currList: [],
+      pageSize: 10,
+      page: 1,
+      maxPage: 1
     }
   }
 
   componentDidMount() {
-    this.next()
+    this.queryMood()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.loading && nextProps.mood.length) {
-      this.setState({ showLoading: false })
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.dispatch({
-      type: 'global/updateState',
-      payload: { mood: [] }
-    })
+  // 获取心情列表
+  queryMood() {
+    this.props
+      .dispatch({
+        type: 'global/queryMood'
+      })
+      .then(v => {
+        const currList = v.slice(0, this.state.pageSize)
+        const maxPage = Math.ceil(v.length / this.state.pageSize)
+        this.setState({
+          showLoading: false,
+          mood: v,
+          currList,
+          page: 1,
+          maxPage
+        })
+      })
+      .catch(console.error)
   }
 
   // 前一页
   prev = () => {
-    this.props.dispatch({
-      type: 'global/queryMood',
-      payload: { queryType: 'prev' }
+    const { mood, page, pageSize } = this.state
+    const prevPage = page - 1
+    const currList = mood.slice((prevPage - 1) * pageSize, (page - 1) * pageSize)
+    this.setState({
+      currList,
+      page: prevPage
     })
   }
 
   // 后一页
   next = () => {
-    this.props.dispatch({
-      type: 'global/queryMood',
-      payload: { queryType: 'next' }
+    const { mood, page, pageSize } = this.state
+    const nextPage = page + 1
+    const currList = mood.slice(page * pageSize, nextPage * pageSize)
+    this.setState({
+      currList,
+      page: nextPage
     })
-  }
-
-  // 卡片隐藏展示 Loading
-  onHide = () => {
-    this.setState({ showLoading: true })
   }
 
   // 渲染评论
@@ -77,38 +91,25 @@ class Mood extends PureComponent {
     }
   }
 
-  render({ totalMood, mood, loading }, { showLoading }) {
-    const index = mood.length && totalMood.findIndex(o => o.id === mood[0].id)
-    const page = index / 6 + 1
-    const maxPage = Math.ceil(totalMood.length / 6)
-
+  render({}, { showLoading, currList, page, maxPage }) {
     return (
       <div class={cx('container')}>
         <Transition
-          visible={!loading && !showLoading}
+          visible={!showLoading}
           animation="drop"
           duration={600}
-          onHide={this.onHide}
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
             <Quote text={qoute} />
             <div class={cx('content')}>
-              {mood.map((o, i) => {
+              {currList.map((o, i) => {
                 const date = o.created_at.slice(0, 10)
                 const color = colors[i]
                 return <Segment key={o.id} color={color} title={date} content={o.body} />
               })}
             </div>
-            <div class={cx('pagination')}>
-              <button disabled={page <= 1} class={cx('prevBtn')} onClick={this.prev}>
-                前一页
-              </button>
-              <span>{page}</span>
-              <button disabled={page >= maxPage} class={cx('nextBtn')} onClick={this.next}>
-                后一页
-              </button>
-            </div>
+            <Pagination prev={this.prev} next={this.next} page={page} maxPage={maxPage} />
           </div>
         </Transition>
 
@@ -119,8 +120,4 @@ class Mood extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  totalMood: global.totalMood,
-  mood: global.mood,
-  loading: loading.effects['global/queryMood']
-}))(Mood)
+export default connect(() => ({}))(Mood)

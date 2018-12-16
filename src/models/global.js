@@ -26,11 +26,8 @@ export default {
     prevPost: {}, // 前篇文章
     nextPost: {}, // 后篇文章
 
-    archives: [], // 归档
     cats: [], // 分类
     tags: [], // 标签
-
-    totalMood: [], // 所有心情列表
     mood: [], // 心情
 
     about: {}, // 关于
@@ -142,32 +139,20 @@ export default {
     },
 
     // 归档文章
-    *queryArchives({ payload }, { select, take, call, put }) {
+    *queryArchives({}, { select, take, call, put }) {
       const startTime = new Date()
       const state = yield select(state => state.global)
-      let { totalList, archives } = state
-      // 文章列表不存在先获取文章
+      let { totalList } = state
       if (!totalList.length) {
         yield put({ type: 'queryTotal' })
         yield take('queryTotal/@@end')
         totalList = yield select(state => state.global.totalList)
       }
-      const { queryType } = payload
-      // 直接根据当前归档的角标来截取
-      if (archives.length) {
-        // 计算当前页
-        const index = totalList.findIndex(o => o.id === archives[0].id)
-        const curPage = index / 12 + 1
-        const nextPage = queryType === 'next' ? curPage + 1 : curPage - 1
-        archives = totalList.slice((nextPage - 1) * 12, nextPage * 12)
-      } else {
-        archives = totalList.slice(0, 12)
-      }
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
         yield call(delay, minDelay - delayTime)
       }
-      yield put({ type: 'updateState', payload: { archives } })
+      return totalList
     },
 
     // 分类列表
@@ -198,44 +183,33 @@ export default {
     },
 
     // 根据分类和标签筛选文章
-    *filterPost({ payload }, { call, put }) {
+    *filterPost({ payload }, { call }) {
       const filterPost = yield call(queryFilterPost, payload)
       return filterPost
     },
 
     // 说说列表
     *queryMoodTotal({ payload }, { call, put }) {
-      const totalMood = yield call(queryMoodTotal, payload)
-      yield put({ type: 'updateState', payload: { totalMood } })
+      const mood = yield call(queryMoodTotal, payload)
+      yield put({ type: 'updateState', payload: { mood } })
     },
 
     // 当前说说
-    *queryMood({ payload }, { select, take, call, put }) {
+    *queryMood({}, { select, take, call, put }) {
       const startTime = new Date()
       const state = yield select(state => state.global)
-      let { totalMood, mood } = state
+      let { mood } = state
       // 说说列表不存在先获取说说
-      if (!totalMood.length) {
+      if (!mood.length) {
         yield put({ type: 'queryMoodTotal' })
         yield take('queryMoodTotal/@@end')
-        totalMood = yield select(state => state.global.totalMood)
-      }
-      const { queryType } = payload
-      // 直接根据当前说说的角标来截取
-      if (mood.length) {
-        // 计算当前页
-        const index = totalMood.findIndex(o => o.id === mood[0].id)
-        const curPage = index / 6 + 1
-        const nextPage = queryType === 'next' ? curPage + 1 : curPage - 1
-        mood = totalMood.slice((nextPage - 1) * 6, nextPage * 6)
-      } else {
-        mood = totalMood.slice(0, 6)
+        mood = yield select(state => state.global.mood)
       }
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
         yield call(delay, minDelay - delayTime)
       }
-      yield put({ type: 'updateState', payload: { mood } })
+      return mood
     },
 
     // 书单/友链/关于

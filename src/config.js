@@ -118,8 +118,11 @@ export default {
     qoute: '列卒周匝，星罗云布'
   },
 
+  //【Mood, Books, Friends, About】打上 Labels 分别对应心情、书单、友链、关于页面
+  // 模板查看: https://github.com/chanshiyucx/Blog/issues?q=is%3Aissue+is%3Aclosed
+
   /**
-   * 说说页面
+   * 心情页面
    */
   moodOption: {
     enableGitalk: true,

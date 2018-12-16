@@ -8,6 +8,7 @@ import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
 import Archive from '../../components/Archive'
 import Quote from '../../components/Quote'
+import Pagination from '../../components/Pagination'
 import config from '../../config'
 import styles from './index.less'
 
@@ -21,46 +22,59 @@ class Archives extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      renderGitalk: false
+      renderGitalk: false,
+      archives: [],
+      currList: [],
+      pageSize: 12,
+      page: 1,
+      maxPage: 1
     }
   }
 
   componentDidMount() {
-    this.next()
+    this.queryArchives()
   }
 
-  componentWillUnmount() {
-    this.props.dispatch({
-      type: 'global/updateState',
-      payload: { archives: [] }
-    })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.loading && nextProps.archives.length) {
-      this.setState({ showLoading: false })
-    }
+  // 获取文章列表
+  queryArchives() {
+    this.props
+      .dispatch({
+        type: 'global/queryArchives'
+      })
+      .then(v => {
+        const currList = v.slice(0, this.state.pageSize)
+        const maxPage = Math.ceil(v.length / this.state.pageSize)
+        this.setState({
+          showLoading: false,
+          archives: v,
+          currList,
+          page: 1,
+          maxPage
+        })
+      })
+      .catch(console.error)
   }
 
   // 前一页
   prev = () => {
-    this.props.dispatch({
-      type: 'global/queryArchives',
-      payload: { queryType: 'prev' }
+    const { archives, page, pageSize } = this.state
+    const prevPage = page - 1
+    const currList = archives.slice((prevPage - 1) * pageSize, (page - 1) * pageSize)
+    this.setState({
+      currList,
+      page: prevPage
     })
   }
 
   // 后一页
   next = () => {
-    this.props.dispatch({
-      type: 'global/queryArchives',
-      payload: { queryType: 'next' }
+    const { archives, page, pageSize } = this.state
+    const nextPage = page + 1
+    const currList = archives.slice(page * pageSize, nextPage * pageSize)
+    this.setState({
+      currList,
+      page: nextPage
     })
-  }
-
-  // 卡片隐藏展示 Loading
-  onHide = () => {
-    this.setState({ showLoading: true })
   }
 
   // 渲染评论
@@ -77,37 +91,24 @@ class Archives extends PureComponent {
     }
   }
 
-  render({ totalList, archives, loading }, { showLoading }) {
-    const index = archives.length && totalList.findIndex(o => o.id === archives[0].id)
-    const page = index / 12 + 1
-    const maxPage = Math.ceil(totalList.length / 12)
-
+  render({}, { showLoading, currList, page, maxPage }) {
     return (
       <div class={cx('container')}>
         <Transition
-          visible={!loading && !showLoading}
+          visible={!showLoading}
           animation="drop"
           duration={600}
-          onHide={this.onHide}
           onShow={this.renderGitalk}
         >
           <div class={cx('body')}>
             <Quote text={qoute} />
             <div class={cx('content')}>
-              {archives.map((o, i) => {
+              {currList.map((o, i) => {
                 const color = colors[i]
                 return <Archive key={i} color={color} {...o} />
               })}
             </div>
-            <div class={cx('pagination')}>
-              <button disabled={page <= 1} class={cx('prevBtn')} onClick={this.prev}>
-                前一页
-              </button>
-              <span>{page}</span>
-              <button disabled={page >= maxPage} class={cx('nextBtn')} onClick={this.next}>
-                后一页
-              </button>
-            </div>
+            <Pagination prev={this.prev} next={this.next} page={page} maxPage={maxPage} />
           </div>
         </Transition>
 
@@ -118,8 +119,4 @@ class Archives extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  totalList: global.totalList,
-  archives: global.archives,
-  loading: loading.effects['global/queryArchives']
-}))(Archives)
+export default connect(() => ({}))(Archives)

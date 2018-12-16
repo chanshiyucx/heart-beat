@@ -8,6 +8,7 @@ import Transition from '../../components/Transition'
 import Loading from '../../components/Loading'
 import Archive from '../../components/Archive'
 import Quote from '../../components/Quote'
+import Pagination from '../../components/Pagination'
 import config from '../../config'
 import styles from './index.less'
 
@@ -23,7 +24,11 @@ class Categories extends PureComponent {
       showLoading: true,
       renderGitalk: false,
       filterTitle: '',
-      filterPost: []
+      filterPost: [],
+      currList: [],
+      pageSize: 10,
+      page: 1,
+      maxPage: 1
     }
   }
 
@@ -57,9 +62,14 @@ class Categories extends PureComponent {
         }
       })
       .then(v => {
+        const currList = v.slice(0, this.state.pageSize)
+        const maxPage = Math.ceil(v.length / this.state.pageSize)
         this.setState({
           filterTitle: cat.title,
-          filterPost: v
+          filterPost: v,
+          currList,
+          page: 1,
+          maxPage
         })
       })
       .catch(console.error)
@@ -69,7 +79,32 @@ class Categories extends PureComponent {
   clearFilter = () => {
     this.setState({
       filterTitle: '',
-      filterPost: []
+      filterPost: [],
+      currList: [],
+      page: 1,
+      maxPage: 1
+    })
+  }
+
+  // 前一页
+  prev = () => {
+    const { filterPost, page, pageSize } = this.state
+    const prevPage = page - 1
+    const currList = filterPost.slice((prevPage - 1) * pageSize, (page - 1) * pageSize)
+    this.setState({
+      currList,
+      page: prevPage
+    })
+  }
+
+  // 后一页
+  next = () => {
+    const { filterPost, page, pageSize } = this.state
+    const nextPage = page + 1
+    const currList = filterPost.slice(page * pageSize, nextPage * pageSize)
+    this.setState({
+      currList,
+      page: nextPage
     })
   }
 
@@ -87,7 +122,7 @@ class Categories extends PureComponent {
     }
   }
 
-  render({ cats, loading }, { showLoading, filterTitle, filterPost }) {
+  render({ cats, loading }, { showLoading, filterTitle, currList, page, maxPage }) {
     return (
       <div class={cx('container')}>
         <Transition
@@ -125,21 +160,22 @@ class Categories extends PureComponent {
                 )
               })}
             </div>
-            <Transition visible={filterPost.length} animation="fade down" duration={600}>
+            <Transition visible={currList.length} animation="fade down" duration={600}>
               <div>
                 <div>
                   <span>Category:</span>
-                  <button onClick={this.clearFilter}>
+                  <button class={cx('menu-btn')} onClick={this.clearFilter}>
                     {filterTitle}
                     <i className="fa fa-times" aria-hidden="true" />
                   </button>
                 </div>
                 <div class={cx('content')}>
-                  {filterPost.map((o, i) => {
+                  {currList.map((o, i) => {
                     const color = colors[i]
                     return <Archive key={i} color={color} {...o} />
                   })}
                 </div>
+                <Pagination prev={this.prev} next={this.next} page={page} maxPage={maxPage} />
               </div>
             </Transition>
           </div>
