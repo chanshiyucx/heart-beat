@@ -199,7 +199,7 @@ export default {
   backstretch: {
     bgImg: [
       'https://i.loli.net/2018/12/09/5c0cc0f409d63.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc0faef46c.jpg',
+      'https://i.loli.net/2018/12/16/5c164034ac74c.jpg',
       'https://i.loli.net/2018/12/09/5c0cc1010f9e5.jpg',
       'https://i.loli.net/2018/12/09/5c0cc108c3b5c.jpg',
       'https://i.loli.net/2018/12/09/5c0cc10d3d771.jpg',
@@ -210,7 +210,7 @@ export default {
       'https://i.loli.net/2018/12/09/5c0cc1268cd42.jpg'
     ],
     bgOption: {
-      duration: 10000,
+      duration: 8000,
       fade: 1000,
       animateFirst: false
     }
@@ -311,12 +311,19 @@ export default {
     'https://i.loli.net/2018/12/09/5c0cc2487465c.jpg',
     'https://i.loli.net/2018/12/09/5c0cc24e1809d.jpg',
     'https://i.loli.net/2018/12/09/5c0cc2575b058.jpg',
-    'https://i.loli.net/2018/12/16/5c15312e40b70.jpg',
-    'https://i.loli.net/2018/12/16/5c15312e42ed3.jpg',
-    'https://i.loli.net/2018/12/16/5c15c49808b1d.jpg',
+    'https://i.loli.net/2018/12/16/5c1653911d1ec.jpg',
+    'https://i.loli.net/2018/12/16/5c16554058b72.jpg',
+    'https://i.loli.net/2018/12/16/5c1655405af8f.jpg',
 
-    'https://i.loli.net/2018/12/16/5c15c4980ffea.jpg',
-    'https://i.loli.net/2018/12/16/5c15c4c06c1bf.jpg',
-    'https://i.loli.net/2018/12/16/5c15c4c0776b1.jpg'
+    'https://i.loli.net/2018/12/16/5c1655c83313b.jpg',
+    'https://i.loli.net/2018/12/16/5c1655c8387a0.jpg',
+    'https://i.loli.net/2018/12/16/5c1655e559887.jpg',
+    'https://i.loli.net/2018/12/16/5c1655e55f685.jpg',
+    'https://i.loli.net/2018/12/16/5c16561c16124.jpg',
+    'https://i.loli.net/2018/12/16/5c16561c1b22a.jpg',
+    'https://i.loli.net/2018/12/16/5c16565631780.jpg',
+    'https://i.loli.net/2018/12/16/5c16565655b46.jpg',
+    'https://i.loli.net/2018/12/16/5c16565661e2d.jpg',
+    'https://i.loli.net/2018/12/16/5c1656566a38d.jpg'
   ]
 }
