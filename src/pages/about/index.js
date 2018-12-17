@@ -4,10 +4,7 @@ import _ from 'lodash'
 import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Transition from '../../components/Transition'
-import Loading from '../../components/Loading'
-import Quote from '../../components/Quote'
-import Segment from '../../components/Segment'
+import { Transition, Quote, Segment, Loading } from '../../components'
 import config from '../../config'
 import styles from './index.less'
 
@@ -102,7 +99,7 @@ class About extends PureComponent {
                 {contact.map((o, i) => {
                   return (
                     <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
-                      <img alt="" src={o.icon} />
+                      <img class="icon" alt="" src={o.icon} />
                     </a>
                   )
                 })}

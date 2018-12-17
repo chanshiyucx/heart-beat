@@ -3,9 +3,7 @@ import { connect } from 'dva'
 import _ from 'lodash'
 import classNames from 'classnames/bind'
 
-import Transition from '../components/Transition'
-import PostCard from '../components/PostCard'
-import Loading from '../components/Loading'
+import { Transition, PostCard, Loading } from '../components'
 import { isMobile } from '../utils'
 import styles from './index.less'
 

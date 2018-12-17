@@ -4,9 +4,7 @@ import _ from 'lodash'
 import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Transition from '../../components/Transition'
-import Loading from '../../components/Loading'
-import Quote from '../../components/Quote'
+import { Transition, Quote, Loading } from '../../components'
 import config from '../../config'
 import styles from './index.less'
 

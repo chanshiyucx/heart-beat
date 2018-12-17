@@ -4,11 +4,7 @@ import _ from 'lodash'
 import Gitalk from 'gitalk'
 import classNames from 'classnames/bind'
 
-import Transition from '../../components/Transition'
-import Loading from '../../components/Loading'
-import Archive from '../../components/Archive'
-import Quote from '../../components/Quote'
-import Pagination from '../../components/Pagination'
+import { Transition, Archive, Pagination, Quote, Loading } from '../../components'
 import config from '../../config'
 import styles from './index.less'
 

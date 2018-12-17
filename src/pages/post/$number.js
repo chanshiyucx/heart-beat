@@ -4,14 +4,11 @@ import Gitalk from 'gitalk'
 import _ from 'lodash'
 import classNames from 'classnames/bind'
 
-import Transition from '../../components/Transition'
-import PostBody from '../../components/PostBody'
-import PostPV from '../../components/PostPV'
-import Loading from '../../components/Loading'
+import { Transition, PostBody, PostPV, Reward, Loading } from '../../components'
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, reward } = config
+const { gitalkOption } = config
 const cx = classNames.bind(styles)
 
 class Post extends PureComponent {
@@ -66,21 +63,7 @@ class Post extends PureComponent {
           >
             <div class={cx('post')}>
               <PostBody {...post} />
-              <div class={cx('reward')}>
-                <span class={cx('reward-icon')}>赏</span>
-                <div class={cx('reward-body')}>
-                  <ul>
-                    {reward.map((o, i) => {
-                      return (
-                        <li key={i}>
-                          <img alt="" src={o.qr} />
-                          <span>{o.type}</span>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </div>
-              </div>
+              <Reward />
               <div class={cx('lincenses')}>
                 <a
                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"

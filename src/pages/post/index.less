@@ -17,80 +17,6 @@
     .loading {
       margin-top: 2rem;
     }
-    .reward {
-      position: relative;
-      margin: 0 auto 0.12rem;
-      width: 0.4rem;
-      text-align: center;
-      &:hover {
-        width: 3rem;
-        .reward-body {
-          animation-name: flip-in-y;
-        }
-      }
-      .reward-icon {
-        display: inline-block;
-        width: 0.4rem;
-        height: 0.4rem;
-        line-height: 0.4rem;
-        text-align: center;
-        font-size: 0.2rem;
-        border-radius: 50%;
-        color: #888;
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        &:hover {
-          color: #faf;
-        }
-      }
-      .reward-body {
-        position: absolute;
-        top: 0.4rem;
-        left: 50%;
-        margin-left: -1.82rem;
-        padding-top: 0.12rem;
-        width: 3.64rem;
-        z-index: 1;
-        box-sizing: border-box;
-        animation-duration: 0.6s;
-        animation-fill-mode: forwards;
-        animation-name: flip-out-y;
-        ul {
-          display: flex;
-          justify-content: space-between;
-          padding: 0.12rem 0.16rem;
-          border-radius: 0.03rem;
-          background: rgba(255, 255, 255, 0.88);
-          li {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            img {
-              width: 1.6rem;
-              height: 1.6rem;
-              border-radius: 0.03rem;
-            }
-            span {
-              margin-top: 0.1rem;
-            }
-          }
-          &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            width: 0;
-            height: 0;
-            border-left: 0.12rem solid transparent;
-            border-right: 0.12rem solid transparent;
-            border-bottom: 0.12rem solid rgba(255, 255, 255, 0.6);
-          }
-        }
-      }
-    }
     .lincenses {
       margin: 0.16rem auto;
     }
@@ -102,43 +28,5 @@
         display: block;
       }
     }
-  }
-}
-
-// 打赏动画
-@keyframes flip-in-y {
-  0% {
-    transform: perspective(500px) rotateY(70deg);
-    opacity: 0.2;
-  }
-  30% {
-    transform: perspective(500px) rotateY(-50deg);
-  }
-  45% {
-    transform: perspective(500px) rotateY(30deg);
-  }
-  65% {
-    transform: perspective(500px) rotateY(-20deg);
-  }
-  85% {
-    transform: perspective(500px) rotateY(10deg);
-  }
-  100% {
-    transform: perspective(500px) rotateY(0deg);
-  }
-}
-
-@keyframes flip-out-y {
-  0% {
-    transform: perspective(500px) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(500px) rotateY(-30deg);
-    opacity: 1;
-  }
-  100% {
-    transform: perspective(500px) rotateY(70deg);
-    opacity: 0;
-    pointer-events: none;
   }
 }
