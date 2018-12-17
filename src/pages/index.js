@@ -121,7 +121,7 @@ class Home extends PureComponent {
               </div>
             </div>
           </Transition>
-          {showLoading && <Loading />}
+          {showLoading && !disabledGif && <Loading />}
 
           <button
             class={cx('page-btn', 'next')}

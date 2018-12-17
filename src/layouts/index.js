@@ -4,6 +4,8 @@ import router from 'umi/router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Home from '../pages'
+import fireworks from '../assets/lib/fireworks'
+import { isMobile } from '../utils'
 import styles from './index.less'
 import config from '../config'
 
@@ -13,6 +15,9 @@ class App extends PureComponent {
   componentDidMount() {
     // 动态背景
     window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
+    if (!isMobile) {
+      fireworks()
+    }
 
     const { pathname } = this.props.location
     if (pathname !== '/') {

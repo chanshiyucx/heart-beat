@@ -96,39 +96,44 @@ function debounce(fn, delay) {
     }, delay)
   }
 }
+var canvasEl, ctx, numberOfParticules, pointerX, pointerY, tap, colors, setCanvasSize, render
 
-var canvasEl = document.querySelector('.fireworks')
-if (canvasEl) {
-  var ctx = canvasEl.getContext('2d'),
-    numberOfParticules = 30,
-    pointerX = 0,
-    pointerY = 0,
-    tap = 'mousedown',
-    colors = ['#FF1461', '#18FF92', '#5A87FF', '#FBF38C'],
-    setCanvasSize = debounce(function() {
-      ;(canvasEl.width = 2 * window.innerWidth),
-        (canvasEl.height = 2 * window.innerHeight),
-        (canvasEl.style.width = window.innerWidth + 'px'),
-        (canvasEl.style.height = window.innerHeight + 'px'),
-        canvasEl.getContext('2d').scale(2, 2)
-    }, 500),
-    render = anime({
-      duration: 1 / 0,
-      update: function() {
-        ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
-      }
-    })
-  document.addEventListener(
-    tap,
-    function(e) {
-      'sidebar' !== e.target.id &&
-        'toggle-sidebar' !== e.target.id &&
-        'A' !== e.target.nodeName &&
-        'IMG' !== e.target.nodeName &&
-        (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
-    },
-    !1
-  ),
-    setCanvasSize(),
-    window.addEventListener('resize', setCanvasSize, !1)
+function fireworks() {
+  canvasEl = document.querySelector('.fireworks')
+  if (canvasEl) {
+    ;(ctx = canvasEl.getContext('2d')),
+      (numberOfParticules = 30),
+      (pointerX = 0),
+      (pointerY = 0),
+      (tap = 'mousedown'),
+      (colors = ['#FF1461', '#18FF92', '#5A87FF', '#FBF38C']),
+      (setCanvasSize = debounce(function() {
+        ;(canvasEl.width = 2 * window.innerWidth),
+          (canvasEl.height = 2 * window.innerHeight),
+          (canvasEl.style.width = window.innerWidth + 'px'),
+          (canvasEl.style.height = window.innerHeight + 'px'),
+          canvasEl.getContext('2d').scale(2, 2)
+      }, 500)),
+      (render = anime({
+        duration: 1 / 0,
+        update: function() {
+          ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
+        }
+      }))
+    document.addEventListener(
+      tap,
+      function(e) {
+        'sidebar' !== e.target.id &&
+          'toggle-sidebar' !== e.target.id &&
+          'A' !== e.target.nodeName &&
+          'IMG' !== e.target.nodeName &&
+          (render.play(), updateCoords(e), animateParticules(pointerX, pointerY))
+      },
+      !1
+    ),
+      setCanvasSize(),
+      window.addEventListener('resize', setCanvasSize, !1)
+  }
 }
+
+export default fireworks

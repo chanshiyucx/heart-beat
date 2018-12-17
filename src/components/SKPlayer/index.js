@@ -5,7 +5,6 @@ import Transition from '../Transition'
 import styles from './index.less'
 import { isMobile } from '../../utils'
 import config from '../../config'
-import { resolve } from 'any-promise'
 
 const cx = classNames.bind(styles)
 const { skPlayerOption } = config
