@@ -85,10 +85,7 @@ class Header extends PureComponent {
         <button style={{ top: dropMenu ? '0.8rem' : '0' }} onClick={this.toggleMenu}>
           <i className="fa fa-list-ul" aria-hidden="true" />
         </button>
-        <div
-          class={cx('inner')}
-          style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.7rem 0 .6rem' }}
-        >
+        <div class={cx('inner')} style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.46rem 0' }}>
           <a class={cx('title')} href="/">
             {title}
           </a>
