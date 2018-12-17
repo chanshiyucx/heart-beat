@@ -95,6 +95,19 @@ class Friends extends PureComponent {
                     </a>
                   )
                 })}
+              {/* 添加四个空项目 */}
+              {Array.of(4).map((o, i) => {
+                return (
+                  <a
+                    class="empty"
+                    style="height: 0"
+                    key={i + 'empty'}
+                    href={o.link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  />
+                )
+              })}
             </div>
           </div>
         </Transition>
