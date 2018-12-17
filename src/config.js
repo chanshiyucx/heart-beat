@@ -175,7 +175,7 @@ export default {
       // 联系方式
       {
         icon: 'https://i.loli.net/2018/12/09/5c0cc5147e2e5.png',
-        link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=5dTU19HQ3NXc1tSllJTLhoqI'
+        link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=tNnR9Nfc1drH3N3NwZrX29k'
       },
       {
         icon: 'https://i.loli.net/2018/12/09/5c0cc516d9d5f.png',
