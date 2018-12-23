@@ -241,6 +241,8 @@ class Footer extends PureComponent {
     } else if (index === 1) {
       // 点击音乐按钮
       this.setState({ showPlayer: !this.state.showPlayer })
+    } else if (index === 2) {
+      router.push('/gallery')
     } else {
       // 点击喜欢按钮
       this.likeSite()
@@ -381,8 +383,11 @@ class Footer extends PureComponent {
           >
             <i class="fa fa-music" aria-hidden="true" />
           </li>
-          <li class={cx('right-btn', 'like-btn')} data-index="2">
-            <i class="fa fa-heart" style={{ color: isLikeSite && '#f8f' }} aria-hidden="true" />
+          <li class={cx('right-btn', 'gallery-btn')} data-index="2">
+            <i class="fa fa-picture-o" aria-hidden="true" />
+          </li>
+          <li class={cx('right-btn', 'like-btn')} data-index="3">
+            <i class="fa fa-heart" style={{ color: isLikeSite && '#faf' }} aria-hidden="true" />
             <div class={cx('popup')}>已有 {likeTimes} 人点赞了哦！</div>
           </li>
         </ul>

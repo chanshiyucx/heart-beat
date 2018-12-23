@@ -1,6 +1,7 @@
 export { default as Archive } from './Archive'
 export { default as Footer } from './Footer'
 export { default as Header } from './Header'
+export { default as LazyImage } from './LazyImage'
 export { default as Loading } from './Loading'
 export { default as MarkDown } from './MarkDown'
 export { default as Pagination } from './Pagination'
