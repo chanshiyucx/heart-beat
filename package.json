@@ -2,6 +2,7 @@
   "name": "HeartBeat",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "A awesome blog generator",
   "author": "蝉時雨 <me@chanshiyu.com>",
   "license": "MIT",
   "scripts": {
