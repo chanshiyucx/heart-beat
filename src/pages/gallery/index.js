@@ -51,7 +51,7 @@ class Gallery extends PureComponent {
                 return (
                   <li>
                     <a href={o.src}>
-                      <LazyImage key={i} src={o.src} alt="" />
+                      <LazyImage key={i} index={i} src={o.src} alt="" />
                     </a>
                   </li>
                 )

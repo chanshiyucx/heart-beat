@@ -141,7 +141,7 @@ class Footer extends PureComponent {
         window.Live2D.captureName = 'waifu.png'
         window.Live2D.captureFrame = true
         this.props.dispatch({
-          type: 'appModel/showTips',
+          type: 'global/showTips',
           payload: { tips: clickTips.takePhoto }
         })
         break

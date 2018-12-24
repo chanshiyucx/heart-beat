@@ -28,7 +28,7 @@
     h3 {
       position: absolute;
       bottom: 0;
-      padding: 0.12rem 0.16rem;
+      padding: 0.12rem 0.14rem;
       width: 100%;
       font-size: 0.18rem;
       font-weight: normal;
@@ -37,7 +37,7 @@
     }
   }
   .desc {
-    padding: 0.12rem 0.16rem;
+    padding: 0.12rem 0.14rem;
     a > i {
       display: none;
     }
@@ -53,24 +53,29 @@
     }
   }
   .meta {
-    padding: 0.12rem 0.16rem;
+    padding: 0.12rem 0.14rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     & > span {
-      margin-right: 0.04rem;
+      margin-right: 0.06rem;
       color: #888;
       i {
         margin-right: 0.04rem;
         padding: 0;
       }
       span {
-        padding-right: 0.04rem;
+        padding-right: 0.02rem;
       }
-      &:last-child {
+      .tag {
+        margin-right: 0.04rem;
+      }
+      :last-child {
         margin-right: 0;
+        padding-right: 0;
       }
     }
-    .tag {
-      margin-right: 0.06rem;
+    :last-child {
+      margin-right: 0;
+      padding-right: 0;
     }
   }
   @media (max-width: 1200px) {
