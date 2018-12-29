@@ -196,14 +196,14 @@ export default {
         name: 'HeartBeat',
         link: '/',
         sourceCode: '//github.com/chanshiyucx/HeartBeat',
-        cover: '//i.loli.net/2018/12/28/5c25c924979bf.png',
+        cover: '//i.loli.net/2018/12/29/5c27689676b5b.jpg',
         description: 'A SPA Blog Theme'
       },
       {
         name: 'Tamayura',
         link: '//chanshiyu.com/treasure/resume/',
         sourceCode: '//github.com/chanshiyucx/tamayura',
-        cover: '//i.loli.net/2018/12/28/5c25c924979bf.png',
+        cover: '//i.loli.net/2018/12/29/5c27689673185.jpg',
         description: 'An resume generator'
       }
     ]

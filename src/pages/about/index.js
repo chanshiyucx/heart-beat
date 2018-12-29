@@ -116,7 +116,7 @@ class About extends PureComponent {
                   )
                 })}
                 {/* 添加四个空项目 */}
-                {_.range(4).map((o, i) => {
+                {/* {_.range(4).map((o, i) => {
                   return (
                     <a
                       class="empty"
@@ -127,7 +127,7 @@ class About extends PureComponent {
                       target="_blank"
                     />
                   )
-                })}
+                })} */}
               </div>
               <div class={cx('content')}>
                 {section &&
