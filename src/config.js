@@ -171,8 +171,8 @@ export default {
         text: 'Communication&Information Engineering'
       }
     ],
+    // 联系方式
     contact: [
-      // 联系方式
       {
         icon: 'https://i.loli.net/2018/12/09/5c0cc5147e2e5.png',
         link: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=tNnR9Nfc1drH3N3NwZrX29k'
@@ -188,6 +188,23 @@ export default {
       {
         icon: 'https://i.loli.net/2018/12/09/5c0cc51ae4f0c.png',
         link: 'https://music.163.com/#/user/home?id=103060582'
+      }
+    ],
+    // 个人作品
+    project: [
+      {
+        name: 'HeartBeat',
+        link: '/',
+        sourceCode: '//github.com/chanshiyucx/HeartBeat',
+        cover: '//i.loli.net/2018/12/28/5c25c924979bf.png',
+        description: 'A SPA Blog Theme'
+      },
+      {
+        name: 'Tamayura',
+        link: '//chanshiyu.com/treasure/resume/',
+        sourceCode: '//github.com/chanshiyucx/tamayura',
+        cover: '//i.loli.net/2018/12/28/5c25c924979bf.png',
+        description: 'An resume generator'
       }
     ]
   },

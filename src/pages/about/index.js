@@ -9,7 +9,7 @@ import config from '../../config'
 import styles from './index.less'
 
 const { gitalkOption, aboutOption, themeColors } = config
-const { enableGitalk, qoute, avatar, info, contact } = aboutOption
+const { enableGitalk, qoute, avatar, info, contact, project } = aboutOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
@@ -101,6 +101,31 @@ class About extends PureComponent {
                     <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
                       <img class="icon" alt="" src={o.icon} />
                     </a>
+                  )
+                })}
+              </div>
+              <div class={cx('project')}>
+                {project.map((o, i) => {
+                  return (
+                    <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
+                      <img class={cx('cover')} alt="" src={o.cover} />
+                      <div class={cx('info')}>
+                        <span>{o.name}</span>
+                      </div>
+                    </a>
+                  )
+                })}
+                {/* 添加四个空项目 */}
+                {_.range(4).map((o, i) => {
+                  return (
+                    <a
+                      class="empty"
+                      style="height: 0; margin: 0;"
+                      key={i + 'empty'}
+                      href={o.link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    />
                   )
                 })}
               </div>
