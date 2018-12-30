@@ -32,7 +32,7 @@ class Home extends PureComponent {
   queryList = queryType => {
     if (this.props.loading) return
     this.props.dispatch({
-      type: 'global/queryList',
+      type: 'app/queryList',
       payload: { queryType }
     })
   }
@@ -73,7 +73,7 @@ class Home extends PureComponent {
     const title = target.getAttribute('data-title')
     const tips = `要去看看<font color=#f6f> ${title} </font>吗？`
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -87,7 +87,7 @@ class Home extends PureComponent {
       tips = "要到下一页看看吗？(●'◡'●)"
     }
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -139,8 +139,8 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  totalList: global.totalList,
-  postList: global.postList,
-  loading: loading.effects['global/queryList']
+export default connect(({ app, loading }) => ({
+  totalList: app.totalList,
+  postList: app.postList,
+  loading: loading.effects['app/queryList']
 }))(Home)

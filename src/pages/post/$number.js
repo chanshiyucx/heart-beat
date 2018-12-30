@@ -16,7 +16,7 @@ class Post extends PureComponent {
     const { dispatch, match } = this.props
     const { number } = match.params
     dispatch({
-      type: 'global/queryPost',
+      type: 'app/queryPost',
       payload: { number }
     })
   }
@@ -25,7 +25,7 @@ class Post extends PureComponent {
     const { dispatch, post } = this.props
     if (post.number && +post.number !== +nextProps.match.params.number) {
       dispatch({
-        type: 'global/queryPost',
+        type: 'app/queryPost',
         payload: { number: nextProps.match.params.number }
       })
     }
@@ -33,7 +33,7 @@ class Post extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: {
         post: {}
       }
@@ -88,12 +88,12 @@ class Post extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => {
-  const { post, prevPost, nextPost } = global
+export default connect(({ app, loading }) => {
+  const { post, prevPost, nextPost } = app
   return {
     post,
     prevPost,
     nextPost,
-    loading: loading.effects['global/queryPost']
+    loading: loading.effects['app/queryPost']
   }
 })(Post)

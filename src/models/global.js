@@ -18,7 +18,7 @@ const minDelay = 1000
 let lastTipsUpdateAt
 
 export default {
-  namespace: 'global',
+  namespace: 'app',
   state: {
     totalList: [], // 所有文章列表
     postList: [], // 当前文章列表
@@ -57,13 +57,13 @@ export default {
     // 首页文章
     *queryList({ payload }, { select, take, call, put }) {
       const startTime = new Date()
-      const state = yield select(state => state.global)
+      const state = yield select(state => state.app)
       let { totalList, postList } = state
       // 文章列表不存在先获取文章
       if (!totalList.length) {
         yield put({ type: 'queryTotal' })
         yield take('queryTotal/@@end')
-        totalList = yield select(state => state.global.totalList)
+        totalList = yield select(state => state.app.totalList)
       }
       const { queryType } = payload
       const length = totalList.length
@@ -109,12 +109,12 @@ export default {
     // 文章内容
     *queryPost({ payload }, { select, take, call, put }) {
       const startTime = new Date()
-      let totalList = yield select(state => state.global.totalList)
+      let totalList = yield select(state => state.app.totalList)
       // 文章列表不存在先获取文章
       if (!totalList.length) {
         yield put({ type: 'queryTotal' })
         yield take('queryTotal/@@end')
-        totalList = yield select(state => state.global.totalList)
+        totalList = yield select(state => state.app.totalList)
       }
       const index = totalList.findIndex(post => post.number === parseInt(payload.number, 10))
       // 若文章不存在则跳转首页
@@ -141,12 +141,12 @@ export default {
     // 归档文章
     *queryArchives({}, { select, take, call, put }) {
       const startTime = new Date()
-      const state = yield select(state => state.global)
+      const state = yield select(state => state.app)
       let { totalList } = state
       if (!totalList.length) {
         yield put({ type: 'queryTotal' })
         yield take('queryTotal/@@end')
-        totalList = yield select(state => state.global.totalList)
+        totalList = yield select(state => state.app.totalList)
       }
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
@@ -197,13 +197,13 @@ export default {
     // 当前说说
     *queryMood({}, { select, take, call, put }) {
       const startTime = new Date()
-      const state = yield select(state => state.global)
+      const state = yield select(state => state.app)
       let { mood } = state
       // 说说列表不存在先获取说说
       if (!mood.length) {
         yield put({ type: 'queryMoodTotal' })
         yield take('queryMoodTotal/@@end')
-        mood = yield select(state => state.global.mood)
+        mood = yield select(state => state.app.mood)
       }
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {

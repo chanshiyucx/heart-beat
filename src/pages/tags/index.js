@@ -30,7 +30,7 @@ class Tags extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryTags'
+      type: 'app/queryTags'
     })
   }
   componentWillReceiveProps(nextProps) {
@@ -41,7 +41,7 @@ class Tags extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { tags: [] }
     })
   }
@@ -50,7 +50,7 @@ class Tags extends PureComponent {
   filterPost = tag => {
     this.props
       .dispatch({
-        type: 'global/filterPost',
+        type: 'app/filterPost',
         payload: {
           type: 'labels',
           filter: tag
@@ -166,7 +166,7 @@ class Tags extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  tags: global.tags,
-  loading: loading.effects['global/queryTags']
+export default connect(({ app, loading }) => ({
+  tags: app.tags,
+  loading: loading.effects['app/queryTags']
 }))(Tags)

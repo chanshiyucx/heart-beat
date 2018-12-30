@@ -30,7 +30,7 @@ class Categories extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryCats'
+      type: 'app/queryCats'
     })
   }
 
@@ -42,7 +42,7 @@ class Categories extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { cats: [] }
     })
   }
@@ -51,7 +51,7 @@ class Categories extends PureComponent {
   filterPost = cat => {
     this.props
       .dispatch({
-        type: 'global/filterPost',
+        type: 'app/filterPost',
         payload: {
           type: 'milestone',
           filter: cat.number
@@ -184,7 +184,7 @@ class Categories extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  cats: global.cats,
-  loading: loading.effects['global/queryCats']
+export default connect(({ app, loading }) => ({
+  cats: app.cats,
+  loading: loading.effects['app/queryCats']
 }))(Categories)

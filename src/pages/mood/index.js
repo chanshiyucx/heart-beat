@@ -35,7 +35,7 @@ class Mood extends PureComponent {
   queryMood() {
     this.props
       .dispatch({
-        type: 'global/queryMood'
+        type: 'app/queryMood'
       })
       .then(v => {
         const currList = v.slice(0, this.state.pageSize)

@@ -24,7 +24,7 @@ class About extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryPage',
+      type: 'app/queryPage',
       payload: { type: 'about' }
     })
   }
@@ -37,7 +37,7 @@ class About extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { about: {} }
     })
   }
@@ -147,7 +147,7 @@ class About extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  about: global.about,
-  loading: loading.effects['global/queryPage']
+export default connect(({ app, loading }) => ({
+  about: app.about,
+  loading: loading.effects['app/queryPage']
 }))(About)

@@ -23,7 +23,7 @@ class Friends extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryPage',
+      type: 'app/queryPage',
       payload: { type: 'friends' }
     })
   }
@@ -36,7 +36,7 @@ class Friends extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { friends: {} }
     })
   }
@@ -119,7 +119,7 @@ class Friends extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  friends: global.friends,
-  loading: loading.effects['global/queryPage']
+export default connect(({ app, loading }) => ({
+  friends: app.friends,
+  loading: loading.effects['app/queryPage']
 }))(Friends)

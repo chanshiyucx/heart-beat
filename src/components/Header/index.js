@@ -69,7 +69,7 @@ class Header extends PureComponent {
         return
     }
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }

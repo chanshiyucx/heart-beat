@@ -110,7 +110,7 @@ class Footer extends PureComponent {
       this.waifuClick()
     } else {
       dispatch({
-        type: 'global/showTips',
+        type: 'app/showTips',
         payload: { tips: nextTips }
       })
     }
@@ -141,7 +141,7 @@ class Footer extends PureComponent {
         window.Live2D.captureName = 'waifu.png'
         window.Live2D.captureFrame = true
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: clickTips.takePhoto }
         })
         break
@@ -149,7 +149,7 @@ class Footer extends PureComponent {
         const index = _.random(0, hitokotos.length - 1)
         const nextTips = hitokotos[index].hitokoto
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: nextTips }
         })
         break
@@ -158,7 +158,7 @@ class Footer extends PureComponent {
         break
       case 'close':
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: clickTips.close }
         })
         setTimeout(() => {
@@ -190,7 +190,7 @@ class Footer extends PureComponent {
     }
     if (!tips) return
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -219,7 +219,7 @@ class Footer extends PureComponent {
       this.setState({ showLikeTimes: true })
     }
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -254,7 +254,7 @@ class Footer extends PureComponent {
     const { isLikeSite } = this.props
     if (isLikeSite) return
     this.props.dispatch({
-      type: 'global/likeSite'
+      type: 'app/likeSite'
     })
   }
 
@@ -293,7 +293,7 @@ class Footer extends PureComponent {
     const index = _.random(0, hitokotos.length - 1)
     const nextTips = hitokotos[index].hitokoto
     dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips: nextTips }
     })
   }
@@ -396,8 +396,8 @@ class Footer extends PureComponent {
   }
 }
 
-export default connect(({ global }) => ({
-  tips: global.tips,
-  isLikeSite: global.isLikeSite,
-  likeTimes: global.likeTimes
+export default connect(({ app }) => ({
+  tips: app.tips,
+  isLikeSite: app.isLikeSite,
+  likeTimes: app.likeTimes
 }))(Footer)

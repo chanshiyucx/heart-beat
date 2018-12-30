@@ -23,7 +23,7 @@ class Books extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryPage',
+      type: 'app/queryPage',
       payload: { type: 'books' }
     })
   }
@@ -36,7 +36,7 @@ class Books extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { books: {} }
     })
   }
@@ -154,7 +154,7 @@ class Books extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  books: global.books,
-  loading: loading.effects['global/queryPage']
+export default connect(({ app, loading }) => ({
+  books: app.books,
+  loading: loading.effects['app/queryPage']
 }))(Books)
