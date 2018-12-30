@@ -104,7 +104,7 @@ class About extends PureComponent {
                   )
                 })}
               </div>
-              <div class={cx('project')}>
+              {/* <div class={cx('project')}>
                 {project.map((o, i) => {
                   return (
                     <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
@@ -115,8 +115,8 @@ class About extends PureComponent {
                     </a>
                   )
                 })}
-                {/* 添加四个空项目 */}
-                {/* {_.range(4).map((o, i) => {
+         
+                 {_.range(4).map((o, i) => {
                   return (
                     <a
                       class="empty"
@@ -127,8 +127,8 @@ class About extends PureComponent {
                       target="_blank"
                     />
                   )
-                })} */}
-              </div>
+                })} 
+              </div> */}
               <div class={cx('content')}>
                 {section &&
                   section.map((o, i) => {
