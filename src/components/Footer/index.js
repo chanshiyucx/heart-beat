@@ -8,6 +8,7 @@ import SmoothScroll from 'smooth-scroll'
 import MarkeDown from '../MarkDown'
 import Transition from '../Transition'
 import SKPlayer from '../SKPlayer'
+import { on } from '../../utils'
 import styles from './index.less'
 
 // 看板娘
@@ -82,12 +83,12 @@ class Footer extends PureComponent {
       trailing: true
     })
 
-    document.addEventListener('scroll', this.THandleScroll)
-    this.waifu.addEventListener('click', this.TWaifuClick)
-    this.tool.addEventListener('click', this.toolClick)
-    this.tool.addEventListener('mouseover', this.TToolCMouseOver)
-    this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
-    this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
+    on(document, 'scroll', this.THandleScroll)
+    on(this.waifu, 'click', this.TWaifuClick)
+    on(this.tool, 'click', this.toolClick)
+    on(this.tool, 'mouseover', this.TToolCMouseOver)
+    on(this.rightBtnWapper, 'click', this.rightBtnWapperClick)
+    on(this.rightBtnWapper, 'mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 监听：页面滚动

@@ -3,6 +3,7 @@ import { connect } from 'dva'
 import Link from 'umi/link'
 import classNames from 'classnames/bind'
 
+import { on } from '../../utils'
 import styles from './index.less'
 import config from '../../config'
 
@@ -23,7 +24,7 @@ class Header extends PureComponent {
 
   // 绑定事件
   bind = () => {
-    this.menuRef.addEventListener('mouseover', this.handleMouseOver)
+    on(this.menuRef, 'mouseover', this.handleMouseOver)
   }
 
   // 监听: 菜单悬停并触发对话

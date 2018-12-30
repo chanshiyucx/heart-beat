@@ -4,7 +4,7 @@ import _ from 'lodash'
 import classNames from 'classnames/bind'
 
 import { Transition, PostCard, Loading } from '../components'
-import { isMobile } from '../utils'
+import { isMobile, on } from '../utils'
 import styles from './index.less'
 
 const cx = classNames.bind(styles)
@@ -51,7 +51,7 @@ class Home extends PureComponent {
     if (this.state.addEventListener) return
     this.setState({ addEventListener: true })
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
-    this.postListNode.addEventListener('mouseover', this.TPostListNodeMouseOver)
+    on(this.postListNode, 'mouseover', this.TPostListNodeMouseOver)
   }
 
   // 监听：文章卡片触发看板娘对话
