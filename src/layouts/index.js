@@ -12,9 +12,15 @@ import config from '../config'
 const { backstretch } = config
 
 class App extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      renderBg: false
+    }
+  }
+
   componentDidMount() {
-    // 动态背景
-    window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
+    this.renderBg()
     if (!isMobile) {
       fireworks()
     }
@@ -22,6 +28,15 @@ class App extends PureComponent {
     const { pathname } = this.props.location
     if (pathname !== '/') {
       router.push(pathname)
+    }
+  }
+
+  renderBg() {
+    if (window.$) {
+      // 动态背景
+      window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
+    } else {
+      setTimeout(this.renderBg, 500)
     }
   }
 
