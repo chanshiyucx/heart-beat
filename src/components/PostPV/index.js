@@ -30,7 +30,7 @@ const PostPV = ({ number, title, date, cover, desc, filterLabels, milestone, tim
               <span>
                 <i class="icon">&#xe807;</i>
                 <span>
-                  {filterLabels.map(o => (
+                  {filterLabels.slice(0, 2).map(o => (
                     <span key={o.id}>{o.name}</span>
                   ))}
                 </span>
