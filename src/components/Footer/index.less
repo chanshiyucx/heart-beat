@@ -61,7 +61,7 @@
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     p {
-      font-size: 0.15rem;
+      font-size: 0.14rem;
     }
     &.hide {
       opacity: 0;
@@ -141,15 +141,19 @@
     text-align: center;
     line-height: 0.36rem;
     i {
+      display: inline-block;
       animation-iteration-count: infinite;
+      font-size: 0.18rem;
       color: rgba(255, 255, 255, 0.8);
       &::before {
-        font-size: 0.2rem;
         color: currentColor;
       }
     }
   }
   .scroll-btn {
+    i {
+      transform: translateY(-2px);
+    }
     &:hover {
       i {
         animation-duration: 1s;
@@ -184,6 +188,7 @@
       width: 1.8rem;
       height: 0.48rem;
       line-height: 0.48rem;
+      font-size: 0.15rem;
       text-align: center;
       border-radius: 0.03rem;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);

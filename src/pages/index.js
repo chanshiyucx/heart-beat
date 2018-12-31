@@ -101,7 +101,7 @@ class Home extends PureComponent {
             onClick={() => this.queryList('prev')}
             onMouseMove={() => this.handleMouseOver('prev')}
           >
-            <i className="fa fa-angle-double-left" aria-hidden="true" />
+            <i class="icon">&#xf100;</i>
           </button>
 
           <Transition
@@ -126,11 +126,11 @@ class Home extends PureComponent {
             onClick={() => this.queryList('next')}
             onMouseMove={() => this.handleMouseOver('next')}
           >
-            <i className="fa fa-angle-double-right" aria-hidden="true" />
+            <i class="icon">&#xf101;</i>
           </button>
           {totalList.length !== postList.length && (
             <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
-              <i className="fa fa-angle-double-down" aria-hidden="true" />
+              <i class="icon">&#xf103;</i>
             </button>
           )}
         </div>

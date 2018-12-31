@@ -402,7 +402,7 @@ class SKPlayer extends PureComponent {
               </div>
             </div>
             <div ref={c => (this.switchbutton = c)} class={cx('skPlayer-list-switch')}>
-              <i class="fa fa-list-ul" aria-hidden="true" />
+              <i class="icon">&#xf0ca;</i>
             </div>
             <i
               ref={c => (this.modebutton = c)}

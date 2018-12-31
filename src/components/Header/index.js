@@ -84,7 +84,7 @@ class Header extends PureComponent {
     return (
       <div class={cx('container')}>
         <button style={{ top: dropMenu ? '0.8rem' : '0' }} onClick={this.toggleMenu}>
-          <i className="fa fa-list-ul" aria-hidden="true" />
+          <i class="icon">&#xf0ca;</i>
         </button>
         <div class={cx('inner')} style={{ padding: dropMenu ? '1.06rem 0 .24rem' : '.5rem 0' }}>
           <a class={cx('title')} href="/">
@@ -94,49 +94,49 @@ class Header extends PureComponent {
           <ul ref={c => (this.menuRef = c)} class={cx('menu', dropMenu && 'dropMenu')}>
             <li data-menu="home">
               <Link to="/">
-                <i class="fa fa-university" aria-hidden="true" />
+                <i class="icon">&#xf19c;</i>
                 <span>首页</span>
               </Link>
             </li>
             <li data-menu="archives">
               <Link to="/archives">
-                <i class="fa fa-archive" aria-hidden="true" />
+                <i class="icon">&#xe800;</i>
                 <span>归档</span>
               </Link>
             </li>
             <li data-menu="categories">
               <Link to="/categories">
-                <i class="fa fa-bookmark" aria-hidden="true" />
+                <i class="icon">&#xe802;</i>
                 <span>分类</span>
               </Link>
             </li>
             <li data-menu="tags">
               <Link to="/tags">
-                <i class="fa fa-tags" aria-hidden="true" />
+                <i class="icon">&#xe803;</i>
                 <span>标签</span>
               </Link>
             </li>
             <li data-menu="mood">
               <Link to="/mood">
-                <i class="fa fa-commenting" aria-hidden="true" />
+                <i class="icon">&#xf27a;</i>
                 <span>心情</span>
               </Link>
             </li>
             <li data-menu="books">
               <Link to="/books">
-                <i class="fa fa-book" aria-hidden="true" />
+                <i class="icon">&#xe804;</i>
                 <span>书单</span>
               </Link>
             </li>
             <li data-menu="friends">
               <Link to="/friends">
-                <i class="fa fa-heartbeat" aria-hidden="true" />
+                <i class="icon">&#xf21e;</i>
                 <span>友链</span>
               </Link>
             </li>
             <li data-menu="about">
               <Link to="/about">
-                <i class="fa fa-envira" aria-hidden="true" />
+                <i class="icon">&#xf299;</i>
                 <span>关于</span>
               </Link>
             </li>

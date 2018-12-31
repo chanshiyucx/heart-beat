@@ -6,9 +6,9 @@ const cx = classNames.bind(styles)
 const Quote = ({ text }) => {
   return (
     <div class={cx('quote')}>
-      <i class="fa fa-quote-left" aria-hidden="true" />
+      <i class="icon">&#xf10d;</i>
       <span>{text}</span>
-      <i class="fa fa-quote-right" aria-hidden="true" />
+      <i class="icon">&#xf10e;</i>
     </div>
   )
 }

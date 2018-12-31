@@ -162,7 +162,7 @@ class Categories extends PureComponent {
                   <span>Category:</span>
                   <button class={cx('menu-btn')} onClick={this.clearFilter}>
                     {filterTitle}
-                    <i className="fa fa-times" aria-hidden="true" />
+                    <i class="icon">&#xe806;</i>
                   </button>
                 </div>
                 <div class={cx('content')}>

@@ -152,25 +152,6 @@ export default {
     enableGitalk: true,
     qoute: '蝉鸣如雨，花宵道中',
     avatar: 'https://i.loli.net/2018/12/09/5c0cc2b4e0195.png',
-    info: [
-      // 个人介绍，icon 使用 font-awesome
-      {
-        icon: 'user',
-        text: '蝉時雨'
-      },
-      {
-        icon: 'envira',
-        text: '蝉鸣如雨，花宵道中'
-      },
-      {
-        icon: 'university',
-        text: 'University of Electronic Science and Technology of China (UESTC)'
-      },
-      {
-        icon: 'graduation-cap',
-        text: 'Communication&Information Engineering'
-      }
-    ],
     // 联系方式
     contact: [
       {
@@ -188,23 +169,6 @@ export default {
       {
         icon: 'https://i.loli.net/2018/12/09/5c0cc51ae4f0c.png',
         link: 'https://music.163.com/#/user/home?id=103060582'
-      }
-    ],
-    // 个人作品
-    project: [
-      {
-        name: 'HeartBeat',
-        link: '/',
-        sourceCode: '//github.com/chanshiyucx/HeartBeat',
-        cover: '//i.loli.net/2018/12/29/5c27689676b5b.jpg',
-        description: 'A SPA Blog Theme'
-      },
-      {
-        name: 'Tamayura',
-        link: '//chanshiyu.com/treasure/resume/',
-        sourceCode: '//github.com/chanshiyucx/tamayura',
-        cover: '//i.loli.net/2018/12/29/5c27689673185.jpg',
-        description: 'An resume generator'
       }
     ]
   },

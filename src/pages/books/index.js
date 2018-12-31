@@ -103,12 +103,9 @@ class Books extends PureComponent {
                   } = o
                   const rateList = new Array(10).fill(1).map((o, i) => {
                     return (
-                      <i
-                        key={i}
-                        className={'fa fa-star'}
-                        style={{ color: i <= 4 && '#f6f' }}
-                        aria-hidden="true"
-                      />
+                      <i class="icon" style={{ color: i <= 4 && '#f6f' }}>
+                        &#xe809;
+                      </i>
                     )
                   })
                   const rate = [].slice.call(

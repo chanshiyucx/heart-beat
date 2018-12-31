@@ -13,6 +13,12 @@
   src: url('./assets/fonts/FiraCode-Medium.woff2');
 }
 
+@font-face {
+  font-family: Fontello;
+  font-weight: bold;
+  src: url('./assets/fonts/Fontello.woff2');
+}
+
 a,
 button {
   cursor: url('./assets/cursor/cursor_link.png'), auto;
@@ -46,17 +52,10 @@ code {
 }
 
 body {
-  font-family: 'Helvetica', 'PingFang SC', sans-serif;
-}
-
-code {
-  font-family: 'FiraCode', 'Helvetica', 'PingFang SC', sans-serif;
-}
-
-body {
   user-select: none;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
   scroll-behavior: smooth;
+  font-family: 'Helvetica', 'PingFang SC', sans-serif;
   cursor: url('./assets/cursor/cursor.png'), auto;
   &::before {
     content: '';
@@ -73,6 +72,11 @@ body {
 code {
   font-size: 0.15rem;
   font-family: 'FiraCode', 'Noto Serif SC', 'Helvetica', 'PingFang SC', sans-serif, serif;
+}
+
+.icon {
+  font-family: 'Fontello';
+  font-style: normal;
 }
 
 h2,

@@ -318,25 +318,25 @@ class Footer extends PureComponent {
             <canvas ref={c => (this.waifu = c)} id="live2d" width="280" height="250" />
             <ul ref={c => (this.tool = c)} class={cx('waifu-tool')}>
               <li data-type="home">
-                <i className="fa fa-university" aria-hidden="true" />
+                <i class="icon">&#xf19c;</i>
               </li>
               <li data-type="switch">
-                <i className="fa fa-venus-double" aria-hidden="true" />
+                <i class="icon">&#xf226;</i>
               </li>
               <li data-type="dressup">
-                <i className="fa fa-female" aria-hidden="true" />
+                <i class="icon">&#xf182;</i>
               </li>
               <li data-type="takephoto">
-                <i className="fa fa-camera-retro" aria-hidden="true" />
+                <i class="icon">&#xe801;</i>
               </li>
               <li data-type="talk">
-                <i className="fa fa-commenting" aria-hidden="true" />
+                <i class="icon">&#xf27a;</i>
               </li>
               <li data-type="info">
-                <i className="fa fa-info-circle" aria-hidden="true" />
+                <i class="icon">&#xe805;</i>
               </li>
               <li data-type="close">
-                <i className="fa fa-times-circle" aria-hidden="true" />
+                <i class="icon">&#xe806;</i>
               </li>
             </ul>
           </div>
@@ -345,11 +345,11 @@ class Footer extends PureComponent {
         <div class={cx('site-desc')}>
           <div class={cx('site-desc-row')}>
             <p>
-              <i className="fa fa-copyright" aria-hidden="true" />
+              <i class="icon">&#xf1f9;</i>
               <span>2017 - 2018</span>
             </p>
             <p>
-              <i className="fa fa-heartbeat" aria-hidden="true" />
+              <i class="icon">&#xf21e;</i>
               <span>蝉時雨</span>
             </p>
           </div>
@@ -370,7 +370,7 @@ class Footer extends PureComponent {
         <ul ref={c => (this.rightBtnWapper = c)} class={cx('right-btn-wapper')}>
           <Transition visible={showScrollTop} animation="zoom" duration={600}>
             <li class={cx('right-btn', 'scroll-btn')} data-index="0">
-              <i class="fa fa-chevron-up" aria-hidden="true" />
+              <i class="icon">&#xe80c;</i>
             </li>
           </Transition>
           <li
@@ -382,13 +382,15 @@ class Footer extends PureComponent {
             )}
             data-index="1"
           >
-            <i class="fa fa-music" aria-hidden="true" />
+            <i class="icon">&#xe80a;</i>
           </li>
           <li class={cx('right-btn', 'gallery-btn')} data-index="2">
-            <i class="fa fa-picture-o" aria-hidden="true" />
+            <i class="icon">&#xe80b;</i>
           </li>
           <li class={cx('right-btn', 'like-btn')} data-index="3">
-            <i class="fa fa-heart" style={{ color: isLikeSite && '#faf' }} aria-hidden="true" />
+            <i class="icon" style={{ color: isLikeSite && '#faf' }}>
+              &#xe80d;
+            </i>
             <div class={cx('popup')}>已有 {likeTimes} 人点赞了哦！</div>
           </li>
         </ul>
