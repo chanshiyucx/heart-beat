@@ -8,10 +8,6 @@ import Home from '../pages'
 import fireworks from '../assets/lib/fireworks'
 import { isMobile } from '../utils'
 import styles from './index.less'
-import config from '../config'
-
-const { backstretch } = config
-
 ;(function() {
   const font = new FontFaceObserver('Noto Serif SC', {
     weight: '400'
@@ -31,23 +27,12 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    this.renderBg()
     if (!isMobile) {
       fireworks()
     }
-
     const { pathname } = this.props.location
     if (pathname !== '/') {
       router.push(pathname)
-    }
-  }
-
-  renderBg() {
-    if (window.$) {
-      // 动态背景
-      window.$('body').backstretch(backstretch.bgImg, backstretch.bgOption)
-    } else {
-      setTimeout(this.renderBg, 500)
     }
   }
 

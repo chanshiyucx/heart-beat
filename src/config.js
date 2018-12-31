@@ -174,30 +174,6 @@ export default {
   },
 
   /**
-   * 动态背景 Backstretch
-   * 配置参数详见： https://github.com/jquery-backstretch/jquery-backstretch
-   */
-  backstretch: {
-    bgImg: [
-      'https://i.loli.net/2018/12/09/5c0cc0f409d63.jpg',
-      'https://i.loli.net/2018/12/16/5c164034ac74c.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1010f9e5.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc108c3b5c.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc10d3d771.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc111f30a3.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1159ea42.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc11b0691b.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc12115c2e.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1268cd42.jpg'
-    ],
-    bgOption: {
-      duration: 8000,
-      fade: 1000,
-      animateFirst: false
-    }
-  },
-
-  /**
    * 音乐播放器, 参考 skPlayer 重构
    */
   skPlayerOption: {
