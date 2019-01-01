@@ -23,7 +23,7 @@ class Books extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryPage',
+      type: 'app/queryPage',
       payload: { type: 'books' }
     })
   }
@@ -36,7 +36,7 @@ class Books extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { books: {} }
     })
   }
@@ -103,12 +103,9 @@ class Books extends PureComponent {
                   } = o
                   const rateList = new Array(10).fill(1).map((o, i) => {
                     return (
-                      <i
-                        key={i}
-                        className={'fa fa-star'}
-                        style={{ color: i <= 4 && '#f6f' }}
-                        aria-hidden="true"
-                      />
+                      <i class="icon" style={{ color: i <= 4 && '#f6f' }}>
+                        &#xe809;
+                      </i>
                     )
                   })
                   const rate = [].slice.call(
@@ -154,7 +151,7 @@ class Books extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  books: global.books,
-  loading: loading.effects['global/queryPage']
+export default connect(({ app, loading }) => ({
+  books: app.books,
+  loading: loading.effects['app/queryPage']
 }))(Books)

@@ -16,15 +16,15 @@ const Archive = ({ number, created_at, milestone, labels, title, color }) => {
           <div class={cx('title')}>{title}</div>
           <div class={cx('meta')}>
             <span>
-              <i className="fa fa-clock-o" aria-hidden="true" />
+              <i class="icon">&#xe808;</i>
               {date}
             </span>
             <span>
-              <i className="fa fa-bookmark" aria-hidden="true" />
+              <i class="icon">&#xe802;</i>
               {milestone && milestone.title ? milestone.title : '未分类'}
             </span>
             <span>
-              <i className="fa fa-tags" aria-hidden="true" />
+              <i class="icon">&#xe807;</i>
               {labels.slice(0, 2).map(o => {
                 return (
                   <span class={cx('tag')} key={o.id}>

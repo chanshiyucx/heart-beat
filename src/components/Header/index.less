@@ -30,6 +30,9 @@
     .title,
     .sub-title {
       font-family: GuDianMingChaoTi;
+      animation-name: fadeInDown;
+      animation-duration: 0.8s;
+      transform-origin: top center;
     }
     .title {
       margin-bottom: 0.06rem;
@@ -52,6 +55,8 @@
       background: rgba(0, 0, 0, 0.1);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) inset;
       transition: all 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+      animation-name: fadeIn;
+      animation-duration: 0.8s;
       li {
         width: 0.48rem;
         font-size: 0.16rem;
@@ -66,6 +71,7 @@
       }
       i {
         margin: 0.03rem;
+        font-size: 0.16rem;
       }
       @media (max-width: 600px) {
         position: fixed;
@@ -90,5 +96,31 @@
         }
       }
     }
+  }
+}
+
+/* InDown */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-14%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+/* In */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

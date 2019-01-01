@@ -24,7 +24,7 @@ class About extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({
-      type: 'global/queryPage',
+      type: 'app/queryPage',
       payload: { type: 'about' }
     })
   }
@@ -37,7 +37,7 @@ class About extends PureComponent {
 
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'global/updateState',
+      type: 'app/updateState',
       payload: { about: {} }
     })
   }
@@ -85,14 +85,22 @@ class About extends PureComponent {
               <div class={cx('header')}>
                 <img src={avatar} alt="" />
                 <div class={cx('info')}>
-                  {info.length &&
-                    info.map((o, i) => {
-                      return (
-                        <span key={i}>
-                          <i className={`fa fa-${o.icon}`} aria-hidden="true" /> {o.text}
-                        </span>
-                      )
-                    })}
+                  <span>
+                    <i class="icon">&#xe810;</i>
+                    蝉時雨
+                  </span>
+                  <span>
+                    <i class="icon">&#xf299;</i>
+                    蝉鸣如雨，花宵道中
+                  </span>
+                  <span>
+                    <i class="icon">&#xf19c;</i>
+                    University of Electronic Science and Technology of China (UESTC)
+                  </span>
+                  <span>
+                    <i class="icon">&#xf19d;</i>
+                    Communication&Information Engineering
+                  </span>
                 </div>
               </div>
               <div class={cx('concat')}>
@@ -104,31 +112,6 @@ class About extends PureComponent {
                   )
                 })}
               </div>
-              {/* <div class={cx('project')}>
-                {project.map((o, i) => {
-                  return (
-                    <a key={i} href={o.link} rel="noopener noreferrer" target="_blank">
-                      <img class={cx('cover')} alt="" src={o.cover} />
-                      <div class={cx('info')}>
-                        <span>{o.name}</span>
-                      </div>
-                    </a>
-                  )
-                })}
-            
-                {_.range(4).map((o, i) => {
-                  return (
-                    <a
-                      class="empty"
-                      style="height: 0; margin: 0;"
-                      key={i + 'empty'}
-                      href={o.link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    />
-                  )
-                })}
-              </div> */}
               <div class={cx('content')}>
                 {section &&
                   section.map((o, i) => {
@@ -147,7 +130,7 @@ class About extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  about: global.about,
-  loading: loading.effects['global/queryPage']
+export default connect(({ app, loading }) => ({
+  about: app.about,
+  loading: loading.effects['app/queryPage']
 }))(About)

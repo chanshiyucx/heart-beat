@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 
 import Transition from '../Transition'
 import styles from './index.less'
-import { isMobile } from '../../utils'
+import { isMobile, on } from '../../utils'
 import config from '../../config'
 
 const cx = classNames.bind(styles)
@@ -99,21 +99,21 @@ class SKPlayer extends PureComponent {
 
   // 绑定事件
   bind = () => {
-    this.audio.addEventListener('durationchange', this.durationchange)
-    this.audio.addEventListener('progress', this.progress)
-    this.audio.addEventListener('canplay', this.canplay)
-    this.audio.addEventListener('timeupdate', this.timeupdate)
-    this.audio.addEventListener('seeked', this.seeked)
-    this.audio.addEventListener('ended', this.next)
+    on(this.audio, 'durationchange', this.durationchange)
+    on(this.audio, 'progress', this.progress)
+    on(this.audio, 'canplay', this.canplay)
+    on(this.audio, 'timeupdate', this.timeupdate)
+    on(this.audio, 'seeked', this.seeked)
+    on(this.audio, 'ended', this.next)
 
-    this.playbutton.addEventListener('click', this.toggle)
-    this.switchbutton.addEventListener('click', this.toggleList)
-    this.modebutton.addEventListener('click', this.switchMode)
-    this.musiclist.addEventListener('click', this.musiclistClick)
-    this.skPlayerPercent.addEventListener('click', this.timelineClick)
+    on(this.playbutton, 'click', this.toggle)
+    on(this.switchbutton, 'click', this.toggleList)
+    on(this.modebutton, 'click', this.switchMode)
+    on(this.musiclist, 'click', this.musiclistClick)
+    on(this.skPlayerPercent, 'click', this.timelineClick)
     if (!this.isMobile) {
-      this.volumebutton.addEventListener('click', this.toggleMute)
-      this.volumelineTotal.addEventListener('click', this.volumelineClick)
+      on(this.volumebutton, 'click', this.toggleMute)
+      on(this.volumelineTotal, 'click', this.volumelineClick)
     }
   }
 
@@ -402,7 +402,7 @@ class SKPlayer extends PureComponent {
               </div>
             </div>
             <div ref={c => (this.switchbutton = c)} class={cx('skPlayer-list-switch')}>
-              <i class="fa fa-list-ul" aria-hidden="true" />
+              <i class="icon">&#xf0ca;</i>
             </div>
             <i
               ref={c => (this.modebutton = c)}

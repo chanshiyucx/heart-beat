@@ -152,25 +152,6 @@ export default {
     enableGitalk: true,
     qoute: '蝉鸣如雨，花宵道中',
     avatar: 'https://i.loli.net/2018/12/09/5c0cc2b4e0195.png',
-    info: [
-      // 个人介绍，icon 使用 font-awesome
-      {
-        icon: 'user',
-        text: '蝉時雨'
-      },
-      {
-        icon: 'envira',
-        text: '蝉鸣如雨，花宵道中'
-      },
-      {
-        icon: 'university',
-        text: 'University of Electronic Science and Technology of China (UESTC)'
-      },
-      {
-        icon: 'graduation-cap',
-        text: 'Communication&Information Engineering'
-      }
-    ],
     // 联系方式
     contact: [
       {
@@ -189,48 +170,7 @@ export default {
         icon: 'https://i.loli.net/2018/12/09/5c0cc51ae4f0c.png',
         link: 'https://music.163.com/#/user/home?id=103060582'
       }
-    ],
-    // 个人作品
-    project: [
-      {
-        name: 'HeartBeat',
-        link: '/',
-        sourceCode: '//github.com/chanshiyucx/HeartBeat',
-        cover: '//i.loli.net/2018/12/29/5c27689676b5b.jpg',
-        description: 'A SPA Blog Theme'
-      },
-      {
-        name: 'Tamayura',
-        link: '//chanshiyu.com/treasure/resume/',
-        sourceCode: '//github.com/chanshiyucx/tamayura',
-        cover: '//i.loli.net/2018/12/29/5c27689673185.jpg',
-        description: 'An resume generator'
-      }
     ]
-  },
-
-  /**
-   * 动态背景 Backstretch
-   * 配置参数详见： https://github.com/jquery-backstretch/jquery-backstretch
-   */
-  backstretch: {
-    bgImg: [
-      'https://i.loli.net/2018/12/09/5c0cc0f409d63.jpg',
-      'https://i.loli.net/2018/12/16/5c164034ac74c.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1010f9e5.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc108c3b5c.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc10d3d771.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc111f30a3.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1159ea42.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc11b0691b.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc12115c2e.jpg',
-      'https://i.loli.net/2018/12/09/5c0cc1268cd42.jpg'
-    ],
-    bgOption: {
-      duration: 8000,
-      fade: 1000,
-      animateFirst: false
-    }
   },
 
   /**

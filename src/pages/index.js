@@ -4,7 +4,7 @@ import _ from 'lodash'
 import classNames from 'classnames/bind'
 
 import { Transition, PostCard, Loading } from '../components'
-import { isMobile } from '../utils'
+import { isMobile, on } from '../utils'
 import styles from './index.less'
 
 const cx = classNames.bind(styles)
@@ -32,7 +32,7 @@ class Home extends PureComponent {
   queryList = queryType => {
     if (this.props.loading) return
     this.props.dispatch({
-      type: 'global/queryList',
+      type: 'app/queryList',
       payload: { queryType }
     })
   }
@@ -51,7 +51,7 @@ class Home extends PureComponent {
     if (this.state.addEventListener) return
     this.setState({ addEventListener: true })
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
-    this.postListNode.addEventListener('mouseover', this.TPostListNodeMouseOver)
+    on(this.postListNode, 'mouseover', this.TPostListNodeMouseOver)
   }
 
   // 监听：文章卡片触发看板娘对话
@@ -73,7 +73,7 @@ class Home extends PureComponent {
     const title = target.getAttribute('data-title')
     const tips = `要去看看<font color=#f6f> ${title} </font>吗？`
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -87,7 +87,7 @@ class Home extends PureComponent {
       tips = "要到下一页看看吗？(●'◡'●)"
     }
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -101,7 +101,7 @@ class Home extends PureComponent {
             onClick={() => this.queryList('prev')}
             onMouseMove={() => this.handleMouseOver('prev')}
           >
-            <i className="fa fa-angle-double-left" aria-hidden="true" />
+            <i class="icon">&#xf100;</i>
           </button>
 
           <Transition
@@ -126,11 +126,11 @@ class Home extends PureComponent {
             onClick={() => this.queryList('next')}
             onMouseMove={() => this.handleMouseOver('next')}
           >
-            <i className="fa fa-angle-double-right" aria-hidden="true" />
+            <i class="icon">&#xf101;</i>
           </button>
           {totalList.length !== postList.length && (
             <button class={cx('mobile-btn')} onClick={() => this.queryList('add')}>
-              <i className="fa fa-angle-double-down" aria-hidden="true" />
+              <i class="icon">&#xf103;</i>
             </button>
           )}
         </div>
@@ -139,8 +139,8 @@ class Home extends PureComponent {
   }
 }
 
-export default connect(({ global, loading }) => ({
-  totalList: global.totalList,
-  postList: global.postList,
-  loading: loading.effects['global/queryList']
+export default connect(({ app, loading }) => ({
+  totalList: app.totalList,
+  postList: app.postList,
+  loading: loading.effects['app/queryList']
 }))(Home)

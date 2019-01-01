@@ -8,6 +8,7 @@ import SmoothScroll from 'smooth-scroll'
 import MarkeDown from '../MarkDown'
 import Transition from '../Transition'
 import SKPlayer from '../SKPlayer'
+import { on } from '../../utils'
 import styles from './index.less'
 
 // 看板娘
@@ -82,12 +83,12 @@ class Footer extends PureComponent {
       trailing: true
     })
 
-    document.addEventListener('scroll', this.THandleScroll)
-    this.waifu.addEventListener('click', this.TWaifuClick)
-    this.tool.addEventListener('click', this.toolClick)
-    this.tool.addEventListener('mouseover', this.TToolCMouseOver)
-    this.rightBtnWapper.addEventListener('click', this.rightBtnWapperClick)
-    this.rightBtnWapper.addEventListener('mouseover', this.TRightBtnWapperMouseOver)
+    on(document, 'scroll', this.THandleScroll)
+    on(this.waifu, 'click', this.TWaifuClick)
+    on(this.tool, 'click', this.toolClick)
+    on(this.tool, 'mouseover', this.TToolCMouseOver)
+    on(this.rightBtnWapper, 'click', this.rightBtnWapperClick)
+    on(this.rightBtnWapper, 'mouseover', this.TRightBtnWapperMouseOver)
   }
 
   // 监听：页面滚动
@@ -110,7 +111,7 @@ class Footer extends PureComponent {
       this.waifuClick()
     } else {
       dispatch({
-        type: 'global/showTips',
+        type: 'app/showTips',
         payload: { tips: nextTips }
       })
     }
@@ -141,7 +142,7 @@ class Footer extends PureComponent {
         window.Live2D.captureName = 'waifu.png'
         window.Live2D.captureFrame = true
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: clickTips.takePhoto }
         })
         break
@@ -149,7 +150,7 @@ class Footer extends PureComponent {
         const index = _.random(0, hitokotos.length - 1)
         const nextTips = hitokotos[index].hitokoto
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: nextTips }
         })
         break
@@ -158,7 +159,7 @@ class Footer extends PureComponent {
         break
       case 'close':
         this.props.dispatch({
-          type: 'global/showTips',
+          type: 'app/showTips',
           payload: { tips: clickTips.close }
         })
         setTimeout(() => {
@@ -190,7 +191,7 @@ class Footer extends PureComponent {
     }
     if (!tips) return
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -219,7 +220,7 @@ class Footer extends PureComponent {
       this.setState({ showLikeTimes: true })
     }
     this.props.dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips }
     })
   }
@@ -254,7 +255,7 @@ class Footer extends PureComponent {
     const { isLikeSite } = this.props
     if (isLikeSite) return
     this.props.dispatch({
-      type: 'global/likeSite'
+      type: 'app/likeSite'
     })
   }
 
@@ -293,7 +294,7 @@ class Footer extends PureComponent {
     const index = _.random(0, hitokotos.length - 1)
     const nextTips = hitokotos[index].hitokoto
     dispatch({
-      type: 'global/showTips',
+      type: 'app/showTips',
       payload: { tips: nextTips }
     })
   }
@@ -317,25 +318,25 @@ class Footer extends PureComponent {
             <canvas ref={c => (this.waifu = c)} id="live2d" width="280" height="250" />
             <ul ref={c => (this.tool = c)} class={cx('waifu-tool')}>
               <li data-type="home">
-                <i className="fa fa-university" aria-hidden="true" />
+                <i class="icon">&#xf19c;</i>
               </li>
               <li data-type="switch">
-                <i className="fa fa-venus-double" aria-hidden="true" />
+                <i class="icon">&#xf226;</i>
               </li>
               <li data-type="dressup">
-                <i className="fa fa-female" aria-hidden="true" />
+                <i class="icon">&#xf182;</i>
               </li>
               <li data-type="takephoto">
-                <i className="fa fa-camera-retro" aria-hidden="true" />
+                <i class="icon">&#xe801;</i>
               </li>
               <li data-type="talk">
-                <i className="fa fa-commenting" aria-hidden="true" />
+                <i class="icon">&#xf27a;</i>
               </li>
               <li data-type="info">
-                <i className="fa fa-info-circle" aria-hidden="true" />
+                <i class="icon">&#xe805;</i>
               </li>
               <li data-type="close">
-                <i className="fa fa-times-circle" aria-hidden="true" />
+                <i class="icon">&#xe806;</i>
               </li>
             </ul>
           </div>
@@ -344,11 +345,11 @@ class Footer extends PureComponent {
         <div class={cx('site-desc')}>
           <div class={cx('site-desc-row')}>
             <p>
-              <i className="fa fa-copyright" aria-hidden="true" />
+              <i class="icon">&#xf1f9;</i>
               <span>2017 - 2018</span>
             </p>
             <p>
-              <i className="fa fa-heartbeat" aria-hidden="true" />
+              <i class="icon">&#xf21e;</i>
               <span>蝉時雨</span>
             </p>
           </div>
@@ -369,7 +370,7 @@ class Footer extends PureComponent {
         <ul ref={c => (this.rightBtnWapper = c)} class={cx('right-btn-wapper')}>
           <Transition visible={showScrollTop} animation="zoom" duration={600}>
             <li class={cx('right-btn', 'scroll-btn')} data-index="0">
-              <i class="fa fa-chevron-up" aria-hidden="true" />
+              <i class="icon">&#xe80c;</i>
             </li>
           </Transition>
           <li
@@ -381,13 +382,15 @@ class Footer extends PureComponent {
             )}
             data-index="1"
           >
-            <i class="fa fa-music" aria-hidden="true" />
+            <i class="icon">&#xe80a;</i>
           </li>
           <li class={cx('right-btn', 'gallery-btn')} data-index="2">
-            <i class="fa fa-picture-o" aria-hidden="true" />
+            <i class="icon">&#xe80b;</i>
           </li>
           <li class={cx('right-btn', 'like-btn')} data-index="3">
-            <i class="fa fa-heart" style={{ color: isLikeSite && '#faf' }} aria-hidden="true" />
+            <i class="icon" style={{ color: isLikeSite && '#faf' }}>
+              &#xe80d;
+            </i>
             <div class={cx('popup')}>已有 {likeTimes} 人点赞了哦！</div>
           </li>
         </ul>
@@ -396,8 +399,8 @@ class Footer extends PureComponent {
   }
 }
 
-export default connect(({ global }) => ({
-  tips: global.tips,
-  isLikeSite: global.isLikeSite,
-  likeTimes: global.likeTimes
+export default connect(({ app }) => ({
+  tips: app.tips,
+  isLikeSite: app.isLikeSite,
+  likeTimes: app.likeTimes
 }))(Footer)

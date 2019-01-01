@@ -35,7 +35,7 @@ class Archives extends PureComponent {
   queryArchives() {
     this.props
       .dispatch({
-        type: 'global/queryArchives'
+        type: 'app/queryArchives'
       })
       .then(v => {
         const currList = v.slice(0, this.state.pageSize)
