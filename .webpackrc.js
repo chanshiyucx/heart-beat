@@ -1,4 +1,4 @@
 export default {
   publicPath: '/static/',
-  extraBabelPlugins: ['lodash']
+  extraBabelPlugins: ['lodash', 'transform-remove-console']
 }

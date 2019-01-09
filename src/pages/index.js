@@ -14,8 +14,7 @@ class Home extends PureComponent {
     super(props)
     this.state = {
       showLoading: true,
-      disabledGif: false,
-      addEventListener: false
+      disabledGif: false
     }
   }
 
@@ -48,8 +47,7 @@ class Home extends PureComponent {
     if (isMobile) {
       this.setState({ disabledGif: true })
     }
-    if (this.state.addEventListener) return
-    this.setState({ addEventListener: true })
+    if (this.TPostListNodeMouseOver) return
     this.TPostListNodeMouseOver = _.throttle(this.postListNodeMouseOver, 400, { trailing: true })
     on(this.postListNode, 'mouseover', this.TPostListNodeMouseOver)
   }
@@ -80,12 +78,7 @@ class Home extends PureComponent {
 
   // 前后翻页触发看板娘对话
   handleMouseOver = type => {
-    let tips
-    if (type === 'prev') {
-      tips = "要到上一页看看吗？(●'◡'●)"
-    } else {
-      tips = "要到下一页看看吗？(●'◡'●)"
-    }
+    const tips = `要到${type === 'prev' ? '上' : '下'}一页看看吗？(●'◡'●)`
     this.props.dispatch({
       type: 'app/showTips',
       payload: { tips }
