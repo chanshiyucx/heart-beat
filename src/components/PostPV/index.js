@@ -10,7 +10,7 @@ const PostPV = ({ number, title, date, cover, desc, filterLabels, milestone, tim
   return (
     <div class={cx('container')}>
       <Link to={`/post/${number}`}>
-        <img src={cover} alt="" />
+        <img src={cover.src} alt="" />
         <div class={cx('content')}>
           <div class={cx('info')}>
             <h3>{title}</h3>

@@ -97,7 +97,7 @@ export default {
         nextPostList = totalList.slice(0, 4)
       }
       nextPostList = yield call(queryHot, { postList: nextPostList }) // 获取热度
-      const images = _.map(nextPostList, post => post.cover)
+      const images = _.map(nextPostList, post => post.cover.src)
       yield call(loadImg, { images }) // 加载预览图
       const delayTime = new Date() - startTime
       if (delayTime < minDelay && queryType !== 'add') {
