@@ -31,8 +31,8 @@ export default {
     mood: [], // 心情
 
     about: {}, // 关于
-    books: {}, // 书单
-    friends: {}, // 友链
+    book: {}, // 书单
+    friend: {}, // 友链
 
     tips: '', // live2d 聊天
     lastTipsUpdateAt: '', // 最后一次更新 tips

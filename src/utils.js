@@ -15,7 +15,7 @@ export const delay = time => new Promise(resolve => setTimeout(resolve, time))
 export const formatPost = (post, index, length) => {
   const inx = length - index - 1
   const { created_at, body, labels } = post
-  const desc = body.split('<!-- more -->')[0]
+  const desc = body.split('\r\n')[2]
   post.desc = desc
   post.content = body
   post.cover = covers[inx % covers.length]

@@ -24,7 +24,7 @@ class Friends extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
       type: 'app/queryPage',
-      payload: { type: 'friends' }
+      payload: { type: 'friend' }
     })
   }
 
@@ -120,6 +120,6 @@ class Friends extends PureComponent {
 }
 
 export default connect(({ app, loading }) => ({
-  friends: app.friends,
+  friends: app.friend,
   loading: loading.effects['app/queryPage']
 }))(Friends)

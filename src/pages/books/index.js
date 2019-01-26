@@ -24,7 +24,7 @@ class Books extends PureComponent {
   componentDidMount() {
     this.props.dispatch({
       type: 'app/queryPage',
-      payload: { type: 'books' }
+      payload: { type: 'book' }
     })
   }
 
@@ -152,6 +152,6 @@ class Books extends PureComponent {
 }
 
 export default connect(({ app, loading }) => ({
-  books: app.books,
+  books: app.book,
   loading: loading.effects['app/queryPage']
 }))(Books)
