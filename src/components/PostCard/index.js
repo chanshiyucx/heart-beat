@@ -11,7 +11,7 @@ const PostCard = ({ number, title, date, cover, desc, filterLabels, milestone, t
     <div class={cx('card')}>
       <Link to={`/post/${number}`} data-title={title}>
         <div class={cx('header')}>
-          <img src={cover} alt="" />
+          <img src={cover.src} alt="" />
           <h3>{title}</h3>
         </div>
         <MarkeDown className={cx('desc')} content={desc} />

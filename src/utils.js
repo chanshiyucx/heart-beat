@@ -1,8 +1,6 @@
 import timeago from 'timeago.js'
-import config from './config'
 
 const t = timeago()
-const { covers } = config
 
 // 是否为移动端
 export const isMobile =
@@ -12,13 +10,17 @@ export const isMobile =
 export const delay = time => new Promise(resolve => setTimeout(resolve, time))
 
 // 文章格式化
-export const formatPost = (post, index, length) => {
-  const inx = length - index - 1
+export const formatPost = post => {
   const { created_at, body, labels } = post
-  const desc = body.split('\r\n')[2]
-  post.desc = desc
+  const temp = body.split('\r\n')
+  const regex = /^\[(.+)\].*(http.*(?:jpg|jpeg|png|gif))/g
+  const cover = regex.exec(temp[0])
+  post.cover = {
+    title: cover[1],
+    src: cover[2]
+  }
+  post.desc = temp[2]
   post.content = body
-  post.cover = covers[inx % covers.length]
   post.date = t.format(created_at, 'zh_CN')
   post.filterLabels = labels.sort((a, b) => a.name.length >= b.name.length)
   return post

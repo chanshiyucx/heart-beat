@@ -242,8 +242,6 @@ class Footer extends PureComponent {
     } else if (index === 1) {
       // 点击音乐按钮
       this.setState({ showPlayer: !this.state.showPlayer })
-    } else if (index === 2) {
-      router.push('/gallery')
     } else {
       // 点击喜欢按钮
       this.likeSite()
@@ -384,10 +382,7 @@ class Footer extends PureComponent {
           >
             <i class="icon">&#xe80a;</i>
           </li>
-          <li class={cx('right-btn', 'gallery-btn')} data-index="2">
-            <i class="icon">&#xe80b;</i>
-          </li>
-          <li class={cx('right-btn', 'like-btn')} data-index="3">
+          <li class={cx('right-btn', 'like-btn')} data-index="2">
             <i class="icon" style={{ color: isLikeSite && '#faf' }}>
               &#xe80d;
             </i>

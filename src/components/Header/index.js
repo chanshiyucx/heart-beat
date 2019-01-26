@@ -45,22 +45,22 @@ class Header extends PureComponent {
       case 'home':
         tips = '要回首页看看么~'
         break
-      case 'archives':
+      case 'archive':
         tips = '去看看主人的所有文章吧'
         break
-      case 'categories':
+      case 'categorie':
         tips = '去看看主人的文章吧'
         break
-      case 'tags':
+      case 'tag':
         tips = '去看看主人的文章吧'
         break
       case 'mood':
         tips = '主人最近又在发什么牢骚呢'
         break
-      case 'books':
+      case 'book':
         tips = '主人最近再读什么书呢'
         break
-      case 'friends':
+      case 'friend':
         tips = '去看看主人的小伙伴吧'
         break
       case 'about':
@@ -98,20 +98,20 @@ class Header extends PureComponent {
                 <span>首页</span>
               </Link>
             </li>
-            <li data-menu="archives">
-              <Link to="/archives">
+            <li data-menu="archive">
+              <Link to="/archive">
                 <i class="icon">&#xe800;</i>
                 <span>归档</span>
               </Link>
             </li>
-            <li data-menu="categories">
-              <Link to="/categories">
+            <li data-menu="categorie">
+              <Link to="/categorie">
                 <i class="icon">&#xe802;</i>
                 <span>分类</span>
               </Link>
             </li>
-            <li data-menu="tags">
-              <Link to="/tags">
+            <li data-menu="tag">
+              <Link to="/tag">
                 <i class="icon">&#xe803;</i>
                 <span>标签</span>
               </Link>
@@ -122,14 +122,14 @@ class Header extends PureComponent {
                 <span>心情</span>
               </Link>
             </li>
-            <li data-menu="books">
-              <Link to="/books">
+            <li data-menu="book">
+              <Link to="/book">
                 <i class="icon">&#xe804;</i>
                 <span>书单</span>
               </Link>
             </li>
-            <li data-menu="friends">
-              <Link to="/friends">
+            <li data-menu="friend">
+              <Link to="/friend">
                 <i class="icon">&#xf21e;</i>
                 <span>友链</span>
               </Link>

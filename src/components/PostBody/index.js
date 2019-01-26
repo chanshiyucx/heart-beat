@@ -26,7 +26,7 @@ class PostBody extends PureComponent {
     return (
       <div class={cx('container')} id="post-body">
         <div class={cx('header')}>
-          <img alt="" src={cover} />
+          <img alt="" src={cover.src} />
           <div class={cx('info')}>
             <h1>{title}</h1>
             <div class={cx('meta')}>
