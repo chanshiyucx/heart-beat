@@ -104,8 +104,8 @@ class Header extends PureComponent {
                 <span>归档</span>
               </Link>
             </li>
-            <li data-menu="categorie">
-              <Link to="/categorie">
+            <li data-menu="category">
+              <Link to="/category">
                 <i class="icon">&#xe802;</i>
                 <span>分类</span>
               </Link>
