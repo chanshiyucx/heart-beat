@@ -15,8 +15,8 @@ HeartBeat 是一个基于 [UmiJS](https://umijs.org/) 开发的 SPA 单页面博
 ### Installing
 
 ```bash
-git@github.com:chanshiyucx/HeartBeat.git
-cd HeartBeat
+git@github.com:chanshiyucx/heart-beat.git
+cd heart-beat
 npm install # or yarn
 ```
 
