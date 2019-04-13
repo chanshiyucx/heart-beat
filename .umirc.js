@@ -1,6 +1,7 @@
 export default {
   hash: true,
   history: 'hash',
+  publicPath: process.env.NODE_ENV === 'production' ? '/treasure/heartbeat' : '/',
   plugins: [
     [
       'umi-plugin-react',
