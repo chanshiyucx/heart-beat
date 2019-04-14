@@ -8,7 +8,7 @@ HeartBeat 是一个基于 [UmiJS](https://umijs.org/) 开发的 SPA 单页面博
 
 技术栈：UmiJS + Github Issues + Gitalk
 
-在线演示：[蝉時雨](https://chanshiyu.com)
+在线演示：[蝉時雨](https://chanshiyu.com/treasure/heartbeat/)
 
 ## Getting Started
 
