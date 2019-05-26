@@ -68,9 +68,9 @@ export const queryFilterPost = async ({ type, filter }) => {
 }
 
 // 说说总数
-export const queryMoodTotal = async () => {
+export const queryInspirationTotal = async () => {
   try {
-    const url = `${blog}/issues?${closed}&labels=mood&page=1&per_page=200`
+    const url = `${blog}/issues?${closed}&labels=inspiration&page=1&per_page=200`
     const response = await fetch(url)
     checkStatus(response)
     const data = await response.json()

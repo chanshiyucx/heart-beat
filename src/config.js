@@ -118,13 +118,13 @@ export default {
     qoute: '列卒周匝，星罗云布'
   },
 
-  //【Mood, Books, Friends, About】打上 Labels 分别对应心情、书单、友链、关于页面
+  //【Inspiration, Books, Friends, About】打上 Labels 分别对应灵感、书单、友链、关于页面
   // 模板查看: https://github.com/chanshiyucx/Blog/issues?q=is%3Aissue+is%3Aclosed
 
   /**
-   * 心情页面
+   * 灵感页面
    */
-  moodOption: {
+  inspirationOption: {
     enableGitalk: true,
     qoute: '欲言又止，止言又欲'
   },

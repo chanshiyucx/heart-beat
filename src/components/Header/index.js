@@ -54,7 +54,7 @@ class Header extends PureComponent {
       case 'tag':
         tips = '去看看主人的文章吧'
         break
-      case 'mood':
+      case 'inspiration':
         tips = '主人最近又在发什么牢骚呢'
         break
       case 'book':
@@ -116,10 +116,10 @@ class Header extends PureComponent {
                 <span>标签</span>
               </Link>
             </li>
-            <li data-menu="mood">
-              <Link to="/mood">
+            <li data-menu="inspiration">
+              <Link to="/inspiration">
                 <i class="icon">&#xf27a;</i>
-                <span>心情</span>
+                <span>灵感</span>
               </Link>
             </li>
             <li data-menu="book">

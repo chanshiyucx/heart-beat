@@ -8,18 +8,18 @@ import { Transition, Segment, Pagination, Quote, Loading } from '../../component
 import config from '../../config'
 import styles from './index.less'
 
-const { gitalkOption, moodOption, themeColors } = config
-const { enableGitalk, qoute } = moodOption
+const { gitalkOption, inspirationOption, themeColors } = config
+const { enableGitalk, qoute } = inspirationOption
 const cx = classNames.bind(styles)
 const colors = _.shuffle(themeColors)
 
-class Mood extends PureComponent {
+class Inspiration extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       showLoading: true,
       renderGitalk: false,
-      mood: [],
+      inspiration: [],
       currList: [],
       pageSize: 10,
       page: 1,
@@ -28,21 +28,21 @@ class Mood extends PureComponent {
   }
 
   componentDidMount() {
-    this.queryMood()
+    this.queryInspiration()
   }
 
-  // 获取心情列表
-  queryMood() {
+  // 获取灵感列表
+  queryInspiration() {
     this.props
       .dispatch({
-        type: 'app/queryMood'
+        type: 'app/queryInspiration'
       })
       .then(v => {
         const currList = v.slice(0, this.state.pageSize)
         const maxPage = Math.ceil(v.length / this.state.pageSize)
         this.setState({
           showLoading: false,
-          mood: v,
+          inspiration: v,
           currList,
           page: 1,
           maxPage
@@ -53,9 +53,9 @@ class Mood extends PureComponent {
 
   // 前一页
   prev = () => {
-    const { mood, page, pageSize } = this.state
+    const { inspiration, page, pageSize } = this.state
     const prevPage = page - 1
-    const currList = mood.slice((prevPage - 1) * pageSize, (page - 1) * pageSize)
+    const currList = inspiration.slice((prevPage - 1) * pageSize, (page - 1) * pageSize)
     this.setState({
       currList,
       page: prevPage
@@ -64,9 +64,9 @@ class Mood extends PureComponent {
 
   // 后一页
   next = () => {
-    const { mood, page, pageSize } = this.state
+    const { inspiration, page, pageSize } = this.state
     const nextPage = page + 1
-    const currList = mood.slice(page * pageSize, nextPage * pageSize)
+    const currList = inspiration.slice(page * pageSize, nextPage * pageSize)
     this.setState({
       currList,
       page: nextPage
@@ -79,7 +79,7 @@ class Mood extends PureComponent {
       setTimeout(() => {
         const gitalk = new Gitalk({
           ...gitalkOption,
-          title: '心情'
+          title: '灵感'
         })
         gitalk.render('gitalk')
       }, 100)
@@ -116,4 +116,4 @@ class Mood extends PureComponent {
   }
 }
 
-export default connect(() => ({}))(Mood)
+export default connect(() => ({}))(Inspiration)

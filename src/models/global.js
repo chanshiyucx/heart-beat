@@ -8,7 +8,7 @@ import {
   queryCats,
   queryTags,
   queryFilterPost,
-  queryMoodTotal,
+  queryInspirationTotal,
   queryPage,
   likeSite
 } from '../services'
@@ -28,7 +28,7 @@ export default {
 
     cats: [], // 分类
     tags: [], // 标签
-    mood: [], // 心情
+    inspiration: [], // 灵感
 
     about: {}, // 关于
     book: {}, // 书单
@@ -170,10 +170,15 @@ export default {
     *queryTags({ payload }, { call, put }) {
       const startTime = new Date()
       const tags = yield call(queryTags, payload)
-      // 筛选 tags 【Friends, Books, About, Mood】
+      // 筛选 tags 【Friends, Books, About, Inspiration】
       const filterTags = tags.filter(o => {
         const { name } = o
-        return !(name === 'Friends' || name === 'Books' || name === 'About' || name === 'Mood')
+        return !(
+          name === 'Friends' ||
+          name === 'Books' ||
+          name === 'About' ||
+          name === 'Inspiration'
+        )
       })
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
@@ -189,27 +194,27 @@ export default {
     },
 
     // 说说列表
-    *queryMoodTotal({ payload }, { call, put }) {
-      const mood = yield call(queryMoodTotal, payload)
-      yield put({ type: 'updateState', payload: { mood } })
+    *queryInspirationTotal({ payload }, { call, put }) {
+      const inspiration = yield call(queryInspirationTotal, payload)
+      yield put({ type: 'updateState', payload: { inspiration } })
     },
 
     // 当前说说
-    *queryMood({}, { select, take, call, put }) {
+    *queryInspiration({}, { select, take, call, put }) {
       const startTime = new Date()
       const state = yield select(state => state.app)
-      let { mood } = state
+      let { inspiration } = state
       // 说说列表不存在先获取说说
-      if (!mood.length) {
-        yield put({ type: 'queryMoodTotal' })
-        yield take('queryMoodTotal/@@end')
-        mood = yield select(state => state.app.mood)
+      if (!inspiration.length) {
+        yield put({ type: 'queryInspirationTotal' })
+        yield take('queryInspirationTotal/@@end')
+        inspiration = yield select(state => state.app.inspiration)
       }
       const delayTime = new Date() - startTime
       if (delayTime < minDelay) {
         yield call(delay, minDelay - delayTime)
       }
-      return mood
+      return inspiration
     },
 
     // 书单/友链/关于
